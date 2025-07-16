@@ -43,15 +43,16 @@ if menu == "🧮 Kalkulator":
         if satuan_t == "°C":
             st.write(f"Telah dikonversi otomatis: {T_input}°C = {T_input + 273.15:.2f} K")
             T = T_input + 273.15
-else:
-    T = T_input
+        else:
+            T = T_input
 
-    # Perbaiki indentasi blok di bawah ini
-    V = st.number_input("Volume", min_value=0.1)
-    satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
+        V = st.number_input("Volume", min_value=0.1)
+        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
         if satuan_v == "m³":
             V *= 1000  # konversi ke liter (dm³)
+
         satuan_p = st.selectbox("Satuan Tekanan Output", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"])
+
         if st.button("Hitung Tekanan"):
             P = (n * R * T) / V  # hasil dalam atm
             hasil = P
@@ -68,10 +69,7 @@ else:
             elif satuan_p == "L.atm":
                 hasil = P
             st.success(f"Tekanan {nama} = {hasil:.2f} {satuan_p}")
-            P = (n * R * T) / V
-            st.success(f"Tekanan {nama} = {P:.2f} atm")
 
-    elif pilihan == "Volume":
         nama = st.text_input("Nama Gas")
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0)
         satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"])
