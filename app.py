@@ -135,13 +135,13 @@ Berikut adalah informasi lengkap tentang berbagai jenis gas ideal, termasuk rumu
         }
 
         for k, v in daftar_gas[pilih].items():
-    warna = warna_kategori.get(k, "#f0f0f0")
-    st.markdown(f"""
-    <div style='border: 2px solid {warna}; padding: 15px; border-radius: 10px; background-color: #ffffff; margin-bottom: 10px;'>
-        <h5 style='color: {warna}; margin-bottom: 5px;'>{k}</h5>
-        <p style='margin: 0;'>{v}</p>
-    </div>
-    """, unsafe_allow_html=True)
+            warna = warna_kategori.get(k, "#f0f0f0")
+            st.markdown(f"""
+            <div style='border: 2px solid {warna}; padding: 15px; border-radius: 10px; background-color: #ffffff; margin-bottom: 10px;'>
+                <h5 style='color: {warna}; margin-bottom: 5px;'>{k}</h5>
+                <p style='margin: 0;'>{v}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
 # File requirements.txt (letakkan di root folder proyek)
 # ---
