@@ -6,7 +6,7 @@ import streamlit as st
 st.set_page_config(page_title="Kalkulator Gas Ideal", layout="centered")
 
 # Sidebar menu
-menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"])
+menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"], key="menu_select")
 
 # Halaman Utama
 if menu == "Halaman Utama":
