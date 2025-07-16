@@ -76,15 +76,15 @@ Berikut adalah informasi lengkap tentang berbagai jenis gas ideal, termasuk rumu
             "🔬 Rumus Molekul": "H₂ adalah molekul diatomik yang sangat ringan dan terdiri dari dua atom hidrogen dengan ikatan kovalen tunggal. Molekul ini paling sederhana dan paling banyak di alam semesta.",
             "🌡️ Sifat Fisika": "Gas ini tidak berwarna, tidak berbau, memiliki densitas sangat rendah dan titik didih -252,9°C. Sangat mudah terbakar dan digunakan dalam balon serta roket.",
             "⚗️ Sifat Kimia": "Hidrogen mudah bereaksi membentuk senyawa, sangat reaktif, dan dapat menjadi agen reduktor. Reaksi dengan oksigen menghasilkan air.",
-            "🏭 Pengetahuan Bahan Kimia (PBK)": "Digunakan untuk hidrogenasi minyak, pembuatan amonia, dan sel bahan bakar. Juga dipakai dalam proses metalurgi dan industri petrokimia.",
-            "🛡️ Kesehatan dan Keselamatan Kerja Lingkungan (K3L)": "Bersifat sangat mudah meledak jika bercampur udara. Penyimpanan harus pada tangki khusus dan jauh dari sumber panas."
+            "🏭 Pengetahuan dan Penanganan Bahan Kimia (PBK)": "Digunakan untuk hidrogenasi minyak, pembuatan amonia, dan sel bahan bakar. Juga dipakai dalam proses metalurgi dan industri petrokimia.",
+            "🛡️ Keselamatan, Kesehatan Kerja dan Lingkungan (K3L)": "Bersifat sangat mudah meledak jika bercampur udara. Penyimpanan harus pada tangki khusus dan jauh dari sumber panas."
         },
         "Oksigen (O₂)": {
             "🔬 Rumus Molekul": "O₂ adalah molekul diatomik dengan dua atom oksigen yang sangat penting untuk respirasi dan pembakaran. Berperan penting dalam kehidupan dan industri.",
             "🌡️ Sifat Fisika": "Tidak berwarna dan tidak berbau, dengan titik didih -183°C. Dalam bentuk cair berwarna biru pucat dan memiliki sifat paramagnetik.",
             "⚗️ Sifat Kimia": "Zat pengoksidasi kuat yang bereaksi dengan hampir semua unsur. Membentuk senyawa oksida seperti CO₂ dan H₂O.",
-            "🏭 Pengetahuan Bahan Kimia (PBK)": "Digunakan dalam respirasi medis, pengelasan logam, pembangkit energi, dan pemurnian logam. Juga berperan dalam bioteknologi.",
-            "🛡️ Kesehatan dan Keselamatan Kerja Lingkungan (K3L)": "Meningkatkan risiko kebakaran. Harus disimpan dalam silinder bertekanan dan jauh dari bahan mudah terbakar."
+            "🏭 Pengetahuan dan Penanganan Bahan Kimia (PBK)": "Digunakan dalam respirasi medis, pengelasan logam, pembangkit energi, dan pemurnian logam. Juga berperan dalam bioteknologi.",
+            "🛡️ Keselamatan, Kesehatan Kerja dan Lingkungan (K3L)": "Meningkatkan risiko kebakaran. Harus disimpan dalam silinder bertekanan dan jauh dari bahan mudah terbakar."
         },
         "Nitrogen (N₂)": {
             "🔬 Rumus Molekul": "N₂ adalah molekul diatomik yang stabil dengan ikatan rangkap tiga antara dua atom nitrogen. Menyusun 78% atmosfer bumi.",
@@ -126,8 +126,22 @@ Berikut adalah informasi lengkap tentang berbagai jenis gas ideal, termasuk rumu
     pilih = st.selectbox("Pilih Gas Ideal", ["-- Pilih --"] + list(daftar_gas.keys()))
     if pilih != "-- Pilih --":
         st.subheader(f"🔬 {pilih}")
-        for k, v in daftar_gas[pilih].items():
-            st.markdown(f"**{k}:** {v}")
+        warna_kategori = {
+    "🔬 Rumus Molekul": "#FFD700",
+    "🌡️ Sifat Fisika": "#ADD8E6",
+    "⚗️ Sifat Kimia": "#F08080",
+    "🏭 Pengetahuan Bahan Kimia (PBK)": "#D8BFD8",
+    "🛡️ Kesehatan dan Keselamatan Kerja Lingkungan (K3L)": "#90EE90"
+}
+
+for k, v in daftar_gas[pilih].items():
+    warna = warna_kategori.get(k, "#f0f0f0")
+    st.markdown(f"""
+    <div style='border: 2px solid {warna}; padding: 15px; border-radius: 10px; background-color: #ffffff; margin-bottom: 10px;'>
+        <h5 style='color: {warna}; margin-bottom: 5px;'>{k}</h5>
+        <p style='margin: 0;'>{v}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # File requirements.txt (letakkan di root folder proyek)
 # ---
