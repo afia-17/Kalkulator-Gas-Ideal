@@ -78,10 +78,33 @@ if menu == "🧮 Kalkulator":
 
     elif pilihan == "Jumlah Mol":
         nama = st.text_input("Nama Gas")
-        P = st.number_input("Tekanan (atm)", min_value=0.1)
-        V = st.number_input("Volume (L)", min_value=0.1)
+        satuan_p = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"])
+        P = st.number_input(f"Tekanan ({satuan_p})", min_value=0.1)
+        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
+        V = st.number_input(f"Volume ({satuan_v})", min_value=0.1)
         T = st.number_input("Suhu (K)", min_value=1.0)
+
+        # Konversi tekanan ke atm
+        if satuan_p == "Pa":
+            P /= 101325
+        elif satuan_p == "kPa":
+            P /= 101.325
+        elif satuan_p == "hPa":
+            P /= 1013.25
+        elif satuan_p == "bar":
+            P /= 1.01325
+        elif satuan_p == "Torr" or satuan_p == "mmHg":
+            P /= 760
+        elif satuan_p == "L.atm":
+            P = P  # sudah dalam atm
+
+        # Konversi volume ke liter
+        if satuan_v == "m³":
+            V *= 1000
+
         if st.button("Hitung Jumlah Mol"):
+            n = (P * V) / (R * T)
+            st.success(f"Jumlah mol {nama} = {n:.2f} mol")
             n = (P * V) / (R * T)
             st.success(f"Jumlah mol {nama} = {n:.2f} mol")
 
