@@ -41,8 +41,8 @@ if menu == "🧮 Kalkulator":
         satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"])
         T_input = st.number_input(f"Suhu ({satuan_t})", min_value=-273.0)
         if satuan_t == "°C":
-    st.write(f"Telah dikonversi otomatis: {T_input}°C = {T_input + 273.15:.2f} K")
-    T = T_input + 273.15
+        st.write(f"Telah dikonversi otomatis: {T_input}°C = {T_input + 273.15:.2f} K")
+        T = T_input + 273.15
 else:
     T = T_input
 
