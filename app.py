@@ -15,11 +15,11 @@ if not st.session_state.show_calc:
     Aplikasi ini dapat membantu menghitung berbagai parameter gas menggunakan hukum:
     \n\n**PV = nRT**
 
-    ### Fitur yang tersedia:
-    - Hitung massa gas
-    - Hitung tekanan
-    - Hitung volume
-    - Hitung jumlah mol gas
+    Fitur yang tersedia:
+    - Menghitung massa gas
+    - Menghitung tekanan
+    - Menghitung volume
+    - Menghitung jumlah mol gas
 
     ---
     """)
