@@ -5,15 +5,19 @@ import streamlit as st
 # Konfigurasi halaman utama
 st.set_page_config(page_title="Kalkulator Gas Ideal", layout="centered")
 
-# Judul dan pengantar
-st.title("💨 Kalkulator Gas Ideal")
-st.markdown("""
-Selamat datang di **Kalkulator Gas Ideal**!
+# Sidebar menu
+menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"])
 
-🔹 Aplikasi ini dapat digunakan untuk menghitung massa, tekanan, volume, dan jumlah mol gas ideal menggunakan persamaan PV = nRT.  
-🔹 Anda juga dapat mempelajari informasi kimia, fisika, serta aspek K3L berbagai gas ideal di bagian *Library*.  
-Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
-""")
+# Halaman Utama
+if menu == "Halaman Utama":
+    st.title("💨 Kalkulator Gas Ideal")
+    st.markdown("""
+    Selamat datang di **Kalkulator Gas Ideal**!
+
+    🔹 Aplikasi ini dapat digunakan untuk menghitung massa, tekanan, volume, dan jumlah mol gas ideal menggunakan persamaan PV = nRT.  
+    🔹 Anda juga dapat mempelajari informasi kimia, fisika, serta aspek K3L berbagai gas ideal di bagian *Library*.  
+    Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
+    """)
 
 # Sidebar menu
 menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"])
