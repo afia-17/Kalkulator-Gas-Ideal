@@ -19,8 +19,6 @@ if menu == "Halaman Utama":
     Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
     """)
 
-# Sidebar menu
-menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"])
 
 # Halaman Kalkulator
 if menu == "Kalkulator":
