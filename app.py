@@ -25,7 +25,7 @@ if not st.session_state.show_calc:
     """)
     
     st.markdown("#### 👨‍🔬 Dibuat oleh: Kelompok 1 Analisis Kimia")
-    st.markdown("- Coklat Kopi\n- Dll (tambahkan sesuai anggota)")
+    st.markdown("- Afia Hikmawati\n- Ikbal (tambahkan sesuai anggota)")
     
     if st.button("➡️ Masuk ke Kalkulator"):
         st.session_state.show_calc = True
