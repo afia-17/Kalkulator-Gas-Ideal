@@ -48,7 +48,7 @@ else:
 
     # Perbaiki indentasi blok di bawah ini
     V = st.number_input("Volume", min_value=0.1)
-        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
+    satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
         if satuan_v == "m³":
             V *= 1000  # konversi ke liter (dm³)
         satuan_p = st.selectbox("Satuan Tekanan Output", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"])
