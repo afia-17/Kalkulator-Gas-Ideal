@@ -21,7 +21,6 @@ if not st.session_state.show_calc:
     - Menghitung volume
     - Menghitung jumlah mol gas
 
-    ---
     """)
     
     st.markdown("#### 👨‍🔬 Dibuat oleh: Kelompok 7 Kelas 1A")
