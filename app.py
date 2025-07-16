@@ -39,8 +39,26 @@ if menu == "🧮 Kalkulator":
         nama = st.text_input("Nama Gas")
         n = st.number_input("Jumlah Mol (n)", min_value=0.0)
         T = st.number_input("Suhu (K)", min_value=1.0)
-        V = st.number_input("Volume (L)", min_value=0.1)
+        V = st.number_input("Volume", min_value=0.1)
+        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
+        if satuan_v == "m³":
+            V *= 1000  # konversi ke liter
+        satuan_p = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"])
         if st.button("Hitung Tekanan"):
+            P = (n * R * T) / V  # hasil dalam atm
+            if satuan_p == "Pa":
+                P *= 101325
+            elif satuan_p == "kPa":
+                P *= 101.325
+            elif satuan_p == "hPa":
+                P *= 1013.25
+            elif satuan_p == "bar":
+                P *= 1.01325
+            elif satuan_p == "Torr" or satuan_p == "mmHg":
+                P *= 760
+            elif satuan_p == "L.atm":
+                P = P  # sama dengan atm
+            st.success(f"Tekanan {nama} = {P:.2f} {satuan_p}")
             P = (n * R * T) / V
             st.success(f"Tekanan {nama} = {P:.2f} atm")
 
@@ -49,7 +67,12 @@ if menu == "🧮 Kalkulator":
         n = st.number_input("Jumlah Mol (n)", min_value=0.0)
         T = st.number_input("Suhu (K)", min_value=1.0)
         P = st.number_input("Tekanan (atm)", min_value=0.1)
+        satuan_v = st.selectbox("Satuan Volume Output", ["L", "m³"])
         if st.button("Hitung Volume"):
+            V = (n * R * T) / P
+            if satuan_v == "m³":
+                V /= 1000
+            st.success(f"Volume {nama} = {V:.4f} {satuan_v}")
             V = (n * R * T) / P
             st.success(f"Volume {nama} = {V:.2f} L")
 
