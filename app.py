@@ -181,15 +181,15 @@ Berikut adalah informasi lengkap tentang berbagai jenis gas ideal, termasuk rumu
     if pilih != "-- Pilih --":
         st.subheader(f"🔬 {pilih}")
         warna_kategori = {
-            "🔬 Rumus Molekul": "#FFD700",
-            "🌡️ Sifat Fisika": "#ADD8E6",
-            "⚗️ Sifat Kimia": "#F08080",
-            "🏭 Pengetahuan dan Penanganan Bahan Kimia (PBK)": "#D8BFD8",
-            "🛡️ Keselamatan, Kesehatan Kerja dan Lingkungan (K3L)": "#90EE90"
+            "🔬 Rumus Molekul": "#FFEB3B",
+            "🌡️ Sifat Fisika": "#B3E5FC",
+            "⚗️ Sifat Kimia": "#FF8A80",
+            "🏭 Pengetahuan dan Penanganan Bahan Kimia (PBK)": "#E1BEE7",
+            "🛡️ Keselamatan, Kesehatan Kerja dan Lingkungan (K3L)": "#C8E6C9"
         }
 
         for k, v in daftar_gas[pilih].items():
-            warna = warna_kategori.get(k, "#e6f7ff")
+            warna = warna_kategori.get(k, "#f5faff")
             st.markdown(f"""
             <div style='border: 2px solid {warna}; padding: 15px; border-radius: 10px; background-color: #ffffff; margin-bottom: 10px;'>
                 <h5 style='color: {warna}; margin-bottom: 5px;'>{k}</h5>
