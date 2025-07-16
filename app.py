@@ -14,7 +14,7 @@ if menu == "Beranda":
     st.markdown("""
     Aplikasi ini dibuat untuk membantu perhitungan **massa, tekanan, volume, dan mol gas** berdasarkan hukum **PV = nRT**.
 
-    Selain itu, tersedia juga informasi **gas mulia** seperti sifat kimia, fisika, serta aspek **PBK** dan **K3L**.
+    Selain itu, tersedia juga informasi **gas ideal** seperti sifat kimia, fisika, serta aspek **PBK** dan **K3L**.
 
     ---
     """)
@@ -80,7 +80,7 @@ elif menu == "Kalkulator":
 
 # ===================== LIBRARY =====================
 elif menu == "Library":
-    st.title("📚 Library Gas Mulia")
+    st.title("📚 Library Gas Ideal")
 
     gas_list = [
         "Gas ideal",  # Placeholder awal
@@ -92,7 +92,7 @@ elif menu == "Library":
         "Radon (Rn)"
     ]
 
-    pilihan = st.selectbox("Pilih gas mulia:", gas_list)
+    pilihan = st.selectbox("Pilih gas ideal:", gas_list)
 
     info = {
         "Helium (He)": {
@@ -134,7 +134,7 @@ elif menu == "Library":
     }
 
     if pilihan == "Gas ideal":
-        st.info("Silakan pilih gas mulia untuk melihat informasi lengkap.")
+        st.info("Silakan pilih gas ideal untuk melihat informasi lengkap.")
     else:
         st.markdown(f"**🔬 Rumus Molekul:** {info[pilihan]['rumus']}")
         st.markdown(f"**⚗️ Sifat Kimia dan Fisika:** {info[pilihan]['sifat']}")
