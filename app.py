@@ -74,7 +74,7 @@ if menu == "🧮 Kalkulator":
         nama = st.text_input("Nama Gas", key="nama_tekanan")
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_tekanan")
         T = konversi_suhu_input("Suhu", "satuan_t_tekanan", "T_input_tekanan")
-        V = st.number_input("Volume", min_value=0.1, key="V_tekanan")
+        V = st.number_input("Volume", min_value=0.0, key="V_tekanan")
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_tekanan")
         if satuan_v == "m³":
             V *= 1000  # konversi ke liter (dm³)
