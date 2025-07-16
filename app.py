@@ -17,6 +17,25 @@ def konversi_suhu_input(label, satuan_key, input_key):
         T = T_input
     return T
 
+# Fungsi konversi tekanan ke atm
+
+def konversi_tekanan_input(label, satuan_key, input_key):
+    satuan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"], key=satuan_key)
+    P_input = st.number_input(f"{label} ({satuan})", min_value=0.0, key=input_key)
+    if satuan == "Pa":
+        P = P_input / 101325
+    elif satuan == "kPa":
+        P = P_input / 101.325
+    elif satuan == "hPa":
+        P = P_input / 1013.25
+    elif satuan == "bar":
+        P = P_input / 1.01325
+    elif satuan == "Torr" or satuan == "mmHg":
+        P = P_input / 760
+    else:
+        P = P_input
+    return P
+
 # Sidebar menu
 menu = st.sidebar.selectbox("📂 Menu", ["🏠 Halaman Utama", "🧮 Kalkulator", "📚 Library"], key="menu_select")
 
@@ -79,7 +98,7 @@ if menu == "🧮 Kalkulator":
         nama = st.text_input("Nama Gas", key="nama_volume")
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_volume")
         T = konversi_suhu_input("Suhu", "satuan_t_volume", "T_input_volume")
-        P = st.number_input("Tekanan (atm)", min_value=0.1, key="P_volume")
+        P = konversi_tekanan_input("Tekanan", "satuan_p_volume", "P_volume")
         satuan_v = st.selectbox("Satuan Volume Output", ["L", "m³"], key="satuan_v_volume")
         if st.button("Hitung Volume"):
             V = (n * R * T) / P
@@ -89,27 +108,12 @@ if menu == "🧮 Kalkulator":
 
     elif pilihan == "Jumlah Mol":
         nama = st.text_input("Nama Gas", key="nama_mol")
-        satuan_p = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"], key="satuan_p_mol")
-        P = st.number_input(f"Tekanan ({satuan_p})", min_value=0.1, key="P_mol")
+        P = konversi_tekanan_input("Tekanan", "satuan_p_mol", "P_mol")
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_mol")
         V = st.number_input(f"Volume ({satuan_v})", min_value=0.1, key="V_mol")
-        T = konversi_suhu_input("Suhu", "satuan_t_mol", "T_input_mol")
-
-        # Konversi tekanan ke atm
-        if satuan_p == "Pa":
-            P /= 101325
-        elif satuan_p == "kPa":
-            P /= 101.325
-        elif satuan_p == "hPa":
-            P /= 1013.25
-        elif satuan_p == "bar":
-            P /= 1.01325
-        elif satuan_p == "Torr" or satuan_p == "mmHg":
-            P /= 760
-
-        # Konversi volume ke liter (dm³)
         if satuan_v == "m³":
             V *= 1000
+        T = konversi_suhu_input("Suhu", "satuan_t_mol", "T_input_mol")
 
         if st.button("Hitung Jumlah Mol"):
             n = (P * V) / (R * T)
