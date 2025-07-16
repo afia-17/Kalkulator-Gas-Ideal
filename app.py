@@ -24,8 +24,8 @@ if not st.session_state.show_calc:
     ---
     """)
     
-    st.markdown("#### 👨‍🔬 Dibuat oleh: Kelompok 2 Kelas 1A")
-    st.markdown("- Afia Hikmawati\n- Ikbal (tambahkan sesuai anggota)")
+    st.markdown("#### 👨‍🔬 Dibuat oleh: Kelompok 7 Kelas 1A")
+    st.markdown("- Afia Hikmawati\n- Ikbal\n- Muhammad Nadhar\n- Raizika Ramaraifa Putri\n- Valentinus Pati Wator")
     
     if st.button("➡️ Masuk ke Kalkulator"):
         st.session_state.show_calc = True
