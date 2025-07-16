@@ -98,7 +98,7 @@ if menu == "🧮 Kalkulator":
         nama = st.text_input("Nama Gas", key="nama_mol")
         P = konversi_tekanan_input("Tekanan", "satuan_p_mol", "P_mol")
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_mol")
-        V = st.number_input(f"Volume ({satuan_v})", min_value=0.1, key="V_mol")
+        V = st.number_input(f"Volume ({satuan_v})", min_value=0.0, key="V_mol")
         if satuan_v == "m³":
             V *= 1000
         T = konversi_suhu_input("Suhu", "satuan_t_mol", "T_input_mol")
