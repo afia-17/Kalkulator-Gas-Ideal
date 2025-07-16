@@ -1,168 +1,132 @@
-import streamlit as st
-import math
+# Aplikasi Kalkulator Gas Ideal dengan Streamlit
 
-# --- Halaman Awal ---
+import streamlit as st
+
+# Konfigurasi halaman utama
 st.set_page_config(page_title="Kalkulator Gas Ideal", layout="centered")
 
+# Judul dan pengantar
 st.title("💨 Kalkulator Gas Ideal")
 st.markdown("""
 Selamat datang di **Kalkulator Gas Ideal**!
 
-🔹 Gunakan aplikasi ini untuk menghitung: massa gas, tekanan, volume, dan jumlah mol berdasarkan persamaan **PV = nRT**.  
-🔹 Pelajari juga teori dan sifat berbagai **gas ideal** di bagian *Library*.  
-
-Pilih menu di sidebar untuk memulai ⬅️
+🔹 Aplikasi ini dapat digunakan untuk menghitung massa, tekanan, volume, dan jumlah mol gas ideal menggunakan persamaan PV = nRT.  
+🔹 Anda juga dapat mempelajari informasi kimia, fisika, serta aspek K3L berbagai gas ideal di bagian *Library*.  
+Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
 """)
 
-# --- Sidebar Menu ---
+# Sidebar menu
 menu = st.sidebar.selectbox("📂 Menu", ["Halaman Utama", "Kalkulator", "Library"])
 
-# --- Menu Kalkulator ---
+# Halaman Kalkulator
 if menu == "Kalkulator":
     st.header("🧮 Kalkulator Gas Ideal")
-    tab = st.radio("Pilih jenis perhitungan:", ["Massa Gas", "Tekanan", "Volume", "Jumlah Mol"])
+    pilihan = st.radio("Pilih jenis perhitungan:", ["Massa Gas", "Tekanan", "Volume", "Jumlah Mol"])
 
-    R = 0.0821  # konstanta gas dalam L.atm/mol.K
+    R = 0.0821  # konstanta gas ideal dalam L.atm/mol.K
 
-    if tab == "Massa Gas":
-        st.subheader("📦 Menghitung Massa Gas")
-        nama = st.text_input("Nama gas")
-        mol = st.number_input("Jumlah mol (n)", min_value=0.0, format="%.4f")
-        mr = st.number_input("Massa molar (g/mol)", min_value=0.0, format="%.4f")
+    if pilihan == "Massa Gas":
+        nama = st.text_input("Nama Gas")
+        n = st.number_input("Jumlah Mol (n)", min_value=0.0)
+        mr = st.number_input("Massa Molar (g/mol)", min_value=0.0)
         if st.button("Hitung Massa"):
-            massa = mol * mr
-            st.success(f"Massa {nama}: {massa:.4f} gram")
+            massa = n * mr
+            st.success(f"Massa {nama} = {massa:.2f} gram")
 
-    elif tab == "Tekanan":
-        st.subheader("🧯 Menghitung Tekanan Gas")
-        nama = st.text_input("Nama gas")
-        mol = st.number_input("Jumlah mol (n)", min_value=0.0, format="%.4f")
-        T = st.number_input("Suhu (K)", min_value=0.0, format="%.2f")
-        V = st.number_input("Volume (L)", min_value=0.0, format="%.2f")
+    elif pilihan == "Tekanan":
+        nama = st.text_input("Nama Gas")
+        n = st.number_input("Jumlah Mol (n)", min_value=0.0)
+        T = st.number_input("Suhu (K)", min_value=1.0)
+        V = st.number_input("Volume (L)", min_value=0.1)
         if st.button("Hitung Tekanan"):
-            P = (mol * R * T) / V if V != 0 else 0
-            st.success(f"Tekanan {nama}: {P:.4f} atm")
+            P = (n * R * T) / V
+            st.success(f"Tekanan {nama} = {P:.2f} atm")
 
-    elif tab == "Volume":
-        st.subheader("🔲 Menghitung Volume Gas")
-        nama = st.text_input("Nama gas")
-        mol = st.number_input("Jumlah mol (n)", min_value=0.0, format="%.4f")
-        T = st.number_input("Suhu (K)", min_value=0.0, format="%.2f")
-        P = st.number_input("Tekanan (atm)", min_value=0.0, format="%.2f")
+    elif pilihan == "Volume":
+        nama = st.text_input("Nama Gas")
+        n = st.number_input("Jumlah Mol (n)", min_value=0.0)
+        T = st.number_input("Suhu (K)", min_value=1.0)
+        P = st.number_input("Tekanan (atm)", min_value=0.1)
         if st.button("Hitung Volume"):
-            V = (mol * R * T) / P if P != 0 else 0
-            st.success(f"Volume {nama}: {V:.4f} L")
+            V = (n * R * T) / P
+            st.success(f"Volume {nama} = {V:.2f} L")
 
-    elif tab == "Jumlah Mol":
-        st.subheader("🌡️ Menghitung Jumlah Mol Gas")
-        nama = st.text_input("Nama gas")
-        P = st.number_input("Tekanan (atm)", min_value=0.0, format="%.2f")
-        V = st.number_input("Volume (L)", min_value=0.0, format="%.2f")
-        T = st.number_input("Suhu (K)", min_value=0.0, format="%.2f")
-        if st.button("Hitung Mol"):
-            n = (P * V) / (R * T) if T != 0 else 0
-            st.success(f"Jumlah mol {nama}: {n:.4f} mol")
+    elif pilihan == "Jumlah Mol":
+        nama = st.text_input("Nama Gas")
+        P = st.number_input("Tekanan (atm)", min_value=0.1)
+        V = st.number_input("Volume (L)", min_value=0.1)
+        T = st.number_input("Suhu (K)", min_value=1.0)
+        if st.button("Hitung Jumlah Mol"):
+            n = (P * V) / (R * T)
+            st.success(f"Jumlah mol {nama} = {n:.2f} mol")
 
-# --- Menu Library ---
+# Halaman Library
 elif menu == "Library":
-    st.title("📚 Library: Gas Ideal dan Contohnya")
-
-    st.subheader("📖 Apa Itu Gas Ideal?")
+    st.header("📚 Library: Gas Ideal")
     st.markdown("""
-Gas ideal adalah model teoritis dalam ilmu kimia yang menggambarkan perilaku gas di mana partikel gas:
-- ⚪ Tidak memiliki volume sendiri
-- 🧲 Tidak saling berinteraksi
-- 🔁 Bergerak acak secara terus menerus
-- 💥 Mengalami tumbukan elastis sempurna
+Gas ideal adalah model teoretis yang menggambarkan perilaku gas yang tidak memiliki volume partikel dan tidak mengalami gaya antar molekul. Model ini mengikuti hukum Boyle, Charles, dan Avogadro, serta dinyatakan dalam persamaan **PV = nRT**. Meskipun ideal, banyak gas nyata berperilaku mendekati gas ideal dalam suhu tinggi dan tekanan rendah.
 
-#### Rumus Gas Ideal:
-""")
-    st.latex("PV = nRT")
-    st.markdown("""
-- **P** = Tekanan (atm)
-- **V** = Volume (L)
-- **n** = Mol gas
-- **R** = Konstanta gas (0.0821)
-- **T** = Suhu (K)
-
-ℹ️ Gas nyata dapat berperilaku mendekati gas ideal pada suhu tinggi dan tekanan rendah.
----
+Berikut adalah informasi lengkap tentang berbagai jenis gas ideal, termasuk rumus molekul, sifat fisika dan kimia, penggunaan industri (PBK), serta aspek K3L.
 """)
 
-    st.subheader("🔍 Pilih Gas Ideal untuk Detail")
-    gas_list = [
-        "Pilih gas ideal...",
-        "Hidrogen (H₂)", "Oksigen (O₂)", "Nitrogen (N₂)",
-        "Karbon Dioksida (CO₂)", "Metana (CH₄)",
-        "Helium (He)", "Neon (Ne)"
-    ]
-    pilihan = st.selectbox("🧬 Gas Ideal:", gas_list)
-
-    gas_data = {
+    daftar_gas = {
         "Hidrogen (H₂)": {
-            "rumus": "H₂",
-            "fisika": "🌀 Gas sangat ringan, tidak berwarna, titik didih -252.9°C",
-            "kimia": "🔥 Reaktif, mudah terbakar, membentuk H₂O",
-            "pbk": "⚙️ Digunakan sebagai bahan bakar alternatif",
-            "k3l": "🚨 Hindari api terbuka, gunakan detektor kebocoran"
+            "Rumus Molekul": "H₂ adalah molekul diatomik yang sangat ringan dan terdiri dari dua atom hidrogen dengan ikatan kovalen tunggal. Molekul ini paling sederhana dan paling banyak di alam semesta.",
+            "Sifat Fisika": "Gas ini tidak berwarna, tidak berbau, memiliki densitas sangat rendah dan titik didih -252,9°C. Sangat mudah terbakar dan digunakan dalam balon serta roket.",
+            "Sifat Kimia": "Hidrogen mudah bereaksi membentuk senyawa, sangat reaktif, dan dapat menjadi agen reduktor. Reaksi dengan oksigen menghasilkan air.",
+            "PBK": "Digunakan untuk hidrogenasi minyak, pembuatan amonia, dan sel bahan bakar. Juga dipakai dalam proses metalurgi dan industri petrokimia.",
+            "K3L": "Bersifat sangat mudah meledak jika bercampur udara. Penyimpanan harus pada tangki khusus dan jauh dari sumber panas."
         },
         "Oksigen (O₂)": {
-            "rumus": "O₂",
-            "fisika": "💨 Tak berwarna, mendukung pembakaran",
-            "kimia": "🔥 Bereaksi membentuk oksida",
-            "pbk": "🏥 Digunakan di rumah sakit, industri logam",
-            "k3l": "⚠️ Hindari kontak dengan bahan mudah terbakar"
+            "Rumus Molekul": "O₂ adalah molekul diatomik dengan dua atom oksigen yang sangat penting untuk respirasi dan pembakaran. Berperan penting dalam kehidupan dan industri.",
+            "Sifat Fisika": "Tidak berwarna dan tidak berbau, dengan titik didih -183°C. Dalam bentuk cair berwarna biru pucat dan memiliki sifat paramagnetik.",
+            "Sifat Kimia": "Zat pengoksidasi kuat yang bereaksi dengan hampir semua unsur. Membentuk senyawa oksida seperti CO₂ dan H₂O.",
+            "PBK": "Digunakan dalam respirasi medis, pengelasan logam, pembangkit energi, dan pemurnian logam. Juga berperan dalam bioteknologi.",
+            "K3L": "Meningkatkan risiko kebakaran. Harus disimpan dalam silinder bertekanan dan jauh dari bahan mudah terbakar."
         },
         "Nitrogen (N₂)": {
-            "rumus": "N₂",
-            "fisika": "🌫️ Gas inert, tidak berbau",
-            "kimia": "🧪 Tidak reaktif pada suhu normal",
-            "pbk": "❄️ Digunakan sebagai pendingin",
-            "k3l": "🚷 Dapat menyebabkan asfiksia di ruang tertutup"
+            "Rumus Molekul": "N₂ adalah molekul diatomik yang stabil dengan ikatan rangkap tiga antara dua atom nitrogen. Menyusun 78% atmosfer bumi.",
+            "Sifat Fisika": "Tidak berwarna dan tidak berbau, dengan titik didih -195,8°C. Tidak mendukung pembakaran dan bersifat inert.",
+            "Sifat Kimia": "Kurang reaktif pada suhu kamar, tapi membentuk amonia, asam nitrat, dan senyawa organik dalam kondisi tertentu.",
+            "PBK": "Digunakan sebagai atmosfer inert untuk mencegah oksidasi. Penting dalam industri makanan, farmasi, dan elektronik.",
+            "K3L": "Gas inert yang bisa menyebabkan asfiksia. Harus digunakan di ruang berventilasi baik dan disimpan dengan aman."
         },
-        "Karbon Dioksida (CO₂)": {
-            "rumus": "CO₂",
-            "fisika": "⚫ Gas berat, larut dalam air",
-            "kimia": "🍋 Bersifat asam, membentuk H₂CO₃",
-            "pbk": "🥤 Digunakan di minuman karbonasi",
-            "k3l": "🛑 Hindari paparan berlebih di ruang tertutup"
+        "Karbondioksida (CO₂)": {
+            "Rumus Molekul": "CO₂ terdiri dari satu atom karbon dan dua atom oksigen yang terikat linier. Dihasilkan dari respirasi dan pembakaran.",
+            "Sifat Fisika": "Tidak berwarna dan tidak berbau. Dapat berbentuk padat (dry ice) pada -78,5°C dan lebih berat dari udara.",
+            "Sifat Kimia": "Bersifat asam dan larut dalam air membentuk asam karbonat. Tidak mendukung pembakaran dan bisa menggantikan oksigen.",
+            "PBK": "Digunakan dalam minuman bersoda, pemadam kebakaran, inkubasi kultur sel, dan industri makanan.",
+            "K3L": "Dapat menyebabkan sesak napas di ruang tertutup. Harus ditangani dengan ventilasi baik dan APD bila perlu."
         },
         "Metana (CH₄)": {
-            "rumus": "CH₄",
-            "fisika": "🔋 Gas mudah terbakar",
-            "kimia": "🔥 Bereaksi dengan O₂ membentuk CO₂ dan H₂O",
-            "pbk": "💡 Digunakan sebagai gas alam",
-            "k3l": "⚠️ Risiko ledakan tinggi, perlu ventilasi baik"
+            "Rumus Molekul": "CH₄ adalah molekul satu atom karbon dan empat atom hidrogen. Merupakan hidrokarbon sederhana dan komponen utama gas alam.",
+            "Sifat Fisika": "Gas tak berwarna dan tak berbau (diberi odorant). Titik didih -161,5°C. Lebih ringan dari udara dan mudah terbakar.",
+            "Sifat Kimia": "Sangat mudah terbakar, menghasilkan CO₂ dan H₂O saat terbakar. Tidak reaktif pada suhu kamar, tapi reaktif dalam pembakaran.",
+            "PBK": "Digunakan sebagai bahan bakar, bahan baku industri kimia (metanol, amonia), dan sumber energi domestik dan industri.",
+            "K3L": "Dapat menyebabkan ledakan bila terakumulasi. Harus disimpan dan digunakan dengan deteksi kebocoran dan ventilasi cukup."
         },
         "Helium (He)": {
-            "rumus": "He",
-            "fisika": "🎈 Gas sangat ringan dan inert",
-            "kimia": "🧊 Tidak reaktif",
-            "pbk": "🔬 Digunakan dalam MRI dan balon",
-            "k3l": "⚠️ Jangan dihirup langsung, bisa sebabkan asfiksia"
+            "Rumus Molekul": "He adalah gas monoatomik dengan satu atom helium. Bersifat inert dan termasuk gas mulia.",
+            "Sifat Fisika": "Gas tak berwarna, tak berbau, dan sangat ringan. Titik didih -268,9°C. Tidak terbakar dan tidak reaktif.",
+            "Sifat Kimia": "Tidak bereaksi dengan unsur lain. Tidak membentuk senyawa secara normal dan sangat stabil.",
+            "PBK": "Digunakan dalam balon, pendinginan MRI, deteksi kebocoran, dan atmosfer inert dalam reaksi sensitif.",
+            "K3L": "Tidak beracun tapi dapat menggantikan oksigen. Harus digunakan dalam ruang berventilasi dan dihindari untuk dihirup langsung."
         },
         "Neon (Ne)": {
-            "rumus": "Ne",
-            "fisika": "💡 Digunakan dalam lampu neon",
-            "kimia": "🧪 Sangat stabil, tidak reaktif",
-            "pbk": "🌈 Dipakai dalam industri pencahayaan",
-            "k3l": "📦 Simpan sesuai prosedur tekanan"
+            "Rumus Molekul": "Ne adalah gas mulia monoatomik yang sangat stabil. Bersifat non-reaktif dan ditemukan dalam jumlah kecil di atmosfer.",
+            "Sifat Fisika": "Tidak berwarna dan tidak berbau. Titik didih -246°C. Digunakan untuk lampu dan aplikasi kriogenik.",
+            "Sifat Kimia": "Sangat inert dan tidak bereaksi dengan unsur lain. Tidak membentuk senyawa dalam kondisi normal.",
+            "PBK": "Dipakai dalam lampu neon, indikator listrik, serta aplikasi vakum dan laser.",
+            "K3L": "Tidak berbahaya, namun dapat menggantikan oksigen. Gunakan di ruang dengan ventilasi yang memadai."
         }
     }
 
-    if pilihan != "Pilih gas ideal...":
-        data = gas_data[pilihan]
-        st.markdown(f"### 🧪 Rumus Molekul: `{data['rumus']}`")
-        st.markdown(f"**🧊 Sifat Fisika:** {data['fisika']}")
-        st.markdown(f"**🧪 Sifat Kimia:** {data['kimia']}")
-        st.markdown(f"**📘 PBK:** {data['pbk']}")
-        st.markdown(f"**🦺 K3L:** {data['k3l']}")
+    pilih = st.selectbox("Pilih Gas Ideal", ["-- Pilih --"] + list(daftar_gas.keys()))
+    if pilih != "-- Pilih --":
+        st.subheader(f"🔬 {pilih}")
+        for k, v in daftar_gas[pilih].items():
+            st.markdown(f"**{k}:** {v}")
 
-    st.markdown("---")
-    st.subheader("🔗 Referensi")
-    st.markdown("""
-- [Studiobelajar – Gas Ideal](https://www.studiobelajar.com/gas-mulia/)
-- [Kumparan – Elektron Gas Mulia](https://kumparan.com/kabar-harian/konfigurasi-elektron-gas-mulia-sebagai-penyebab-kestabilan-unsur-gas-mulia-1xHrcUepikN/full)
-- [Aku Pintar – Sifat Gas](https://akupintar.id/belajar/-/online/materi/modul/12-mia/kimia/kimia-unsur/sifat-sifat-unsur/461443)
-- [Pijar Belajar – Gas Ideal](https://www.pijarbelajar.id/blog/gas-mulia)
-""")
+# File requirements.txt (letakkan di root folder proyek)
+# ---
+# streamlit==1.35.0
