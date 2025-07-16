@@ -67,8 +67,9 @@ if menu == "🧮 Kalkulator":
         n = st.number_input("Jumlah Mol (n)", min_value=0.0)
         T = st.number_input("Suhu (K)", min_value=1.0)
         P = st.number_input("Tekanan (atm)", min_value=0.1)
-        satuan_v = st.selectbox("Satuan Volume Output", ["L", "m³"])
         if st.button("Hitung Volume"):
+            V = (n * R * T) / P
+            st.success(f"Volume {nama} = {V:.2f} L")
             V = (n * R * T) / P
             if satuan_v == "m³":
                 V /= 1000
