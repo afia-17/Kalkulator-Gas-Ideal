@@ -28,7 +28,7 @@ if not st.session_state.show_calc:
     
     if st.button("➡️ Masuk ke Kalkulator"):
         st.session_state.show_calc = True
-        st.experimental_rerun()
+        st.rerun()
 
 # Halaman Kalkulator
 else:
