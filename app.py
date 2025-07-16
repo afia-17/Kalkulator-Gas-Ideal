@@ -5,6 +5,18 @@ import streamlit as st
 # Konfigurasi halaman utama
 st.set_page_config(page_title="Kalkulator Gas Ideal", layout="centered")
 
+# Fungsi konversi suhu
+
+def konversi_suhu_input(label, satuan_key, input_key):
+    satuan = st.selectbox("Satuan Suhu", ["K", "°C"], key=satuan_key)
+    T_input = st.number_input(f"{label} ({satuan})", min_value=-273.0, key=input_key)
+    if satuan == "°C":
+        T = T_input + 273.15
+        st.write(f"Telah dikonversi otomatis: {T_input}°C = {T:.2f} K")
+    else:
+        T = T_input
+    return T
+
 # Sidebar menu
 menu = st.sidebar.selectbox("📂 Menu", ["🏠 Halaman Utama", "🧮 Kalkulator", "📚 Library"], key="menu_select")
 
@@ -18,7 +30,6 @@ if menu == "🏠 Halaman Utama":
     🔹 Anda juga dapat mempelajari informasi kimia, fisika, serta aspek K3L berbagai gas ideal di bagian *Library*.  
     Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
     """)
-
 
 # Halaman Kalkulator
 if menu == "🧮 Kalkulator":
@@ -38,13 +49,7 @@ if menu == "🧮 Kalkulator":
     elif pilihan == "Tekanan":
         nama = st.text_input("Nama Gas", key="nama_tekanan")
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_tekanan")
-        satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"], key="satuan_t_tekanan")
-        T_input = st.number_input(f"Suhu ({satuan_t})", min_value=-273.0, key="T_input_tekanan")
-        if satuan_t == "°C":
-            T = T_input + 273.15
-            st.write(f"Telah dikonversi otomatis: {T_input}°C = {T:.2f} K")
-        else:
-            T = T_input
+        T = konversi_suhu_input("Suhu", "satuan_t_tekanan", "T_input_tekanan")
 
         V = st.number_input("Volume", min_value=0.1, key="V_tekanan")
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_tekanan")
@@ -73,9 +78,7 @@ if menu == "🧮 Kalkulator":
     elif pilihan == "Volume":
         nama = st.text_input("Nama Gas", key="nama_volume")
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_volume")
-        satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"], key="satuan_t_volume")
-        T_input = st.number_input(f"Suhu ({satuan_t})", min_value=-273.0, key="T_input_volume")
-        T = T_input + 273.15 if satuan_t == "°C" else T_input
+        T = konversi_suhu_input("Suhu", "satuan_t_volume", "T_input_volume")
         P = st.number_input("Tekanan (atm)", min_value=0.1, key="P_volume")
         satuan_v = st.selectbox("Satuan Volume Output", ["L", "m³"], key="satuan_v_volume")
         if st.button("Hitung Volume"):
@@ -90,9 +93,7 @@ if menu == "🧮 Kalkulator":
         P = st.number_input(f"Tekanan ({satuan_p})", min_value=0.1, key="P_mol")
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_mol")
         V = st.number_input(f"Volume ({satuan_v})", min_value=0.1, key="V_mol")
-        satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"], key="satuan_t_mol")
-        T_input = st.number_input(f"Suhu ({satuan_t})", min_value=-273.0, key="T_input_mol")
-        T = T_input + 273.15 if satuan_t == "°C" else T_input
+        T = konversi_suhu_input("Suhu", "satuan_t_mol", "T_input_mol")
 
         # Konversi tekanan ke atm
         if satuan_p == "Pa":
