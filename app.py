@@ -40,7 +40,11 @@ if menu == "🧮 Kalkulator":
         n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0)
         satuan_t = st.selectbox("Satuan Suhu", ["K", "°C"])
         T_input = st.number_input(f"Suhu ({satuan_t})", min_value=-273.0)
-        T = T_input + 273.15 if satuan_t == "°C" else T_input
+        if satuan_t == "°C":
+    st.write(f"Telah dikonversi otomatis: {T_input}°C = {T_input + 273.15:.2f} K")
+    T = T_input + 273.15
+else:
+    T = T_input
         V = st.number_input("Volume", min_value=0.1)
         satuan_v = st.selectbox("Satuan Volume", ["L", "m³"])
         if satuan_v == "m³":
