@@ -538,6 +538,6 @@ elif menu == "⚠️ Panduan Keselamatan":
 st.markdown("---")
 st.markdown("""
 <div style="text-align:center;color:#666;padding:20px;">
-    <p>© 2023 GasMaster Pro | Kelompok LPK Poltek AKA</p>
+    <p>© 2025 GasMaster Pro | Kelompok LPK Poltek AKA</p>
 </div>
 """, unsafe_allow_html=True)
