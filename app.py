@@ -1,125 +1,178 @@
-# Library Konversi dan Konstanta Gas Ideal
+# Aplikasi Kalkulator Gas Ideal dengan Streamlit
 
-# Konversi suhu dari Celsius ke Kelvin
-def konversi_suhu(suhu_c):
-    """
-    Fungsi untuk mengonversi suhu dari Celsius ke Kelvin.
-    Rumus: K = °C + 273.15
-    Suhu dalam Kelvin merupakan satuan standar dalam perhitungan gas ideal.
-    """
-    return suhu_c + 273.15
+import streamlit as st
 
-# Konversi tekanan dari berbagai satuan ke atm
-def konversi_tekanan(nilai, satuan):
-    """
-    Fungsi untuk mengonversi tekanan dari berbagai satuan ke satuan atm.
-    Didukung: Pa, kPa, hPa, bar, torr, mmHg, atm, L.atm
-    Konversi ini penting karena perhitungan menggunakan konstanta R (L.atm/mol.K).
-    Rumus konversi tekanan tergantung pada satuan input, contoh:
-    - Pa ke atm: bagi dengan 101325
-    - kPa ke atm: bagi dengan 101.325
-    - mmHg atau Torr ke atm: bagi dengan 760
-    - bar ke atm: bagi dengan 1.01325
-    """
-    satuan = satuan.lower()
-    if satuan == 'pa':
-        return nilai / 101325
-    elif satuan == 'kpa':
-        return nilai / 101.325
-    elif satuan == 'hpa':
-        return nilai / 1013.25
-    elif satuan == 'bar':
-        return nilai / 1.01325
-    elif satuan == 'torr' or satuan == 'mmhg':
-        return nilai / 760
-    elif satuan == 'l.atm':
-        return nilai
-    elif satuan == 'atm':
-        return nilai
+# Konfigurasi halaman utama
+st.set_page_config(page_title="Kalkulator Gas Ideal", layout="centered")
+
+# Fungsi konversi suhu
+
+def konversi_suhu_input(label, satuan_key, input_key):
+    satuan = st.selectbox("Satuan Suhu", ["K", "°C"], key=satuan_key)
+    T_input = st.number_input(f"{label} ({satuan})", min_value=-273.0, key=input_key)
+    if satuan == "°C":
+        T = T_input + 273.15
+        st.success(f"Telah dikonversi otomatis: {T_input}°C = {T:.2f} K")
     else:
-        raise ValueError("Satuan tekanan tidak dikenali")
+        T = T_input
+    return T
 
-# Konversi volume ke liter
-def konversi_volume(nilai, satuan):
-    """
-    Fungsi untuk mengonversi volume ke satuan liter.
-    Didukung: mL, cm^3, m^3, L
-    Volume dalam liter digunakan dalam rumus gas ideal PV = nRT.
-    Rumus umum:
-    - m^3 ke L: dikali 1000
-    - mL atau cm^3 ke L: dibagi 1000
-    """
-    satuan = satuan.lower()
-    if satuan == 'ml' or satuan == 'cm^3':
-        return nilai / 1000
-    elif satuan == 'm^3':
-        return nilai * 1000
-    elif satuan == 'l':
-        return nilai
+# Fungsi konversi tekanan ke atm
+
+def konversi_tekanan_input(label, satuan_key, input_key):
+    satuan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"], key=satuan_key)
+    P_input = st.number_input(f"{label} ({satuan})", min_value=0.0, key=input_key)
+    if satuan == "Pa":
+        P = P_input / 101325
+        st.success(f"Telah dikonversi otomatis: {P_input} Pa = {P:.5f} atm")
+    elif satuan == "kPa":
+        P = P_input / 101.325
+        st.success(f"Telah dikonversi otomatis: {P_input} kPa = {P:.5f} atm")
+    elif satuan == "hPa":
+        P = P_input / 1013.25
+        st.success(f"Telah dikonversi otomatis: {P_input} hPa = {P:.5f} atm")
+    elif satuan == "bar":
+        P = P_input / 1.01325
+        st.success(f"Telah dikonversi otomatis: {P_input} bar = {P:.5f} atm")
+    elif satuan in ["Torr", "mmHg"]:
+        P = P_input / 760
+        st.success(f"Telah dikonversi otomatis: {P_input} {satuan} = {P:.5f} atm")
     else:
-        raise ValueError("Satuan volume tidak dikenali")
+        P = P_input
+    return P
 
-# Pilihan jenis gas ideal yang dapat digunakan dalam perhitungan
-# Setiap gas dilengkapi dengan informasi lengkap
+# Sidebar menu
+menu = st.sidebar.selectbox("📂 Menu", ["🏠 Halaman Utama", "🧮 Kalkulator", "📚 Library"], key="menu_select")
 
-# Keterangan kategori:
-# 🧪 Rumus Molekul: Struktur kimia dasar dari gas.
-# 💨 Sifat Fisika: Warna, bau, massa jenis, titik didih, kelarutan, dll.
-# ⚗️ Sifat Kimia: Reaktivitas, stabilitas, interaksi dengan unsur lain.
-# 📦 PBK: Pengetahuan dan Penanganan Bahan Kimia — cara penyimpanan, transportasi, dampak kesehatan.
-# 🛡️ K3L: Kesehatan, Keselamatan Kerja dan Lingkungan — risiko dan mitigasi saat menggunakan gas.
+# Halaman Utama
+if menu == "🏠 Halaman Utama":
+    st.title("💨 Kalkulator Gas Ideal")
+    st.markdown("""
+    Selamat datang di **Kalkulator Gas Ideal**!
 
-gas_ideal_info = {
-    "Oksigen (O₂)": {
-        "🧪 Rumus Molekul": "Gas diatomik dengan rumus O₂, menopang respirasi dan pembakaran.",
-        "💨 Sifat Fisika": "Tidak berwarna, tidak berbau, titik didih −183 °C, sedikit larut dalam air.",
-        "⚗️ Sifat Kimia": "Oksidator kuat, mudah bereaksi dengan hampir semua unsur membentuk oksida.",
-        "📦 PBK": "Disimpan dalam tabung logam bertekanan tinggi, jauh dari minyak dan pelumas.",
-        "🛡️ K3L": "Dapat menyebabkan kebakaran hebat, gunakan pelindung dan ventilasi yang memadai."
-    },
-    "Hidrogen (H₂)": {
-        "🧪 Rumus Molekul": "Gas diatomik H₂, unsur paling ringan di alam.",
-        "💨 Sifat Fisika": "Tidak berwarna, tidak berbau, sangat ringan, titik didih −253 °C.",
-        "⚗️ Sifat Kimia": "Sangat mudah terbakar, membentuk senyawa seperti HCl, H₂O.",
-        "📦 PBK": "Dikompresi dalam tabung, sangat mudah terbakar dan meledak dalam udara.",
-        "🛡️ K3L": "Jauhkan dari sumber api, gunakan sensor kebocoran dan ruang berventilasi."
-    },
-    "Karbon dioksida (CO₂)": {
-        "🧪 Rumus Molekul": "CO₂, gas hasil dari respirasi, pembakaran sempurna, dan fermentasi.",
-        "💨 Sifat Fisika": "Gas berat, larut dalam air membentuk asam lemah, tidak mudah terbakar.",
-        "⚗️ Sifat Kimia": "Bereaksi dengan air membentuk H₂CO₃, bersifat asam lemah.",
-        "📦 PBK": "Disimpan dalam bentuk cair terkompresi dalam silinder baja.",
-        "🛡️ K3L": "Bisa menyebabkan asfiksia, hindari paparan tertutup tanpa ventilasi."
-    },
-    "Nitrogen (N₂)": {
-        "🧪 Rumus Molekul": "N₂ adalah gas diatomik inert yang membentuk 78% atmosfer bumi.",
-        "💨 Sifat Fisika": "Tidak berwarna, tidak berbau, inert, titik didih −196 °C.",
-        "⚗️ Sifat Kimia": "Sangat stabil dan tidak mudah bereaksi kecuali pada suhu tinggi.",
-        "📦 PBK": "Digunakan untuk atmosfer inert, simpan dalam silinder bertekanan.",
-        "🛡️ K3L": "Gas inert bisa menyebabkan asfiksia, gunakan monitor O₂."
-    },
-    "Helium (He)": {
-        "🧪 Rumus Molekul": "Unsur gas mulia monoatomik, simbol He.",
-        "💨 Sifat Fisika": "Ringan, tak berwarna, tak berbau, titik didih −269 °C.",
-        "⚗️ Sifat Kimia": "Tidak reaktif, tidak membentuk senyawa kimia biasa.",
-        "📦 PBK": "Simpan dalam silinder logam, tidak mudah terbakar.",
-        "🛡️ K3L": "Asfiksia dalam ruang tertutup, tetapi tidak beracun atau mudah terbakar."
-    },
-    "Argon (Ar)": {
-        "🧪 Rumus Molekul": "Gas mulia monoatomik Ar, terdapat dalam udara.",
-        "💨 Sifat Fisika": "Tak berwarna, tak berbau, inert, titik didih −186 °C.",
-        "⚗️ Sifat Kimia": "Inert secara kimia, tidak bereaksi dalam kondisi normal.",
-        "📦 PBK": "Digunakan dalam pengelasan dan laboratorium, disimpan dalam silinder.",
-        "🛡️ K3L": "Gunakan ventilasi, karena bisa menggantikan O₂ dan sebabkan asfiksia."
-    },
-    "Metana (CH₄)": {
-        "🧪 Rumus Molekul": "CH₄ adalah gas hidrokarbon sederhana, komponen utama gas alam.",
-        "💨 Sifat Fisika": "Tidak berwarna, tidak berbau (ditambahkan bau buatan), mudah terbakar.",
-        "⚗️ Sifat Kimia": "Reaktif dalam pembakaran, menghasilkan CO₂ dan H₂O.",
-        "📦 PBK": "Simpan di ruang aman, hindari kebocoran karena risiko ledakan.",
-        "🛡️ K3L": "Risiko kebakaran dan ledakan tinggi, gunakan detektor gas dan ventilasi cukup."
+    🔹 Aplikasi ini dapat digunakan untuk menghitung massa, tekanan, volume, dan jumlah mol gas ideal menggunakan persamaan PV = nRT.  
+    🔹 Anda juga dapat mempelajari informasi kimia, fisika, serta aspek K3L berbagai gas ideal di bagian *Library*.  
+    Silakan pilih menu di sidebar untuk melanjutkan. ⬅️
+    """)
+
+# Halaman Kalkulator
+if menu == "🧮 Kalkulator":
+    st.header("🧮 Kalkulator Gas Ideal")
+    pilihan = st.radio("Pilih jenis perhitungan:", ["Massa Gas", "Tekanan", "Volume", "Jumlah Mol"])
+
+    R = 0.0821  # konstanta gas ideal dalam L.atm/mol.K
+
+    if pilihan == "Massa Gas":
+        nama = st.text_input("Nama Gas", key="nama_massa")
+        n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa")
+        mr = st.number_input("Massa Molar (g/mol)", min_value=0.0, key="mr_massa")
+        if st.button("Hitung Massa"):
+            massa = n * mr
+            st.success(f"Massa {nama} = {massa:.2f} gram")
+
+    elif pilihan == "Tekanan":
+        nama = st.text_input("Nama Gas", key="nama_tekanan")
+        n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_tekanan")
+        T = konversi_suhu_input("Suhu", "satuan_t_tekanan", "T_input_tekanan")
+        V = st.number_input("Volume", min_value=0.1, key="V_tekanan")
+        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_tekanan")
+        if satuan_v == "m³":
+            V *= 1000
+        if st.button("Hitung Tekanan"):
+            P = (n * R * T) / V
+            st.success(f"Tekanan {nama} = {P:.4f} atm")
+
+    elif pilihan == "Volume":
+        nama = st.text_input("Nama Gas", key="nama_volume")
+        n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_volume")
+        T = konversi_suhu_input("Suhu", "satuan_t_volume", "T_input_volume")
+        P = konversi_tekanan_input("Tekanan", "satuan_p_volume", "P_volume")
+        satuan_v = st.selectbox("Satuan Volume Output", ["L", "m³"], key="satuan_v_volume")
+        if st.button("Hitung Volume"):
+            V = (n * R * T) / P
+            if satuan_v == "m³":
+                V /= 1000
+            st.success(f"Volume {nama} = {V:.4f} {satuan_v}")
+
+    elif pilihan == "Jumlah Mol":
+        nama = st.text_input("Nama Gas", key="nama_mol")
+        P = konversi_tekanan_input("Tekanan", "satuan_p_mol", "P_mol")
+        satuan_v = st.selectbox("Satuan Volume", ["L", "m³"], key="satuan_v_mol")
+        V = st.number_input(f"Volume ({satuan_v})", min_value=0.1, key="V_mol")
+        if satuan_v == "m³":
+            V *= 1000
+        T = konversi_suhu_input("Suhu", "satuan_t_mol", "T_input_mol")
+        if st.button("Hitung Jumlah Mol"):
+            n = (P * V) / (R * T)
+            st.success(f"Jumlah mol {nama} = {n:.2f} mol")
+
+# Halaman Library
+if menu == "📚 Library":
+    st.header("📚 Informasi Gas Ideal")
+    st.markdown("""
+    Di bawah ini adalah daftar gas ideal dengan informasi terkait:
+    - Rumus molekul
+    - Sifat fisika
+    - Sifat kimia
+    - Pengetahuan Bahan Kimia (PBK)
+    - Kesehatan dan Keselamatan Kerja dan Lingkungan (K3L)
+    """)
+
+    gas_ideal = {
+        "Hidrogen (H₂)": {
+            "Rumus Molekul": "Hidrogen adalah unsur paling ringan, berbentuk H₂ dalam kondisi standar.",
+            "Sifat Fisika": "Tidak berwarna, tidak berbau, sangat ringan, mudah menguap dan terbakar.",
+            "Sifat Kimia": "Sangat reaktif dan mudah membentuk senyawa dengan banyak unsur lain.",
+            "PBK": "Disimpan dalam tabung bertekanan tinggi, jauhkan dari sumber api dan panas.",
+            "K3L": "Gunakan ventilasi baik dan alat pelindung diri saat menangani hidrogen."
+        },
+        "Oksigen (O₂)": {
+            "Rumus Molekul": "Oksigen adalah gas diatomik yang menunjang pembakaran, rumusnya O₂.",
+            "Sifat Fisika": "Gas tidak berbau dan tidak berwarna, sangat penting untuk respirasi.",
+            "Sifat Kimia": "Bersifat oksidator kuat dan mudah membentuk senyawa oksida.",
+            "PBK": "Simpan dalam tabung khusus dan jauhkan dari bahan yang mudah terbakar.",
+            "K3L": "Gunakan di ruang berventilasi, hindari kontak dengan bahan mudah terbakar."
+        },
+        "Nitrogen (N₂)": {
+            "Rumus Molekul": "Nitrogen hadir secara alami sebagai gas diatomik N₂.",
+            "Sifat Fisika": "Gas inert, tak berwarna dan tak berbau, titik didih -196 °C.",
+            "Sifat Kimia": "Reaktivitas rendah, digunakan sebagai pelindung dari oksidasi.",
+            "PBK": "Disimpan dalam tabung bertekanan, digunakan dalam kondisi aman.",
+            "K3L": "Cegah asfiksia, gunakan dalam ruangan dengan ventilasi baik."
+        },
+        "Karbon Dioksida (CO₂)": {
+            "Rumus Molekul": "Karbon dioksida adalah gas hasil respirasi dan pembakaran, CO₂.",
+            "Sifat Fisika": "Gas berat, larut dalam air, tidak berbau dan tidak berwarna.",
+            "Sifat Kimia": "Reaktif dengan air membentuk asam karbonat, sifat asam lemah.",
+            "PBK": "Simpan dalam ruang sejuk dan silinder berlabel.",
+            "K3L": "Ventilasi diperlukan untuk mencegah akumulasi dan sesak napas."
+        }
     }
-}
 
-# Konstanta Gas Ideal
-R = 0.0821  # L.atm/mol.K
+    warna_kategori = {
+        "Rumus Molekul": "#e0f7fa",
+        "Sifat Fisika": "#e8f5e9",
+        "Sifat Kimia": "#fff3e0",
+        "PBK": "#fce4ec",
+        "K3L": "#f5f5f5"
+    }
+
+    ikon_kategori = {
+        "Rumus Molekul": "🧪 Rumus Molekul",
+        "Sifat Fisika": "💨 Sifat Fisika",
+        "Sifat Kimia": "⚗️ Sifat Kimia",
+        "PBK": "📦 Pengetahuan dan Penanganan Bahan Kimia (PBK)",
+        "K3L": "🛡️ Kesehatan dan Keselamatan Kerja dan Lingkungan (K3L)"
+    }
+
+    pilih = st.selectbox("Pilih Gas Ideal", list(gas_ideal.keys()))
+    data = gas_ideal[pilih]
+    for k, v in data.items():
+        warna = warna_kategori.get(k, "#ffffff")
+        judul = ikon_kategori.get(k, k)
+        st.markdown(f"""
+        <div style='background-color:{warna}; padding:15px; border-radius:10px; margin-bottom:10px;'>
+            <h4>{judul}</h4>
+            <p style='text-align: justify;'>{v}</p>
+        </div>
+        """, unsafe_allow_html=True)
