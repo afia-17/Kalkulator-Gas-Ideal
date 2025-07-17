@@ -407,7 +407,7 @@ elif menu == "📚 Ensiklopedia Gas":
     
     categories = {
         "Gas Mulia": ["Helium (He)", "Neon (Ne)", "Argon (Ar)"],
-        "Gas Asam": "Hidrogen Klorida (HCl)", "Hidrogen Sulfida (H₂S)"],
+        "Gas Asam": ["Hidrogen Klorida (HCl)", "Hidrogen Sulfida (H₂S)"],
         "Gas Industri": ["Amonia (NH₃)", "Klorin (Cl₂)", "Sulfur Dioksida (SO₂)"],
         "Hidrokarbon": ["Etana (C₂H₆)", "Propana (C₃H₈)", "Butana (C₄H₁₀)"]
     }
