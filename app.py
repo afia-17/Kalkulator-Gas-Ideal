@@ -320,29 +320,6 @@ if menu == "🏠 Beranda":
             </div>
             """, unsafe_allow_html=True)
 
-st.markdown("---")
-    
-    st.header("🎯 Fitur Unggulan")
-    features = [
-        ("🧮", "Kalkulator Canggih", "Hitung massa, tekanan, dan properti gas lainnya dengan presisi tinggi"),
-        ("📊", "Database Gas", "Informasi lengkap 50+ jenis gas dengan sifat fisika & kimia"),
-        ("⚠️", "Safety Guide", "Panduan keselamatan untuk penanganan bahan kimia"),
-        ("🔄", "Konversi Satuan", "Otomatis konversi antara berbagai satuan pengukuran")
-    ]
-    
-    for i in range(0, len(features), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i+j < len(features):
-                icon, title, desc = features[i+j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div class="card">
-                        <h3>{icon} {title}</h3>
-                        <p>{desc}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-
 # ===========================================
 # HALAMAN KALKULATOR GAS
 # ===========================================
