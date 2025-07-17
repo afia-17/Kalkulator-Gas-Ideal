@@ -60,6 +60,9 @@ st.markdown("""
         padding: 8px;
         border-bottom: 1px solid #ddd;
     }
+    .unit-selectbox {
+        margin-top: 27px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -71,7 +74,9 @@ def konversi_suhu(label, key_prefix):
     with col1:
         T_input = st.number_input(f"{label}", min_value=-273.0, key=f"{key_prefix}_input")
     with col2:
+        st.markdown('<div class="unit-selectbox">', unsafe_allow_html=True)
         satuan = st.selectbox("Satuan", ["K", "°C"], key=f"{key_prefix}_unit")
+        st.markdown('</div>', unsafe_allow_html=True)
     
     if satuan == "°C":
         T = T_input + 273.15
@@ -85,42 +90,54 @@ def konversi_suhu(label, key_prefix):
     return T
 
 def konversi_tekanan(label, key_prefix):
-    satuan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"], key=f"{key_prefix}_unit")
-    P_input = st.number_input(f"{label} ({satuan})", min_value=0.0, key=f"{key_prefix}_input")
+    col1, col2 = st.columns([3,1])
+    with col1:
+        P_input = st.number_input(f"{label}", min_value=0.0, key=f"{key_prefix}_input")
+    with col2:
+        st.markdown('<div class="unit-selectbox">', unsafe_allow_html=True)
+        satuan = st.selectbox("Satuan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg", "L.atm"], key=f"{key_prefix}_unit")
+        st.markdown('</div>', unsafe_allow_html=True)
     
     if satuan == "Pa":
         P = P_input / 101325
         st.markdown(f"""
         <div class="conversion-box">
-            🔄 Konversi: {P_input} Pa = {P:.5f} atm
+            🔄 Konversi: {P_input} Pa = {P:.6f} atm
         </div>
         """, unsafe_allow_html=True)
     elif satuan == "kPa":
         P = P_input / 101.325
         st.markdown(f"""
         <div class="conversion-box">
-            🔄 Konversi: {P_input} kPa = {P:.5f} atm
+            🔄 Konversi: {P_input} kPa = {P:.6f} atm
         </div>
         """, unsafe_allow_html=True)
     elif satuan == "hPa":
         P = P_input / 1013.25
         st.markdown(f"""
         <div class="conversion-box">
-            🔄 Konversi: {P_input} hPa = {P:.5f} atm
+            🔄 Konversi: {P_input} hPa = {P:.6f} atm
         </div>
         """, unsafe_allow_html=True)
     elif satuan == "bar":
         P = P_input / 1.01325
         st.markdown(f"""
         <div class="conversion-box">
-            🔄 Konversi: {P_input} bar = {P:.5f} atm
+            🔄 Konversi: {P_input} bar = {P:.6f} atm
         </div>
         """, unsafe_allow_html=True)
     elif satuan in ["Torr", "mmHg"]:
         P = P_input / 760
         st.markdown(f"""
         <div class="conversion-box">
-            🔄 Konversi: {P_input} {satuan} = {P:.5f} atm
+            🔄 Konversi: {P_input} {satuan} = {P:.6f} atm
+        </div>
+        """, unsafe_allow_html=True)
+    elif satuan == "L.atm":
+        P = P_input
+        st.markdown(f"""
+        <div class="conversion-box">
+            🔄 1 L·atm = 1 atm (tidak perlu konversi)
         </div>
         """, unsafe_allow_html=True)
     else:
@@ -128,8 +145,13 @@ def konversi_tekanan(label, key_prefix):
     return P
 
 def konversi_volume(label, key_prefix):
-    satuan = st.selectbox("Satuan Volume", ["L", "m³", "mL"], key=f"{key_prefix}_unit")
-    V_input = st.number_input(f"{label} ({satuan})", min_value=0.1, key=f"{key_prefix}_input")
+    col1, col2 = st.columns([3,1])
+    with col1:
+        V_input = st.number_input(f"{label}", min_value=0.1, key=f"{key_prefix}_input")
+    with col2:
+        st.markdown('<div class="unit-selectbox">', unsafe_allow_html=True)
+        satuan = st.selectbox("Satuan", ["L", "m³", "mL"], key=f"{key_prefix}_unit")
+        st.markdown('</div>', unsafe_allow_html=True)
     
     if satuan == "m³":
         V = V_input * 1000
@@ -150,7 +172,7 @@ def konversi_volume(label, key_prefix):
     return V
 
 # ===========================================
-# DATABASE GAS
+# DATABASE GAS (Tetap sama seperti sebelumnya)
 # ===========================================
 GAS_DATABASE = {
     "Hidrogen (H₂)": {
@@ -231,7 +253,7 @@ GAS_DATABASE = {
 }
 
 # ===========================================
-# MENU SIDEBAR
+# MENU SIDEBAR (Tetap sama seperti sebelumnya)
 # ===========================================
 with st.sidebar:
     st.title("GasMaster Pro")
@@ -249,7 +271,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN UTAMA
+# HALAMAN UTAMA (Tetap sama seperti sebelumnya)
 # ===========================================
 if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>GasMaster Pro</h1>", unsafe_allow_html=True)
@@ -279,7 +301,7 @@ if menu == "🏠 Beranda":
             """, unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN KALKULATOR GAS
+# HALAMAN KALKULATOR GAS (Dengan perubahan di fungsi konversi)
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
     st.markdown("<h1 class='main-header'>🧮 Kalkulator Gas Ideal</h1>", unsafe_allow_html=True)
@@ -385,7 +407,7 @@ elif menu == "🧮 Kalkulator Gas":
             """, unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN ENSIKLOPEDIA GAS
+# HALAMAN ENSIKLOPEDIA GAS (Tetap sama seperti sebelumnya)
 # ===========================================
 elif menu == "📚 Ensiklopedia Gas":
     st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
@@ -422,7 +444,7 @@ elif menu == "📚 Ensiklopedia Gas":
             """, unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN PANDUAN KESELAMATAN
+# HALAMAN PANDUAN KESELAMATAN (Tetap sama seperti sebelumnya)
 # ===========================================
 elif menu == "⚠️ Panduan Keselamatan":
     st.markdown("<h1 class='main-header'>⚠️ Panduan Keselamatan Gas</h1>", unsafe_allow_html=True)
@@ -478,7 +500,7 @@ elif menu == "⚠️ Panduan Keselamatan":
     """, unsafe_allow_html=True)
 
 # ===========================================
-# FOOTER
+# FOOTER (Tetap sama seperti sebelumnya)
 # ===========================================
 st.markdown("---")
 st.markdown("""
