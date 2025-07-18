@@ -489,7 +489,7 @@ elif menu == "🧮 Kalkulator Gas":
                 position: relative;
                 overflow: hidden;">
         <h1 style="color: white; text-align: center; margin: 0; z-index: 2; position: relative;">
-            🧪 Kalkulator Gas Ideal
+              🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;">
             <div class="particle" style="--size: 3px; --duration: 15s; --delay: 0s; --x: 20%; --y: 30%"></div>
