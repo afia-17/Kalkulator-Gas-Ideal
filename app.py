@@ -1026,7 +1026,7 @@ elif menu == "⚠️ Panduan Keselamatan":
         <h3>🛡️ Alat Pelindung Diri (APD)</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
             <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://www.flaticon.com/free-icon/gas-mask_2090004" width="80">
+                <img src="https://cdn-icons-png.flaticon.com/512/2090/2090004.png" width="80">
                 <p><b>Masker Gas</b></p>
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
