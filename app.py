@@ -272,7 +272,7 @@ GAS_DATABASE = {
     },
      "Neon (Ne)": {
         "icon": "💡",
-        "category": "Gas Monoatomik"
+        "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingin.",
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
         "properties": {
