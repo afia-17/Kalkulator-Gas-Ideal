@@ -1,4 +1,4 @@
-<img src="https://cdn-icons-png.flaticon.com/512/2797/2797688.png" width="80"># ===========================================
+# ===========================================
 # APLIKASI KALKULATOR GAS IDEAL + ENSIKLOPEDIA + PANDUAN KESELAMATAN
 # ===========================================
 import streamlit as st
