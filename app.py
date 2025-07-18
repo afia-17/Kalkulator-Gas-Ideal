@@ -476,10 +476,10 @@ if menu == "🏠 Beranda":
     </div>
     """, unsafe_allow_html=True)
 # ===========================================
-# HALAMAN KALKULATOR GAS (CREATIVE VERSION)
+# HALAMAN KALKULATOR GAS (IMPROVED ALIGNMENT)
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
-    # Animated header with particle effect
+    # Header with animated particles
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
                 padding: 25px; 
@@ -488,7 +488,7 @@ elif menu == "🧮 Kalkulator Gas":
                 position: relative;
                 overflow: hidden;">
         <h1 style="color: white; text-align: center; margin: 0; z-index: 2; position: relative;">
-            🧪✨ Kalkulator Ajaib Gas Ideal ✨⚗️
+            🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;">
             <div class="particle" style="--size: 3px; --duration: 15s; --delay: 0s; --x: 20%; --y: 30%"></div>
@@ -516,17 +516,21 @@ elif menu == "🧮 Kalkulator Gas":
     </style>
     """, unsafe_allow_html=True)
 
-    # Interactive tabs with animated hover effects
+    # Enhanced tab styling
     tab_style = """
     <style>
         .stTabs [data-baseweb="tab-list"] {
             gap: 10px;
         }
         .stTabs [data-baseweb="tab"] {
-            padding: 12px 20px;
+            height: 50px;
+            padding: 0 20px;
             border-radius: 10px;
             transition: all 0.3s ease;
             background: #f0f2f6 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .stTabs [data-baseweb="tab"]:hover {
             transform: translateY(-3px);
@@ -537,6 +541,13 @@ elif menu == "🧮 Kalkulator Gas":
             color: white !important;
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        .tab-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 15px;
         }
     </style>
     """
@@ -552,59 +563,40 @@ elif menu == "🧮 Kalkulator Gas":
     R = 0.0821  # L.atm/mol.K
 
     with tab1:
-        # Massa Calculator - Chemistry Lab Theme
+        # Massa Calculator
         st.markdown("""
-        <div style="background: white; 
-                    padding: 20px; 
-                    border-radius: 15px;
-                    border-left: 5px solid #FF9800;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                    margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="tab-content" style="border-left: 5px solid #FF9800;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                 <div style="font-size: 40px;">🧪</div>
                 <div>
                     <h2 style="margin: 0; color: #FF9800;">Kalkulator Massa Gas</h2>
-                    <p style="margin: 5px 0 0 0; font-size: 1.1em;">
-                        <span style="background: #FFF3E0; padding: 2px 8px; border-radius: 5px;">
-                            <b>Rumus:</b> Massa = n × Mr
-                        </span>
-                    </p>
+                    <div style="background: #FFF3E0; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                        <b>Rumus:</b> Massa = n × Mr
+                    </div>
                 </div>
             </div>
-        </div>
         """, unsafe_allow_html=True)
         
-        with st.container():
-            st.markdown("""
-            <div style="background: #f9f9f9;
-                        padding: 15px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border-left: 4px solid #FFC107;">
-                <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 24px;">🔍</span> Parameter Input
-                </h4>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            cols = st.columns([2,1,1])
-            with cols[0]:
-                nama = st.text_input("Nama Gas", key="nama_massa", placeholder="Contoh: Oksigen")
-            with cols[1]:
-                n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa", step=0.1, format="%.2f")
-            with cols[2]:
-                mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.4f")
+        # Input fields with perfect alignment
+        cols = st.columns([1,1,1])
+        with cols[0]:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Nama Gas</div>", unsafe_allow_html=True)
+            nama = st.text_input("Nama Gas", key="nama_massa", placeholder="Contoh: Oksigen", label_visibility="collapsed")
+        with cols[1]:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Jumlah Mol (n)</div>", unsafe_allow_html=True)
+            n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa", step=0.1, format="%.2f", label_visibility="collapsed")
+        with cols[2]:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Massa Molar (Mr)</div>", unsafe_allow_html=True)
+            mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.4f", label_visibility="collapsed")
         
-        if st.button("🚀 Hitung Massa Sekarang", key="btn_massa", 
-                    use_container_width=True, 
-                    type="primary"):
-            
+        if st.button("🚀 Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
             with st.spinner('Menghitung...'):
                 import time
                 time.sleep(0.5)
                 massa = n * mr
                 
                 st.markdown(f"""
+                </div> <!-- Close tab-content -->
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
                             padding: 20px;
                             border-radius: 15px;
@@ -615,12 +607,10 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 30px;">🎯</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #E65100;">Hasil Perhitungan</h3>
-                            <p style="margin: 0; font-size: 1.2em;">
-                                Massa <b>{nama if nama else 'gas'}</b> = 
-                                <span style="color: #E65100; font-weight: bold; font-size: 1.3em;">
-                                    {massa:.4f} gram
-                                </span>
-                            </p>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Massa <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #E65100; font-weight: bold; font-size: 1.5em; margin: 0;">{massa:.4f} gram</p>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; background: rgba(255,255,255,0.7); 
@@ -641,59 +631,44 @@ elif menu == "🧮 Kalkulator Gas":
                 st.balloons()
 
     with tab2:
-        # Pressure Calculator - Balloon Theme
+        # Pressure Calculator
         st.markdown("""
-        <div style="background: white; 
-                    padding: 20px; 
-                    border-radius: 15px;
-                    border-left: 5px solid #F44336;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                    margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="tab-content" style="border-left: 5px solid #F44336;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                 <div style="font-size: 40px;">🎈</div>
                 <div>
                     <h2 style="margin: 0; color: #F44336;">Kalkulator Tekanan Gas</h2>
-                    <p style="margin: 5px 0 0 0; font-size: 1.1em;">
-                        <span style="background: #FFEBEE; padding: 2px 8px; border-radius: 5px;">
-                            <b>Rumus:</b> P = (n × R × T) / V
-                        </span>
-                    </p>
+                    <div style="background: #FFEBEE; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                        <b>Rumus:</b> P = (n × R × T) / V
+                    </div>
                 </div>
             </div>
-        </div>
         """, unsafe_allow_html=True)
         
-        with st.container():
-            st.markdown("""
-            <div style="background: #f9f9f9;
-                        padding: 15px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border-left: 4px solid #EF5350;">
-                <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 24px;">🔧</span> Parameter Input
-                </h4>
-            </div>
-            """, unsafe_allow_html=True)
+        # Improved input layout
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Nama Gas</div>", unsafe_allow_html=True)
+            nama = st.text_input("Nama Gas", key="nama_tekanan", placeholder="Contoh: Nitrogen", label_visibility="collapsed")
             
-            cols = st.columns(2)
-            with cols[0]:
-                nama = st.text_input("Nama Gas", key="nama_tekanan", placeholder="Contoh: Nitrogen")
-                n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f")
-            with cols[1]:
-                T = konversi_suhu("Suhu", "tekanan_suhu")
-                V = konversi_volume("Volume", "tekanan_vol")
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Jumlah Mol (n)</div>", unsafe_allow_html=True)
+            n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f", label_visibility="collapsed")
         
-        if st.button("💥 Hitung Tekanan Sekarang", key="btn_tekanan", 
-                    use_container_width=True, 
-                    type="primary"):
+        with col2:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Suhu</div>", unsafe_allow_html=True)
+            T = konversi_suhu("Suhu", "tekanan_suhu")
             
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Volume</div>", unsafe_allow_html=True)
+            V = konversi_volume("Volume", "tekanan_vol")
+        
+        if st.button("💥 Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
             with st.spinner('Menghitung...'):
                 import time
                 time.sleep(0.5)
                 P = (n * R * T) / V
                 
                 st.markdown(f"""
+                </div> <!-- Close tab-content -->
                 <div style="background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
                             padding: 20px;
                             border-radius: 15px;
@@ -704,12 +679,10 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 30px;">📊</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #C62828;">Hasil Perhitungan</h3>
-                            <p style="margin: 0; font-size: 1.2em;">
-                                Tekanan <b>{nama if nama else 'gas'}</b> = 
-                                <span style="color: #C62828; font-weight: bold; font-size: 1.3em;">
-                                    {P:.6f} atm
-                                </span>
-                            </p>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Tekanan <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #C62828; font-weight: bold; font-size: 1.5em; margin: 0;">{P:.6f} atm</p>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; background: rgba(255,255,255,0.7); 
@@ -721,9 +694,9 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # Show a cute balloon animation
+                # Balloon animation
                 st.markdown("""
-                <div style="text-align: center; margin-top: 20px;">
+                <div style="text-align: center; margin-top: 20px; height: 60px;">
                     <div style="font-size: 40px; animation: float 3s ease-in-out infinite;">🎈</div>
                     <style>
                         @keyframes float {
@@ -735,59 +708,44 @@ elif menu == "🧮 Kalkulator Gas":
                 """, unsafe_allow_html=True)
 
     with tab3:
-        # Volume Calculator - Cloud Theme
+        # Volume Calculator
         st.markdown("""
-        <div style="background: white; 
-                    padding: 20px; 
-                    border-radius: 15px;
-                    border-left: 5px solid #4CAF50;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                    margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="tab-content" style="border-left: 5px solid #4CAF50;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                 <div style="font-size: 40px;">☁️</div>
                 <div>
                     <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
-                    <p style="margin: 5px 0 0 0; font-size: 1.1em;">
-                        <span style="background: #E8F5E9; padding: 2px 8px; border-radius: 5px;">
-                            <b>Rumus:</b> V = (n × R × T) / P
-                        </span>
-                    </p>
+                    <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                        <b>Rumus:</b> V = (n × R × T) / P
+                    </div>
                 </div>
             </div>
-        </div>
         """, unsafe_allow_html=True)
         
-        with st.container():
-            st.markdown("""
-            <div style="background: #f9f9f9;
-                        padding: 15px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border-left: 4px solid #66BB6A;">
-                <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 24px;">🌡️</span> Parameter Input
-                </h4>
-            </div>
-            """, unsafe_allow_html=True)
+        # Perfectly aligned inputs
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Nama Gas</div>", unsafe_allow_html=True)
+            nama = st.text_input("Nama Gas", key="nama_volume", placeholder="Contoh: Hidrogen", label_visibility="collapsed")
             
-            cols = st.columns(2)
-            with cols[0]:
-                nama = st.text_input("Nama Gas", key="nama_volume", placeholder="Contoh: Hidrogen")
-                n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f")
-            with cols[1]:
-                T = konversi_suhu("Suhu", "volume_suhu")
-                P = konversi_tekanan("Tekanan", "volume_tekanan")
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Jumlah Mol (n)</div>", unsafe_allow_html=True)
+            n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
         
-        if st.button("☁️ Hitung Volume Sekarang", key="btn_volume", 
-                    use_container_width=True, 
-                    type="primary"):
+        with col2:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Suhu</div>", unsafe_allow_html=True)
+            T = konversi_suhu("Suhu", "volume_suhu")
             
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Tekanan</div>", unsafe_allow_html=True)
+            P = konversi_tekanan("Tekanan", "volume_tekanan")
+        
+        if st.button("☁️ Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
             with st.spinner('Menghitung...'):
                 import time
                 time.sleep(0.5)
                 V = (n * R * T) / P
                 
                 st.markdown(f"""
+                </div> <!-- Close tab-content -->
                 <div style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
                             padding: 20px;
                             border-radius: 15px;
@@ -798,12 +756,10 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 30px;">🧮</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #2E7D32;">Hasil Perhitungan</h3>
-                            <p style="margin: 0; font-size: 1.2em;">
-                                Volume <b>{nama if nama else 'gas'}</b> = 
-                                <span style="color: #2E7D32; font-weight: bold; font-size: 1.3em;">
-                                    {V:.4f} L
-                                </span>
-                            </p>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Volume <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #2E7D32; font-weight: bold; font-size: 1.5em; margin: 0;">{V:.4f} L</p>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; background: rgba(255,255,255,0.7); 
@@ -815,7 +771,7 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # Show floating clouds animation
+                # Floating clouds animation
                 st.markdown("""
                 <div style="text-align: center; margin-top: 20px; height: 60px; position: relative;">
                     <div style="position: absolute; left: 20%; animation: floatCloud 8s linear infinite;">☁️</div>
@@ -833,59 +789,44 @@ elif menu == "🧮 Kalkulator Gas":
                 """, unsafe_allow_html=True)
 
     with tab4:
-        # Mole Calculator - Science Theme
+        # Mole Calculator
         st.markdown("""
-        <div style="background: white; 
-                    padding: 20px; 
-                    border-radius: 15px;
-                    border-left: 5px solid #9C27B0;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                    margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="tab-content" style="border-left: 5px solid #9C27B0;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                 <div style="font-size: 40px;">⚛️</div>
                 <div>
                     <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
-                    <p style="margin: 5px 0 0 0; font-size: 1.1em;">
-                        <span style="background: #F3E5F5; padding: 2px 8px; border-radius: 5px;">
-                            <b>Rumus:</b> n = (P × V) / (R × T)
-                        </span>
-                    </p>
+                    <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                        <b>Rumus:</b> n = (P × V) / (R × T)
+                    </div>
                 </div>
             </div>
-        </div>
         """, unsafe_allow_html=True)
         
-        with st.container():
-            st.markdown("""
-            <div style="background: #f9f9f9;
-                        padding: 15px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border-left: 4px solid #AB47BC;">
-                <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 24px;">🔬</span> Parameter Input
-                </h4>
-            </div>
-            """, unsafe_allow_html=True)
+        # Perfectly aligned inputs
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Nama Gas</div>", unsafe_allow_html=True)
+            nama = st.text_input("Nama Gas", key="nama_mol", placeholder="Contoh: Karbon Dioksida", label_visibility="collapsed")
             
-            cols = st.columns(2)
-            with cols[0]:
-                nama = st.text_input("Nama Gas", key="nama_mol", placeholder="Contoh: Karbon Dioksida")
-                P = konversi_tekanan("Tekanan", "mol_tekanan")
-            with cols[1]:
-                V = konversi_volume("Volume", "mol_vol")
-                T = konversi_suhu("Suhu", "mol_suhu")
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Tekanan</div>", unsafe_allow_html=True)
+            P = konversi_tekanan("Tekanan", "mol_tekanan")
         
-        if st.button("⚗️ Hitung Mol Sekarang", key="btn_mol", 
-                    use_container_width=True, 
-                    type="primary"):
+        with col2:
+            st.markdown("<div style='margin-bottom: 10px; font-weight: bold;'>Volume</div>", unsafe_allow_html=True)
+            V = konversi_volume("Volume", "mol_vol")
             
+            st.markdown("<div style='margin: 20px 0 10px 0; font-weight: bold;'>Suhu</div>", unsafe_allow_html=True)
+            T = konversi_suhu("Suhu", "mol_suhu")
+        
+        if st.button("⚗️ Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
             with st.spinner('Menghitung...'):
                 import time
                 time.sleep(0.5)
                 n = (P * V) / (R * T)
                 
                 st.markdown(f"""
+                </div> <!-- Close tab-content -->
                 <div style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
                             padding: 20px;
                             border-radius: 15px;
@@ -896,12 +837,10 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 30px;">🔬</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #7B1FA2;">Hasil Perhitungan</h3>
-                            <p style="margin: 0; font-size: 1.2em;">
-                                Jumlah mol <b>{nama if nama else 'gas'}</b> = 
-                                <span style="color: #7B1FA2; font-weight: bold; font-size: 1.3em;">
-                                    {n:.4f} mol
-                                </span>
-                            </p>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Jumlah mol <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #7B1FA2; font-weight: bold; font-size: 1.5em; margin: 0;">{n:.4f} mol</p>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; background: rgba(255,255,255,0.7); 
@@ -913,7 +852,7 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # Show molecule animation
+                # Molecule animation
                 st.markdown("""
                 <div style="text-align: center; margin-top: 20px;">
                     <div style="font-size: 40px; animation: spin 4s linear infinite;">⚛️</div>
@@ -926,7 +865,7 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
                 """, unsafe_allow_html=True)
 
-    # Educational footer with interactive elements
+    # Educational footer
     st.markdown("""
     <div style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
                 padding: 20px;
