@@ -398,7 +398,24 @@ if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>GasMaster Pro</h1>", unsafe_allow_html=True)
     st.markdown("""
     <div class="card calc-card">
-        Platform lengkap untuk analisis gas ideal dan informasi kimia.
+        Platform lengkap untuk analisis gas ideal dan informasi kimia. 
+        🎉 FUN FACTS tentang PV = nRT
+        🔥 Gas Ideal Tidak Ada di Dunia Nyata!
+        Tidak ada gas yang benar-benar ideal. Tapi pada suhu tinggi dan tekanan rendah, banyak gas nyata mendekati perilaku ideal.
+        💡 Avogadro Pernah Diabaikan
+        Teori Avogadro ditolak selama beberapa dekade hingga akhirnya diakui karena mendukung teori molekul modern.
+        🧊 Gas Ideal Gagal di Suhu Rendah
+        Pada suhu rendah, gaya antar molekul jadi signifikan dan gas bisa mencair—ini saat gas tidak bisa dianggap ideal lagi.
+        🧪 R Tidak Selalu Sama
+        Nilai R tergantung satuan yang digunakan. Misalnya:
+        0,0821 L·atm/mol·K
+        8,314 J/mol·K
+        62,36 L·torr/mol·K
+        📐 PV = nRT adalah bentuk sederhana dari teori kinetik gas, yang menjelaskan gerakan partikel gas secara statistik dan fisika.
+        📚 Digunakan di banyak bidang
+        Bukan cuma kimia! Fisika, teknik mesin, meteorologi, hingga kedokteran (misalnya ventilator medis) menggunakan persamaan ini.
+
+
     </div>
     """, unsafe_allow_html=True)
     
