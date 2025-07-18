@@ -199,7 +199,7 @@ GAS_DATABASE = {
         "icon": "💨",
         "category": "Gas Diatomik",
         "description": "Gas vital untuk kehidupan dan pembakaran, menyusun 21% atmosfer Bumi.",
-        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhL2oFB8Uc_9O5hoZ7ccIR_Id7IxpCQdP9ybV_SR_Pr_MjgyZrd_S6o7vVnhiL7ZD66hF-mGq0h58l8K3hcMxLE4cdbcW6QKlZQQQN_pwkgkUMvx-usd9eHEPsCRar9me81FAEc767sHmY/s1600/Screen+Shot+2020-02-06+at+9.02.16+AM.png.",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/O2_-.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "O₂",
@@ -224,7 +224,7 @@ GAS_DATABASE = {
         "icon": "🌬️",
         "category": "Gas Diatomik",
         "description": "Gas inert yang menyusun 78% atmosfer Bumi, penting untuk berbagai aplikasi industri.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Nitrogen-3D-vdW.png/320px-Nitrogen-3D-vdW.png",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/N2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "N₂",
@@ -249,7 +249,7 @@ GAS_DATABASE = {
         "icon": "🌫️",
         "category": "Gas Poliatomik",
         "description": "Gas rumah kaca yang penting untuk fotosintesis tanaman.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Carbon-dioxide-3D-vdW.png/320px-Carbon-dioxide-3D-vdW.png",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/co2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "CO₂",
@@ -274,7 +274,7 @@ GAS_DATABASE = {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Neon_discharge_tube.jpg/1280px-Neon_discharge_tube.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "Ne",
@@ -299,7 +299,7 @@ GAS_DATABASE = {
     "icon": "🎈",
     "category": "Gas Monoatomik",
     "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Helium_discharge_tube.jpg/320px-Helium_discharge_tube.jpg",
+    "image": "https://s.alicdn.com/@sc04/kf/Hb17c6f6a6bc3489f8b4bc7f1ddab922e8.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "He",
@@ -324,7 +324,7 @@ GAS_DATABASE = {
     "icon": "🔏",
     "category": "Gas Monoatomik",
     "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Argon_discharge_tube.jpg/320px-Argon_discharge_tube.jpg",
+    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "Ar",
