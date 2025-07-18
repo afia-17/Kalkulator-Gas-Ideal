@@ -434,19 +434,19 @@ if menu == "🏠 Beranda":
     st.markdown("<h4 style='margin-top:30px;'>Variabel Utama:</h4>", unsafe_allow_html=True)
     var_cols = st.columns(4)
     variables = [
-        ("P", "Tekanan", "Mengukur gaya gas pada wadah", "#ffcdd2"),
-        ("V", "Volume", "Ruang yang ditempati gas", "#c8e6c9"),
-        ("n", "Jumlah Mol", "Banyaknya partikel gas", "#bbdefb"),
-        ("T", "Suhu", "Ukuran energi kinetik partikel", "#fff9c4")
+        ("P", "Tekanan", "Mengukur gaya gas<br>pada wadah", "#ffcdd2"),
+        ("V", "Volume", "Ruang yang<br>ditempati gas", "#c8e6c9"),
+        ("n", "Jumlah Mol", "Banyaknya<br>partikel gas", "#bbdefb"),
+        ("T", "Suhu", "Ukuran energi<br>kinetik partikel", "#fff9c4")
     ]
     
     for col, (var, name, desc, color) in zip(var_cols, variables):
         with col:
             st.markdown(f"""
-            <div style="background:{color};padding:15px;border-radius:10px;height:150px;">
-                <h3 style="text-align:center;">{var}</h3>
-                <p style="text-align:center;"><b>{name}</b></p>
-                <p style="font-size:0.8em;">{desc}</p>
+            <div style="background:{color};padding:15px;border-radius:10px;height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <h3 style="margin:5px 0;">{var}</h3>
+                <p style="margin:5px 0;font-weight:bold;">{name}</p>
+                <p style="margin:5px 0;font-size:0.8em;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
     
