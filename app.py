@@ -1021,7 +1021,7 @@ elif menu == "⚠️ Panduan Keselamatan":
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
+st.markdown("""
     <div class="card safety-card">
         <h3>🛡️ Alat Pelindung Diri (APD)</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
@@ -1030,15 +1030,15 @@ elif menu == "⚠️ Panduan Keselamatan":
                 <p><b>Masker Gas</b></p>
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3143/3143455.png" width="80">
+                <img src="https://cdn-icons-png.flaticon.com/512/2797/2797688.png" width="80">
                 <p><b>Sarung Tangan</b></p>
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3143/3143475.png" width="80">
+                <img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80">
                 <p><b>Kacamata Keselamatan</b></p>
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3143/3143483.png" width="80">
+                <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
                 <p><b>Jas Lab</b></p>
             </div>
         </div>
