@@ -392,52 +392,89 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN UTAMA
+# HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>GasMaster Pro</h1>", unsafe_allow_html=True)
+    
     st.markdown("""
     <div class="card calc-card">
-        Platform lengkap untuk analisis gas ideal dan informasi kimia. 
-        🎉 FUN FACTS tentang PV = nRT
-        🔥 Gas Ideal Tidak Ada di Dunia Nyata!
-        Tidak ada gas yang benar-benar ideal. Tapi pada suhu tinggi dan tekanan rendah, banyak gas nyata mendekati perilaku ideal.
-        💡 Avogadro Pernah Diabaikan
-        Teori Avogadro ditolak selama beberapa dekade hingga akhirnya diakui karena mendukung teori molekul modern.
-        🧊 Gas Ideal Gagal di Suhu Rendah
-        Pada suhu rendah, gaya antar molekul jadi signifikan dan gas bisa mencair—ini saat gas tidak bisa dianggap ideal lagi.
-        🧪 R Tidak Selalu Sama
-        Nilai R tergantung satuan yang digunakan. Misalnya:
-        0,0821 L·atm/mol·K
-        8,314 J/mol·K
-        62,36 L·torr/mol·K
-        📐 PV = nRT adalah bentuk sederhana dari teori kinetik gas, yang menjelaskan gerakan partikel gas secara statistik dan fisika.
-        📚 Digunakan di banyak bidang
-        Bukan cuma kimia! Fisika, teknik mesin, meteorologi, hingga kedokteran (misalnya ventilator medis) menggunakan persamaan ini.
-
-
+        <h3>Selamat Datang di Aplikasi GasMaster Pro!</h3>
+        <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
     </div>
     """, unsafe_allow_html=True)
     
+    # Persamaan Gas Ideal dengan penjelasan
     st.latex(r'''PV = nRT''')
     
-    cols = st.columns(4)
+    cols = st.columns([3, 2])
+    with cols[0]:
+        st.markdown("""
+        <div style="margin-top:20px;">
+            <h4>Persamaan Gas Ideal:</h4>
+            <p><b>P</b> = Tekanan (atm)</p>
+            <p><b>V</b> = Volume (L)</p>
+            <p><b>n</b> = Jumlah mol (mol)</p>
+            <p><b>R</b> = Konstanta gas = 0.0821 L·atm/mol·K</p>
+            <p><b>T</b> = Suhu (K)</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with cols[1]:
+        st.markdown("""
+        <div style="margin-top:20px;">
+            <h4>Fakta Menarik:</h4>
+            <p>🎈 <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
+            <p>🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi</p>
+            <p>⚛️ <b>1 mol gas</b> = 6.022×10²³ molekul</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Visualisasi variabel
+    st.markdown("<h4 style='margin-top:30px;'>Variabel Utama:</h4>", unsafe_allow_html=True)
+    var_cols = st.columns(4)
     variables = [
-        ("P", "Tekanan (atm)", "#ffcdd2"),
-        ("V", "Volume (L)", "#c8e6c9"),
-        ("n", "Jumlah Mol (mol)", "#bbdefb"),
-        ("T", "Suhu (K)", "#fff9c4")
+        ("P", "Tekanan", "Mengukur gaya gas pada wadah", "#ffcdd2"),
+        ("V", "Volume", "Ruang yang ditempati gas", "#c8e6c9"),
+        ("n", "Jumlah Mol", "Banyaknya partikel gas", "#bbdefb"),
+        ("T", "Suhu", "Ukuran energi kinetik partikel", "#fff9c4")
     ]
     
-    for col, (var, desc, color) in zip(cols, variables):
+    for col, (var, name, desc, color) in zip(var_cols, variables):
         with col:
             st.markdown(f"""
-            <div style="background:{color};padding:15px;border-radius:10px;text-align:center;">
-                <h3>{var}</h3>
-                <p>{desc}</p>
+            <div style="background:{color};padding:15px;border-radius:10px;height:150px;">
+                <h3 style="text-align:center;">{var}</h3>
+                <p style="text-align:center;"><b>{name}</b></p>
+                <p style="font-size:0.8em;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
-
+    
+    # Contoh aplikasi
+    st.markdown("""
+    <div class="card" style="margin-top:30px;">
+        <h4>💡 Contoh Aplikasi Persamaan Gas Ideal:</h4>
+        <ul>
+            <li>Menghitung volume gas yang dihasilkan dalam reaksi kimia</li>
+            <li>Memahami perilaku gas dalam sistem tertutup</li>
+            <li>Memprediksi pengaruh perubahan suhu terhadap tekanan gas</li>
+            <li>Mendesain sistem pneumatik dan hidrolik</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Tips penggunaan
+    st.markdown("""
+    <div class="card gas-card" style="margin-top:20px;">
+        <h4>🔧 Tips Menggunakan Aplikasi:</h4>
+        <ol>
+            <li>Pilih menu <b>Kalkulator Gas</b> untuk perhitungan</li>
+            <li>Gunakan <b>Ensiklopedia Gas</b> untuk informasi detail</li>
+            <li>Pelajari <b>Panduan Keselamatan</b> sebelum bekerja dengan gas</li>
+            <li>Pastikan satuan yang digunakan konsisten</li>
+        </ol>
+    </div>
+    """, unsafe_allow_html=True)
 # ===========================================
 # HALAMAN KALKULATOR GAS
 # ===========================================
