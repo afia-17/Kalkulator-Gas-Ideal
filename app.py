@@ -955,140 +955,275 @@ elif menu == "🧮 Kalkulator Gas":
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
 # ===========================================
+# ===========================================
+# HALAMAN ENSIKLOPEDIA GAS (ENHANCED VERSION)
+# ===========================================
 elif menu == "📚 Ensiklopedia Gas":
     st.markdown("""
     <style>
         .gas-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: linear-gradient(135deg, #0d47a1, #42a5f5);
+            color: white;
+            padding: 25px;
             border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .gas-properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .gas-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.imgur.com/JQJQJQJ.png') no-repeat;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        .gas-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        .molecule-viewer {
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid #e0e0e0;
         }
         .property-card {
             background: white;
             border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .property-card h4 {
-            color: #0d47a1;
-            border-bottom: 2px solid #0d47a1;
-            padding-bottom: 8px;
-        }
-        .molecule-img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: contain;
-            border-radius: 10px;
             margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid #0d47a1;
         }
         .app-card {
-            background: #e8f5e9;
-            padding: 15px;
+            background: #e3f2fd;
             border-radius: 10px;
-            margin-top: 20px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .safety-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .floating-molecule {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+            font-size: 100px;
         }
     </style>
     """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="gas-header">
+        <div class="gas-header-content">
+            <h1 class='main-header' style='color:white;'>⚗️ Ensiklopedia Gas</h1>
+            <p style='font-size:1.1em;margin-bottom:0;'>Database lengkap sifat-sifat gas penting dalam ilmu kimia</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Gas selection with search functionality
+    search_term = st.text_input("🔍 Cari Gas", placeholder="Ketik nama gas...")
     
-    st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
-    
-    # Update image URLs in the database
-    GAS_DATABASE["Hidrogen (H₂)"]["image"] = "https://ak.picdn.net/shutterstock/videos/10684944/thumb/1.jpg"
-    GAS_DATABASE["Oksigen (O₂)"]["image"] = "https://1.bp.blogspot.com/-5fY1w1m6J1Y/Xj4K9q0rQYI/AAAAAAAAEa0/6tQ5Y7J2QvQh8QZJjQZJjQZJjQZJjQZJjQCLcBGAsYHQ/s1600/Screen%2BShot%2B2020-02-06%2Bat%2B9.02.16%2BAM.png"
-    GAS_DATABASE["Nitrogen (N₂)"]["image"] = "https://www.chemtube3d.com/wp-content/uploads/n2.png"
-    GAS_DATABASE["Karbon Dioksida (CO₂)"]["image"] = "https://www.chemtube3d.com/wp-content/uploads/co2.png"
-    GAS_DATABASE["Neon (Ne)"]["image"] = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neon_discharge_tube.jpg/320px-Neon_discharge_tube.jpg"
-    GAS_DATABASE["Helium (He)"]["image"] = "https://img.freepik.com/free-photo/close-up-helium-balloons_23-2149286774.jpg"
-    GAS_DATABASE["Argon (Ar)"]["image"] = "https://5.imimg.com/data5/SELLER/Default/2021/12/QT/VA/JA/3033823/industrial-argon-gas.jpg"
+    filtered_gases = [gas for gas in GAS_DATABASE.keys() 
+                     if search_term.lower() in gas.lower()] if search_term else list(GAS_DATABASE.keys())
     
     selected_gas = st.selectbox(
         "Pilih Gas", 
-        list(GAS_DATABASE.keys()),
+        filtered_gases,
         format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}",
-        key="gas_selector"
+        index=0 if not search_term else None
     )
     
     gas = GAS_DATABASE[selected_gas]
     
-    # Header Gas dengan layout lebih menarik
+    # Main gas information
     st.markdown(f"""
-    <div class="gas-header">
-        <div style="flex: 1;">
-            <h2 style="margin: 0; color: #0d47a1;">{gas['icon']} {selected_gas}</h2>
-            <p style="font-size: 1.1em; margin: 10px 0;"><i>{gas['description']}</i></p>
-            <div style="background: #0d47a1; color: white; padding: 5px 10px; border-radius: 20px; display: inline-block;">
-                {gas['category']}
+    <div style='position:relative;'>
+        <div class='floating-molecule' style='top:-50px;right:50px;'>{gas['icon']}</div>
+        <div class='floating-molecule' style='bottom:0;left:50px;'>{gas['icon']}</div>
+        
+        <div style='display:flex;gap:30px;margin-bottom:30px;'>
+            <div style='flex:2;'>
+                <h2 style='margin-top:0;display:flex;align-items:center;'>
+                    <span style='font-size:1.5em;margin-right:15px;'>{gas['icon']}</span>
+                    {selected_gas}
+                </h2>
+                <p style='font-size:1.1em;color:#555;'>{gas['description']}</p>
+                
+                <div style='display:flex;gap:15px;margin:20px 0;'>
+                    <div style='background:#e3f2fd;padding:10px 15px;border-radius:8px;'>
+                        <div style='font-size:0.9em;color:#0d47a1;'>Kategori</div>
+                        <div style='font-weight:bold;'>{gas['category']}</div>
+                    </div>
+                    <div style='background:#e8f5e9;padding:10px 15px;border-radius:8px;'>
+                        <div style='font-size:0.9em;color:#2e7d32;'>Massa Molar</div>
+                        <div style='font-weight:bold;'>{gas['properties']['🧪 Identitas Molekul']['Massa Molar']}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style='flex:1;'>
+                <div style='border-radius:15px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);'>
+                    <img src='{gas["image"]}' style='width:100%;max-height:250px;object-fit:cover;'>
+                </div>
             </div>
         </div>
-        <div style="flex: 1; text-align: center;">
-            <img src="{gas['image']}" style="max-height: 150px; border-radius: 10px; border: 3px solid #0d47a1;">
-        </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Tab Informasi dengan grid layout
+
+    # Molecule 3D viewer placeholder
     st.markdown("""
-    <div class="gas-properties">
+    <div class='molecule-viewer'>
+        <h4>🖼️ Tampilan Molekul 3D</h4>
+        <div style='height:200px;background:#f0f0f0;display:flex;justify-content:center;align-items:center;border-radius:10px;margin:15px 0;'>
+            <p style='color:#888;'>Visualisasi 3D molekul {selected_gas}</p>
+        </div>
+        <button style='background:#0d47a1;color:white;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;'>
+            🔍 Perbesar Molekul
+        </button>
+    </div>
     """, unsafe_allow_html=True)
+
+    # Tab system for properties
+    tab1, tab2, tab3 = st.tabs(["📊 Sifat Fisika & Kimia", "🏭 Aplikasi Industri", "⚠️ Keselamatan"])
     
-    for category, props in gas["properties"].items():
+    with tab1:
         st.markdown(f"""
-        <div class="property-card">
-            <h4>{category}</h4>
-            <table style="width: 100%;">
-                {"".join(f"""
-                <tr>
-                    <td style="padding: 8px 0; vertical-align: top; width: 40%;"><b>{key}</b></td>
-                    <td style="padding: 8px 0;">{value}</td>
-                </tr>
-                """ for key, value in props.items())}
-            </table>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Aplikasi dengan card khusus
-    st.markdown(f"""
-    <div class="app-card">
-        <h4 style="color: #2e7d32; margin-top: 0;">🔧 Aplikasi Utama</h4>
-        <p>{gas['aplikasi']}</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Molekul 3D (jika tersedia)
-    if selected_gas in ["Hidrogen (H₂)", "Oksigen (O₂)", "Nitrogen (N₂)", "Karbon Dioksida (CO₂)"]:
-        st.markdown("""
-        <div style="margin-top: 30px;">
-            <h4>🔄 Tampilan 3D Molekul</h4>
-            <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; text-align: center;">
+        <h3 style='margin-top:0;'>Sifat Fisika & Kimia</h3>
+        <div style='display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:15px;'>
         """, unsafe_allow_html=True)
         
-        if selected_gas == "Hidrogen (H₂)":
-            st.image("https://www.chemtube3d.com/wp-content/uploads/h2.png", use_column_width=True)
-        elif selected_gas == "Oksigen (O₂)":
-            st.image("https://www.chemtube3d.com/wp-content/uploads/o2.png", use_column_width=True)
-        elif selected_gas == "Nitrogen (N₂)":
-            st.image("https://www.chemtube3d.com/wp-content/uploads/n2.png", use_column_width=True)
-        elif selected_gas == "Karbon Dioksida (CO₂)":
-            st.image("https://www.chemtube3d.com/wp-content/uploads/co2.png", use_column_width=True)
+        for category, props in gas['properties'].items():
+            if category != "⚠️ Keselamatan":
+                st.markdown(f"""
+                <div class='property-card'>
+                    <h4 style='margin-top:0;color:#0d47a1;'>{category}</h4>
+                    <table style='width:100%;border-collapse:collapse;'>
+                        {"".join(f"""
+                        <tr>
+                            <td style='padding:8px 0;border-bottom:1px solid #eee;width:40%;'><b>{key}</b></td>
+                            <td style='padding:8px 0;border-bottom:1px solid #eee;'>{value}</td>
+                        </tr>
+                        """ for key, value in props.items())}
+                    </table>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+    
+    with tab2:
+        st.markdown(f"""
+        <h3 style='margin-top:0;'>Aplikasi Industri</h3>
+        <div class='app-card'>
+            <h4 style='margin-top:0;color:#0d47a1;'>Penggunaan Utama</h4>
+            <p>{gas['aplikasi']}</p>
             
-        st.markdown("""
+            <h4 style='margin-top:20px;color:#0d47a1;'>Proses Produksi</h4>
+            <p>Metode utama produksi {selected_gas.split(' ')[0]} dalam industri:</p>
+            <ul>
+                <li>Destilasi fraksional udara cair (untuk gas seperti O₂, N₂, Ar)</li>
+                <li>Reaksi kimia khusus (seperti elektrolisis untuk H₂)</li>
+                <li>Proses fermentasi atau biologis (untuk gas seperti CH₄)</li>
+            </ul>
+            
+            <h4 style='margin-top:20px;color:#0d47a1;'>Data Ekonomi</h4>
+            <div style='display:flex;gap:15px;'>
+                <div style='flex:1;background:#e1f5fe;padding:10px;border-radius:8px;'>
+                    <div style='font-size:0.9em;color:#0288d1;'>Harga Pasar</div>
+                    <div style='font-weight:bold;'>$2.50 - $5.00 per kg</div>
+                </div>
+                <div style='flex:1;background:#f1f8e9;padding:10px;border-radius:8px;'>
+                    <div style='font-size:0.9em;color:#689f38;'>Produksi Global</div>
+                    <div style='font-weight:bold;'>70 juta ton/tahun</div>
+                </div>
             </div>
         </div>
         """, unsafe_allow_html=True)
+    
+    with tab3:
+        safety = gas['properties']['⚠️ Keselamatan']
+        st.markdown(f"""
+        <h3 style='margin-top:0;'>Panduan Keselamatan</h3>
+        <div style='display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:15px;margin-bottom:20px;'>
+            <div class='property-card' style='border-left-color:#f44336;'>
+                <h4 style='margin-top:0;color:#f44336;'>Potensi Bahaya</h4>
+                <p>{safety['Bahaya']}</p>
+            </div>
+            <div class='property-card' style='border-left-color:#ff9800;'>
+                <h4 style='margin-top:0;color:#ff9800;'>Penanganan Aman</h4>
+                <p>{safety['Penanganan']}</p>
+            </div>
+        </div>
+        
+        <h4 style='margin-top:20px;color:#f44336;'>Simbol Bahaya</h4>
+        <div style='display:flex;flex-wrap:wrap;gap:10px;margin:15px 0;'>
+            <span class='safety-badge' style='background:#ffebee;color:#c62828;'>🔥 Mudah Terbakar</span>
+            <span class='safety-badge' style='background:#fff3e0;color:#e65100;'>☢️ Bertekanan</span>
+            <span class='safety-badge' style='background:#e8f5e9;color:#2e7d32;'>💨 Asfiksian</span>
+        </div>
+        
+        <div class='app-card' style='background:#ffebee;'>
+            <h4 style='margin-top:0;color:#c62828;'>Prosedur Darurat</h4>
+            <ol>
+                <li>Segera evakuasi area jika terjadi kebocoran</li>
+                <li>Gunakan alat pernapasan jika diperlukan</li>
+                <li>Ventilasi area dengan membuka jendela/pintu</li>
+                <li>Hindari sumber api atau percikan</li>
+                <li>Hubungi petugas berwenang</li>
+            </ol>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Related gases
+    st.markdown("""
+    <h3 style='margin-top:30px;'>🔗 Gas Terkait</h3>
+    <div style='display:flex;overflow-x:auto;gap:15px;padding:10px 0;'>
+    """, unsafe_allow_html=True)
+    
+    related_gases = [g for g in GAS_DATABASE.keys() if g != selected_gas][:5]
+    for gas_name in related_gases:
+        g = GAS_DATABASE[gas_name]
+        st.markdown(f"""
+        <div style='flex:0 0 200px;background:white;border-radius:10px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,0.1);'>
+            <div style='font-size:2em;text-align:center;'>{g['icon']}</div>
+            <h4 style='margin:10px 0;text-align:center;'>{gas_name.split(' ')[0]}</h4>
+            <p style='font-size:0.8em;color:#666;text-align:center;margin-bottom:10px;'>{g['category']}</p>
+            <button style='width:100%;background:#e3f2fd;border:none;padding:8px;border-radius:5px;cursor:pointer;'
+                    onclick='window.location.href="?gas={gas_name.replace(' ', '_')}"'>
+                Lihat Detail
+            </button>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # Periodic table reference
+    st.markdown("""
+    <div style='margin-top:40px;background:#f5f5f5;padding:20px;border-radius:15px;'>
+        <h3 style='margin-top:0;'>🧪 Referensi Tabel Periodik</h3>
+        <p>Elemen terkait dalam tabel periodik:</p>
+        <div style='display:inline-block;background:#0d47a1;color:white;padding:5px 10px;border-radius:5px;margin:5px;'>H</div>
+        <div style='display:inline-block;background:#0d47a1;color:white;padding:5px 10px;border-radius:5px;margin:5px;'>O</div>
+        <div style='display:inline-block;background:#0d47a1;color:white;padding:5px 10px;border-radius:5px;margin:5px;'>N</div>
+        <div style='display:inline-block;background:#0d47a1;color:white;padding:5px 10px;border-radius:5px;margin:5px;'>C</div>
+        <p style='margin-top:15px;'><a href='https://www.rsc.org/periodic-table' target='_blank'>🔗 Lihat Tabel Periodik Lengkap</a></p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN PANDUAN KESELAMATAN
