@@ -477,10 +477,10 @@ if menu == "🏠 Beranda":
     """, unsafe_allow_html=True)
     
 # ===========================================
-# HALAMAN KALKULATOR GAS (FIXED ALIGNMENT)
+# HALAMAN KALKULATOR GAS (COMPLETE FIXED VERSION)
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
-    # Header with animated particles
+    # Header dengan animasi partikel
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
                 padding: 25px; 
@@ -514,10 +514,30 @@ elif menu == "🧮 Kalkulator Gas":
             --x-end: calc(var(--x) - 50%);
             --y-end: calc(var(--y) - 50%);
         }
+        .tab-container {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+        .input-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .conversion-box {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #9e9e9e;
+            font-size: 0.9em;
+        }
     </style>
     """, unsafe_allow_html=True)
 
-    # Enhanced tab styling
+    # Style untuk tabs
     tab_style = """
     <style>
         .stTabs [data-baseweb="tab-list"] {
@@ -543,17 +563,6 @@ elif menu == "🧮 Kalkulator Gas":
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
         }
-        .tab-container {
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-top: 15px;
-        }
-        .input-label {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
     </style>
     """
     st.markdown(tab_style, unsafe_allow_html=True)
@@ -565,10 +574,10 @@ elif menu == "🧮 Kalkulator Gas":
         "⚛️ Hitung Mol"
     ])
     
-    R = 0.0821  # Konstanta gas
+    R = 0.0821  # Konstanta gas ideal
 
     with tab1:
-        # Massa Calculator
+        # Kalkulator Massa
         with st.container():
             st.markdown("""
             <div class="tab-container" style="border-left: 5px solid #FF9800;">
@@ -583,7 +592,6 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
             """, unsafe_allow_html=True)
 
-            # Input fields with perfect alignment
             cols = st.columns(3)
             with cols[0]:
                 st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
@@ -595,12 +603,11 @@ elif menu == "🧮 Kalkulator Gas":
                 st.markdown('<div class="input-label">Massa Molar (Mr)</div>', unsafe_allow_html=True)
                 mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.4f", label_visibility="collapsed")
             
-            st.markdown("</div>", unsafe_allow_html=True)  # Close tab-container
+            st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🚀 Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
                 massa = n * mr
                 
-                # Show result with animation
                 st.markdown(f"""
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
                             padding: 20px;
@@ -630,7 +637,7 @@ elif menu == "🧮 Kalkulator Gas":
                 st.balloons()
 
     with tab2:
-        # Pressure Calculator
+        # Kalkulator Tekanan
         with st.container():
             st.markdown("""
             <div class="tab-container" style="border-left: 5px solid #F44336;">
@@ -645,7 +652,6 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
             """, unsafe_allow_html=True)
 
-            # Input fields with perfect alignment
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
@@ -660,7 +666,7 @@ elif menu == "🧮 Kalkulator Gas":
                 with col2a:
                     T_input = st.number_input("Suhu", min_value=-273.0, key="tekanan_suhu_input", label_visibility="collapsed")
                 with col2b:
-                    satuan = st.selectbox("Satuan", ["K", "°C"], key="tekanan_suhu_unit", label_visibility="collapsed")
+                    satuan = st.selectbox("Satuan Suhu", ["K", "°C"], key="tekanan_suhu_unit", label_visibility="collapsed")
                 
                 if satuan == "°C":
                     T = T_input + 273.15
@@ -696,7 +702,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     V = V_input
             
-            st.markdown("</div>", unsafe_allow_html=True)  # Close tab-container
+            st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("💥 Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
                 P = (n * R * T) / V
@@ -720,21 +726,223 @@ elif menu == "🧮 Kalkulator Gas":
                 </div>
                 """, unsafe_allow_html=True)
 
-    # [Continue with similar structure for Tab3 and Tab4...]
+    with tab3:
+        # Kalkulator Volume
+        with st.container():
+            st.markdown("""
+            <div class="tab-container" style="border-left: 5px solid #4CAF50;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 40px;">🧊</div>
+                    <div>
+                        <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
+                        <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                            <b>Rumus:</b> V = (n × R × T) / P
+                        </div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
 
-    # Educational note
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                nama = st.text_input("Nama Gas", key="nama_volume", placeholder="Contoh: Hidrogen", label_visibility="collapsed")
+                
+                st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
+                n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
+            
+            with col2:
+                st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
+                col2a, col2b = st.columns([3,1])
+                with col2a:
+                    T_input = st.number_input("Suhu", min_value=-273.0, key="volume_suhu_input", label_visibility="collapsed")
+                with col2b:
+                    satuan = st.selectbox("Satuan Suhu", ["K", "°C"], key="volume_suhu_unit", label_visibility="collapsed")
+                
+                if satuan == "°C":
+                    T = T_input + 273.15
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {T_input}°C = {T:.2f} K
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    T = T_input
+                
+                st.markdown('<div class="input-label" style="margin-top: 15px;">Tekanan</div>', unsafe_allow_html=True)
+                col2c, col2d = st.columns([3,1])
+                with col2c:
+                    P_input = st.number_input("Tekanan", min_value=0.0, key="volume_tekanan_input", label_visibility="collapsed")
+                with col2d:
+                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "bar", "mmHg"], key="volume_tekanan_unit", label_visibility="collapsed")
+                
+                if satuan_tekanan == "Pa":
+                    P = P_input / 101325
+                elif satuan_tekanan == "kPa":
+                    P = P_input / 101.325
+                elif satuan_tekanan == "bar":
+                    P = P_input / 1.01325
+                elif satuan_tekanan == "mmHg":
+                    P = P_input / 760
+                else:
+                    P = P_input
+                
+                if satuan_tekanan != "atm":
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.6f} atm
+                    </div>
+                    """, unsafe_allow_html=True)
+            
+            st.markdown("</div>", unsafe_allow_html=True)
+
+            if st.button("🧊 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
+                V = (n * R * T) / P
+                
+                st.markdown(f"""
+                <div style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-top: 20px;
+                            border-left: 5px solid #4CAF50;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 30px;">📦</div>
+                        <div>
+                            <h3 style="margin: 0 0 10px 0; color: #2E7D32;">Hasil Perhitungan</h3>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Volume <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #2E7D32; font-weight: bold; font-size: 1.5em; margin: 0;">{V:.4f} L</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+    with tab4:
+        # Kalkulator Mol
+        with st.container():
+            st.markdown("""
+            <div class="tab-container" style="border-left: 5px solid #9C27B0;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 40px;">⚛️</div>
+                    <div>
+                        <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
+                        <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                            <b>Rumus:</b> n = (P × V) / (R × T)
+                        </div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                nama = st.text_input("Nama Gas", key="nama_mol", placeholder="Contoh: Karbon Dioksida", label_visibility="collapsed")
+                
+                st.markdown('<div class="input-label" style="margin-top: 15px;">Tekanan</div>', unsafe_allow_html=True)
+                col1a, col1b = st.columns([3,1])
+                with col1a:
+                    P_input = st.number_input("Tekanan", min_value=0.0, key="mol_tekanan_input", label_visibility="collapsed")
+                with col1b:
+                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "bar", "mmHg"], key="mol_tekanan_unit", label_visibility="collapsed")
+                
+                if satuan_tekanan == "Pa":
+                    P = P_input / 101325
+                elif satuan_tekanan == "kPa":
+                    P = P_input / 101.325
+                elif satuan_tekanan == "bar":
+                    P = P_input / 1.01325
+                elif satuan_tekanan == "mmHg":
+                    P = P_input / 760
+                else:
+                    P = P_input
+                
+                if satuan_tekanan != "atm":
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.6f} atm
+                    </div>
+                    """, unsafe_allow_html=True)
+            
+            with col2:
+                st.markdown('<div class="input-label">Volume</div>', unsafe_allow_html=True)
+                col2a, col2b = st.columns([3,1])
+                with col2a:
+                    V_input = st.number_input("Volume", min_value=0.1, key="mol_vol_input", label_visibility="collapsed")
+                with col2b:
+                    satuan_vol = st.selectbox("Satuan Volume", ["L", "m³", "mL"], key="mol_vol_unit", label_visibility="collapsed")
+                
+                if satuan_vol == "m³":
+                    V = V_input * 1000
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {V_input} m³ = {V:.2f} L
+                    </div>
+                    """, unsafe_allow_html=True)
+                elif satuan_vol == "mL":
+                    V = V_input / 1000
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {V_input} mL = {V:.4f} L
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    V = V_input
+                
+                st.markdown('<div class="input-label" style="margin-top: 15px;">Suhu</div>', unsafe_allow_html=True)
+                col2c, col2d = st.columns([3,1])
+                with col2c:
+                    T_input = st.number_input("Suhu", min_value=-273.0, key="mol_suhu_input", label_visibility="collapsed")
+                with col2d:
+                    satuan = st.selectbox("Satuan Suhu", ["K", "°C"], key="mol_suhu_unit", label_visibility="collapsed")
+                
+                if satuan == "°C":
+                    T = T_input + 273.15
+                    st.markdown(f"""
+                    <div class="conversion-box">
+                        🔄 Konversi: {T_input}°C = {T:.2f} K
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    T = T_input
+            
+            st.markdown("</div>", unsafe_allow_html=True)
+
+            if st.button("⚗️ Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
+                n = (P * V) / (R * T)
+                
+                st.markdown(f"""
+                <div style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-top: 20px;
+                            border-left: 5px solid #9C27B0;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 30px;">🔬</div>
+                        <div>
+                            <h3 style="margin: 0 0 10px 0; color: #7B1FA2;">Hasil Perhitungan</h3>
+                            <div style="display: flex; align-items: baseline; gap: 10px;">
+                                <p style="margin: 0; font-size: 1.2em;">Jumlah mol <b>{nama if nama else 'gas'}</b> =</p>
+                                <p style="color: #7B1FA2; font-weight: bold; font-size: 1.5em; margin: 0;">{n:.4f} mol</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+    # Catatan edukasi di bagian bawah
     st.markdown("""
-    <div style="background: #E3F2FD;
-                padding: 15px;
-                border-radius: 10px;
+    <div style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+                padding: 20px;
+                border-radius: 15px;
                 margin-top: 30px;
                 border-left: 5px solid #2196F3;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <div style="font-size: 24px;">ℹ️</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="font-size: 30px;">💡</div>
             <div>
+                <h3 style="margin: 0 0 10px 0; color: #0D47A1;">Tips Ahli Kimia</h3>
                 <p style="margin: 0;">
-                    <b>Tips:</b> Gunakan satuan yang konsisten (suhu dalam Kelvin, tekanan dalam atm, volume dalam liter)
-                    untuk hasil perhitungan yang akurat.
+                    Untuk hasil terbaik, pastikan semua satuan konsisten dengan konstanta gas R 
+                    (0.0821 L·atm/mol·K). Gunakan suhu dalam Kelvin dan tekanan dalam atm.
                 </p>
             </div>
         </div>
