@@ -1021,7 +1021,7 @@ elif menu == "⚠️ Panduan Keselamatan":
     </div>
     """, unsafe_allow_html=True)
     
-st.markdown("""
+    st.markdown("""
     <div class="card safety-card">
         <h3>🛡️ Alat Pelindung Diri (APD)</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
@@ -1044,7 +1044,6 @@ st.markdown("""
         </div>
     </div>
     """, unsafe_allow_html=True)
-
     st.markdown("""
     <div class="card safety-card">
         <h3>🚨 Prosedur Darurat</h3>
