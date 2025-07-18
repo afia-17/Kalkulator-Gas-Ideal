@@ -273,7 +273,7 @@ GAS_DATABASE = {
      "Neon (Ne)": {
         "icon": "💡",
         "category": "Gas Monoatomik",
-        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingin.",
+        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
         "properties": {
             "🧪 Identitas Molekul": {
@@ -345,7 +345,6 @@ GAS_DATABASE = {
     },
     "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
   },
-
   "Nitrogen (N₂)": {
     "icon": "🧬",
     "category": "Gas Diatomik",
@@ -773,15 +772,17 @@ elif menu == "🧮 Kalkulator Gas":
                 with col2c:
                     P_input = st.number_input("Tekanan", min_value=0.0, key="volume_tekanan_input", label_visibility="collapsed")
                 with col2d:
-                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "bar", "mmHg"], key="volume_tekanan_unit", label_visibility="collapsed")
+                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg"], key="volume_tekanan_unit", label_visibility="collapsed")
                 
                 if satuan_tekanan == "Pa":
                     P = P_input / 101325
                 elif satuan_tekanan == "kPa":
                     P = P_input / 101.325
+                elif satuan_tekanan == "hPa":
+                    P = P_input / 1013.25
                 elif satuan_tekanan == "bar":
                     P = P_input / 1.01325
-                elif satuan_tekanan == "mmHg":
+                elif satuan_tekanan in ["Torr", "mmHg"]:
                     P = P_input / 760
                 else:
                     P = P_input
@@ -843,15 +844,17 @@ elif menu == "🧮 Kalkulator Gas":
                 with col1a:
                     P_input = st.number_input("Tekanan", min_value=0.0, key="mol_tekanan_input", label_visibility="collapsed")
                 with col1b:
-                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "bar", "mmHg"], key="mol_tekanan_unit", label_visibility="collapsed")
+                    satuan_tekanan = st.selectbox("Satuan Tekanan", ["atm", "Pa", "kPa", "hPa", "bar", "Torr", "mmHg"], key="mol_tekanan_unit", label_visibility="collapsed")
                 
                 if satuan_tekanan == "Pa":
                     P = P_input / 101325
                 elif satuan_tekanan == "kPa":
                     P = P_input / 101.325
+                elif satuan_tekanan == "hPa":
+                    P = P_input / 1013.25
                 elif satuan_tekanan == "bar":
                     P = P_input / 1.01325
-                elif satuan_tekanan == "mmHg":
+                elif satuan_tekanan in ["Torr", "mmHg"]:
                     P = P_input / 760
                 else:
                     P = P_input
