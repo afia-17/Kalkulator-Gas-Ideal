@@ -476,110 +476,228 @@ if menu == "🏠 Beranda":
     </div>
     """, unsafe_allow_html=True)
 # ===========================================
-# HALAMAN KALKULATOR GAS
+# HALAMAN KALKULATOR GAS (ENHANCED)
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
     st.markdown("<h1 class='main-header'>🧮 Kalkulator Gas Ideal</h1>", unsafe_allow_html=True)
     
+    # Animated header
+    st.markdown("""
+    <div style="background:linear-gradient(90deg,#2196F3,#00BCD4);padding:15px;border-radius:10px;margin-bottom:20px;">
+        <h3 style="color:white;text-align:center;margin:0;">
+            <span style="display:inline-block;animation:bounce 2s infinite;">⚗️</span> 
+            Hitung Sifat Gas Ideal dengan Mudah 
+            <span style="display:inline-block;animation:bounce 2s infinite 0.5s;">🧪</span>
+        </h3>
+    </div>
+    <style>
+        @keyframes bounce {
+            0%, 100% {transform: translateY(0);}
+            50% {transform: translateY(-10px);}
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Interactive tabs with icons
     tab1, tab2, tab3, tab4 = st.tabs([
-        "📏 Massa Gas", 
-        "⚖️ Tekanan",
-        "📦 Volume",
-        "🧪 Jumlah Mol"
+        "📏 Hitung Massa", 
+        "⚖️ Hitung Tekanan",
+        "📦 Hitung Volume",
+        "🧪 Hitung Mol"
     ])
     
     R = 0.0821  # L.atm/mol.K
 
     with tab1:
         st.markdown("""
-        <div class="card calc-card">
-            <h3>📏 Menghitung Massa Gas</h3>
-            <p><b>Rumus:</b> Massa = n × Mr</p>
+        <div class="card calc-card" style="border-left:5px solid #FF9800;">
+            <div style="display:flex;align-items:center;gap:15px;">
+                <div style="font-size:30px;">📏</div>
+                <div>
+                    <h3 style="margin:0;">Menghitung Massa Gas</h3>
+                    <p style="margin:0;"><b>Rumus:</b> Massa = n × Mr</p>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        nama = st.text_input("Nama Gas", key="nama_massa")
-        n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_massa")
-        mr = st.number_input("Massa Molar (Mr) [g/mol]", min_value=0.0, key="mr_massa")
-        
-        if st.button("Hitung Massa", key="btn_massa"):
-            massa = n * mr
-            st.markdown(f"""
-            <div class="result-card">
-                <h4>Hasil Perhitungan:</h4>
-                <p>Massa {nama} = <b>{massa:.4f} gram</b></p>
-                <p>Detail: {n} mol × {mr} g/mol = {massa:.4f} gram</p>
+        with st.container():
+            st.markdown("""
+            <div style="background:#f5f5f5;padding:15px;border-radius:10px;margin-bottom:15px;">
+                <h4 style="margin:0;">🔍 Masukkan Data</h4>
             </div>
+            """, unsafe_allow_html=True)
+            
+            nama = st.text_input("Nama Gas", key="nama_massa", placeholder="Misal: Oksigen")
+            col1, col2 = st.columns(2)
+            with col1:
+                n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_massa", step=0.1)
+            with col2:
+                mr = st.number_input("Massa Molar (Mr) [g/mol]", min_value=0.0, key="mr_massa", step=0.01)
+        
+        if st.button("✨ Hitung Massa", key="btn_massa", use_container_width=True):
+            massa = n * mr
+            st.balloons()
+            st.markdown(f"""
+            <div class="result-card" style="animation:fadeIn 0.5s;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="font-size:24px;">🎯</div>
+                    <div>
+                        <h4 style="margin:0;">Hasil Perhitungan</h4>
+                        <p style="margin:0;">Massa {nama if nama else 'gas'} = <b style="color:#2196F3;font-size:1.2em;">{massa:.4f} gram</b></p>
+                    </div>
+                </div>
+                <div style="margin-top:10px;background:#e3f2fd;padding:10px;border-radius:8px;">
+                    <p style="margin:0;font-size:0.9em;">📝 Detail: {n} mol × {mr} g/mol = {massa:.4f} gram</p>
+                </div>
+            </div>
+            <style>
+                @keyframes fadeIn {
+                    from {opacity:0; transform:translateY(10px);}
+                    to {opacity:1; transform:translateY(0);}
+                }
+            </style>
             """, unsafe_allow_html=True)
 
     with tab2:
         st.markdown("""
-        <div class="card calc-card">
-            <h3>⚖️ Menghitung Tekanan Gas</h3>
-            <p><b>Rumus:</b> P = (n × R × T) / V</p>
+        <div class="card calc-card" style="border-left:5px solid #F44336;">
+            <div style="display:flex;align-items:center;gap:15px;">
+                <div style="font-size:30px;">⚖️</div>
+                <div>
+                    <h3 style="margin:0;">Menghitung Tekanan Gas</h3>
+                    <p style="margin:0;"><b>Rumus:</b> P = (n × R × T) / V</p>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        nama = st.text_input("Nama Gas", key="nama_tekanan")
-        n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_tekanan")
-        T = konversi_suhu("Suhu", "tekanan_suhu")
-        V = konversi_volume("Volume", "tekanan_vol")
+        with st.container():
+            st.markdown("""
+            <div style="background:#f5f5f5;padding:15px;border-radius:10px;margin-bottom:15px;">
+                <h4 style="margin:0;">🔍 Masukkan Data</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            nama = st.text_input("Nama Gas", key="nama_tekanan", placeholder="Misal: Nitrogen")
+            n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_tekanan", step=0.1)
+            T = konversi_suhu("Suhu", "tekanan_suhu")
+            V = konversi_volume("Volume", "tekanan_vol")
         
-        if st.button("Hitung Tekanan", key="btn_tekanan"):
+        if st.button("✨ Hitung Tekanan", key="btn_tekanan", use_container_width=True):
             P = (n * R * T) / V
             st.markdown(f"""
-            <div class="result-card">
-                <h4>Hasil Perhitungan:</h4>
-                <p>Tekanan {nama} = <b>{P:.6f} atm</b></p>
-                <p>≈ {P*760:.2f} mmHg ≈ {P*101.325:.2f} kPa</p>
+            <div class="result-card" style="animation:fadeIn 0.5s;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="font-size:24px;">📊</div>
+                    <div>
+                        <h4 style="margin:0;">Hasil Perhitungan</h4>
+                        <p style="margin:0;">Tekanan {nama if nama else 'gas'} = <b style="color:#F44336;font-size:1.2em;">{P:.6f} atm</b></p>
+                    </div>
+                </div>
+                <div style="margin-top:10px;background:#ffebee;padding:10px;border-radius:8px;">
+                    <p style="margin:0;font-size:0.9em;">≈ {P*760:.2f} mmHg ≈ {P*101.325:.2f} kPa</p>
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
     with tab3:
         st.markdown("""
-        <div class="card calc-card">
-            <h3>📦 Menghitung Volume Gas</h3>
-            <p><b>Rumus:</b> V = (n × R × T) / P</p>
+        <div class="card calc-card" style="border-left:5px solid #4CAF50;">
+            <div style="display:flex;align-items:center;gap:15px;">
+                <div style="font-size:30px;">📦</div>
+                <div>
+                    <h3 style="margin:0;">Menghitung Volume Gas</h3>
+                    <p style="margin:0;"><b>Rumus:</b> V = (n × R × T) / P</p>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        nama = st.text_input("Nama Gas", key="nama_volume")
-        n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_volume")
-        T = konversi_suhu("Suhu", "volume_suhu")
-        P = konversi_tekanan("Tekanan", "volume_tekanan")
+        with st.container():
+            st.markdown("""
+            <div style="background:#f5f5f5;padding:15px;border-radius:10px;margin-bottom:15px;">
+                <h4 style="margin:0;">🔍 Masukkan Data</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            nama = st.text_input("Nama Gas", key="nama_volume", placeholder="Misal: Hidrogen")
+            n = st.number_input("Jumlah Mol (n) [mol]", min_value=0.0, key="n_volume", step=0.1)
+            T = konversi_suhu("Suhu", "volume_suhu")
+            P = konversi_tekanan("Tekanan", "volume_tekanan")
         
-        if st.button("Hitung Volume", key="btn_volume"):
+        if st.button("✨ Hitung Volume", key="btn_volume", use_container_width=True):
             V = (n * R * T) / P
             st.markdown(f"""
-            <div class="result-card">
-                <h4>Hasil Perhitungan:</h4>
-                <p>Volume {nama} = <b>{V:.4f} L</b></p>
-                <p>≈ {V/1000:.6f} m³ ≈ {V*1000:.2f} mL</p>
+            <div class="result-card" style="animation:fadeIn 0.5s;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="font-size:24px;">🧮</div>
+                    <div>
+                        <h4 style="margin:0;">Hasil Perhitungan</h4>
+                        <p style="margin:0;">Volume {nama if nama else 'gas'} = <b style="color:#4CAF50;font-size:1.2em;">{V:.4f} L</b></p>
+                    </div>
+                </div>
+                <div style="margin-top:10px;background:#e8f5e9;padding:10px;border-radius:8px;">
+                    <p style="margin:0;font-size:0.9em;">≈ {V/1000:.6f} m³ ≈ {V*1000:.2f} mL</p>
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
     with tab4:
         st.markdown("""
-        <div class="card calc-card">
-            <h3>🧪 Menghitung Jumlah Mol</h3>
-            <p><b>Rumus:</b> n = (P × V) / (R × T)</p>
+        <div class="card calc-card" style="border-left:5px solid #9C27B0;">
+            <div style="display:flex;align-items:center;gap:15px;">
+                <div style="font-size:30px;">🧪</div>
+                <div>
+                    <h3 style="margin:0;">Menghitung Jumlah Mol</h3>
+                    <p style="margin:0;"><b>Rumus:</b> n = (P × V) / (R × T)</p>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        nama = st.text_input("Nama Gas", key="nama_mol")
-        P = konversi_tekanan("Tekanan", "mol_tekanan")
-        V = konversi_volume("Volume", "mol_vol")
-        T = konversi_suhu("Suhu", "mol_suhu")
-        
-        if st.button("Hitung Jumlah Mol", key="btn_mol"):
-            n = (P * V) / (R * T)
-            st.markdown(f"""
-            <div class="result-card">
-                <h4>Hasil Perhitungan:</h4>
-                <p>Jumlah mol {nama} = <b>{n:.4f} mol</b></p>
-                <p>≈ {n*6.022e23:.2e} molekul</p>
+        with st.container():
+            st.markdown("""
+            <div style="background:#f5f5f5;padding:15px;border-radius:10px;margin-bottom:15px;">
+                <h4 style="margin:0;">🔍 Masukkan Data</h4>
             </div>
             """, unsafe_allow_html=True)
+            
+            nama = st.text_input("Nama Gas", key="nama_mol", placeholder="Misal: Karbon Dioksida")
+            P = konversi_tekanan("Tekanan", "mol_tekanan")
+            V = konversi_volume("Volume", "mol_vol")
+            T = konversi_suhu("Suhu", "mol_suhu")
+        
+        if st.button("✨ Hitung Jumlah Mol", key="btn_mol", use_container_width=True):
+            n = (P * V) / (R * T)
+            st.markdown(f"""
+            <div class="result-card" style="animation:fadeIn 0.5s;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="font-size:24px;">🔬</div>
+                    <div>
+                        <h4 style="margin:0;">Hasil Perhitungan</h4>
+                        <p style="margin:0;">Jumlah mol {nama if nama else 'gas'} = <b style="color:#9C27B0;font-size:1.2em;">{n:.4f} mol</b></p>
+                    </div>
+                </div>
+                <div style="margin-top:10px;background:#f3e5f5;padding:10px;border-radius:8px;">
+                    <p style="margin:0;font-size:0.9em;">≈ {n*6.022e23:.2e} molekul</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # Additional educational tip
+    st.markdown("""
+    <div class="card" style="margin-top:20px;background:#FFFDE7;border-left:5px solid #FFC107;">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="font-size:24px;">💡</div>
+            <div>
+                <h4 style="margin:0;">Tips Perhitungan Gas Ideal</h4>
+                <p style="margin:5px 0 0 0;">Pastikan semua satuan konsisten dengan konstanta gas R yang digunakan (0.0821 L·atm/mol·K). 
+                Untuk hasil lebih akurat, gunakan suhu dalam Kelvin dan tekanan dalam atm.</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
