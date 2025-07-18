@@ -174,7 +174,7 @@ GAS_DATABASE = {
         "icon": "🚀",
         "category": "Gas Diatomik",
         "description": "Unsur paling ringan di alam semesta dengan sifat unik sebagai bahan bakar masa depan.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/H2.jpg,
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/H2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "H₂",
