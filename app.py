@@ -319,7 +319,7 @@ GAS_DATABASE = {
       }
     },
     "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
-  },
+    },
      "Argon (Ar)": {
     "icon": "🔒",
     "category": "Gas Monoatomik",
