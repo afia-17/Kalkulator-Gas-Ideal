@@ -269,7 +269,109 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Minuman berkarbonasi, pemadam kebakaran"
-    }
+    },
+     "Neon (Ne)": {
+        "icon": "💡",
+        "category": "Gas Monoatomik"
+        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingin.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "Ne",
+                "Massa Molar": "20.18 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "📊 Sifat Fisika": {
+                "Titik Leleh": "-248.59 °C (24.56 K)",
+                "Titik Didih": "-246.046 °C (27.104 K)",
+                "Densitas (STP)": "0.89 g/L",
+                "Kalor Jenis": "0.904 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Tekanan tinggi, asfiksia dalam ruang tertutup",
+                "Penanganan": "Gunakan ventilasi baik dan simpan dalam tabung bertekanan sesuai standar"
+            }
+        },
+        "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
+    },
+      "Helium (He)": {
+    "icon": "🎈",
+    "category": "Gas Monoatomik",
+    "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Helium_discharge_tube.jpg/320px-Helium_discharge_tube.jpg",
+    "properties": {
+      "🧪 Identitas Molekul": {
+        "Rumus": "He",
+        "Massa Molar": "4.00 g/mol",
+        "Penampilan": "Gas tak berwarna",
+        "Struktur": "Monoatomik"
+      },
+      "📊 Sifat Fisika": {
+        "Titik Leleh": "-272.2 °C (0.95 K)",
+        "Titik Didih": "-268.93 °C (4.22 K)",
+        "Densitas (STP)": "0.18 g/L",
+        "Kalor Jenis": "5.19 J/(g·K)"
+      },
+      "⚠️ Keselamatan": {
+        "Bahaya": "Asfiksia jika menggantikan oksigen",
+        "Penanganan": "Gunakan dalam ruang berventilasi"
+      }
+    },
+    "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
+  },
+
+  "Argon (Ar)": {
+    "icon": "🔒",
+    "category": "Gas Monoatomik",
+    "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Argon_discharge_tube.jpg/320px-Argon_discharge_tube.jpg",
+    "properties": {
+      "🧪 Identitas Molekul": {
+        "Rumus": "Ar",
+        "Massa Molar": "39.95 g/mol",
+        "Penampilan": "Gas tak berwarna",
+        "Struktur": "Monoatomik"
+      },
+      "📊 Sifat Fisika": {
+        "Titik Leleh": "-189.35 °C (83.8 K)",
+        "Titik Didih": "-185.85 °C (87.3 K)",
+        "Densitas (STP)": "1.78 g/L",
+        "Kalor Jenis": "0.52 J/(g·K)"
+      },
+      "⚠️ Keselamatan": {
+        "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
+        "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
+      }
+    },
+    "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
+  },
+
+  "Nitrogen (N₂)": {
+    "icon": "🧬",
+    "category": "Gas Diatomik",
+    "description": "Menyusun sekitar 78% atmosfer bumi. Tidak mudah bereaksi dan digunakan untuk penyimpanan makanan, atmosfer inert, serta produksi amonia.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Nitrogen-dioxide-3D-vdW.png/320px-Nitrogen-dioxide-3D-vdW.png",
+    "properties": {
+      "🧪 Identitas Molekul": {
+        "Rumus": "N₂",
+        "Massa Molar": "28.01 g/mol",
+        "Penampilan": "Gas tak berwarna",
+        "Struktur": "Diatomik, ikatan rangkap tiga"
+      },
+      "📊 Sifat Fisika": {
+        "Titik Leleh": "-210 °C (63.15 K)",
+        "Titik Didih": "-196 °C (77.36 K)",
+        "Densitas (STP)": "1.25 g/L",
+        "Kalor Jenis": "1.04 J/(g·K)"
+      },
+      "⚠️ Keselamatan": {
+        "Bahaya": "Asfiksia dalam konsentrasi tinggi",
+        "Penanganan": "Gunakan ventilasi dan deteksi oksigen di area tertutup"
+      }
+    },
+    "aplikasi": "Penyimpanan makanan, pengelasan, industri pupuk"
+  }
 }
 
 # ===========================================
