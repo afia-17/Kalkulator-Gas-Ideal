@@ -963,193 +963,205 @@ elif menu == "📚 Ensiklopedia Gas":
     <style>
         .gas-header {
             background: linear-gradient(135deg, #0d47a1, #2196F3);
-            color: white;
             padding: 25px;
             border-radius: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
         }
-        .gas-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-        .molecule-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 15px;
-        }
-        .property-card {
+        .molecule-card {
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
-        .property-card:hover {
+        .molecule-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
-        .app-card {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            border-radius: 10px;
+        .property-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+        }
+        .safety-alert {
+            border-left: 5px solid #f44336;
+            background: #ffebee;
             padding: 15px;
-            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .appl-chip {
+            display: inline-block;
+            background: #e8f5e9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+        }
+        .tab-content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
-    """, unsafe_allow_html=True)
     
-    st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
+    <div class="gas-header">
+        <h1 style="margin:0;color:white;">📚 Ensiklopedia Gas</h1>
+        <p style="margin:5px 0 0 0;opacity:0.9;">Database lengkap sifat-sifat gas dan informasi keamanan</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Gas selection with search functionality
-    search_col, select_col = st.columns([3,2])
-    with search_col:
-        search_term = st.text_input("🔍 Cari Gas", placeholder="Ketik nama gas...")
-    
-    gas_list = list(GAS_DATABASE.keys())
-    if search_term:
-        gas_list = [gas for gas in gas_list if search_term.lower() in gas.lower()]
-    
-    with select_col:
+    col1, col2 = st.columns([3,1])
+    with col1:
         selected_gas = st.selectbox(
             "Pilih Gas", 
-            gas_list,
-            format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}"
+            list(GAS_DATABASE.keys()),
+            format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}",
+            help="Pilih gas dari database kami"
         )
-    
-    gas = GAS_DATABASE[selected_gas]
-    
-    # Gas Header with molecule visualization
-    st.markdown(f"""
-    <div class="gas-header">
-        <div>
-            <h2 style="margin:0;display:flex;align-items:center;gap:10px;">
-                <span style="font-size:1.5em;">{gas['icon']}</span>
-                <span>{selected_gas}</span>
-            </h2>
-            <p style="margin:5px 0 0 0;font-style:italic;">{gas['description']}</p>
-        </div>
-        <div class="gas-badge">{gas['category']}</div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Molecule visualization and basic info
-    col1, col2 = st.columns([2,3])
-    with col1:
-        # Fixed image links
-        image_links = {
-            "Hidrogen (H₂)": "https://www.shutterstock.com/video/clip-1068494438-hydrogen-h2-molecule-3d-chemistry-structure-isolated",
-            "Oksigen (O₂)": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
-            "Nitrogen (N₂)": "https://www.chemtube3d.com/n2/",
-            "Karbon Dioksida (CO₂)": "https://www.chemtube3d.com/co2/",
-            "Neon (Ne)": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
-            "Helium (He)": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Helium_discharge_tube.jpg/320px-Helium_discharge_tube.jpg",
-            "Argon (Ar)": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Argon_discharge_tube.jpg/320px-Argon_discharge_tube.jpg"
-        }
-        
-        st.markdown(f"""
-        <div class="molecule-container">
-            <img src="{image_links.get(selected_gas, '')}" width="250" style="max-width:100%;border-radius:10px;">
-        </div>
-        """, unsafe_allow_html=True)
-        
     with col2:
+        st.markdown("<div style='height:28px'></div>")
+        if st.button("🔍 Lihat Semua Gas", use_container_width=True):
+            selected_gas = None
+    
+    if selected_gas:
+        gas = GAS_DATABASE[selected_gas]
+        
+        # Main gas card with image and properties
         st.markdown(f"""
-        <div style="background:white;padding:20px;border-radius:15px;">
-            <h3 style="margin-top:0;color:#0d47a1;">📝 Fakta Singkat</h3>
-            <table style="width:100%;border-collapse:collapse;">
-                <tr>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;width:40%;"><b>Rumus Molekul</b></td>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;">{gas['properties']['🧪 Identitas Molekul']['Rumus']}</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;"><b>Massa Molar</b></td>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;">{gas['properties']['🧪 Identitas Molekul']['Massa Molar']}</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;"><b>Titik Didih</b></td>
-                    <td style="padding:8px 0;border-bottom:1px solid #eee;">{gas['properties']['📊 Sifat Fisika']['Titik Didih']}</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px 0;"><b>Bahaya Utama</b></td>
-                    <td style="padding:8px 0;">{gas['properties']['⚠️ Keselamatan']['Bahaya']}</td>
-                </tr>
-            </table>
+        <div class="molecule-card">
+            <div style="display:flex;gap:20px;align-items:center;margin-bottom:15px;">
+                <div style="font-size:48px;">{gas['icon']}</div>
+                <div>
+                    <h2 style="margin:0;color:#0d47a1;">{selected_gas}</h2>
+                    <p style="margin:5px 0;font-style:italic;color:#555;">{gas['description']}</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;">
+                        <span class="property-badge">🏷️ {gas['category']}</span>
+                        <span class="property-badge">⚖️ {next(v for k,v in gas['properties']['🧪 Identitas Molekul'].items() if 'Massa Molar' in k)}</span>
+                        <span class="property-badge">🌡️ {next(v for k,v in gas['properties']['📊 Sifat Fisika'].items() if 'Titik Didih' in k)}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display:flex;gap:20px;margin-top:20px;">
+                <div style="flex:1;">
+                    <img src="{gas['image']}" style="width:100%;border-radius:10px;border:1px solid #eee;">
+                </div>
+                <div style="flex:2;">
+                    <h4 style="margin-top:0;">🔬 Aplikasi Utama:</h4>
+                    <div style="margin-bottom:15px;">
+                        {" ".join(f"<span class='appl-chip'>{app}</span>" for app in gas['aplikasi'].split(', '))}
+                    </div>
+                    
+                    <div class="safety-alert">
+                        <h4 style="margin:0 0 5px 0;color:#f44336;">⚠️ Peringatan Keselamatan</h4>
+                        <p style="margin:0;"><b>{next(v for k,v in gas['properties']['⚠️ Keselamatan'].items() if 'Bahaya' in k)}</b></p>
+                        <p style="margin:5px 0 0 0;">{next(v for k,v in gas['properties']['⚠️ Keselamatan'].items() if 'Penanganan' in k)}</p>
+                    </div>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        # Interactive applications card
-        st.markdown(f"""
-        <div class="app-card">
-            <h4 style="margin-top:0;color:#0d47a1;">🔧 Aplikasi Utama</h4>
-            <p>{gas['aplikasi']}</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Property tabs with enhanced cards
-    st.markdown("## 📊 Sifat-Sifat Gas")
-    
-    tab1, tab2, tab3 = st.tabs(["🧪 Identitas Molekul", "📊 Sifat Fisika", "⚠️ Keselamatan"])
-    
-    with tab1:
-        for key, value in gas['properties']['🧪 Identitas Molekul'].items():
-            st.markdown(f"""
-            <div class="property-card">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px;">
-                    <div style="font-size:1.2em;">{"🔬" if key == "Rumus" else "⚖️" if key == "Massa Molar" else "👁️" if key == "Penampilan" else "🧩"}</div>
-                    <h4 style="margin:0;">{key}</h4>
+        # Tab system for detailed properties
+        tabs = st.tabs(list(gas["properties"].keys()))
+        
+        for tab, (category, props) in zip(tabs, gas["properties"].items()):
+            with tab:
+                st.markdown(f"""
+                <div class="tab-content">
+                    <table class="property-table">
+                        {"".join(f"<tr><td style='width:40%;'><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
+                    </table>
                 </div>
-                <p style="margin:0;padding-left:30px;">{value}</p>
-            </div>
-            """, unsafe_allow_html=True)
-    
-    with tab2:
-        for key, value in gas['properties']['📊 Sifat Fisika'].items():
-            st.markdown(f"""
-            <div class="property-card">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px;">
-                    <div style="font-size:1.2em;">{"❄️" if "Titik Leleh" in key else "🌡️" if "Titik Didih" in key else "📏" if "Densitas" in key else "🔥"}</div>
-                    <h4 style="margin:0;">{key}</h4>
+                """, unsafe_allow_html=True)
+                
+                # Special visualization for molecular structure
+                if category == "🧪 Identitas Molekul":
+                    st.markdown("""
+                    <div style="text-align:center;margin:20px 0;">
+                        <h4>🎨 Visualisasi Molekul</h4>
+                        <div style="background:#f5f5f5;padding:20px;border-radius:10px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png" style="max-width:300px;">
+                            <p style="margin:10px 0 0 0;font-size:0.9em;color:#666;">Representasi 3D struktur molekul</p>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                # Phase diagram for physical properties
+                if category == "📊 Sifat Fisika":
+                    st.markdown("""
+                    <div style="margin:20px 0;">
+                        <h4>📈 Diagram Fase</h4>
+                        <div style="background:#f5f5f5;padding:20px;border-radius:10px;text-align:center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Phase-diag2.svg/600px-Phase-diag2.svg.png" style="max-width:100%;">
+                            <p style="margin:10px 0 0 0;font-size:0.9em;color:#666;">Diagram fase umum untuk gas ideal</p>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    else:
+        # Show all gases in a grid if none selected
+        st.markdown("<h3 style='text-align:center;margin-bottom:20px;'>🔍 Semua Gas dalam Database</h3>", unsafe_allow_html=True)
+        
+        cols = st.columns(3)
+        for i, (gas_name, gas_data) in enumerate(GAS_DATABASE.items()):
+            with cols[i % 3]:
+                st.markdown(f"""
+                <div class="molecule-card" onclick="window.location.href='?gas={gas_name}'" style="cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                        <div style="font-size:24px;">{gas_data['icon']}</div>
+                        <h4 style="margin:0;">{gas_name}</h4>
+                    </div>
+                    <p style="margin:0;font-size:0.9em;color:#666;">{gas_data['description'][:100]}...</p>
+                    <div style="margin-top:10px;">
+                        <span class="property-badge">{gas_data['category']}</span>
+                    </div>
                 </div>
-                <p style="margin:0;padding-left:30px;">{value}</p>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
     
-    with tab3:
-        for key, value in gas['properties']['⚠️ Keselamatan'].items():
-            st.markdown(f"""
-            <div class="property-card" style="border-left:4px solid {'#f44336' if key == 'Bahaya' else '#ff9800'}">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px;">
-                    <div style="font-size:1.2em;">{"☠️" if key == "Bahaya" else "🛡️"}</div>
-                    <h4 style="margin:0;color:{"#f44336" if key == "Bahaya" else "#ff9800"}>{key}</h4>
-                </div>
-                <p style="margin:0;padding-left:30px;">{value}</p>
-            </div>
-            """, unsafe_allow_html=True)
-    
-    # Fun facts section
-    fun_facts = {
-        "Hidrogen (H₂)": "Hidrogen adalah unsur paling melimpah di alam semesta (≈75% massa elemental).",
-        "Oksigen (O₂)": "Manusia menghirup sekitar 740 kg oksigen per tahun.",
-        "Nitrogen (N₂)": "Nitrogen cair digunakan untuk membekukan kulit kutil dalam pengobatan.",
-        "Karbon Dioksida (CO₂)": "CO₂ padat disebut 'es kering' dan menyublim pada -78.5°C.",
-        "Neon (Ne)": "Neon menghasilkan cahaya oranye-merah khas ketika dialiri listrik.",
-        "Helium (He)": "Helium adalah satu-satunya unsur yang tidak bisa dibekukan pada tekanan normal.",
-        "Argon (Ar)": "Argon digunakan untuk melindungi dokumen bersejarah seperti Magna Carta."
+    # Fixed image links
+    GAS_DATABASE = {
+        "Hidrogen (H₂)": {
+            "image": "https://www.shutterstock.com/video/clip-1068494438-hydrogen-h2-molecule-3d-chemistry-structure-isolated",
+            ... (rest of the properties)
+        },
+        "Oksigen (O₂)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
+            ... (rest of the properties)
+        },
+        "Nitrogen (N₂)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Nitrogen-3D-vdW.png/320px-Nitrogen-3D-vdW.png",
+            ... (rest of the properties)
+        },
+        "Karbon Dioksida (CO₂)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Carbon-dioxide-3D-vdW.png/320px-Carbon-dioxide-3D-vdW.png",
+            ... (rest of the properties)
+        },
+        "Neon (Ne)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
+            ... (rest of the properties)
+        },
+        "Helium (He)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Helium_discharge_tube.jpg/320px-Helium_discharge_tube.jpg",
+            ... (rest of the properties)
+        },
+        "Argon (Ar)": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Argon_discharge_tube.jpg/320px-Argon_discharge_tube.jpg",
+            ... (rest of the properties)
+        }
     }
-    
-    st.markdown(f"""
-    <div style="background:#fff3e0;padding:20px;border-radius:15px;margin-top:30px;">
-        <h3 style="margin-top:0;color:#e65100;">💡 Fakta Menarik</h3>
-        <p>{fun_facts.get(selected_gas, '')}</p>
-    </div>
-    """, unsafe_allow_html=True)
 # ===========================================
 # HALAMAN PANDUAN KESELAMATAN
 # ===========================================
