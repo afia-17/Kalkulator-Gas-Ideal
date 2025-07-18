@@ -199,7 +199,7 @@ GAS_DATABASE = {
         "icon": "💨",
         "category": "Gas Diatomik",
         "description": "Gas vital untuk kehidupan dan pembakaran, menyusun 21% atmosfer Bumi.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Oxygen_molecule.png/320px-Oxygen_molecule.png",
+        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhL2oFB8Uc_9O5hoZ7ccIR_Id7IxpCQdP9ybV_SR_Pr_MjgyZrd_S6o7vVnhiL7ZD66hF-mGq0h58l8K3hcMxLE4cdbcW6QKlZQQQN_pwkgkUMvx-usd9eHEPsCRar9me81FAEc767sHmY/s1600/Screen+Shot+2020-02-06+at+9.02.16+AM.png.",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "O₂",
