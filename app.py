@@ -320,8 +320,7 @@ GAS_DATABASE = {
     },
     "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
   },
-
-  "Argon (Ar)": {
+     "Argon (Ar)": {
     "icon": "🔒",
     "category": "Gas Monoatomik",
     "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
