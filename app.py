@@ -956,38 +956,139 @@ elif menu == "🧮 Kalkulator Gas":
 # HALAMAN ENSIKLOPEDIA GAS
 # ===========================================
 elif menu == "📚 Ensiklopedia Gas":
+    st.markdown("""
+    <style>
+        .gas-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+        }
+        .gas-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .property-card h4 {
+            color: #0d47a1;
+            border-bottom: 2px solid #0d47a1;
+            padding-bottom: 8px;
+        }
+        .molecule-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .app-card {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
     st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
+    
+    # Update image URLs in the database
+    GAS_DATABASE["Hidrogen (H₂)"]["image"] = "https://ak.picdn.net/shutterstock/videos/10684944/thumb/1.jpg"
+    GAS_DATABASE["Oksigen (O₂)"]["image"] = "https://1.bp.blogspot.com/-5fY1w1m6J1Y/Xj4K9q0rQYI/AAAAAAAAEa0/6tQ5Y7J2QvQh8QZJjQZJjQZJjQZJjQZJjQCLcBGAsYHQ/s1600/Screen%2BShot%2B2020-02-06%2Bat%2B9.02.16%2BAM.png"
+    GAS_DATABASE["Nitrogen (N₂)"]["image"] = "https://www.chemtube3d.com/wp-content/uploads/n2.png"
+    GAS_DATABASE["Karbon Dioksida (CO₂)"]["image"] = "https://www.chemtube3d.com/wp-content/uploads/co2.png"
+    GAS_DATABASE["Neon (Ne)"]["image"] = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neon_discharge_tube.jpg/320px-Neon_discharge_tube.jpg"
+    GAS_DATABASE["Helium (He)"]["image"] = "https://img.freepik.com/free-photo/close-up-helium-balloons_23-2149286774.jpg"
+    GAS_DATABASE["Argon (Ar)"]["image"] = "https://5.imimg.com/data5/SELLER/Default/2021/12/QT/VA/JA/3033823/industrial-argon-gas.jpg"
     
     selected_gas = st.selectbox(
         "Pilih Gas", 
         list(GAS_DATABASE.keys()),
-        format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}"
+        format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}",
+        key="gas_selector"
     )
     
     gas = GAS_DATABASE[selected_gas]
     
-    # Header Gas
-    col1, col2 = st.columns([3,1])
-    with col1:
+    # Header Gas dengan layout lebih menarik
+    st.markdown(f"""
+    <div class="gas-header">
+        <div style="flex: 1;">
+            <h2 style="margin: 0; color: #0d47a1;">{gas['icon']} {selected_gas}</h2>
+            <p style="font-size: 1.1em; margin: 10px 0;"><i>{gas['description']}</i></p>
+            <div style="background: #0d47a1; color: white; padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                {gas['category']}
+            </div>
+        </div>
+        <div style="flex: 1; text-align: center;">
+            <img src="{gas['image']}" style="max-height: 150px; border-radius: 10px; border: 3px solid #0d47a1;">
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Tab Informasi dengan grid layout
+    st.markdown("""
+    <div class="gas-properties">
+    """, unsafe_allow_html=True)
+    
+    for category, props in gas["properties"].items():
         st.markdown(f"""
-        <h2>{gas['icon']} {selected_gas}</h2>
-        <p><i>{gas['description']}</i></p>
-        <p><b>Kategori:</b> {gas['category']}</p>
-        <p><b>Aplikasi:</b> {gas['aplikasi']}</p>
-        """, unsafe_allow_html=True)
-    with col2:
-        st.image(gas["image"], width=200)
-    
-    # Tab Informasi
-    tabs = st.tabs(list(gas["properties"].keys()))
-    
-    for tab, (category, props) in zip(tabs, gas["properties"].items()):
-        with tab:
-            st.markdown(f"""
-            <table class="property-table">
-                {"".join(f"<tr><td><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
+        <div class="property-card">
+            <h4>{category}</h4>
+            <table style="width: 100%;">
+                {"".join(f"""
+                <tr>
+                    <td style="padding: 8px 0; vertical-align: top; width: 40%;"><b>{key}</b></td>
+                    <td style="padding: 8px 0;">{value}</td>
+                </tr>
+                """ for key, value in props.items())}
             </table>
-            """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Aplikasi dengan card khusus
+    st.markdown(f"""
+    <div class="app-card">
+        <h4 style="color: #2e7d32; margin-top: 0;">🔧 Aplikasi Utama</h4>
+        <p>{gas['aplikasi']}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Molekul 3D (jika tersedia)
+    if selected_gas in ["Hidrogen (H₂)", "Oksigen (O₂)", "Nitrogen (N₂)", "Karbon Dioksida (CO₂)"]:
+        st.markdown("""
+        <div style="margin-top: 30px;">
+            <h4>🔄 Tampilan 3D Molekul</h4>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; text-align: center;">
+        """, unsafe_allow_html=True)
+        
+        if selected_gas == "Hidrogen (H₂)":
+            st.image("https://www.chemtube3d.com/wp-content/uploads/h2.png", use_column_width=True)
+        elif selected_gas == "Oksigen (O₂)":
+            st.image("https://www.chemtube3d.com/wp-content/uploads/o2.png", use_column_width=True)
+        elif selected_gas == "Nitrogen (N₂)":
+            st.image("https://www.chemtube3d.com/wp-content/uploads/n2.png", use_column_width=True)
+        elif selected_gas == "Karbon Dioksida (CO₂)":
+            st.image("https://www.chemtube3d.com/wp-content/uploads/co2.png", use_column_width=True)
+            
+        st.markdown("""
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN PANDUAN KESELAMATAN
