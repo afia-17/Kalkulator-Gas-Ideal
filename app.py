@@ -542,7 +542,7 @@ elif menu == "🧮 Kalkulator Gas":
     st.markdown(tab_style, unsafe_allow_html=True)
     
     tab1, tab2, tab3, tab4 = st.tabs([
-        "🧂 Hitung Massa", 
+        "⚖️ Hitung Massa", 
         "🎈 Hitung Tekanan",
         "🧊 Hitung Volume",
         "⚛️ Hitung Mol"
