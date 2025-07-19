@@ -811,7 +811,7 @@ elif menu == "🧮 Kalkulator Gas":
                             <h3 style="margin: 0 0 10px 0; color: #2E7D32;">Hasil Perhitungan</h3>
                             <div style="display: flex; align-items: baseline; gap: 10px;">
                                 <p style="margin: 0; font-size: 1.2em;">Volume <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #2E7D32; font-weight: bold; font-size: 1.5em; margin: 0;">{V:.4f} L</p>
+                                <p style="color: #2E7D32; font-weight: bold; font-size: 1.5em; margin: 0;">{V:.2f} L</p>
                             </div>
                         </div>
                     </div>
