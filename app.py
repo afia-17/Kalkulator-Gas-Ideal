@@ -680,7 +680,7 @@ elif menu == "🧮 Kalkulator Gas":
                 st.markdown('<div class="input-label" style="margin-top: 15px;">Volume</div>', unsafe_allow_html=True)
                 col2c, col2d = st.columns([3,1])
                 with col2c:
-                    V_input = st.number_input("Volume", min_value=0.1, key="tekanan_vol_input", label_visibility="collapsed")
+                    V_input = st.number_input("Volume", min_value=0.0, key="tekanan_vol_input", label_visibility="collapsed")
                 with col2d:
                     satuan_vol = st.selectbox("Satuan Volume", ["L", "m³", "mL"], key="tekanan_vol_unit", label_visibility="collapsed")
                 
@@ -870,7 +870,7 @@ elif menu == "🧮 Kalkulator Gas":
                 st.markdown('<div class="input-label">Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
                 with col2a:
-                    V_input = st.number_input("Volume", min_value=0.1, key="mol_vol_input", label_visibility="collapsed")
+                    V_input = st.number_input("Volume", min_value=0.0, key="mol_vol_input", label_visibility="collapsed")
                 with col2b:
                     satuan_vol = st.selectbox("Satuan Volume", ["L", "m³", "mL"], key="mol_vol_unit", label_visibility="collapsed")
                 
