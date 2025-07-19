@@ -174,7 +174,6 @@ GAS_DATABASE = {
         "icon": "🚀",
         "category": "Gas Diatomik",
         "description": "Unsur paling ringan di alam semesta dengan sifat unik sebagai bahan bakar masa depan.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/H2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "H₂",
@@ -199,7 +198,6 @@ GAS_DATABASE = {
         "icon": "💨",
         "category": "Gas Diatomik",
         "description": "Gas vital untuk kehidupan dan pembakaran, menyusun 21% atmosfer Bumi.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/O2_-.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "O₂",
@@ -224,7 +222,7 @@ GAS_DATABASE = {
         "icon": "🌬️",
         "category": "Gas Diatomik",
         "description": "Gas inert yang menyusun 78% atmosfer Bumi, penting untuk berbagai aplikasi industri.",
-        "image": "https://image.indonetwork.co.id/f-webp/products/thumbs/343x343/2017/02/21/03d63ea018968c31d1a023963b4dbad4.jpg",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/N2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "N₂",
@@ -249,7 +247,6 @@ GAS_DATABASE = {
         "icon": "🌫️",
         "category": "Gas Poliatomik",
         "description": "Gas rumah kaca yang penting untuk fotosintesis tanaman.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/co2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "CO₂",
@@ -274,7 +271,6 @@ GAS_DATABASE = {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Neon_discharge_tube.jpg/1280px-Neon_discharge_tube.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "Ne",
@@ -299,7 +295,6 @@ GAS_DATABASE = {
     "icon": "🎈",
     "category": "Gas Monoatomik",
     "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
-    "image": "https://s.alicdn.com/@sc04/kf/Hb17c6f6a6bc3489f8b4bc7f1ddab922e8.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "He",
@@ -324,7 +319,6 @@ GAS_DATABASE = {
     "icon": "🔏",
     "category": "Gas Monoatomik",
     "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
-    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "Ar",
@@ -345,30 +339,6 @@ GAS_DATABASE = {
     },
     "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
   },
-  "Nitrogen (N₂)": {
-    "icon": "🧬",
-    "category": "Gas Diatomik",
-    "description": "Menyusun sekitar 78% atmosfer bumi. Tidak mudah bereaksi dan digunakan untuk penyimpanan makanan, atmosfer inert, serta produksi amonia.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Nitrogen-dioxide-3D-vdW.png/320px-Nitrogen-dioxide-3D-vdW.png",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "N₂",
-        "Massa Molar": "28.01 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Diatomik, ikatan rangkap tiga"
-      },
-      "📊 Sifat Fisika": {
-        "Titik Leleh": "-210 °C (63.15 K)",
-        "Titik Didih": "-196 °C (77.36 K)",
-        "Densitas (STP)": "1.25 g/L",
-        "Kalor Jenis": "1.04 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Asfiksia dalam konsentrasi tinggi",
-        "Penanganan": "Gunakan ventilasi dan deteksi oksigen di area tertutup"
-      }
-    },
-    "aplikasi": "Penyimpanan makanan, pengelasan, industri pupuk"
   }
 }
 
