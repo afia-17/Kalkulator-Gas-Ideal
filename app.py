@@ -600,7 +600,7 @@ elif menu == "🧮 Kalkulator Gas":
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa", step=0.1, format="%.2f", label_visibility="collapsed")
             with cols[2]:
                 st.markdown('<div class="input-label">Massa Molar (Mr)</div>', unsafe_allow_html=True)
-                mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.4f", label_visibility="collapsed")
+                mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.2f", label_visibility="collapsed")
             
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -688,7 +688,7 @@ elif menu == "🧮 Kalkulator Gas":
                     V = V_input * 1000
                     st.markdown(f"""
                     <div class="conversion-box">
-                        🔄 Konversi: {V_input} m³ = {V:.2f} L
+                        🔄 Konversi: {V_input} m³ = {V:.4f} L
                     </div>
                     """, unsafe_allow_html=True)
                 elif satuan_vol == "mL":
@@ -718,7 +718,7 @@ elif menu == "🧮 Kalkulator Gas":
                             <h3 style="margin: 0 0 10px 0; color: #C62828;">Hasil Perhitungan</h3>
                             <div style="display: flex; align-items: baseline; gap: 10px;">
                                 <p style="margin: 0; font-size: 1.2em;">Tekanan <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #C62828; font-weight: bold; font-size: 1.5em; margin: 0;">{P:.6f} atm</p>
+                                <p style="color: #C62828; font-weight: bold; font-size: 1.5em; margin: 0;">{P:.2f} atm</p>
                             </div>
                         </div>
                     </div>
@@ -790,7 +790,7 @@ elif menu == "🧮 Kalkulator Gas":
                 if satuan_tekanan != "atm":
                     st.markdown(f"""
                     <div class="conversion-box">
-                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.6f} atm
+                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
             
@@ -862,7 +862,7 @@ elif menu == "🧮 Kalkulator Gas":
                 if satuan_tekanan != "atm":
                     st.markdown(f"""
                     <div class="conversion-box">
-                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.6f} atm
+                        🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
             
@@ -878,7 +878,7 @@ elif menu == "🧮 Kalkulator Gas":
                     V = V_input * 1000
                     st.markdown(f"""
                     <div class="conversion-box">
-                        🔄 Konversi: {V_input} m³ = {V:.2f} L
+                        🔄 Konversi: {V_input} m³ = {V:.4f} L
                     </div>
                     """, unsafe_allow_html=True)
                 elif satuan_vol == "mL":
@@ -925,7 +925,7 @@ elif menu == "🧮 Kalkulator Gas":
                             <h3 style="margin: 0 0 10px 0; color: #7B1FA2;">Hasil Perhitungan</h3>
                             <div style="display: flex; align-items: baseline; gap: 10px;">
                                 <p style="margin: 0; font-size: 1.2em;">Jumlah mol <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #7B1FA2; font-weight: bold; font-size: 1.5em; margin: 0;">{n:.4f} mol</p>
+                                <p style="color: #7B1FA2; font-weight: bold; font-size: 1.5em; margin: 0;">{n:.2f} mol</p>
                             </div>
                         </div>
                     </div>
