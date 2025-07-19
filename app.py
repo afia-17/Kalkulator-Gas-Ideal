@@ -605,7 +605,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🚀 Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n * mr
+                massa = n (mol) * mr (g/mol)
                 
                 st.markdown(f"""
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
