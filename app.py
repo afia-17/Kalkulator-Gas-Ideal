@@ -6,7 +6,7 @@ import base64
 
 # Konfigurasi Halaman
 st.set_page_config(
-    page_title="GasMaster Pro",
+    page_title="ChemGasMaster",
     page_icon="⚗️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -376,7 +376,7 @@ GAS_DATABASE = {
 # MENU SIDEBAR
 # ===========================================
 with st.sidebar:
-    st.title("GasMaster Pro")
+    st.title("ChemGasMaster")
     st.markdown("---")
     menu = st.radio(
         "MENU UTAMA",
@@ -394,11 +394,11 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown("<h1 class='main-header'>GasMaster Pro</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
     <div class="card calc-card">
-        <h3>Selamat Datang di Aplikasi GasMaster Pro!</h3>
+        <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
         <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -1066,6 +1066,6 @@ elif menu == "⚠️ Panduan Keselamatan":
 st.markdown("---")
 st.markdown("""
 <div style="text-align:center;color:#666;padding:20px;">
-    <p>© 2025 GasMaster Pro | Kelompok LPK Poltek AKA</p>
+    <p>© 2025 ChemGasMaster | Kelompok 7 Kelas 1A</p>
 </div>
 """, unsafe_allow_html=True)
