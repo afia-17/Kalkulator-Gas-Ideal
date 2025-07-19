@@ -339,7 +339,6 @@ GAS_DATABASE = {
     },
     "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
   },
-  }
 }
 
 # ===========================================
