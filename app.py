@@ -645,7 +645,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #F44336;">Kalkulator Tekanan Gas</h2>
                         <div style="background: #FFEBEE; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> P = (n (mol) × R × T (K)) / V (L)
+                            <b>Rumus:</b> P = [n (mol) × R × T (K)] / V (L)
                         </div>
                     </div>
                 </div>
@@ -735,7 +735,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
                         <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> V = (n (mol) × R × T (K)) / P (atm)
+                            <b>Rumus:</b> V = [n (mol) × R × T (K)] / P (atm)
                         </div>
                     </div>
                 </div>
@@ -828,7 +828,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
                         <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> n = (P (atm) × V (L) / (R × T (K))
+                            <b>Rumus:</b> n = [P (atm) × V (L) / (R × T (K)]
                         </div>
                     </div>
                 </div>
