@@ -174,6 +174,7 @@ GAS_DATABASE = {
         "icon": "🚀",
         "category": "Gas Diatomik",
         "description": "Unsur paling ringan di alam semesta dengan sifat unik sebagai bahan bakar masa depan.",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/H2.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "H₂",
@@ -198,6 +199,7 @@ GAS_DATABASE = {
         "icon": "💨",
         "category": "Gas Diatomik",
         "description": "Gas vital untuk kehidupan dan pembakaran, menyusun 21% atmosfer Bumi.",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/O2_-.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "O₂",
@@ -247,6 +249,7 @@ GAS_DATABASE = {
         "icon": "🌫️",
         "category": "Gas Poliatomik",
         "description": "Gas rumah kaca yang penting untuk fotosintesis tanaman.",
+        "image": "https://www.chemtube3d.com/images/gallery/JPGfiles%20structures/I606ST04.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "CO₂",
@@ -271,6 +274,7 @@ GAS_DATABASE = {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
+        "image": "https://png.pngtree.com/thumb_back/fh260/background/20220426/pngtree-mendeleevs-periodic-table-luminescent-noble-gases-chemical-symbol-chemical-science-photo-image_30134580.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "Ne",
@@ -295,6 +299,7 @@ GAS_DATABASE = {
     "icon": "🎈",
     "category": "Gas Monoatomik",
     "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
+    "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "He",
@@ -319,6 +324,7 @@ GAS_DATABASE = {
     "icon": "🔏",
     "category": "Gas Monoatomik",
     "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
+    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
     "properties": {
       "🧪 Identitas Molekul": {
         "Rumus": "Ar",
