@@ -585,7 +585,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #FF9800;">Kalkulator Massa Gas</h2>
                         <div style="background: #FFF3E0; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> Massa = n × Mr
+                            <b>Rumus:</b> Massa = n (mol) × Mr (g/mol)
                         </div>
                     </div>
                 </div>
@@ -605,7 +605,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🚀 Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n (mol) * mr (g/mol)
+                massa = n * mr 
                 
                 st.markdown(f"""
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
@@ -645,7 +645,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #F44336;">Kalkulator Tekanan Gas</h2>
                         <div style="background: #FFEBEE; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> P = (n × R × T) / V
+                            <b>Rumus:</b> P = (n (mol) × R × T (K)) / V (L)
                         </div>
                     </div>
                 </div>
@@ -735,7 +735,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
                         <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> V = (n × R × T) / P
+                            <b>Rumus:</b> V = (n (mol) × R × T (K)) / P (atm)
                         </div>
                     </div>
                 </div>
@@ -828,7 +828,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <div>
                         <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
                         <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> n = (P × V) / (R × T)
+                            <b>Rumus:</b> n = (P (atm) × V (L) / (R × T (K))
                         </div>
                     </div>
                 </div>
