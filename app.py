@@ -224,7 +224,7 @@ GAS_DATABASE = {
         "icon": "🌬️",
         "category": "Gas Diatomik",
         "description": "Gas inert yang menyusun 78% atmosfer Bumi, penting untuk berbagai aplikasi industri.",
-        "image": "https://st5.depositphotos.com/54392550/73156/v/450/depositphotos_731566038-stock-illustration-nitrogen-icon-yellow-glossy-sphere.jpg",
+        "image": "https://wanibesak.wordpress.com/wp-content/uploads/2012/01/nitrogen.png",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "N₂",
