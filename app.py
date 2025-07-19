@@ -724,6 +724,7 @@ elif menu == "🧮 Kalkulator Gas":
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+                st.balloons()
 
     with tab3:
         # Kalkulator Volume
@@ -817,6 +818,7 @@ elif menu == "🧮 Kalkulator Gas":
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+                st.balloons()
 
     with tab4:
         # Kalkulator Mol
@@ -931,6 +933,7 @@ elif menu == "🧮 Kalkulator Gas":
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+                st.balloons()
 
     # Catatan edukasi di bagian bawah
     st.markdown("""
