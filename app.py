@@ -932,7 +932,7 @@ elif menu == "⚠️ Panduan Keselamatan":
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
                 <img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80">
-                <p><b>Kacamata Keselamatan</b></p>
+                <p><b>Kaca Mata Keselamatan</b></p>
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
                 <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
