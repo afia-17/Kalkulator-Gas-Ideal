@@ -887,7 +887,7 @@ elif menu == "🧮 Kalkulator Gas":
             
             st.markdown("</div>", unsafe_allow_html=True)
 
-            if st.button("⚗️ Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
+            if st.button("🧪 Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
                 n = (P * V) / (R * T)
                 
                 st.markdown(f"""
