@@ -948,7 +948,7 @@ elif menu == "⚠️ Panduan Keselamatan":
             <li>Segera evakuasi area jika terjadi kebocoran gas</li>
             <li>Gunakan APD yang sesuai sebelum menangani gas</li>
             <li>Hindari sumber api atau percikan listrik</li>
-            <li>Ventilasi area dengan membuka jendela/pintu</li>
+            <li>Ventilasi area dengan membuka jendela atau pintu</li>
             <li>Hubungi petugas berwenang jika diperlukan</li>
         </ol>
     </div>
