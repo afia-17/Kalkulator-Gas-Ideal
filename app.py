@@ -182,7 +182,7 @@ GAS_DATABASE = {
                 "Penampilan": "Gas tak berwarna, tak berbau",
                 "Struktur": "Diatomik, ikatan tunggal"
             },
-            "📊 Sifat Fisika": {
+            "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-259.16 °C (13.99 K)",
                 "Titik Didih": "-252.87 °C (20.28 K)",
                 "Densitas (STP)": "0.08988 g/L",
@@ -207,7 +207,7 @@ GAS_DATABASE = {
                 "Penampilan": "Gas tak berwarna",
                 "Struktur": "Diatomik, ikatan rangkap"
             },
-            "📊 Sifat Fisika": {
+            "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-218.79 °C (54.36 K)",
                 "Titik Didih": "-182.96 °C (90.19 K)",
                 "Densitas (STP)": "1.429 g/L",
@@ -232,7 +232,7 @@ GAS_DATABASE = {
                 "Penampilan": "Gas tak berwarna, tak berbau",
                 "Struktur": "Diatomik, ikatan rangkap tiga"
             },
-            "📊 Sifat Fisika": {
+            "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-210.00 °C (63.15 K)",
                 "Titik Didih": "-195.79 °C (77.36 K)",
                 "Densitas (STP)": "1.2506 g/L",
@@ -257,7 +257,7 @@ GAS_DATABASE = {
                 "Penampilan": "Gas tak berwarna",
                 "Struktur": "Linear, ikatan rangkap"
             },
-            "📊 Sifat Fisika": {
+            "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-78.5 °C (194.65 K)",
                 "Titik Didih": "-56.6 °C (216.55 K)",
                 "Densitas (STP)": "1.977 g/L",
@@ -282,7 +282,7 @@ GAS_DATABASE = {
                 "Penampilan": "Gas tak berwarna",
                 "Struktur": "Monoatomik"
             },
-            "📊 Sifat Fisika": {
+            "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-248.59 °C (24.56 K)",
                 "Titik Didih": "-246.046 °C (27.104 K)",
                 "Densitas (STP)": "0.89 g/L",
@@ -296,7 +296,7 @@ GAS_DATABASE = {
         "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
     },
       "Helium (He)": {
-    "icon": "🎈",
+    "icon": "🎚️",
     "category": "Gas Monoatomik",
     "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
     "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
@@ -307,7 +307,7 @@ GAS_DATABASE = {
         "Penampilan": "Gas tak berwarna",
         "Struktur": "Monoatomik"
       },
-      "📊 Sifat Fisika": {
+      "⚛️ Sifat Fisika": {
         "Titik Leleh": "-272.2 °C (0.95 K)",
         "Titik Didih": "-268.93 °C (4.22 K)",
         "Densitas (STP)": "0.18 g/L",
@@ -332,7 +332,7 @@ GAS_DATABASE = {
         "Penampilan": "Gas tak berwarna",
         "Struktur": "Monoatomik"
       },
-      "📊 Sifat Fisika": {
+      "⚛️ Sifat Fisika": {
         "Titik Leleh": "-189.35 °C (83.8 K)",
         "Titik Didih": "-185.85 °C (87.3 K)",
         "Densitas (STP)": "1.78 g/L",
@@ -398,9 +398,9 @@ if menu == "🏠 Beranda":
         st.markdown("""
         <div style="margin-top:20px;">
             <h4>Fakta Menarik:</h4>
-            <p>🎈 <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
+            <p>🎚️ <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
             <p>🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi</p>
-            <p>⚛️ <b>1 mol gas</b> = 6.022×10²³ molekul</p>
+            <p>🧪 <b>1 mol gas</b> = 6.022×10²³ molekul</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -543,9 +543,9 @@ elif menu == "🧮 Kalkulator Gas":
     
     tab1, tab2, tab3, tab4 = st.tabs([
         "⚖️ Hitung Massa", 
-        "🎈 Hitung Tekanan",
-        "🧊 Hitung Volume",
-        "⚛️ Hitung Mol"
+        "🎚️ Hitung Tekanan",
+        "🫙 Hitung Volume",
+        "🧪 Hitung Mol"
     ])
     
     R = 0.0821  # Konstanta gas ideal
@@ -579,7 +579,7 @@ elif menu == "🧮 Kalkulator Gas":
             
             st.markdown("</div>", unsafe_allow_html=True)
 
-            if st.button("🚀 Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
+            if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
                 massa = n * mr 
                 
                 st.markdown(f"""
@@ -590,7 +590,7 @@ elif menu == "🧮 Kalkulator Gas":
                             border-left: 5px solid #FF9800;
                             animation: fadeIn 0.5s ease-in-out;">
                     <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">🎯</div>
+                        <div style="font-size: 30px;">⚖️</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #E65100;">Hasil Perhitungan</h3>
                             <div style="display: flex; align-items: baseline; gap: 10px;">
@@ -616,7 +616,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("""
             <div class="tab-container" style="border-left: 5px solid #F44336;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🎈</div>
+                    <div style="font-size: 40px;">🎚️</div>
                     <div>
                         <h2 style="margin: 0; color: #F44336;">Kalkulator Tekanan Gas</h2>
                         <div style="background: #FFEBEE; padding: 8px 12px; border-radius: 8px; display: inline-block;">
@@ -678,7 +678,7 @@ elif menu == "🧮 Kalkulator Gas":
             
             st.markdown("</div>", unsafe_allow_html=True)
 
-            if st.button("💥 Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
+            if st.button("🎚️ Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
                 P = (n * R * T) / V
                 
                 st.markdown(f"""
@@ -688,7 +688,7 @@ elif menu == "🧮 Kalkulator Gas":
                             margin-top: 20px;
                             border-left: 5px solid #F44336;">
                     <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">📊</div>
+                        <div style="font-size: 30px;">🎚️</div>
                         <div>
                             <h3 style="margin: 0 0 10px 0; color: #C62828;">Hasil Perhitungan</h3>
                             <div style="display: flex; align-items: baseline; gap: 10px;">
@@ -707,7 +707,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("""
             <div class="tab-container" style="border-left: 5px solid #4CAF50;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🧊</div>
+                    <div style="font-size: 40px;">🫙</div>
                     <div>
                         <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
                         <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
@@ -772,7 +772,7 @@ elif menu == "🧮 Kalkulator Gas":
             
             st.markdown("</div>", unsafe_allow_html=True)
 
-            if st.button("🧊 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
+            if st.button("🫙 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
                 V = (n * R * T) / P
                 
                 st.markdown(f"""
@@ -801,7 +801,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("""
             <div class="tab-container" style="border-left: 5px solid #9C27B0;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">⚛️</div>
+                    <div style="font-size: 40px;">🧪 </div>
                     <div>
                         <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
                         <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
