@@ -356,7 +356,7 @@ if menu == "🏠 Beranda":
     </div>
     """, unsafe_allow_html=True)
     
-    # Tips penggunaan
+    # Tips Penggunaan
     st.markdown("""
     <div class="card gas-card" style="margin-top:20px;">
         <h4>🔧 Tips Menggunakan Aplikasi:</h4>
