@@ -936,7 +936,7 @@ elif menu == "⚠️ Panduan Keselamatan":
             </div>
             <div style="flex:1;min-width:150px;text-align:center;">
                 <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
-                <p><b>Jas Lab</b></p>
+                <p><b>Jas Laboratorium</b></p>
             </div>
         </div>
     </div>
