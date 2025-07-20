@@ -370,7 +370,7 @@ if menu == "🏠 Beranda":
     """, unsafe_allow_html=True)
     
 # ===========================================
-# HALAMAN KALKULATOR GAS (COMPLETE FIXED VERSION)
+# HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
     # Header dengan animasi partikel
