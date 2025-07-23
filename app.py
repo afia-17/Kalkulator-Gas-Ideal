@@ -85,12 +85,28 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Tambahkan ini di bagian CSS Custom setelah st.markdown("""<style>...""")
-
+# Add this right after the initial CSS section
 st.markdown("""
 <style>
-    /* Background animasi partikel */
-    .particle-bg {
+    /* Cosmic Gradient Background */
+    .stApp {
+        background: linear-gradient(135deg, 
+            #000428 0%, 
+            #004e92 30%, 
+            #000428 70%, 
+            #004e92 100%);
+        background-size: 400% 400%;
+        animation: cosmicGradient 15s ease infinite;
+    }
+    
+    @keyframes cosmicGradient {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
+    }
+    
+    /* Animated Stars Background */
+    .stars-bg {
         position: fixed;
         top: 0;
         left: 0;
@@ -100,87 +116,167 @@ st.markdown("""
         overflow: hidden;
     }
     
-    .particle {
+    .star {
         position: absolute;
-        width: var(--size);
-        height: var(--size);
-        background: var(--color);
+        background: white;
         border-radius: 50%;
-        opacity: 0.3;
-        filter: blur(1px);
-        animation: float var(--duration) infinite linear;
+        animation: twinkle var(--duration) infinite ease-in-out;
+        opacity: 0;
     }
     
-    @keyframes float {
-        0% {
-            transform: translate(0, 0);
-        }
-        50% {
-            transform: translate(var(--x-move), var(--y-move));
-        }
-        100% {
-            transform: translate(0, 0);
-        }
+    @keyframes twinkle {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: var(--opacity); transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.5); }
     }
     
-    /* Gradient background untuk halaman */
-    .stApp {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-        background-attachment: fixed;
-    }
-    
-    /* Efek glassmorphism untuk card */
-    .card {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    /* Animasi hover untuk card */
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-    
-    /* Efek neon untuk header */
-    .main-header {
-        text-shadow: 0 0 10px rgba(13, 71, 161, 0.3);
-        position: relative;
-    }
-    
-    .main-header::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
+    /* Molecular Bond Animation */
+    .molecule-bonds {
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, #0d47a1, #2196F3, #0d47a1);
-        background-size: 200% 200%;
-        animation: gradient 3s ease infinite;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
     }
     
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+    .bond {
+        position: absolute;
+        height: 2px;
+        background: rgba(100, 200, 255, 0.2);
+        transform-origin: left center;
+        animation: bondPulse 8s infinite ease-in-out;
+    }
+    
+    @keyframes bondPulse {
+        0% { transform: scaleX(0); opacity: 0; }
+        50% { transform: scaleX(1); opacity: 0.3; }
+        100% { transform: scaleX(0); opacity: 0; }
+    }
+    
+    /* Floating Atom Animation */
+    .atom {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(10px);
+        opacity: 0.1;
+        animation: floatAtom 25s infinite linear;
+    }
+    
+    @keyframes floatAtom {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(50px, 30px); }
+        50% { transform: translate(20px, 60px); }
+        75% { transform: translate(-30px, 40px); }
+        100% { transform: translate(0, 0); }
+    }
+    
+    /* Enhanced Card Design */
+    .card {
+        background: rgba(10, 25, 47, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(100, 200, 255, 0.2);
+        transition: all 0.5s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 150, 255, 0.4);
+        border: 1px solid rgba(100, 200, 255, 0.4);
+    }
+    
+    /* Neon Glow Effect */
+    .neon-text {
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 20px #0ff,
+                     0 0 30px #0ff;
+        animation: neonGlow 1.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes neonGlow {
+        from { text-shadow: 0 0 5px #fff, 
+                          0 0 10px #fff, 
+                          0 0 20px #0ff, 
+                          0 0 30px #0ff; }
+        to { text-shadow: 0 0 10px #fff, 
+                        0 0 20px #fff, 
+                        0 0 30px #0ff, 
+                        0 0 40px #0ff; }
+    }
+    
+    /* Button Hover Effects */
+    .stButton>button {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 150, 255, 0.4);
+    }
+    
+    .stButton>button:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: all 0.5s ease;
+    }
+    
+    .stButton>button:hover:after {
+        left: 100%;
     }
 </style>
 
-<div class="particle-bg">
-    <div class="particle" style="--size: 100px; --color: rgba(33, 150, 243, 0.1); --duration: 20s; --x-move: 100px; --y-move: 50px; top: 20%; left: 10%;"></div>
-    <div class="particle" style="--size: 150px; --color: rgba(76, 175, 80, 0.1); --duration: 25s; --x-move: -80px; --y-move: 70px; top: 60%; left: 80%;"></div>
-    <div class="particle" style="--size: 80px; --color: rgba(244, 67, 54, 0.1); --duration: 15s; --x-move: 120px; --y-move: -30px; top: 30%; left: 50%;"></div>
-    <div class="particle" style="--size: 120px; --color: rgba(255, 152, 0, 0.1); --duration: 30s; --x-move: -50px; --y-move: 100px; top: 80%; left: 30%;"></div>
-</div>
+<!-- Background Elements -->
+<div class="stars-bg" id="stars-container"></div>
+<div class="molecule-bonds" id="bonds-container"></div>
+<div class="atom" style="width: 300px; height: 300px; background: radial-gradient(circle, #0ff, transparent 70%); top: 20%; left: 10%;"></div>
+<div class="atom" style="width: 200px; height: 200px; background: radial-gradient(circle, #f0f, transparent 70%); top: 70%; left: 80%;"></div>
+<div class="atom" style="width: 250px; height: 250px; background: radial-gradient(circle, #ff0, transparent 70%); top: 40%; left: 60%;"></div>
+
+<script>
+// Generate random stars
+const starsContainer = document.getElementById('stars-container');
+for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = `${Math.random() * 3 + 1}px`;
+    star.style.height = star.style.width;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+    star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    starsContainer.appendChild(star);
+}
+
+// Generate molecular bonds
+const bondsContainer = document.getElementById('bonds-container');
+for (let i = 0; i < 20; i++) {
+    const bond = document.createElement('div');
+    bond.className = 'bond';
+    bond.style.left = `${Math.random() * 100}%`;
+    bond.style.top = `${Math.random() * 100}%`;
+    bond.style.width = `${Math.random() * 200 + 100}px`;
+    bond.style.transform = `rotate(${Math.random() * 360}deg)`;
+    bond.style.animationDelay = `${Math.random() * 8}s`;
+    bondsContainer.appendChild(bond);
+}
+</script>
 """, unsafe_allow_html=True)
 
 # ===========================================
