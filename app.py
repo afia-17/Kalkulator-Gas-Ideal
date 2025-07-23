@@ -370,10 +370,21 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
+    st.markdown("""
+    <style>
+        .stApp [data-testid="stAppViewContainer"] > div:first-child {
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<h1 class='main-header float-animation'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="card calc-card">
+    <div class="glass-card float-animation">
         <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
         <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
     </div>
