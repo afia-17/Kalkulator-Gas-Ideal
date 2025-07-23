@@ -402,6 +402,14 @@ if menu == "🏠 Beranda":
         <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="position: relative; height: 100px; margin-bottom: 20px;">
+        <div class="particle" style="--size: 5px; --duration: 20s; --delay: 0s; --x: 20%; --y: 30%"></div>
+        <div class="particle" style="--size: 8px; --duration: 25s; --delay: 5s; --x: 70%; --y: 10%"></div>
+        <div class="particle" style="--size: 6px; --duration: 22s; --delay: 3s; --x: 40%; --y: 60%"></div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Persamaan Gas Ideal dengan penjelasan
     st.latex(r'''PV = nRT''')
