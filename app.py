@@ -17,11 +17,117 @@ st.set_page_config(
 # ===========================================
 st.markdown("""
 <style>
+    /* Main Background Styles */
     .main-header {
         color: #0d47a1;
         border-bottom: 2px solid #0d47a1;
         padding-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
+    
+    /* Home Page Background */
+    .home-bg {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .home-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://i.imgur.com/J5OVFyB.png') center/cover no-repeat;
+        opacity: 0.1;
+        z-index: -1;
+    }
+    
+    /* Calculator Page Background */
+    .calc-bg {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .calc-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://i.imgur.com/9QZQZQZ.png') center/cover no-repeat;
+        opacity: 0.08;
+        z-index: -1;
+    }
+    
+    /* Encyclopedia Page Background */
+    .encyclopedia-bg {
+        background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .encyclopedia-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://i.imgur.com/7QZQZQZ.png') center/cover no-repeat;
+        opacity: 0.1;
+        z-index: -1;
+    }
+    
+    /* Safety Page Background */
+    .safety-bg {
+        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .safety-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://i.imgur.com/8QZQZQZ.png') center/cover no-repeat;
+        opacity: 0.1;
+        z-index: -1;
+    }
+    
+    /* Particle Animation */
+    @keyframes float {
+        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
+    }
+    .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background: rgba(255,255,255,0.5);
+        border-radius: 50%;
+        animation: float var(--duration) var(--delay) infinite linear;
+        --x-end: calc(var(--x) - 50%);
+        --y-end: calc(var(--y) - 50%);
+    }
+    
+    /* Rest of your existing CSS... */
     .card {
         padding: 20px;
         border-radius: 15px;
