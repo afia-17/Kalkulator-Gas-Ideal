@@ -85,6 +85,107 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    /* Background animasi partikel */
+    .particle-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background: var(--color);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: float var(--duration) infinite linear;
+        filter: blur(1px);
+    }
+    
+    @keyframes float {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            transform: translate(var(--x-end), var(--y-end)) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    /* Gradient background untuk konten utama */
+    .main {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* Efek glassmorphism untuk card */
+    .card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Animasi hover untuk card */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    /* Efek glowing untuk header */
+    .main-header {
+        text-shadow: 0 0 10px rgba(13, 71, 161, 0.3);
+        position: relative;
+        display: inline-block;
+    }
+    
+    .main-header:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #0d47a1, #2196F3, #0d47a1);
+        background-size: 200% auto;
+        animation: gradient 3s linear infinite;
+    }
+    
+    @keyframes gradient {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
+</style>
+
+<div class="particle-bg">
+    <!-- Partikel dengan berbagai ukuran dan warna -->
+    <div class="particle" style="--size: 5px; --duration: 20s; --delay: 0s; --x-end: 100vw; --y-end: 50vh; --color: #2196F3;"></div>
+    <div class="particle" style="--size: 8px; --duration: 25s; --delay: 5s; --x-end: 80vw; --y-end: 80vh; --color: #4CAF50;"></div>
+    <div class="particle" style="--size: 3px; --duration: 15s; --delay: 2s; --x-end: 120vw; --y-end: 30vh; --color: #FF9800;"></div>
+    <div class="particle" style="--size: 6px; --duration: 18s; --delay: 7s; --x-end: 90vw; --y-end: 70vh; --color: #9C27B0;"></div>
+    <div class="particle" style="--size: 4px; --duration: 22s; --delay: 3s; --x-end: 110vw; --y-end: 60vh; --color: #F44336;"></div>
+</div>
+""", unsafe_allow_html=True)
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
