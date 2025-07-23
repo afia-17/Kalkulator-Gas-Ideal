@@ -17,18 +17,16 @@ st.set_page_config(
 # ===========================================
 st.markdown("""
 <style>
-    /* Base Styles */
-    .main {
-        background-color: #f5f7fa;
-        color: #333333;
+    /* Global Styles */
+    .main-header {
+        color: #0d47a1;
+        border-bottom: 2px solid #0d47a1;
+        padding-bottom: 10px;
     }
     
-    h1, h2, h3, h4, h5, h6 {
-        color: #2c3e50;
-    }
-    
-    p, li, td {
-        color: #34495e;
+    /* Background for Home Page */
+    .stApp [data-testid="stAppViewContainer"] {
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     }
     
     /* Card Styles */
@@ -37,110 +35,111 @@ st.markdown("""
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         margin-bottom: 20px;
-        background: white;
-        border: 1px solid #e0e0e0;
+        background-color: rgba(255,255,255,0.9);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.3);
     }
     
-    .calc-card {
-        border-left: 5px solid #3498db;
+    /* Calculator Page Background */
+    .stApp [data-testid="stAppViewContainer"] div:has(> div.element-container > div[data-testid="stVerticalBlock"] > div:has(> div.stTabs)) {
+        background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        padding: 20px;
+        border-radius: 15px;
     }
     
-    .result-card {
-        border-left: 5px solid #2ecc71;
+    /* Encyclopedia Page Background */
+    .stApp [data-testid="stAppViewContainer"] div:has(> div.element-container > div[data-testid="stVerticalBlock"] > div:has(> div[data-baseweb="select"])) {
+        background: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        padding: 20px;
+        border-radius: 15px;
     }
     
-    .gas-card {
-        border-left: 5px solid #e67e22;
-    }
-    
-    .safety-card {
-        border-left: 5px solid #e74c3c;
-    }
-    
-    /* Input Styles */
-    .input-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-    
-    .input-label {
-        min-width: 120px;
-        color: #2980b9;
-        font-weight: bold;
-    }
-    
-    .stTextInput>div>div>input, 
-    .stNumberInput>div>div>input,
-    .stSelectbox>div>div>select {
-        background-color: white !important;
-        color: #333333 !important;
-        border: 1px solid #bdc3c7 !important;
-    }
-    
-    /* Button Styles */
-    .stButton>button {
-        background-color: #2980b9;
-        color: white;
-        border: none;
-        transition: all 0.3s ease;
-    }
-    
-    .stButton>button:hover {
-        background-color: #3498db;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
-    }
-    
-    /* Table Styles */
-    .property-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    
-    .property-table th {
-        background-color: #ecf0f1;
-        color: #2980b9;
-        padding: 12px;
-        text-align: left;
-    }
-    
-    .property-table td {
-        padding: 12px;
-        border-bottom: 1px solid #ecf0f1;
+    /* Safety Guide Page Background */
+    .stApp [data-testid="stAppViewContainer"] div:has(> div.element-container > div[data-testid="stVerticalBlock"] > div:has(> h1:contains("Panduan Keselamatan"))) {
+        background: url('https://images.unsplash.com/photo-1581093196275-1a37d9a3d41f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        padding: 20px;
+        border-radius: 15px;
     }
     
     /* Tab Styles */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 10px;
+        background: rgba(255,255,255,0.7);
+        padding: 10px;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        height: 50px;
+        padding: 0 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background: rgba(255,255,255,0.8) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
     .stTabs [aria-selected="true"] {
-        background-color: white !important;
-        color: #2980b9 !important;
+        background: linear-gradient(135deg, #2196F3, #0d47a1) !important;
+        color: white !important;
         font-weight: bold;
-        border-bottom: 2px solid #2980b9;
+        box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        border: none;
     }
     
-    /* Background Overrides */
-    [data-testid="stAppViewContainer"] {
-        background: #f5f7fa;
+    /* Particle Animation for Calculator */
+    @keyframes float {
+        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
     }
     
-    /* Header Styles */
-    .main-header {
-        color: #2980b9;
-        border-bottom: 2px solid #2980b9;
-        padding-bottom: 10px;
+    .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background: rgba(255,255,255,0.5);
+        border-radius: 50%;
+        animation: float var(--duration) var(--delay) infinite linear;
+        --x-end: calc(var(--x) - 50%);
+        --y-end: calc(var(--y) - 50%);
+    }
+    
+    /* Glass Morphism Effect */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 20px;
         margin-bottom: 20px;
     }
     
-    /* Animation for Home Page */
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
+    /* Floating Animation */
+    @keyframes float-up {
+        0% { transform: translateY(10px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
     }
     
-    .floating-icon {
-        animation: float 3s ease-in-out infinite;
+    .float-animation {
+        animation: float-up 0.5s ease-out forwards;
     }
 </style>
 """, unsafe_allow_html=True)
