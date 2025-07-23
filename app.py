@@ -15,6 +15,7 @@ st.set_page_config(
 # ===========================================
 # CSS CUSTOM & BACKGROUNDS
 # ===========================================
+st.markdown("""
 <style>
     /* Base Styles */
     .main {
@@ -42,22 +43,18 @@ st.set_page_config(
     
     .calc-card {
         border-left: 5px solid #3498db;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%);
     }
     
     .result-card {
         border-left: 5px solid #2ecc71;
-        background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
     }
     
     .gas-card {
-        border-left: 5px solid #f39c12;
-        background: linear-gradient(135deg, #fff8f0 0%, #ffeedd 100%);
+        border-left: 5px solid #e67e22;
     }
     
     .safety-card {
         border-left: 5px solid #e74c3c;
-        background: linear-gradient(135deg, #fff0f0 0%, #ffe6e6 100%);
     }
     
     /* Input Styles */
@@ -79,7 +76,7 @@ st.set_page_config(
     .stSelectbox>div>div>select {
         background-color: white !important;
         color: #333333 !important;
-        border: 1px solid #ced4da !important;
+        border: 1px solid #bdc3c7 !important;
     }
     
     /* Button Styles */
@@ -93,7 +90,7 @@ st.set_page_config(
     .stButton>button:hover {
         background-color: #3498db;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
     }
     
     /* Table Styles */
@@ -103,20 +100,20 @@ st.set_page_config(
     }
     
     .property-table th {
-        background-color: #2980b9;
-        color: white;
+        background-color: #ecf0f1;
+        color: #2980b9;
         padding: 12px;
         text-align: left;
     }
     
     .property-table td {
         padding: 12px;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid #ecf0f1;
     }
     
     /* Tab Styles */
     .stTabs [aria-selected="true"] {
-        background-color: #e9f5ff !important;
+        background-color: white !important;
         color: #2980b9 !important;
         font-weight: bold;
         border-bottom: 2px solid #2980b9;
@@ -124,18 +121,26 @@ st.set_page_config(
     
     /* Background Overrides */
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-        background-attachment: fixed;
+        background: #f5f7fa;
     }
     
-    /* Animation Styles */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* Header Styles */
+    .main-header {
+        color: #2980b9;
+        border-bottom: 2px solid #2980b9;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
     }
     
-    .fade-in {
-        animation: fadeIn 0.5s ease-in-out;
+    /* Animation for Home Page */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .floating-icon {
+        animation: float 3s ease-in-out infinite;
     }
 </style>
 """, unsafe_allow_html=True)
