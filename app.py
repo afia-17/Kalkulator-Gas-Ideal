@@ -15,20 +15,19 @@ st.set_page_config(
 # ===========================================
 # CSS CUSTOM & BACKGROUNDS
 # ===========================================
-st.markdown("""
 <style>
     /* Base Styles */
     .main {
-        background-color: #0a192f;
-        color: #ccd6f6;
+        background-color: #f5f7fa;
+        color: #333333;
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: #e6f1ff;
+        color: #2c3e50;
     }
     
     p, li, td {
-        color: #a8b2d1;
+        color: #34495e;
     }
     
     /* Card Styles */
@@ -37,25 +36,28 @@ st.markdown("""
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         margin-bottom: 20px;
-        background: rgba(10, 25, 47, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(100, 200, 255, 0.1);
+        background: white;
+        border: 1px solid #e0e0e0;
     }
     
     .calc-card {
-        border-left: 5px solid #64ffda;
+        border-left: 5px solid #3498db;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%);
     }
     
     .result-card {
-        border-left: 5px solid #4caf50;
+        border-left: 5px solid #2ecc71;
+        background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
     }
     
     .gas-card {
-        border-left: 5px solid #ff9800;
+        border-left: 5px solid #f39c12;
+        background: linear-gradient(135deg, #fff8f0 0%, #ffeedd 100%);
     }
     
     .safety-card {
-        border-left: 5px solid #f44336;
+        border-left: 5px solid #e74c3c;
+        background: linear-gradient(135deg, #fff0f0 0%, #ffe6e6 100%);
     }
     
     /* Input Styles */
@@ -68,29 +70,30 @@ st.markdown("""
     
     .input-label {
         min-width: 120px;
-        color: #64ffda;
+        color: #2980b9;
+        font-weight: bold;
     }
     
     .stTextInput>div>div>input, 
     .stNumberInput>div>div>input,
     .stSelectbox>div>div>select {
-        background-color: #112240 !important;
-        color: #e6f1ff !important;
-        border: 1px solid #1e2a3a !important;
+        background-color: white !important;
+        color: #333333 !important;
+        border: 1px solid #ced4da !important;
     }
     
     /* Button Styles */
     .stButton>button {
-        background-color: #0a192f;
-        color: #64ffda;
-        border: 1px solid #64ffda;
+        background-color: #2980b9;
+        color: white;
+        border: none;
         transition: all 0.3s ease;
     }
     
     .stButton>button:hover {
-        background-color: #112240;
+        background-color: #3498db;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
     }
     
     /* Table Styles */
@@ -100,134 +103,41 @@ st.markdown("""
     }
     
     .property-table th {
-        background-color: #112240;
-        color: #64ffda;
+        background-color: #2980b9;
+        color: white;
         padding: 12px;
         text-align: left;
     }
     
     .property-table td {
         padding: 12px;
-        border-bottom: 1px solid #1e2a3a;
+        border-bottom: 1px solid #e0e0e0;
     }
     
     /* Tab Styles */
     .stTabs [aria-selected="true"] {
-        background-color: #112240 !important;
-        color: #64ffda !important;
+        background-color: #e9f5ff !important;
+        color: #2980b9 !important;
         font-weight: bold;
-        border-bottom: 2px solid #64ffda;
+        border-bottom: 2px solid #2980b9;
     }
     
-    /* Background Overrides for Each Page */
+    /* Background Overrides */
     [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
         background-attachment: fixed;
     }
     
-    /* Home Page Background */
-    .home-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+    /* Animation Styles */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Calculator Page Background */
-    .calc-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-    }
-    
-    /* Encyclopedia Page Background */
-    .encyclo-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    }
-    
-    /* Safety Page Background */
-    .safety-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(135deg, #200122 0%, #2a0845 50%, #4b1248 100%);
-    }
-    
-    /* Particle Animations */
-    .particle {
-        position: absolute;
-        border-radius: 50%;
-        animation: float 15s infinite linear;
-    }
-    
-    @keyframes float {
-        0% { transform: translate(0, 0); opacity: 0; }
-        50% { opacity: 0.8; }
-        100% { transform: translate(var(--x-end), var(--y-end)); opacity: 0; }
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
     }
 </style>
-
-<!-- Background Elements -->
-<div id="page-bg" class="home-bg">
-    <div class="particle" style="--x-end: 100px; --y-end: 50px; width: 5px; height: 5px; background: #64ffda; top: 20%; left: 10%; animation-delay: 0s;"></div>
-    <div class="particle" style="--x-end: -80px; --y-end: 70px; width: 8px; height: 8px; background: #ff9800; top: 60%; left: 80%; animation-delay: 2s;"></div>
-    <div class="particle" style="--x-end: 120px; --y-end: -30px; width: 6px; height: 6px; background: #f44336; top: 30%; left: 50%; animation-delay: 4s;"></div>
-</div>
-
-<script>
-// Change background based on page
-function updateBackground() {
-    const bgElement = document.getElementById('page-bg');
-    const path = window.location.hash;
-    
-    if (path.includes('Kalkulator_Gas')) {
-        bgElement.className = 'calc-bg';
-        // Add calculator-specific particles
-        bgElement.innerHTML += `
-            <div class="particle" style="--x-end: 50px; --y-end: 30px; width: 4px; height: 4px; background: #4caf50; top: 40%; left: 30%; animation-delay: 1s;"></div>
-            <div class="particle" style="--x-end: -30px; --y-end: 40px; width: 7px; height: 7px; background: #2196f3; top: 70%; left: 60%; animation-delay: 3s;"></div>
-        `;
-    } 
-    else if (path.includes('Ensiklopedia_Gas')) {
-        bgElement.className = 'encyclo-bg';
-        // Add encyclopedia-specific particles
-        bgElement.innerHTML += `
-            <div class="particle" style="--x-end: 70px; --y-end: -20px; width: 6px; height: 6px; background: #ff9800; top: 20%; left: 70%; animation-delay: 1s;"></div>
-            <div class="particle" style="--x-end: -40px; --y-end: 60px; width: 5px; height: 5px; background: #e91e63; top: 50%; left: 40%; animation-delay: 2.5s;"></div>
-        `;
-    }
-    else if (path.includes('Panduan_Keselamatan')) {
-        bgElement.className = 'safety-bg';
-        // Add safety-specific particles
-        bgElement.innerHTML += `
-            <div class="particle" style="--x-end: 60px; --y-end: 40px; width: 7px; height: 7px; background: #f44336; top: 30%; left: 20%; animation-delay: 0.5s;"></div>
-            <div class="particle" style="--x-end: -50px; --y-end: 30px; width: 6px; height: 6px; background: #ff5722; top: 80%; left: 80%; animation-delay: 3s;"></div>
-        `;
-    }
-    else {
-        bgElement.className = 'home-bg';
-    }
-}
-
-// Run on load and when hash changes
-window.addEventListener('load', updateBackground);
-window.addEventListener('hashchange', updateBackground);
-</script>
 """, unsafe_allow_html=True)
 
 # ===========================================
