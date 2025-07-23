@@ -465,20 +465,24 @@ if menu == "🏠 Beranda":
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
-elif menu == "🧮 Kalkulator Gas":
     st.markdown("""
     <style>
-        .calc-header {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .stApp [data-testid="stAppViewContainer"] > div:first-child {
+            background: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
         }
     </style>
+    """, unsafe_allow_html=True)
     
+    st.markdown("""
+    <div style="background: rgba(0,0,0,0.5); padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+        <h1 style="color: white; text-align: center; margin: 0;">
+            🧪✨ Kalkulator Gas Ideal ✨⚗️
+        </h1>
+    </div>
+    """, unsafe_allow_html=True)
     <div class="calc-header">
         <h1 style="color: white; text-align: center; margin: 0;">
             🧮 Kalkulator Gas Ideal
