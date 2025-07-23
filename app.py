@@ -483,12 +483,7 @@ if menu == "🏠 Beranda":
         </h1>
     </div>
     """, unsafe_allow_html=True)
-    <div class="calc-header">
-        <h1 style="color: white; text-align: center; margin: 0;">
-            🧮 Kalkulator Gas Ideal
-        </h1>
-    </div>
-    """, unsafe_allow_html=True)
+
 
     tab1, tab2, tab3, tab4 = st.tabs([
         "⚖️ Hitung Massa", 
