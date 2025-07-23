@@ -85,6 +85,104 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Tambahkan ini di bagian CSS Custom setelah st.markdown("""<style>...""")
+
+st.markdown("""
+<style>
+    /* Background animasi partikel */
+    .particle-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background: var(--color);
+        border-radius: 50%;
+        opacity: 0.3;
+        filter: blur(1px);
+        animation: float var(--duration) infinite linear;
+    }
+    
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(var(--x-move), var(--y-move));
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+    /* Gradient background untuk halaman */
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        background-attachment: fixed;
+    }
+    
+    /* Efek glassmorphism untuk card */
+    .card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Animasi hover untuk card */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    /* Efek neon untuk header */
+    .main-header {
+        text-shadow: 0 0 10px rgba(13, 71, 161, 0.3);
+        position: relative;
+    }
+    
+    .main-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #0d47a1, #2196F3, #0d47a1);
+        background-size: 200% 200%;
+        animation: gradient 3s ease infinite;
+    }
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+
+<div class="particle-bg">
+    <div class="particle" style="--size: 100px; --color: rgba(33, 150, 243, 0.1); --duration: 20s; --x-move: 100px; --y-move: 50px; top: 20%; left: 10%;"></div>
+    <div class="particle" style="--size: 150px; --color: rgba(76, 175, 80, 0.1); --duration: 25s; --x-move: -80px; --y-move: 70px; top: 60%; left: 80%;"></div>
+    <div class="particle" style="--size: 80px; --color: rgba(244, 67, 54, 0.1); --duration: 15s; --x-move: 120px; --y-move: -30px; top: 30%; left: 50%;"></div>
+    <div class="particle" style="--size: 120px; --color: rgba(255, 152, 0, 0.1); --duration: 30s; --x-move: -50px; --y-move: 100px; top: 80%; left: 30%;"></div>
+</div>
+""", unsafe_allow_html=True)
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
