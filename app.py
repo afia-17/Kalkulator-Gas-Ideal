@@ -1116,8 +1116,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     T = T_input
                 
-            st.markdown("</div>", unsafe_allow_ 
-                    T = T_input
+           
                 
             st.markdown("</div>", unsafe_allow_html=True)
 
