@@ -88,23 +88,25 @@ st.markdown("""
 st.markdown("""
 <style>
     /* ======================== */
-    /* GLOBAL THEME: DYNAMIC GAS SIMULATION */
+    /* GLOBAL THEME: LAB KIMIA FUTURISTIK */
     /* ======================== */
     [data-testid="stAppViewContainer"] {
-        background: #0f0c29;  /* Dark space-like */
-        background: radial-gradient(circle, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        background-color: #f0f2f6;
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(0, 180, 219, 0.1) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(255, 100, 100, 0.1) 0%, transparent 20%);
         position: relative;
         overflow: hidden;
     }
 
-    /* Partikel Gas Bergerak Acak */
+    /* Partikel Gas Subtle */
     .gas-particle {
         position: absolute;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(0, 180, 219, 0.15);
         border-radius: 50%;
-        filter: blur(1px);
         animation: gasMove linear infinite;
         opacity: 0.6;
+        z-index: 0;
     }
 
     @keyframes gasMove {
@@ -113,147 +115,145 @@ st.markdown("""
     }
 
     /* ======================== */
-    /* BERANDA: REAKSI KIMIA INTERAKTIF */
+    /* BERANDA: LABORATORIUM INTERAKTIF */
     /* ======================== */
-    [data-testid="stHeader"] {
-        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%) !important;
-        box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+    .home-header {
+        background: linear-gradient(135deg, rgba(0, 180, 219, 0.2), rgba(0, 123, 255, 0.2));
+        backdrop-filter: blur(5px);
+        border-radius: 15px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        border-left: 5px solid #00b4db;
     }
 
-    .home-container::before {
+    .home-header::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 300px;
-        background: url('https://i.gifer.com/7VE.gif');
-        background-size: cover;
-        opacity: 0.15;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: 
+            radial-gradient(circle, rgba(0, 180, 219, 0.05) 0%, transparent 70%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><circle cx="25" cy="25" r="3" fill="%2300b4db"/><circle cx="75" cy="50" r="2" fill="%2300b4db"/><circle cx="20" cy="80" r="4" fill="%2300b4db"/></svg>');
+        animation: rotateBackground 60s linear infinite;
         z-index: -1;
     }
 
-    /* Tabung Reaksi Floating */
-    .flask {
-        position: absolute;
-        width: 100px;
-        height: 150px;
-        background: url('https://clipart-library.com/images/8ixKbxj8T.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        animation: floatFlask 15s ease-in-out infinite;
-        opacity: 0.8;
-        z-index: -1;
-    }
-
-    @keyframes floatFlask {
-        0%, 100% { transform: translate(10vw, 10vh) rotate(5deg); }
-        50% { transform: translate(80vw, 20vh) rotate(-5deg); }
-    }
-
-    /* ======================== */
-    /* KALKULATOR: GAS PRESSURE SIMULATION */
-    /* ======================== */
-    .calculator-bg {
-        position: relative;
-        background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%) !important;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 30px rgba(255, 100, 100, 0.3);
-    }
-
-    .pressure-animation {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(255,50,50,0.3) 0%, transparent 70%);
-        animation: pulsePressure 3s infinite alternate;
-    }
-
-    @keyframes pulsePressure {
-        0% { transform: scale(0.95); opacity: 0.3; }
-        100% { transform: scale(1.05); opacity: 0.7; }
-    }
-
-    /* ======================== */
-    /* ENSIKLOPEDIA: 3D MOLECULE VIEWER */
-    /* ======================== */
-    .encyclopedia-bg {
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364) !important;
-        box-shadow: inset 0 0 100px rgba(0, 255, 255, 0.1);
-        position: relative;
-    }
-
-    .molecule-spin {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: url('https://i.gifer.com/embedded/download/7XaI.gif');
-        background-size: contain;
-        opacity: 0.2;
-        animation: spinMolecule 20s linear infinite;
-    }
-
-    @keyframes spinMolecule {
+    @keyframes rotateBackground {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
 
     /* ======================== */
-    /* PANDUAN KESELAMATAN: WARNING EFFECT */
+    /* KALKULATOR: SIMULASI TEKANAN GAS */
     /* ======================== */
-    .safety-bg {
-        background: linear-gradient(135deg, #8E0E00 0%, #1F1C18 100%) !important;
-        box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    .calculator-bg {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.1),
+            inset 0 0 10px rgba(0, 180, 219, 0.2);
         position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0, 180, 219, 0.3);
     }
 
-    .warning-stripes {
+    .calculator-bg::after {
+        content: "";
         position: absolute;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(
-            45deg,
-            rgba(255, 0, 0, 0.1),
-            rgba(255, 0, 0, 0.1) 10px,
-            rgba(0, 0, 0, 0.1) 10px,
-            rgba(0, 0, 0, 0.1) 20px
-        );
-        animation: warningFlash 1s infinite alternate;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #00b4db, #0083b0);
+        animation: pressureGauge 3s infinite alternate;
     }
 
-    @keyframes warningFlash {
-        0% { opacity: 0.3; }
-        100% { opacity: 0.7; }
+    @keyframes pressureGauge {
+        0% { width: 30%; opacity: 0.7; }
+        100% { width: 100%; opacity: 1; }
     }
 
     /* ======================== */
-    /* GLASSMORPHISM CONTENT */
+    /* ENSIKLOPEDIA: MUSEUM GAS ELEGAN */
     /* ======================== */
-    .main-content {
-        background: rgba(255, 255, 255, 0.1) !important;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    .encyclopedia-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
     }
 
-    /* NEON TEXT */
-    .neon-text {
-        text-shadow: 0 0 5px #fff,
-                     0 0 10px #fff,
-                     0 0 20px #00d2ff,
-                     0 0 30px #00d2ff;
-        animation: neonGlow 1.5s infinite alternate;
+    .encyclopedia-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
     }
 
-    @keyframes neonGlow {
-        from { text-shadow: 0 0 5px #fff; }
-        to { text-shadow: 0 0 20px #00d2ff, 0 0 30px #008cff; }
+    .molecule-icon {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 2rem;
+        opacity: 0.1;
+    }
+
+    /* ======================== */
+    /* PANDUAN KESELAMATAN: ALERT SYSTEM */
+    /* ======================== */
+    .safety-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        border-left: 5px solid #ff4757;
+    }
+
+    .safety-card::before {
+        content: "⚠️";
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 2rem;
+        opacity: 0.1;
+    }
+
+    /* ======================== */
+    /* TEKS & KONTEN (PRIORITAS VISIBILITAS) */
+    /* ======================== */
+    .main-header {
+        color: #0d47a1 !important;
+        text-shadow: none !important;
+        position: relative;
+        z-index: 2;
+    }
+
+    .content-box {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+        margin-bottom: 2rem;
+    }
+
+    /* Efek Hover untuk Card */
+    .card-hover-effect:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
     }
 </style>
 """, unsafe_allow_html=True)
-
 # ===========================================
 # DATABASE GAS
 # ===========================================
