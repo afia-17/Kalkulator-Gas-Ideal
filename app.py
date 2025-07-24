@@ -85,98 +85,187 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ===========================================
-# CSS CUSTOM (Tambahkan bagian ini di bagian CSS yang sudah ada)
-# ===========================================
 st.markdown("""
 <style>
-    /* Background untuk setiap menu */
-    [data-testid="stSidebar"] {
+    /* ======================== */
+    /* BACKGROUND UMUM APLIKASI */
+    /* ======================== */
+    [data-testid="stAppViewContainer"] {
         background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     }
     
-    /* Background Beranda */
-    [data-testid="stAppViewContainer"] [data-testid="stHeader"] {
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    /* Efek partikel floating */
+    @keyframes float {
+        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
     }
     
-    /* Background Kalkulator Gas */
+    .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        animation: float var(--duration) var(--delay) infinite linear;
+        --x-end: calc(var(--x) - 50%);
+        --y-end: calc(var(--y) - 50%);
+    }
+
+    /* ======================== */
+    /* BACKGROUND BERANDA */
+    /* ======================== */
+    div[data-testid="stAppViewContainer"] > div:first-child {
+        background: linear-gradient(-45deg, #00b4db, #0083b0, #00b4db, #0083b0);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Animasi gelembung kimia */
+    .home-bubble {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        filter: blur(5px);
+        animation: bubbleMove 8s infinite ease-in-out;
+    }
+    
+    @keyframes bubbleMove {
+        0% { transform: translateY(0) scale(1); opacity: 0.3; }
+        50% { transform: translateY(-50px) scale(1.2); opacity: 0.6; }
+        100% { transform: translateY(0) scale(1); opacity: 0.3; }
+    }
+
+    /* ======================== */
+    /* BACKGROUND KALKULATOR GAS */
+    /* ======================== */
     div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background: linear-gradient(rgba(0, 0, 0, 0.6), 
+                    url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
         color: white;
         padding: 2rem;
         border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
     }
     
-    /* Background Ensiklopedia */
+    /* Efek tabung reaksi glow */
+    .calc-glow {
+        position: absolute;
+        width: 100px;
+        height: 200px;
+        background: rgba(0, 180, 219, 0.1);
+        border-radius: 50%;
+        filter: blur(30px);
+        animation: glowPulse 4s infinite alternate;
+    }
+    
+    @keyframes glowPulse {
+        0% { opacity: 0.3; transform: scale(0.8); }
+        100% { opacity: 0.6; transform: scale(1.2); }
+    }
+
+    /* ======================== */
+    /* BACKGROUND ENSIKLOPEDIA */
+    /* ======================== */
     div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                    url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background: linear-gradient(rgba(0, 0, 0, 0.7), 
+                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
         color: white;
         padding: 2rem;
         border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
     }
     
-    /* Background Panduan Keselamatan */
+    /* Efek molekul bergerak */
+    .molecule {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: moleculeMove 10s infinite linear;
+    }
+    
+    @keyframes moleculeMove {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(50px, 30px); }
+        50% { transform: translate(20px, 60px); }
+        75% { transform: translate(-30px, 40px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    /* ======================== */
+    /* BACKGROUND PANDUAN KESELAMATAN */
+    /* ======================== */
     div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+        background: linear-gradient(rgba(0, 0, 0, 0.7), 
                     url('https://images.unsplash.com/photo-1581093196277-1c6ddbba5e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
         color: white;
         padding: 2rem;
         border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
     }
     
-    /* Efek glassmorphism untuk konten */
+    /* Efek peringatan berkedip */
+    .warning-pulse {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 59, 48, 0.1);
+        border-radius: 15px;
+        animation: warningPulse 2s infinite;
+    }
+    
+    @keyframes warningPulse {
+        0% { opacity: 0; }
+        50% { opacity: 0.3; }
+        100% { opacity: 0; }
+    }
+
+    /* ======================== */
+    /* KONTEN UTAMA (Glassmorphism) */
+    /* ======================== */
     .main .block-container {
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: 2rem;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         margin-top: 1rem;
         margin-bottom: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
-    /* Memastikan teks tetap terbaca */
+    /* Judul dengan efek neon */
     .main-header {
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-    
-    /* Efek hover untuk card */
-    .card:hover {
-        transform: translateY(-5px);
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    
-    /* Animasi untuk background */
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    
-    /* Background animasi untuk Beranda */
-    [data-testid="stAppViewContainer"] > div:first-child {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
+        color: white;
+        text-shadow: 0 0 10px rgba(0, 180, 219, 0.7),
+                     0 0 20px rgba(0, 180, 219, 0.5),
+                     0 0 30px rgba(0, 180, 219, 0.3);
+        font-weight: bold;
     }
 </style>
 """, unsafe_allow_html=True)
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
