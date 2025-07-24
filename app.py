@@ -85,193 +85,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Tambahkan CSS ini setelah st.set_page_config dan sebelum CSS CUSTOM yang sudah ada
-
-# ===========================================
-# BACKGROUND STYLING UNTUK SETIAP MENU
-# ===========================================
-def set_background_style():
-    st.markdown("""
-    <style>
-    /* Background utama dengan animasi partikel kimia */
-    .stApp {
-        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
-        position: relative;
-    }
-    
-    /* Animasi gradient background */
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    
-    /* Overlay pattern kimia */
-    .stApp::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-        z-index: -1;
-        pointer-events: none;
-    }
-    
-    /* Background khusus untuk Beranda */
-    .beranda-bg {
-        background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(33, 150, 243, 0.1));
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 20px;
-        margin: 10px 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Background khusus untuk Kalkulator */
-    .kalkulator-bg {
-        background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1));
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 20px;
-        margin: 10px 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Background khusus untuk Ensiklopedia */
-    .ensiklopedia-bg {
-        background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 193, 7, 0.1));
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 20px;
-        margin: 10px 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Background khusus untuk Keselamatan */
-    .keselamatan-bg {
-        background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(233, 30, 99, 0.1));
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 20px;
-        margin: 10px 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Efek molekul mengambang */
-    .floating-molecules::before {
-        content: '⚛️ 🧪 ⚗️ 🔬 💧 ⚡ 🌡️ 📡';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 20px;
-        color: rgba(255, 255, 255, 0.1);
-        z-index: -1;
-        animation: floatMolecules 20s linear infinite;
-        white-space: pre;
-        line-height: 100px;
-        letter-spacing: 100px;
-    }
-    
-    @keyframes floatMolecules {
-        0% { transform: translateY(100vh) rotate(0deg); }
-        100% { transform: translateY(-100px) rotate(360deg); }
-    }
-    
-    /* Sidebar dengan glass effect */
-    .css-1d391kg {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 15px;
-    }
-    
-    /* Tab styling dengan glass effect */
-    .stTabs [data-baseweb="tab-list"] {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    /* Animasi untuk cards */
-    .animated-card {
-        animation: cardPulse 3s ease-in-out infinite;
-    }
-    
-    @keyframes cardPulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        50% { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
-    }
-    
-    /* Efek shimmer untuk text */
-    .shimmer-text {
-        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
-        background-size: 400% 400%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 3s ease-in-out infinite;
-    }
-    
-    @keyframes shimmer {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    
-    /* Container utama dengan glass effect */
-    .main-container {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 30px;
-        margin: 20px 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Efek hover untuk buttons */
-    .stButton > button {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #333;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-    }
-    
-    /* Pattern kimia di background */
-    .chemistry-pattern {
-        background-image: 
-            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3Ccircle cx='10' cy='50' r='2'/%3E%3Ccircle cx='50' cy='10' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Panggil fungsi background
-set_background_style()
-
-# Tambahkan class floating molecules ke body
-st.markdown('<div class="floating-molecules"></div>', unsafe_allow_html=True)
-
 # ===========================================
 # DATABASE GAS
 # ===========================================
@@ -475,9 +288,8 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown('<div class="main-container beranda-bg chemistry-pattern">', unsafe_allow_html=True)
-    st.markdown("<h1 class='main-header shimmer-text'>ChemGasMaster</h1>", unsafe_allow_html=True)
-
+    st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
+    
     st.markdown("""
     <div class="card calc-card">
         <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
@@ -556,13 +368,11 @@ if menu == "🏠 Beranda":
         </ol>
     </div>
     """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
-    st.markdown('<div class="main-container kalkulator-bg chemistry-pattern">', unsafe_allow_html=True)
     # Header dengan animasi partikel
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
@@ -1038,7 +848,6 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
     """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
