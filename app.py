@@ -13,76 +13,288 @@ st.set_page_config(
 )
 
 # ===========================================
-# CSS CUSTOM
+# CSS CUSTOM + BACKGROUND UNTUK SETIAP MENU
 # ===========================================
 st.markdown("""
 <style>
+    /* Background Animations */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    @keyframes bubble {
+        0% { transform: translateY(100vh) scale(0); }
+        100% { transform: translateY(-100vh) scale(1); }
+    }
+    
+    @keyframes molecule-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Background untuk Beranda - Tema Molekul */
+    .beranda-bg {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: gradient-shift 15s ease infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .beranda-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 2px, transparent 2px),
+            radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 3px, transparent 3px),
+            radial-gradient(circle at 40% 60%, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 100px 100px, 150px 150px, 80px 80px;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Background untuk Kalkulator - Tema Laboratorium */
+    .kalkulator-bg {
+        background: linear-gradient(135deg, #74b9ff, #0984e3, #00b894, #00cec9);
+        background-size: 400% 400%;
+        animation: gradient-shift 20s ease infinite;
+        position: relative;
+    }
+    
+    .kalkulator-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255,255,255,0.05) 10px,
+            rgba(255,255,255,0.05) 20px
+        );
+    }
+
+    /* Background untuk Ensiklopedia - Tema Perpustakaan Kimia */
+    .ensiklopedia-bg {
+        background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+        background-size: 400% 400%;
+        animation: gradient-shift 25s ease infinite;
+        position: relative;
+    }
+    
+    .ensiklopedia-bg::after {
+        content: '⚗️ 🧪 🔬 💎 ⚛️ 🧬 🌡️ 📊';
+        position: absolute;
+        top: 10%;
+        left: 0;
+        right: 0;
+        font-size: 2rem;
+        opacity: 0.1;
+        text-align: center;
+        animation: float 8s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    /* Background untuk Keselamatan - Tema Peringatan */
+    .keselamatan-bg {
+        background: linear-gradient(135deg, #ff7675, #fd79a8, #fdcb6e, #e17055);
+        background-size: 400% 400%;
+        animation: gradient-shift 18s ease infinite;
+        position: relative;
+    }
+    
+    .keselamatan-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            repeating-conic-gradient(from 0deg at 50% 50%, 
+                transparent 0deg 30deg, 
+                rgba(255,255,255,0.05) 30deg 60deg);
+        background-size: 100px 100px;
+    }
+
+    /* Floating particles untuk semua background */
+    .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: bubble 15s infinite linear;
+    }
+    
+    .particle:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 30%; width: 25px; height: 25px; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 40%; width: 10px; height: 10px; animation-delay: 6s; }
+    .particle:nth-child(5) { left: 50%; width: 18px; height: 18px; animation-delay: 8s; }
+    .particle:nth-child(6) { left: 60%; width: 22px; height: 22px; animation-delay: 10s; }
+    .particle:nth-child(7) { left: 70%; width: 12px; height: 12px; animation-delay: 12s; }
+    .particle:nth-child(8) { left: 80%; width: 16px; height: 16px; animation-delay: 14s; }
+    .particle:nth-child(9) { left: 90%; width: 20px; height: 20px; animation-delay: 16s; }
+
+    /* CSS yang sudah ada sebelumnya */
     .main-header {
         color: #0d47a1;
         border-bottom: 2px solid #0d47a1;
         padding-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        background: rgba(255,255,255,0.9);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
     }
+    
     .card {
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         margin-bottom: 20px;
+        background: rgba(255,255,255,0.95) !important;
+        backdrop-filter: blur(10px);
     }
+    
     .calc-card {
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        background: linear-gradient(135deg, rgba(227, 242, 253, 0.95) 0%, rgba(187, 222, 251, 0.95) 100%) !important;
         border-left: 5px solid #2196f3;
     }
+    
     .result-card {
-        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        background: linear-gradient(135deg, rgba(232, 245, 233, 0.95) 0%, rgba(200, 230, 201, 0.95) 100%) !important;
         border-left: 5px solid #4caf50;
     }
+    
     .gas-card {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        background: linear-gradient(135deg, rgba(255, 243, 224, 0.95) 0%, rgba(255, 224, 178, 0.95) 100%) !important;
         border-left: 5px solid #ff9800;
     }
+    
     .safety-card {
-        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        background: linear-gradient(135deg, rgba(255, 235, 238, 0.95) 0%, rgba(255, 205, 210, 0.95) 100%) !important;
         border-left: 5px solid #f44336;
     }
+    
     .conversion-box {
-        background-color: #f5f5f5;
+        background-color: rgba(245, 245, 245, 0.9);
         padding: 10px;
         border-radius: 8px;
         margin: 10px 0;
         border: 1px dashed #9e9e9e;
+        backdrop-filter: blur(5px);
     }
+    
     .property-table {
         width: 100%;
         border-collapse: collapse;
+        background: rgba(255,255,255,0.9);
     }
+    
     .property-table th {
-        background-color: #0d47a1;
+        background-color: rgba(13, 71, 161, 0.9);
         color: white;
         padding: 8px;
     }
+    
     .property-table td {
         padding: 8px;
         border-bottom: 1px solid #ddd;
+        background: rgba(255,255,255,0.8);
     }
+    
     .input-row {
         display: flex;
         align-items: center;
         gap: 10px;
     }
+    
     .input-label {
         min-width: 120px;
     }
+    
     .input-field {
         flex-grow: 1;
     }
+    
     .input-unit {
         min-width: 100px;
     }
+    
     .gas-icon {
         font-size: 24px;
         margin-right: 10px;
     }
+    
+    /* Tab styling dengan transparansi */
+    .tab-container {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-top: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Sidebar dengan efek glass */
+    .css-1d391kg {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    /* Tombol dengan efek hover yang lebih menarik */
+    .stButton > button {
+        background: linear-gradient(45deg, #667eea, #764ba2) !important;
+        border: none !important;
+        border-radius: 25px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+    }
 </style>
+""", unsafe_allow_html=True)
+
+# Tambahkan floating particles
+st.markdown("""
+<div class="floating-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+</div>
 """, unsafe_allow_html=True)
 
 # ===========================================
@@ -189,7 +401,7 @@ GAS_DATABASE = {
         },
         "aplikasi": "Minuman berkarbonasi, pemadam kebakaran"
     },
-     "Neon (Ne)": {
+    "Neon (Ne)": {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
@@ -214,56 +426,56 @@ GAS_DATABASE = {
         },
         "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
     },
-      "Helium (He)": {
-    "icon": "🎚️",
-    "category": "Gas Monoatomik",
-    "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
-    "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "He",
-        "Massa Molar": "4.00 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-272.2 °C (0.95 K)",
-        "Titik Didih": "-268.93 °C (4.22 K)",
-        "Densitas (STP)": "0.18 g/L",
-        "Kalor Jenis": "5.19 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Asfiksia jika menggantikan oksigen",
-        "Penanganan": "Gunakan dalam ruang berventilasi"
-      }
+    "Helium (He)": {
+        "icon": "🎚️",
+        "category": "Gas Monoatomik",
+        "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
+        "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "He",
+                "Massa Molar": "4.00 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-272.2 °C (0.95 K)",
+                "Titik Didih": "-268.93 °C (4.22 K)",
+                "Densitas (STP)": "0.18 g/L",
+                "Kalor Jenis": "5.19 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Asfiksia jika menggantikan oksigen",
+                "Penanganan": "Gunakan dalam ruang berventilasi"
+            }
+        },
+        "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
     },
-    "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
+    "Argon (Ar)": {
+        "icon": "🔏",
+        "category": "Gas Monoatomik",
+        "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
+        "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "Ar",
+                "Massa Molar": "39.95 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-189.35 °C (83.8 K)",
+                "Titik Didih": "-185.85 °C (87.3 K)",
+                "Densitas (STP)": "1.78 g/L",
+                "Kalor Jenis": "0.52 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
+                "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
+            }
+        },
+        "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
     },
-     "Argon (Ar)": {
-    "icon": "🔏",
-    "category": "Gas Monoatomik",
-    "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
-    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "Ar",
-        "Massa Molar": "39.95 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-189.35 °C (83.8 K)",
-        "Titik Didih": "-185.85 °C (87.3 K)",
-        "Densitas (STP)": "1.78 g/L",
-        "Kalor Jenis": "0.52 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
-        "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
-      }
-    },
-    "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
-  },
 }
 
 # ===========================================
@@ -283,6 +495,20 @@ with st.sidebar:
         <small>ℹ️ Menggunakan persamaan gas ideal: PV=nRT (R=0.0821 L·atm/mol·K)</small>
     </div>
     """, unsafe_allow_html=True)
+
+# Fungsi untuk menerapkan background berdasarkan menu
+def apply_background(menu_name):
+    if menu_name == "🏠 Beranda":
+        st.markdown('<div class="beranda-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>', unsafe_allow_html=True)
+    elif menu_name == "🧮 Kalkulator Gas":
+        st.markdown('<div class="kalkulator-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>', unsafe_allow_html=True)
+    elif menu_name == "📚 Ensiklopedia Gas":
+        st.markdown('<div class="ensiklopedia-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>', unsafe_allow_html=True)
+    elif menu_name == "⚠️ Panduan Keselamatan":
+        st.markdown('<div class="keselamatan-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>', unsafe_allow_html=True)
+
+# Terapkan background sesuai menu yang dipilih
+apply_background(menu)
 
 # ===========================================
 # HALAMAN UTAMA (BERANDA)
@@ -368,21 +594,21 @@ if menu == "🏠 Beranda":
         </ol>
     </div>
     """, unsafe_allow_html=True)
-    
+
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
     # Header dengan animasi partikel
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
-                padding: 25px; 
-                border-radius: 15px;
+    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3);
+                 padding: 25px;
+                 border-radius: 15px;
                 margin-bottom: 30px;
                 position: relative;
                 overflow: hidden;">
         <h1 style="color: white; text-align: center; margin: 0; z-index: 2; position: relative;">
-              🧪✨ Kalkulator Gas Ideal ✨⚗️
+             🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;">
             <div class="particle" style="--size: 3px; --duration: 15s; --delay: 0s; --x: 20%; --y: 30%"></div>
@@ -489,9 +715,11 @@ elif menu == "🧮 Kalkulator Gas":
             with cols[0]:
                 st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
                 nama = st.text_input("Nama Gas", key="nama_massa", placeholder="Contoh: Oksigen", label_visibility="collapsed")
+
             with cols[1]:
                 st.markdown('<div class="input-label">Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa", step=0.1, format="%.2f", label_visibility="collapsed")
+
             with cols[2]:
                 st.markdown('<div class="input-label">Massa Molar (Mr)</div>', unsafe_allow_html=True)
                 mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.2f", label_visibility="collapsed")
@@ -499,7 +727,7 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n * mr 
+                massa = n * mr
                 
                 st.markdown(f"""
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
@@ -552,7 +780,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+                
             with col2:
                 st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -594,7 +822,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     V = V_input
-            
+                
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🎚️ Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
@@ -643,7 +871,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+                
             with col2:
                 st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -688,7 +916,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
+                
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🫙 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
@@ -761,7 +989,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
+                
             with col2:
                 st.markdown('<div class="input-label">Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -803,7 +1031,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     T = T_input
-            
+                
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("🧪 Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
@@ -941,6 +1169,7 @@ elif menu == "⚠️ Panduan Keselamatan":
         </div>
     </div>
     """, unsafe_allow_html=True)
+
     st.markdown("""
     <div class="card safety-card">
         <h3>🚨 Prosedur Darurat</h3>
