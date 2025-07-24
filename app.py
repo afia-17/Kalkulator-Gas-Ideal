@@ -85,6 +85,132 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    /* Animasi Partikel */
+    @keyframes float {
+        0% { transform: translate(0, 0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(var(--x-end), var(--y-end)); opacity: 0; }
+    }
+    
+    /* BERANDA - Laboratorium Futuristik */
+    .beranda-bg {
+        position: relative;
+        background: linear-gradient(135deg, rgba(13,71,161,0.15) 0%, rgba(33,150,243,0.1) 100%), 
+                    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0%, transparent 30%),
+                    radial-gradient(circle at 80% 70%, rgba(200,230,201,0.6) 0%, transparent 30%);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(33,150,243,0.3);
+        box-shadow: 0 8px 32px rgba(33,150,243,0.1);
+    }
+    .beranda-bg::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://i.imgur.com/J5qKZzL.png') no-repeat;
+        background-position: right bottom;
+        background-size: 30%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    /* KALKULATOR - Papan Sirkuit Molekuler */
+    .kalkulator-bg {
+        position: relative;
+        background: 
+            linear-gradient(135deg, rgba(255,152,0,0.08) 0%, rgba(255,235,59,0.05) 100%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%230d47a1" fill-opacity="0.2"/></svg>');
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255,152,0,0.2);
+        box-shadow: 0 8px 32px rgba(255,152,0,0.05);
+    }
+    .kalkulator-bg::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M20,20 L180,20 L180,180 L20,180 Z" stroke="%23FF9800" stroke-width="0.5" fill="none" stroke-dasharray="5,5"/></svg>');
+        opacity: 0.3;
+        z-index: 0;
+    }
+    
+    /* ENSIKLOPEDIA - Buku Kimia 3D */
+    .ensiklopedi-bg {
+        position: relative;
+        background: 
+            linear-gradient(135deg, rgba(76,175,80,0.08) 0%, rgba(139,195,74,0.05) 100%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" rx="5" fill="%234CAF50" fill-opacity="0.05" stroke="%234CAF50" stroke-width="0.3"/></svg>');
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(76,175,80,0.2);
+        box-shadow: 0 8px 32px rgba(76,175,80,0.05);
+    }
+    .ensiklopedi-bg::before {
+        content: "⚗️";
+        position: absolute;
+        font-size: 300px;
+        right: -50px;
+        bottom: -50px;
+        opacity: 0.03;
+        z-index: 0;
+        transform: rotate(15deg);
+    }
+    
+    /* KESELAMATAN - Peringatan Neon */
+    .safety-bg {
+        position: relative;
+        background: 
+            linear-gradient(135deg, rgba(244,67,54,0.08) 0%, rgba(239,83,80,0.05) 100%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><polygon points="30,0 60,60 0,60" fill="%23F44336" fill-opacity="0.05"/></svg>');
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(244,67,54,0.3);
+        box-shadow: 0 8px 32px rgba(244,67,54,0.1);
+        animation: pulse 8s infinite alternate;
+    }
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0px rgba(244,67,54,0.1); }
+        100% { box-shadow: 0 0 0 15px rgba(244,67,54,0); }
+    }
+    
+    /* TEKS YANG JELAS */
+    .content-layer {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* PARTIKEL INTERAKTIF */
+    .particle-container {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .particle {
+        position: absolute;
+        background: var(--color);
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        animation: float var(--duration) var(--delay) infinite linear;
+        filter: blur(1px);
+        opacity: 0.6;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
@@ -288,6 +414,15 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
+    st.markdown("""
+    <div class='beranda-bg'>
+        <div class='particle-container'>
+            <div class='particle' style='--size: 5px; --duration: 20s; --delay: 0s; --x-end: 100vw; --y-end: -100vh; --color: #2196F3;'></div>
+            <div class='particle' style='--size: 3px; --duration: 25s; --delay: 5s; --x-end: -100vw; --y-end: 100vh; --color: #0D47A1;'></div>
+        </div>
+        <div class='content-layer'>
+    """, unsafe_allow_html=True)
+    
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
@@ -366,6 +501,11 @@ if menu == "🏠 Beranda":
             <li>Pelajari <b>Panduan Keselamatan</b> sebelum bekerja dengan gas</li>
             <li>Pastikan satuan yang digunakan konsisten</li>
         </ol>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
