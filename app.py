@@ -85,63 +85,98 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ===========================================
+# CSS CUSTOM (Tambahkan bagian ini di bagian CSS yang sudah ada)
+# ===========================================
 st.markdown("""
 <style>
-    /* Background untuk Beranda */
-    .beranda-bg {
-        background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
-                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
+    /* Background untuk setiap menu */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     }
     
-    /* Background untuk Kalkulator */
-    .kalkulator-bg {
-        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
-                    url('https://images.unsplash.com/photo-1605034313761-73ea4a0cfbf3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
+    /* Background Beranda */
+    [data-testid="stAppViewContainer"] [data-testid="stHeader"] {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     }
     
-    /* Background untuk Ensiklopedia */
-    .ensiklopedi-bg {
-        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
-                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    /* Background Kalkulator Gas */
+    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
+        background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
-        padding: 30px;
+        color: white;
+        padding: 2rem;
         border-radius: 15px;
-        margin-bottom: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        margin-bottom: 2rem;
     }
     
-    /* Background untuk Keselamatan */
-    .safety-bg {
-        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
-                    url('https://images.unsplash.com/photo-1581093450021-4a7360e9a7d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    /* Background Ensiklopedia */
+    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                    url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
-        padding: 30px;
+        color: white;
+        padding: 2rem;
         border-radius: 15px;
-        margin-bottom: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        margin-bottom: 2rem;
+    }
+    
+    /* Background Panduan Keselamatan */
+    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                    url('https://images.unsplash.com/photo-1581093196277-1c6ddbba5e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        margin-bottom: 2rem;
+    }
+    
+    /* Efek glassmorphism untuk konten */
+    .main .block-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
     
     /* Memastikan teks tetap terbaca */
-    .beranda-bg h1, .beranda-bg h2, .beranda-bg h3, .beranda-bg p,
-    .kalkulator-bg h1, .kalkulator-bg h2, .kalkulator-bg h3, .kalkulator-bg p,
-    .ensiklopedi-bg h1, .ensiklopedi-bg h2, .ensiklopedi-bg h3, .ensiklopedi-bg p,
-    .safety-bg h1, .safety-bg h2, .safety-bg h3, .safety-bg p {
-        color: #333 !important;
-        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    .main-header {
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Efek hover untuk card */
+    .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* Animasi untuk background */
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Background animasi untuk Beranda */
+    [data-testid="stAppViewContainer"] > div:first-child {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
     }
 </style>
 """, unsafe_allow_html=True)
-
 # ===========================================
 # DATABASE GAS
 # ===========================================
