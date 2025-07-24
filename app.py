@@ -412,6 +412,17 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
+    st.markdown("""
+    <div class='beranda-bg'>
+        <div class="particle-container">
+            <div class="particle" style="--size: 40px; --duration: 20s; --delay: 0s; --x: 20%; --y: 30%; 
+                background-image: url('https://i.imgur.com/Jf5D3hQ.png')"></div>
+            <div class="particle" style="--size: 30px; --duration: 25s; --delay: 5s; --x: 70%; --y: 10%;
+                background-image: url('https://i.imgur.com/8nKfW3a.png')"></div>
+        </div>
+        <div class="content-wrapper">
+    """, unsafe_allow_html=True)
+
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
@@ -493,6 +504,7 @@ if menu == "🏠 Beranda":
     </div>
     """, unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div></div>", unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
