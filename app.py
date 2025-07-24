@@ -2,7 +2,7 @@
 # APLIKASI KALKULATOR GAS IDEAL + ENSIKLOPEDIA + PANDUAN KESELAMATAN
 # ===========================================
 import streamlit as st
-import math
+import base64
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -703,13 +703,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
-# KONSTANTA
-# ===========================================
-R_LITER_ATM = 0.08206  # L·atm/(mol·K)
-R_PASCAL = 8.314       # J/(mol·K)
-
-# ===========================================
-# DATABASE GAS LENGKAP
+# DATABASE GAS
 # ===========================================
 GAS_DATABASE = {
     "Hidrogen (H₂)": {
@@ -741,7 +735,7 @@ GAS_DATABASE = {
         "icon": "💨",
         "category": "Gas Diatomik",
         "description": "Gas vital untuk kehidupan dan pembakaran, menyusun 21% atmosfer Bumi.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/O2.jpg",
+        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/O2_-.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "O₂",
@@ -814,9 +808,9 @@ GAS_DATABASE = {
     },
     "Neon (Ne)": {
         "icon": "💡",
-        "category": "Gas Mulia",
-        "description": "Gas mulia yang dapat memancarkan cahaya oranye-merah saat dialiri listrik.",
-        "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/neon-atom-element-structure-58b82dc23df78c353cdaf542.jpg",
+        "category": "Gas Monoatomik",
+        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
+        "image": "https://png.pngtree.com/thumb_back/fh260/background/20220426/pngtree-mendeleevs-periodic-table-luminescent-noble-gases-chemical-symbol-chemical-science-photo-image_30134580.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "Ne",
@@ -839,9 +833,9 @@ GAS_DATABASE = {
     },
     "Helium (He)": {
         "icon": "🎈",
-        "category": "Gas Mulia",
-        "description": "Gas mulia paling ringan kedua, sangat stabil dan tidak mudah terbakar.",
-        "image": "https://www.thoughtco.com/thmb/BxnUK8w8vNvJvgJvKKrMJLJ3o9A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/helium-atom-element-structure-58b82dc23df78c353cdaf541.jpg",
+        "category": "Gas Monoatomik",
+        "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
+        "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "He",
@@ -857,16 +851,16 @@ GAS_DATABASE = {
             },
             "⚠️ Keselamatan": {
                 "Bahaya": "Asfiksia dalam konsentrasi tinggi",
-                "Penanganan": "Aman digunakan, tidak mudah terbakar"
+                "Penanganan": "Gunakan ventilasi baik, hindari inhalasi berlebihan"
             }
         },
-        "aplikasi": "Balon, pendingin MRI, atmosfer inert untuk pengelasan"
+        "aplikasi": "Balon, pendingin MRI, atmosfer inert"
     },
     "Argon (Ar)": {
-        "icon": "⚡",
-        "category": "Gas Mulia",
-        "description": "Gas mulia yang paling banyak di atmosfer setelah nitrogen dan oksigen (0.93%).",
-        "image": "https://www.thoughtco.com/thmb/kZJvKKrMJLJ3o9A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/argon-atom-element-structure-58b82dc23df78c353cdaf543.jpg",
+        "icon": "⚛️",
+        "category": "Gas Monoatomik",
+        "description": "Gas mulia ketiga paling melimpah di atmosfer Bumi, sangat inert dan stabil.",
+        "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "Ar",
@@ -875,23 +869,23 @@ GAS_DATABASE = {
                 "Struktur": "Monoatomik"
             },
             "⚛️ Sifat Fisika": {
-                "Titik Leleh": "-189.35 °C (83.8 K)",
+                "Titik Leleh": "-189.3 °C (83.85 K)",
                 "Titik Didih": "-185.85 °C (87.3 K)",
                 "Densitas (STP)": "1.784 g/L",
                 "Kalor Jenis": "0.520 J/(g·K)"
             },
             "⚠️ Keselamatan": {
                 "Bahaya": "Asfiksia dalam ruang tertutup",
-                "Penanganan": "Gunakan ventilasi yang memadai"
+                "Penanganan": "Gunakan ventilasi memadai"
             }
         },
-        "aplikasi": "Pengelasan, lampu pijar, atmosfer inert"
+        "aplikasi": "Pengelasan, lampu pijar, penelitian laboratorium"
     },
     "Metana (CH₄)": {
         "icon": "🔥",
-        "category": "Hidrokarbon",
-        "description": "Hidrokarbon paling sederhana, komponen utama gas alam.",
-        "image": "https://www.chemtube3d.com/images/gallery/organicsjpgs/methane.jpg",
+        "category": "Gas Organik",
+        "description": "Gas alam utama, hidrokarbon paling sederhana dan bahan bakar penting.",
+        "image": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800",
         "properties": {
             "🧪 Identitas Molekul": {
                 "Rumus": "CH₄",
@@ -901,768 +895,636 @@ GAS_DATABASE = {
             },
             "⚛️ Sifat Fisika": {
                 "Titik Leleh": "-182.5 °C (90.65 K)",
-                "Titik Didih": "-161.6 °C (111.55 K)",
+                "Titik Didih": "-161.5 °C (111.65 K)",
                 "Densitas (STP)": "0.717 g/L",
-                "Kalor Jenis": "2.200 J/(g·K)"
+                "Kalor Jenis": "2.220 J/(g·K)"
             },
             "⚠️ Keselamatan": {
                 "Bahaya": "Sangat mudah terbakar (5-15% di udara)",
-                "Penanganan": "Hindari sumber api, gunakan di area berventilasi"
+                "Penanganan": "Hindari percikan api dan sumber panas"
             }
         },
-        "aplikasi": "Bahan bakar, pemanas, bahan baku petrokimia"
-    },
-    "Amonia (NH₃)": {
-        "icon": "🧪",
-        "category": "Senyawa Nitrogen",
-        "description": "Gas dengan bau menyengat, penting dalam industri pupuk.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/NH3.jpg",
-        "properties": {
-            "🧪 Identitas Molekul": {
-                "Rumus": "NH₃",
-                "Massa Molar": "17.03 g/mol",
-                "Penampilan": "Gas tak berwarna, bau menyengat",
-                "Struktur": "Piramidal trigonal"
-            },
-            "⚛️ Sifat Fisika": {
-                "Titik Leleh": "-77.73 °C (195.42 K)",  
-                "Titik Didih": "-33.34 °C (239.81 K)",
-                "Densitas (STP)": "0.771 g/L",
-                "Kalor Jenis": "2.175 J/(g·K)"
-            },
-            "⚠️ Keselamatan": {
-                "Bahaya": "Korosif, iritasi mata dan saluran pernapasan",
-                "Penanganan": "Gunakan APD lengkap, ventilasi baik"
-            }
-        },
-        "aplikasi": "Pupuk, pendingin, pembersih"
-    },
-    "Klorin (Cl₂)": {
-        "icon": "☠️",
-        "category": "Halogen",
-        "description": "Gas berwarna kuning-hijau dengan bau menyengat, beracun.",
-        "image": "https://www.chemtube3d.com/images/gallery/inorganicsjpgs/Cl2.jpg",
-        "properties": {
-            "🧪 Identitas Molekul": {
-                "Rumus": "Cl₂",
-                "Massa Molar": "70.91 g/mol",
-                "Penampilan": "Gas kuning-hijau, bau menyengat",
-                "Struktur": "Diatomik"
-            },
-            "⚛️ Sifat Fisika": {
-                "Titik Leleh": "-101.5 °C (171.65 K)",
-                "Titik Didih": "-34.04 °C (239.11 K)",
-                "Densitas (STP)": "3.214 g/L",
-                "Kalor Jenis": "0.479 J/(g·K)"
-            },
-            "⚠️ Keselamatan": {
-                "Bahaya": "Sangat beracun, korosif terhadap logam",
-                "Penanganan": "Gunakan masker gas, ventilasi ekstrim"
-            }
-        },
-        "aplikasi": "Disinfektan air, pemutih, industri plastik PVC"
+        "aplikasi": "Bahan bakar, produksi hidrogen, petrokimia"
     }
 }
 
 # ===========================================
-# FUNGSI UTILITAS
+# FUNGSI PERHITUNGAN GAS IDEAL
 # ===========================================
-def calculate_ideal_gas(P=None, V=None, n=None, T=None, R=R_LITER_ATM):
+def hitung_gas_ideal(diketahui, nilai_diketahui, dicari):
     """
-    Menghitung parameter gas ideal menggunakan PV = nRT
+    Menghitung besaran gas ideal menggunakan persamaan PV = nRT
+    R = 0.08206 L·atm/(mol·K) atau 8.314 J/(mol·K)
     """
-    if P is not None and V is not None and n is not None:
-        T_calc = (P * V) / (n * R)
-        return {"T": T_calc, "unit": "K"}
-    elif P is not None and V is not None and T is not None:
-        n_calc = (P * V) / (R * T)
-        return {"n": n_calc, "unit": "mol"}
-    elif P is not None and n is not None and T is not None:
-        V_calc = (n * R * T) / P
-        return {"V": V_calc, "unit": "L"}
-    elif V is not None and n is not None and T is not None:
-        P_calc = (n * R * T) / V
-        return {"P": P_calc, "unit": "atm"}
-    else:
-        return None
+    R = 0.08206  # L·atm/(mol·K)
+    
+    hasil = {}
+    
+    # Konversi input ke unit standar jika diperlukan
+    if "P" in diketahui and "atm" not in str(nilai_diketahui["P"]):
+        # Konversi dari bar, Pa, dll ke atm jika diperlukan
+        pass
+    
+    if dicari == "massa":
+        # Hitung mol terlebih dahulu menggunakan PV = nRT
+        # n = PV/RT
+        P = nilai_diketahui["P"]
+        V = nilai_diketahui["V"] 
+        T = nilai_diketahui["T"] + 273.15  # Konversi ke Kelvin
+        MM = nilai_diketahui["MM"]
+        
+        n = (P * V) / (R * T)
+        massa = n * MM
+        
+        hasil["mol"] = round(n, 6)
+        hasil["massa"] = round(massa, 4)
+        hasil["rumus"] = "m = n × MM = (PV/RT) × MM"
+        hasil["substitusi"] = f"m = ({P} × {V})/(0.08206 × {T:.2f}) × {MM}"
+        
+    elif dicari == "tekanan":
+        # P = nRT/V atau P = (m/MM)RT/V
+        if "massa" in diketahui:
+            m = nilai_diketahui["massa"]
+            MM = nilai_diketahui["MM"]
+            n = m / MM
+        else:
+            n = nilai_diketahui["n"]
+            
+        V = nilai_diketahui["V"]
+        T = nilai_diketahui["T"] + 273.15
+        
+        P = (n * R * T) / V
+        
+        hasil["tekanan"] = round(P, 4)
+        hasil["rumus"] = "P = nRT/V"
+        hasil["substitusi"] = f"P = ({n:.4f} × 0.08206 × {T:.2f})/{V}"
+        
+    elif dicari == "volume":
+        # V = nRT/P
+        if "massa" in diketahui:
+            m = nilai_diketahui["massa"]
+            MM = nilai_diketahui["MM"]
+            n = m / MM
+        else:
+            n = nilai_diketahui["n"]
+            
+        P = nilai_diketahui["P"]
+        T = nilai_diketahui["T"] + 273.15
+        
+        V = (n * R * T) / P
+        
+        hasil["volume"] = round(V, 4)
+        hasil["rumus"] = "V = nRT/P"
+        hasil["substitusi"] = f"V = ({n:.4f} × 0.08206 × {T:.2f})/{P}"
+        
+    elif dicari == "mol":
+        # n = PV/RT
+        P = nilai_diketahui["P"]
+        V = nilai_diketahui["V"]
+        T = nilai_diketahui["T"] + 273.15
+        
+        n = (P * V) / (R * T)
+        
+        hasil["mol"] = round(n, 6)
+        hasil["rumus"] = "n = PV/RT"
+        hasil["substitusi"] = f"n = ({P} × {V})/(0.08206 × {T:.2f})"
+    
+    return hasil
 
-def kelvin_to_celsius(K):
-    return K - 273.15
+# ===========================================
+# FUNGSI UTAMA APLIKASI
+# ===========================================
+def main():
+    # Header Utama dengan Background Dinamis
+    current_page = st.session_state.get('current_page', 'Beranda')
+    
+    # Set background sesuai halaman
+    if current_page == 'Beranda':
+        st.markdown('<div class="beranda-bg"></div>', unsafe_allow_html=True)
+    elif current_page == 'Kalkulator Gas':
+        st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
+    elif current_page == 'Ensiklopedia Gas':
+        st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
+    elif current_page == 'Panduan Keselamatan':
+        st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
+    
+    # Header utama
+    st.markdown("""
+    <div class="main-header">
+        <h1 style="text-align: center; font-size: 3.5rem; margin: 0;">
+            ⚗️ ChemGasMaster 🧪
+        </h1>
+        <h3 style="text-align: center; color: #666; margin-top: 15px; font-weight: 300;">
+            🔬 Kalkulator Gas Ideal, Ensiklopedia & Panduan Keselamatan 🔬
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
 
-def celsius_to_kelvin(C):
-    return C + 273.15
-
-def convert_units(value, from_unit, to_unit, unit_type):
-    """Konversi unit untuk berbagai jenis pengukuran"""
-    conversions = {
-        "pressure": {
-            "atm": 1,
-            "Pa": 101325,
-            "kPa": 101.325,
-            "mmHg": 760,
-            "bar": 1.01325
-        },
-        "volume": {
-            "L": 1,
-            "mL": 1000,
-            "m³": 0.001,
-            "cm³": 1000
-        },
-        "temperature": {
-            "K": 1,
-            "°C": 1,  # Special handling needed
-            "°F": 1   # Special handling needed
-        }
+    # Sidebar untuk navigasi
+    st.sidebar.title("🧭 Menu Navigasi")
+    st.sidebar.markdown("---")
+    
+    menu_options = {
+        "🏠 Beranda": "Beranda",
+        "🧮 Kalkulator Gas": "Kalkulator Gas", 
+        "📚 Ensiklopedia Gas": "Ensiklopedia Gas",
+        "⚠️ Panduan Keselamatan": "Panduan Keselamatan"
     }
     
-    if unit_type == "temperature":
-        if from_unit == "°C" and to_unit == "K":
-            return celsius_to_kelvin(value)
-        elif from_unit == "K" and to_unit == "°C":
-            return kelvin_to_celsius(value)
+    selected = st.sidebar.radio("Pilih Menu:", list(menu_options.keys()))
+    current_page = menu_options[selected]
+    st.session_state['current_page'] = current_page
+    
+    # =======================================
+    # HALAMAN BERANDA
+    # =======================================
+    if current_page == "Beranda":
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        
+        st.markdown("## 🎯 Selamat Datang di ChemGasMaster!")
+        
+        st.markdown("""
+        ### 🧪 Tentang Aplikasi
+        
+        **ChemGasMaster** adalah aplikasi komprehensif untuk:
+        - 🧮 **Perhitungan Gas Ideal** menggunakan persamaan PV = nRT
+        - 📚 **Ensiklopedia Gas** dengan database lengkap sifat-sifat gas
+        - ⚠️ **Panduan Keselamatan** untuk penanganan gas berbahaya
+        
+        ### ⚛️ Persamaan Gas Ideal
+        
+        **PV = nRT**
+        
+        Dimana:
+        - **P** = Tekanan (atm)
+        - **V** = Volume (L) 
+        - **n** = Jumlah mol (mol)
+        - **R** = Konstanta gas ideal (0.08206 L·atm/mol·K)
+        - **T** = Suhu (K)
+        """)
+        
+        # Contoh perhitungan
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
+            st.markdown("### 📊 Contoh Perhitungan")
+            st.markdown("""
+            **Soal:** Berapa volume 2 mol gas pada 25°C dan 1 atm?
+            
+            **Penyelesaian:**
+            - n = 2 mol
+            - T = 25°C = 298.15 K  
+            - P = 1 atm
+            - R = 0.08206 L·atm/mol·K
+            
+            V = nRT/P = (2 × 0.08206 × 298.15)/1 = **48.9 L**
+            """)
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
+            st.markdown("### 🔄 Konversi Suhu")
+            st.markdown("""
+            **Celsius ke Kelvin:**
+            K = °C + 273.15
+            
+            **Kelvin ke Celsius:**  
+            °C = K - 273.15
+            
+            **Contoh:**
+            25°C = 25 + 273.15 = **298.15 K**
+            """)
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # =======================================
+    # HALAMAN KALKULATOR GAS
+    # =======================================
+    elif current_page == "Kalkulator Gas":
+        st.markdown("## 🧮 Kalkulator Gas Ideal")
+        
+        tab1, tab2, tab3, tab4 = st.tabs([
+            "🏋️ Hitung Massa", 
+            "🎈 Hitung Tekanan",
+            "📏 Hitung Volume", 
+            "⚗️ Hitung Mol"
+        ])
+        
+        with tab1:
+            st.markdown('<div class="tab-container calc-card">', unsafe_allow_html=True)
+            st.markdown("### 🏋️ Menghitung Massa Gas")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                P_massa = st.number_input("Tekanan (atm)", value=1.0, min_value=0.001, key="p_massa")
+                V_massa = st.number_input("Volume (L)", value=22.4, min_value=0.001, key="v_massa")
+            with col2:
+                T_massa = st.number_input("Suhu (°C)", value=25.0, key="t_massa")
+                MM_massa = st.number_input("Massa Molar (g/mol)", value=28.0, min_value=0.001, key="mm_massa")
+            
+            if st.button("🧮 Hitung Massa", key="btn_massa"):
+                nilai_input = {
+                    "P": P_massa,
+                    "V": V_massa, 
+                    "T": T_massa,
+                    "MM": MM_massa
+                }
+                
+                hasil = hitung_gas_ideal(["P", "V", "T", "MM"], nilai_input, "massa")
+                
+                st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                st.markdown("### 🎯 Hasil Perhitungan")
+                st.success(f"**Jumlah mol:** {hasil['mol']} mol")
+                st.success(f"**Massa gas:** {hasil['massa']} gram")
+                
+                st.markdown("#### 📝 Langkah Perhitungan:")
+                st.info(f"**Rumus:** {hasil['rumus']}")
+                st.info(f"**Substitusi:** {hasil['substitusi']}")
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with tab2:
+            st.markdown('<div class="tab-container calc-card">', unsafe_allow_html=True)
+            st.markdown("### 🎈 Menghitung Tekanan Gas")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                massa_P = st.number_input("Massa (gram)", value=10.0, min_value=0.001, key="massa_p")
+                MM_P = st.number_input("Massa Molar (g/mol)", value=28.0, min_value=0.001, key="mm_p")
+            with col2:
+                V_P = st.number_input("Volume (L)", value=5.0, min_value=0.001, key="v_p")
+                T_P = st.number_input("Suhu (°C)", value=25.0, key="t_p")
+            
+            if st.button("🧮 Hitung Tekanan", key="btn_tekanan"):
+                nilai_input = {
+                    "massa": massa_P,
+                    "MM": MM_P,
+                    "V": V_P,
+                    "T": T_P
+                }
+                
+                hasil = hitung_gas_ideal(["massa", "MM", "V", "T"], nilai_input, "tekanan")
+                
+                st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                st.markdown("### 🎯 Hasil Perhitungan")
+                st.success(f"**Tekanan gas:** {hasil['tekanan']} atm")
+                
+                st.markdown("#### 📝 Langkah Perhitungan:")
+                st.info(f"**Rumus:** {hasil['rumus']}")
+                st.info(f"**Substitusi:** {hasil['substitusi']}")
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with tab3:
+            st.markdown('<div class="tab-container calc-card">', unsafe_allow_html=True)
+            st.markdown("### 📏 Menghitung Volume Gas")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                n_V = st.number_input("Jumlah mol", value=1.0, min_value=0.001, key="n_v")
+                T_V = st.number_input("Suhu (°C)", value=25.0, key="t_v")
+            with col2:
+                P_V = st.number_input("Tekanan (atm)", value=1.0, min_value=0.001, key="p_v")
+            
+            if st.button("🧮 Hitung Volume", key="btn_volume"):
+                nilai_input = {
+                    "n": n_V,
+                    "T": T_V,
+                    "P": P_V
+                }
+                
+                hasil = hitung_gas_ideal(["n", "T", "P"], nilai_input, "volume")
+                
+                st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                st.markdown("### 🎯 Hasil Perhitungan")  
+                st.success(f"**Volume gas:** {hasil['volume']} L")
+                
+                st.markdown("#### 📝 Langkah Perhitungan:")
+                st.info(f"**Rumus:** {hasil['rumus']}")
+                st.info(f"**Substitusi:** {hasil['substitusi']}")
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with tab4:
+            st.markdown('<div class="tab-container calc-card">', unsafe_allow_html=True)
+            st.markdown("### ⚗️ Menghitung Jumlah Mol")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                P_mol = st.number_input("Tekanan (atm)", value=1.0, min_value=0.001, key="p_mol")
+                V_mol = st.number_input("Volume (L)", value=22.4, min_value=0.001, key="v_mol")
+            with col2:
+                T_mol = st.number_input("Suhu (°C)", value=0.0, key="t_mol")
+            
+            if st.button("🧮 Hitung Mol", key="btn_mol"):
+                nilai_input = {
+                    "P": P_mol,
+                    "V": V_mol,
+                    "T": T_mol
+                }
+                
+                hasil = hitung_gas_ideal(["P", "V", "T"], nilai_input, "mol")
+                
+                st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                st.markdown("### 🎯 Hasil Perhitungan")
+                st.success(f"**Jumlah mol:** {hasil['mol']} mol")
+                
+                st.markdown("#### 📝 Langkah Perhitungan:")
+                st.info(f"**Rumus:** {hasil['rumus']}")
+                st.info(f"**Substitusi:** {hasil['substitusi']}")
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+    
+    # =======================================
+    # HALAMAN ENSIKLOPEDIA GAS
+    # =======================================
+    elif current_page == "Ensiklopedia Gas":
+        st.markdown("## 📚 Ensiklopedia Gas")
+        
+        # Filter berdasarkan kategori
+        categories = ["Semua"] + list(set([gas_data["category"] for gas_data in GAS_DATABASE.values()]))
+        selected_category = st.selectbox("🔍 Filter berdasarkan kategori:", categories)
+        
+        # Filter gas berdasarkan kategori
+        if selected_category == "Semua":
+            filtered_gases = GAS_DATABASE
         else:
-            return value
-    else:
-        return value * conversions[unit_type][to_unit] / conversions[unit_type][from_unit]
-
-# ===========================================
-# SIDEBAR MENU
-# ===========================================
-st.sidebar.title("🧪 ChemGasMaster")
-st.sidebar.markdown("---")
-
-# Menu selection
-menu = st.sidebar.selectbox(
-    "🔬 Pilih Menu:",
-    ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
-)
-
-# ===========================================
-# HALAMAN BERANDA
-# ===========================================
-if menu == "🏠 Beranda":
-    # Add background class
-    st.markdown('<div class="beranda-bg"></div>', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="main-header">🧪 ChemGasMaster - Portal Kimia Gas</h1>', unsafe_allow_html=True)
-    
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.markdown("""
-        <div class="card">
-            <h2>🎯 Selamat Datang di ChemGasMaster!</h2>
-            <p style="font-size: 18px; line-height: 1.8;">
-            <strong>ChemGasMaster</strong> adalah aplikasi web interaktif yang dirancang untuk membantu 
-            mahasiswa, peneliti, dan profesional dalam mempelajari dan menghitung properti gas ideal. 
-            Aplikasi ini menggabungkan teori kimia dengan teknologi modern untuk memberikan pengalaman 
-            belajar yang optimal.
-            </p>
-            
-            <h3>🚀 Fitur Unggulan:</h3>
-            <ul style="font-size: 16px; line-height: 1.6;">
-                <li><strong>🧮 Kalkulator Gas Ideal:</strong> Hitung PV, nRT dengan mudah dan akurat</li>
-                <li><strong>📚 Ensiklopedia Gas:</strong> Database lengkap berbagai jenis gas</li>
-                <li><strong>⚠️ Panduan Keselamatan:</strong> Informasi keselamatan laboratorium</li>
-                <li><strong>🎨 Interface Modern:</strong> Desain responsif dan user-friendly</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+            filtered_gases = {name: data for name, data in GAS_DATABASE.items() 
+                            if data["category"] == selected_category}
         
-        st.markdown("""
-        <div class="card">
-            <h3>📐 Persamaan Gas Ideal</h3>
-            <div style="text-align: center; font-size: 24px; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 15px;">
-                <strong>PV = nRT</strong>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                <div><strong>P</strong> = Tekanan (atm, Pa, mmHg)</div>
-                <div><strong>V</strong> = Volume (L, mL, m³)</div>
-                <div><strong>n</strong> = Jumlah mol (mol)</div>
-                <div><strong>R</strong> = Konstanta gas (0.08206 L·atm/mol·K)</div>
-                <div><strong>T</strong> = Suhu (K, °C)</div>
-                <div></div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("""
-        <div class="card">
-            <h3>📊 Statistik Aplikasi</h3>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #2196f3; font-weight: bold;">10+</div>
-                <div>Jenis Gas dalam Database</div>
-                <hr>
-                <div style="font-size: 2rem; color: #4caf50; font-weight: bold;">4</div>
-                <div>Mode Kalkulasi</div>
-                <hr>
-                <div style="font-size: 2rem; color: #ff9800; font-weight: bold;">∞</div>
-                <div>Kemungkinan Perhitungan</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        # Tampilkan gas dalam grid
+        gases_per_row = 2
+        gas_names = list(filtered_gases.keys())
         
-        st.markdown("""
-        <div class="card">
-            <h3>🎓 Tips Penggunaan</h3>
-            <ol style="font-size: 14px; line-height: 1.6;">
-                <li>Pastikan menggunakan unit yang konsisten</li>
-                <li>Selalu konversi suhu ke Kelvin untuk perhitungan</li>
-                <li>Periksa kondisi STP (0°C, 1 atm) jika diperlukan</li>
-                <li>Gunakan panduan keselamatan sebelum eksperimen</li>
-            </ol>
-        </div>
-        """, unsafe_allow_html=True)
-
-# ===========================================
-# HALAMAN KALKULATOR GAS
-# ===========================================
-elif menu == "🧮 Kalkulator Gas":
-    # Add background class
-    st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="main-header">🧮 Kalkulator Gas Ideal</h1>', unsafe_allow_html=True)
-    
-    # Tabs untuk berbagai mode kalkulasi
-    tab1, tab2, tab3, tab4 = st.tabs(["🔍 Hitung Tekanan", "📏 Hitung Volume", "🧪 Hitung Mol", "🌡️ Hitung Suhu"])
-    
-    with tab1:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("📊 Perhitungan Tekanan Gas")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown('<div class="calc-card">', unsafe_allow_html=True)
-            st.markdown("#### 📝 Input Parameter")
+        for i in range(0, len(gas_names), gases_per_row):
+            cols = st.columns(gases_per_row)
             
-            V_input = st.number_input("Volume (L)", min_value=0.001, value=22.4, format="%.3f")
-            n_input = st.number_input("Jumlah mol (mol)", min_value=0.001, value=1.0, format="%.3f")
-            T_input_C = st.number_input("Suhu (°C)", value=0.0, format="%.2f")
-            
-            T_input_K = celsius_to_kelvin(T_input_C)
-            
-            if st.button("🔍 Hitung Tekanan", key="calc_P"):
-                result = calculate_ideal_gas(V=V_input, n=n_input, T=T_input_K)
-                if result:
-                    P_calc = result["P"]
-                    st.session_state.pressure_result = P_calc
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown('<div class="result-card">', unsafe_allow_html=True)
-            st.markdown("#### 📈 Hasil Perhitungan")
-            
-            if 'pressure_result' in st.session_state:
-                P = st.session_state.pressure_result
-                
-                st.success(f"✅ **Tekanan = {P:.4f} atm**")
-                
-                # Konversi ke unit lain
-                st.markdown("**🔄 Konversi Unit:**")
-                st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
-                st.write(f"• **Pascal (Pa):** {P * 101325:.2f} Pa")
-                st.write(f"• **mmHg:** {P * 760:.2f} mmHg") 
-                st.write(f"• **kPa:** {P * 101.325:.2f} kPa")
-                st.write(f"• **bar:** {P * 1.01325:.4f} bar")
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Interpretasi hasil
-                if P < 0.1:
-                    st.info("💡 Tekanan sangat rendah - kondisi vakum tinggi")
-                elif P > 10:
-                    st.warning("⚠️ Tekanan tinggi - gunakan peralatan tahan tekanan")
-                else:
-                    st.info("✅ Tekanan dalam rentang normal")
-            else:
-                st.info("👆 Masukkan parameter dan klik tombol hitung")
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab2:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("📏 Perhitungan Volume Gas")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown('<div class="calc-card">', unsafe_allow_html=True)
-            st.markdown("#### 📝 Input Parameter")
-            
-            P_input = st.number_input("Tekanan (atm)", min_value=0.001, value=1.0, format="%.3f")
-            n_input_v = st.number_input("Jumlah mol (mol)", min_value=0.001, value=1.0, format="%.3f", key="n_vol")
-            T_input_C_v = st.number_input("Suhu (°C)", value=0.0, format="%.2f", key="T_vol")
-            
-            T_input_K_v = celsius_to_kelvin(T_input_C_v)
-            
-            if st.button("📏 Hitung Volume", key="calc_V"):
-                result = calculate_ideal_gas(P=P_input, n=n_input_v, T=T_input_K_v)
-                if result:
-                    V_calc = result["V"]
-                    st.session_state.volume_result = V_calc
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown('<div class="result-card">', unsafe_allow_html=True)
-            st.markdown("#### 📈 Hasil Perhitungan")
-            
-            if 'volume_result' in st.session_state:
-                V = st.session_state.volume_result
-                
-                st.success(f"✅ **Volume = {V:.4f} L**")
-                
-                # Konversi ke unit lain
-                st.markdown("**🔄 Konversi Unit:**")
-                st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
-                st.write(f"• **Mililiter (mL):** {V * 1000:.2f} mL")
-                st.write(f"• **Meter kubik (m³):** {V * 0.001:.6f} m³") 
-                st.write(f"• **Sentimeter kubik (cm³):** {V * 1000:.2f} cm³")
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Interpretasi hasil
-                if V < 1:
-                    st.info("💡 Volume kecil - cocok untuk eksperimen skala laboratorium")
-                elif V > 100:
-                    st.warning("⚠️ Volume besar - pastikan ruangan memadai")
-                else:
-                    st.info("✅ Volume dalam rentang normal")
-            else:
-                st.info("👆 Masukkan parameter dan klik tombol hitung")
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab3:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("🧪 Perhitungan Jumlah Mol")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown('<div class="calc-card">', unsafe_allow_html=True)
-            st.markdown("#### 📝 Input Parameter")
-            
-            P_input_n = st.number_input("Tekanan (atm)", min_value=0.001, value=1.0, format="%.3f", key="P_mol")
-            V_input_n = st.number_input("Volume (L)", min_value=0.001, value=22.4, format="%.3f", key="V_mol")
-            T_input_C_n = st.number_input("Suhu (°C)", value=0.0, format="%.2f", key="T_mol")
-            
-            T_input_K_n = celsius_to_kelvin(T_input_C_n)
-            
-            if st.button("🧪 Hitung Mol", key="calc_n"):
-                result = calculate_ideal_gas(P=P_input_n, V=V_input_n, T=T_input_K_n)
-                if result:
-                    n_calc = result["n"]
-                    st.session_state.mol_result = n_calc
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown('<div class="result-card">', unsafe_allow_html=True)
-            st.markdown("#### 📈 Hasil Perhitungan")
-            
-            if 'mol_result' in st.session_state:
-                n = st.session_state.mol_result
-                
-                st.success(f"✅ **Jumlah mol = {n:.6f} mol**")
-                
-                # Konversi ke unit lain
-                st.markdown("**🔄 Konversi Unit:**")
-                st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
-                st.write(f"• **Milimol (mmol):** {n * 1000:.3f} mmol")
-                st.write(f"• **Mikromol (μmol):** {n * 1000000:.1f} μmol")
-                st.write(f"• **Molekul:** {n * 6.022e23:.2e} molekul")
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Interpretasi hasil
-                if n < 0.001:
-                    st.info("💡 Jumlah mol sangat kecil - eksperimen mikro")
-                elif n > 10:
-                    st.warning("⚠️ Jumlah mol besar - pastikan keamanan")
-                else:
-                    st.info("✅ Jumlah mol dalam rentang normal")
-            else:
-                st.info("👆 Masukkan parameter dan klik tombol hitung")
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab4:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("🌡️ Perhitungan Suhu Gas")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown('<div class="calc-card">', unsafe_allow_html=True)
-            st.markdown("#### 📝 Input Parameter")
-            
-            P_input_t = st.number_input("Tekanan (atm)", min_value=0.001, value=1.0, format="%.3f", key="P_temp")
-            V_input_t = st.number_input("Volume (L)", min_value=0.001, value=22.4, format="%.3f", key="V_temp")
-            n_input_t = st.number_input("Jumlah mol (mol)", min_value=0.001, value=1.0, format="%.3f", key="n_temp")
-            
-            if st.button("🌡️ Hitung Suhu", key="calc_T"):
-                result = calculate_ideal_gas(P=P_input_t, V=V_input_t, n=n_input_t)
-                if result:
-                    T_calc = result["T"]
-                    st.session_state.temp_result = T_calc
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown('<div class="result-card">', unsafe_allow_html=True)
-            st.markdown("#### 📈 Hasil Perhitungan")
-            
-            if 'temp_result' in st.session_state:
-                T_K = st.session_state.temp_result
-                T_C = kelvin_to_celsius(T_K)
-                
-                st.success(f"✅ **Suhu = {T_K:.2f} K**")
-                
-                # Konversi ke unit lain
-                st.markdown("**🔄 Konversi Unit:**")
-                st.markdown('<div class="conversion-box">', unsafe_allow_html=True)
-                st.write(f"• **Celsius (°C):** {T_C:.2f} °C")
-                st.write(f"• **Fahrenheit (°F):** {(T_C * 9/5) + 32:.2f} °F")
-                st.write(f"• **Rankine (°R):** {T_K * 9/5:.2f} °R")
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Interpretasi hasil
-                if T_K < 273.15:
-                    st.warning("❄️ Suhu di bawah titik beku air")
-                elif T_K > 373.15:
-                    st.warning("🔥 Suhu di atas titik didih air")
-                else:
-                    st.info("✅ Suhu dalam rentang normal air cair")
-            else:
-                st.info("👆 Masukkan parameter dan klik tombol hitung")
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-
-# ===========================================
-# HALAMAN ENSIKLOPEDIA GAS
-# ===========================================
-elif menu == "📚 Ensiklopedia Gas":
-    # Add background class
-    st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="main-header">📚 Ensiklopedia Gas</h1>', unsafe_allow_html=True)
-    
-    # Filter berdasarkan kategori
-    categories = ["Semua"] + list(set([gas_data["category"] for gas_data in GAS_DATABASE.values()]))
-    selected_category = st.selectbox("🔍 Filter berdasarkan kategori:", categories)
-    
-    # Filter gas berdasarkan kategori
-    if selected_category == "Semua":
-        filtered_gases = GAS_DATABASE
-    else:
-        filtered_gases = {name: data for name, data in GAS_DATABASE.items() if data["category"] == selected_category}
-    
-    # Grid layout untuk menampilkan gas
-    gas_names = list(filtered_gases.keys())
-    
-    for i in range(0, len(gas_names), 2):
-        cols = st.columns(2)
-        
-        for j, col in enumerate(cols):
-            if i + j < len(gas_names):
-                gas_name = gas_names[i + j]
-                gas_data = filtered_gases[gas_name]
-                
-                with col:
-                    st.markdown('<div class="gas-card">', unsafe_allow_html=True)
+            for j, col in enumerate(cols):
+                if i + j < len(gas_names):
+                    gas_name = gas_names[i + j]
+                    gas_info = filtered_gases[gas_name]
                     
-                    # Header gas
+                    with col:
+                        st.markdown('<div class="gas-card">', unsafe_allow_html=True)
+                        
+                        # Header gas
+                        st.markdown(f"""
+                        ### {gas_info['icon']} {gas_name}
+                        **Kategori:** {gas_info['category']}
+                        """)
+                        
+                        # Deskripsi
+                        st.markdown(f"**Deskripsi:** {gas_info['description']}")
+                        
+                        # Gambar (jika ada)
+                        if gas_info.get('image'):
+                            st.image(gas_info['image'], width=300)
+                        
+                        # Tampilkan properti dalam expander
+                        with st.expander("🔬 Lihat Detail Properti"):
+                            for category, props in gas_info['properties'].items():
+                                st.markdown(f"#### {category}")
+                                
+                                # Buat tabel properti
+                                st.markdown('<table class="property-table">', unsafe_allow_html=True)
+                                st.markdown('<tr><th>Properti</th><th>Nilai</th></tr>', unsafe_allow_html=True)
+                                
+                                for prop, value in props.items():
+                                    st.markdown(f'<tr><td><strong>{prop}</strong></td><td>{value}</td></tr>', 
+                                              unsafe_allow_html=True)
+                                
+                                st.markdown('</table>', unsafe_allow_html=True)
+                                st.markdown("---")
+                        
+                        # Aplikasi
+                        st.markdown(f"**🏭 Aplikasi:** {gas_info['aplikasi']}")
+                        
+                        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # =======================================
+    # HALAMAN PANDUAN KESELAMATAN
+    # =======================================
+    elif current_page == "Panduan Keselamatan":
+        st.markdown("## ⚠️ Panduan Keselamatan Laboratorium")
+        
+        tab1, tab2, tab3 = st.tabs([
+            "⚠️ Simbol Bahaya",
+            "🛡️ Alat Pelindung", 
+            "🚨 Prosedur Darurat"
+        ])
+        
+        with tab1:
+            st.markdown('<div class="tab-container safety-card">', unsafe_allow_html=True)
+            st.markdown("### ⚠️ Simbol-Simbol Bahaya Kimia")
+            
+            hazard_symbols = {
+                "💥": {
+                    "nama": "Eksplosif",
+                    "bahaya": "Dapat meledak dengan adanya panas, percikan, gesekan, atau benturan",
+                    "contoh": "TNT, nitrogliserin, amonium nitrat",
+                    "pencegahan": "Hindari panas, gesekan, benturan, dan percikan api"
+                },
+                "🔥": {
+                    "nama": "Mudah Terbakar", 
+                    "bahaya": "Dapat terbakar dengan mudah pada suhu kamar",
+                    "contoh": "Alkohol, bensin, aseton",
+                    "pencegahan": "Jauhkan dari sumber panas, percikan api, dan permukaan panas"
+                },
+                "🧪": {
+                    "nama": "Korosif",
+                    "bahaya": "Dapat menyebabkan luka bakar pada kulit dan kerusakan pada mata",
+                    "contoh": "Asam sulfat, natrium hidroksida",
+                    "pencegahan": "Gunakan sarung tangan dan pelindung mata"
+                },
+                "☠️": {
+                    "nama": "Beracun",
+                    "bahaya": "Dapat menyebabkan keracunan serius atau kematian",
+                    "contoh": "Merkuri, sianida, pestisida",
+                    "pencegahan": "Hindari kontak langsung dan inhalasi"
+                },
+                "⚡": {
+                    "nama": "Pengoksidasi",
+                    "bahaya": "Dapat menyebabkan atau memperparah kebakaran",
+                    "contoh": "Hidrogen peroksida, kalium permanganat",
+                    "pencegahan": "Jauhkan dari bahan organik dan reduktor"
+                },
+                "🌫️": {
+                    "nama": "Gas Bertekanan",
+                    "bahaya": "Dapat meledak jika terkena panas atau bocor",
+                    "contoh": "Tabung oksigen, nitrogen, argon",
+                    "pencegahan": "Simpan di tempat sejuk, periksa kebocoran"
+                }
+            }
+            
+            for symbol, info in hazard_symbols.items():
+                col1, col2 = st.columns([1, 4])
+                
+                with col1:
+                    st.markdown(f"<div style='font-size: 4rem; text-align: center;'>{symbol}</div>", 
+                              unsafe_allow_html=True)
+                
+                with col2:
                     st.markdown(f"""
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="font-size: 4rem; margin-bottom: 10px;">{gas_data['icon']}</div>
-                        <h3 style="color: #ff9800; margin: 0;">{gas_name}</h3>
-                        <p style="color: #666; font-style: italic; margin: 5px 0;">{gas_data['category']}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    **{info['nama']}**
                     
-                    # Deskripsi
-                    st.markdown(f"**📖 Deskripsi:**")
-                    st.write(gas_data["description"])
+                    **Bahaya:** {info['bahaya']}
                     
-                    # Aplikasi
-                    st.markdown(f"**🎯 Aplikasi:**")
-                    st.write(gas_data["aplikasi"])
+                    **Contoh:** {info['contoh']}
                     
-                    # Button untuk detail
-                    if st.button(f"🔍 Detail {gas_name.split('(')[0]}", key=f"detail_{gas_name}"):
-                        st.session_state.selected_gas = gas_name
-                    
-                    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Detail gas yang dipilih
-    if 'selected_gas' in st.session_state:
-        selected_gas = st.session_state.selected_gas
-        gas_data = GAS_DATABASE[selected_gas]
-        
-        st.markdown("---")
-        st.markdown(f'<h2 style="text-align: center; color: #ff9800;">🔬 Detail {selected_gas}</h2>', unsafe_allow_html=True)
-        
-        col1, col2 = st.columns([1, 2])
-        
-        with col1:
-            st.markdown(f"""
-            <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, rgba(255,152,0,0.1), rgba(255,152,0,0.05)); border-radius: 20px; margin-bottom: 20px;">
-                <div style="font-size: 6rem; margin-bottom: 15px;">{gas_data['icon']}</div>
-                <h3 style="color: #ff9800; margin: 10px 0;">{selected_gas}</h3>
-                <p style="color: #666; font-style: italic;">{gas_data['category']}</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown(f"**📖 Deskripsi Lengkap:**")
-            st.write(gas_data["description"])
-            st.markdown(f"**🎯 Aplikasi Industri:**")
-            st.write(gas_data["aplikasi"])
-        
-        # Tabel properti
-        st.markdown("### 📊 Properti Kimia dan Fisika")
-        
-        for category, properties in gas_data["properties"].items():
-            st.markdown(f"#### {category}")
+                    **Pencegahan:** {info['pencegahan']}
+                    """)
+                
+                st.markdown("---")
             
-            # Create table
-            table_html = '<table class="property-table">'
-            table_html += '<thead><tr><th>Properti</th><th>Nilai</th></tr></thead><tbody>'
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with tab2:
+            st.markdown('<div class="tab-container safety-card">', unsafe_allow_html=True)
+            st.markdown("### 🛡️ Alat Pelindung Diri (APD)")
             
-            for prop, value in properties.items():
-                table_html += f'<tr><td><strong>{prop}</strong></td><td>{value}</td></tr>'
+            ppe_items = {
+                "👓": {
+                    "nama": "Pelindung Mata",
+                    "fungsi": "Melindungi mata dari percikan bahan kimia dan partikel berbahaya",
+                    "jenis": "Kacamata safety, goggle, face shield",
+                    "penggunaan": "Wajib digunakan saat bekerja dengan bahan kimia"
+                },
+                "🧤": {
+                    "nama": "Sarung Tangan",
+                    "fungsi": "Melindungi tangan dari bahan kimia korosif dan beracun",
+                    "jenis": "Latex, nitrile, PVC, neoprene",
+                    "penggunaan": "Pilih material sesuai dengan jenis bahan kimia"
+                },
+                "👕": {
+                    "nama": "Jas Laboratorium",
+                    "fungsi": "Melindungi tubuh dan pakaian dari percikan bahan kimia",
+                    "jenis": "Katun, polyester tahan api",
+                    "penggunaan": "Selalu dikancing rapat, lengan panjang"
+                },
+                "👟": {
+                    "nama": "Sepatu Safety",
+                    "fungsi": "Melindungi kaki dari tumpahan dan benda jatuh",
+                    "jenis": "Sepatu tertutup, anti slip",
+                    "penggunaan": "Hindari sandal atau sepatu terbuka"
+                },
+                "😷": {
+                    "nama": "Pelindung Pernapasan",
+                    "fungsi": "Melindungi dari inhalasi gas dan uap berbahaya",
+                    "jenis": "Masker debu, respirator, masker gas",
+                    "penggunaan": "Sesuai dengan jenis kontaminan udara"
+                }
+            }
             
-            table_html += '</tbody></table>'
-            st.markdown(table_html, unsafe_allow_html=True)
-            st.markdown("<br>", unsafe_allow_html=True)
+            for symbol, info in ppe_items.items():
+                col1, col2 = st.columns([1, 4])
+                
+                with col1:
+                    st.markdown(f"<div style='font-size: 3rem; text-align: center;'>{symbol}</div>", 
+                              unsafe_allow_html=True)
+                
+                with col2:
+                    st.markdown(f"""
+                    **{info['nama']}**
+                    
+                    **Fungsi:** {info['fungsi']}
+                    
+                    **Jenis:** {info['jenis']}
+                    
+                    **Penggunaan:** {info['penggunaan']}
+                    """)
+                
+                st.markdown("---")
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        with tab3:
+            st.markdown('<div class="tab-container safety-card">', unsafe_allow_html=True)
+            st.markdown("### 🚨 Prosedur Keadaan Darurat")
+            
+            emergency_procedures = {
+                "🔥 Kebakaran": {
+                    "langkah": [
+                        "1. Tetap tenang dan jangan panik",
+                        "2. Matikan sumber api dan listrik jika memungkinkan",
+                        "3. Gunakan alat pemadam api yang sesuai",
+                        "4. Evakuasi area jika api tidak terkendali", 
+                        "5. Hubungi pemadam kebakaran"
+                    ],
+                    "alat": "APAR (CO₂, busa, dry powder)",
+                    "pencegahan": "Periksa alat pemadam secara berkala"
+                },
+                "☠️ Keracunan Gas": {
+                    "langkah": [
+                        "1. Pindahkan korban ke udara segar",
+                        "2. Longgarkan pakaian yang ketat",
+                        "3. Berikan pernapasan buatan jika perlu",
+                        "4. Hubungi medis segera",
+                        "5. Jangan memberikan makanan atau minuman"
+                    ],
+                    "alat": "Masker oksigen, ventilasi darurat",
+                    "pencegahan": "Gunakan sistem ventilasi yang baik"
+                },
+                "🧪 Tumpahan Kimia": {
+                    "langkah": [
+                        "1. Kenakan APD yang sesuai",
+                        "2. Ventilasi area tumpahan", 
+                        "3. Serap dengan bahan absorben",
+                        "4. Netralkan jika diperlukan",
+                        "5. Buang limbah sesuai prosedur"
+                    ],
+                    "alat": "Spill kit, bahan absorben, netralizer",
+                    "pencegahan": "Simpan bahan kimia dengan benar"
+                },
+                "⚡ Kontak dengan Kulit": {
+                    "langkah": [
+                        "1. Segera bilas dengan air bersih 15-20 menit",
+                        "2. Lepas pakaian yang terkontaminasi",
+                        "3. Jangan gosok area yang terkena",
+                        "4. Hubungi medis jika iritasi berlanjut",
+                        "5. Dokumentasikan incident"
+                    ],
+                    "alat": "Emergency shower, air bersih",
+                    "pencegahan": "Selalu gunakan sarung tangan"
+                }
+            }
+            
+            for emergency, info in emergency_procedures.items():
+                st.markdown(f"#### {emergency}")
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown("**Langkah-Langkah:**")
+                    for step in info['langkah']:
+                        st.markdown(f"- {step}")
+                
+                with col2:
+                    st.markdown(f"**Alat yang Dibutuhkan:** {info['alat']}")
+                    st.markdown(f"**Pencegahan:** {info['pencegahan']}")
+                
+                st.markdown("---")
+            
+            # Nomor darurat
+            st.markdown("### 📞 Nomor Darurat")
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.error("🚒 **Pemadam Kebakaran**\n113")
+            with col2:
+                st.error("🚑 **Ambulans**\n118 / 119")  
+            with col3:
+                st.error("👮 **Polisi**\n110")
+            
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # ===========================================
-# HALAMAN PANDUAN KESELAMATAN
+# MENJALANKAN APLIKASI
 # ===========================================
-elif menu == "⚠️ Panduan Keselamatan":
-    # Add background class
-    st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="main-header">⚠️ Panduan Keselamatan Laboratorium</h1>', unsafe_allow_html=True)
-    
-    # Tabs untuk berbagai aspek keselamatan
-    tab1, tab2, tab3, tab4 = st.tabs(["🚨 Simbol Bahaya", "🛡️ APD", "🚨 Prosedur Darurat", "📋 Checklist"])
-    
-    with tab1:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("🚨 Simbol-Simbol Bahaya Kimia")
-        
-        # Simbol bahaya dalam grid
-        hazard_symbols = [
-            {"symbol": "☠️", "name": "Beracun", "description": "Dapat menyebabkan keracunan serius atau kematian", "color": "#f44336"},
-            {"symbol": "🔥", "name": "Mudah Terbakar", "description": "Dapat terbakar dengan mudah pada suhu rendah", "color": "#ff9800"},
-            {"symbol": "💥", "name": "Eksplosif", "description": "Dapat meledak dengan percikan atau panas", "color": "#e91e63"},
-            {"symbol": "🧪", "name": "Korosif", "description": "Dapat merusak kulit, mata, atau material", "color": "#9c27b0"},
-            {"symbol": "⚡", "name": "Oksidator", "description": "Dapat menyebabkan atau memperparah kebakaran", "color": "#2196f3"},
-            {"symbol": "🌡️", "name": "Berbahaya", "description": "Dapat menyebabkan iritasi atau bahaya kesehatan", "color": "#ff5722"}
-        ]
-        
-        cols = st.columns(3)
-        for i, symbol_data in enumerate(hazard_symbols):
-            with cols[i % 3]:
-                st.markdown(f"""
-                <div class="safety-card" style="text-align: center; padding: 20px; margin: 10px 0;">
-                    <div style="font-size: 3rem; margin-bottom: 10px;">{symbol_data['symbol']}</div>
-                    <h4 style="color: {symbol_data['color']}; margin: 10px 0;">{symbol_data['name']}</h4>
-                    <p style="font-size: 14px; line-height: 1.4;">{symbol_data['description']}</p>
-                </div>
-                """, unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab2:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("🛡️ Alat Pelindung Diri (APD)")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown("""
-            <div class="safety-card">
-                <h4>👓 Pelindung Mata dan Wajah</h4>
-                <ul>
-                    <li><strong>Kacamata Keselamatan:</strong> Untuk perlindungan dasar dari percikan</li>
-                    <li><strong>Kacamata Goggle:</strong> Perlindungan menyeluruh dari gas dan uap</li>
-                    <li><strong>Face Shield:</strong> Perlindungan wajah dari percikan bahan kimia</li>
-                </ul>
-                
-                <h4>👐 Pelindung Tangan</h4>
-                <ul>
-                    <li><strong>Sarung Tangan Nitrile:</strong> Tahan terhadap sebagian besar bahan kimia</li>
-                    <li><strong>Sarung Tangan Latex:</strong> Untuk perlindungan dasar</li>
-                    <li><strong>Sarung Tangan Neoprene:</strong> Tahan asam dan basa kuat</li>
-                </ul>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div class="safety-card">
-                <h4>👔 Pelindung Tubuh</h4>
-                <ul>
-                    <li><strong>Jas Laboratorium:</strong> Perlindungan dasar dari percikan</li>
-                    <li><strong>Apron Kimia:</strong> Perlindungan ekstra untuk asam kuat</li>
-                    <li><strong>Suit Kimia:</strong> Perlindungan menyeluruh untuk bahan berbahaya</li>
-                </ul>
-                
-                <h4>👃 Pelindung Pernapasan</h4>
-                <ul>
-                    <li><strong>Masker Debu:</strong> Untuk partikel halus</li>
-                    <li><strong>Respirator:</strong> Untuk uap kimia berbahaya</li>
-                    <li><strong>SCBA:</strong> Untuk atmosfer sangat berbahaya</li>
-                </ul>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab3:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("🚨 Prosedur Keadaan Darurat")
-        
-        # Emergency procedures
-        st.markdown("""
-        <div class="safety-card">
-            <h4>🔥 Prosedur Kebakaran</h4>
-            <ol style="font-size: 16px; line-height: 1.6;">
-                <li><strong>ALARM:</strong> Aktifkan alarm kebakaran</li>
-                <li><strong>EVAKUASI:</strong> Keluar melalui jalur evakuasi terdekat</li>
-                <li><strong>TUTUP:</strong> Tutup semua sumber gas dan listrik jika aman</li>
-                <li><strong>PANGGIL:</strong> Hubungi pemadam kebakaran (113)</li>
-                <li><strong>TITIK KUMPUL:</strong> Berkumpul di titik aman yang telah ditentukan</li>
-            </ol>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown("""
-            <div class="safety-card">
-                <h4>☠️ Keracunan Gas</h4>
-                <ol>
-                    <li>Pindahkan korban ke udara segar</li>
-                    <li>Periksa pernapasan dan nadi</li>
-                    <li>Berikan bantuan pernapasan jika perlu</li>
-                    <li>Hubungi layanan medis darurat</li>
-                    <li>Jangan biarkan korban sendirian</li>
-                </ol>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div class="safety-card">
-                <h4>🧪 Tumpahan Bahan Kimia</h4>
-                <ol>
-                    <li>Evakuasi area terdampak</li>
-                    <li>Gunakan APD lengkap</li>
-                    <li>Hentikan sumber tumpahan</li>
-                    <li>Serap dengan bahan penyerap</li>
-                    <li>Ventilasi area yang terkontaminasi</li>
-                </ol>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    with tab4:
-        st.markdown('<div class="tab-container">', unsafe_allow_html=True)
-        st.subheader("📋 Checklist Keselamatan Harian")
-        
-        st.markdown("""
-        <div class="safety-card">
-            <h4>✅ Sebelum Memulai Kerja</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
-                <div>
-                    <input type="checkbox" disabled> APD lengkap telah dikenakan<br>
-                    <input type="checkbox" disabled> Ventilasi laboratorium berfungsi<br>
-                    <input type="checkbox" disabled> Safety shower dapat diakses<br>
-                    <input type="checkbox" disabled> Eyewash station berfungsi<br>
-                    <input type="checkbox" disabled> Alat pemadam tersedia<br>
-                </div>
-                <div>
-                    <input type="checkbox" disabled> MSDS bahan kimia dibaca<br>
-                    <input type="checkbox" disabled> Jalur evakuasi diketahui<br>
-                    <input type="checkbox" disabled> Peralatan darurat diperiksa<br>
-                    <input type="checkbox" disabled> Nomor darurat tersedia<br>
-                    <input type="checkbox" disabled> Rekan kerja mengetahui aktivitas<br>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="safety-card">
-            <h4>🔚 Setelah Selesai Kerja</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
-                <div>
-                    <input type="checkbox" disabled> Semua bahan kimia disimpan aman<br>
-                    <input type="checkbox" disabled> Peralatan dibersihkan<br>
-                    <input type="checkbox" disabled> Sumber gas ditutup<br>
-                    <input type="checkbox" disabled> Ventilasi tetap menyala<br>
-                    <input type="checkbox" disabled> Limbah dibuang sesuai prosedur<br>
-                </div>
-                <div>
-                    <input type="checkbox" disabled> Area kerja bersih<br>
-                    <input type="checkbox" disabled> APD dicuci/disimpan<br>
-                    <input type="checkbox" disabled> Dokumentasi lengkap<br>
-                    <input type="checkbox" disabled> Peralatan darurat diperiksa<br>
-                    <input type="checkbox" disabled> Laporan insiden (jika ada)<br>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Kontak darurat
-        st.markdown("""
-        <div class="safety-card">
-            <h4>📞 Kontak Darurat</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 16px;">
-                <div>
-                    <strong>🚨 Emergency:</strong> 112<br>
-                    <strong>🔥 Pemadam Kebakaran:</strong> 113<br>
-                    <strong>🚑 Ambulans:</strong> 118<br>
-                </div>
-                <div>
-                    <strong>👨‍⚕️ Poison Control:</strong> 021-4250767<br>
-                    <strong>🏥 RS Terdekat:</strong> [Sesuaikan lokasi]<br>
-                    <strong>🔧 Maintenance:</strong> [Internal]<br>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-
-# ===========================================
-# FOOTER
-# ===========================================
-st.markdown("---")
-st.markdown("""
-<div style="text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border-radius: 15px; margin-top: 30px;">
-    <h4 style="color: #0d47a1;">🧪 ChemGasMaster</h4>
-    <p style="color: #666; margin: 10px 0;">Aplikasi Kimia Gas Interaktif untuk Pembelajaran dan Penelitian</p>
-    <p style="font-size: 14px; color: #999;">© 2024 ChemGasMaster. Dibuat dengan ❤️ menggunakan Streamlit</p>
-    <div style="margin-top: 15px;">
-        <span style="margin: 0 10px;">⚗️ Chemistry</span>
-        <span style="margin: 0 10px;">🔬 Science</span>
-        <span style="margin: 0 10px;">🧮 Mathematics</span>
-        <span style="margin: 0 10px;">📚 Education</span>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+if __name__ == "__main__":
+    main()
