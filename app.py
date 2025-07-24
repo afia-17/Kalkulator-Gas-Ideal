@@ -87,173 +87,128 @@ st.markdown("""
 
 st.markdown("""
 <style>
-    /* ======================== */
-    /* GLOBAL THEME: LAB KIMIA FUTURISTIK */
-    /* ======================== */
-    [data-testid="stAppViewContainer"] {
-        background-color: #f0f2f6;
-        background-image: 
-            radial-gradient(circle at 10% 20%, rgba(0, 180, 219, 0.1) 0%, transparent 20%),
-            radial-gradient(circle at 90% 80%, rgba(255, 100, 100, 0.1) 0%, transparent 20%);
+    /* Animasi Partikel */
+    @keyframes float {
+        0% { transform: translate(0, 0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(var(--x-end), var(--y-end)); opacity: 0; }
+    }
+    
+    /* Background Dinamis Beranda */
+    .beranda-bg {
         position: relative;
-        overflow: hidden;
-    }
-
-    /* Partikel Gas Subtle */
-    .gas-particle {
-        position: absolute;
-        background: rgba(0, 180, 219, 0.15);
-        border-radius: 50%;
-        animation: gasMove linear infinite;
-        opacity: 0.6;
-        z-index: 0;
-    }
-
-    @keyframes gasMove {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(var(--x-end), var(--y-end)); }
-    }
-
-    /* ======================== */
-    /* BERANDA: LABORATORIUM INTERAKTIF */
-    /* ======================== */
-    .home-header {
-        background: linear-gradient(135deg, rgba(0, 180, 219, 0.2), rgba(0, 123, 255, 0.2));
-        backdrop-filter: blur(5px);
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        padding: 30px;
         border-radius: 15px;
-        padding: 2rem;
-        position: relative;
+        margin-bottom: 20px;
         overflow: hidden;
-        border-left: 5px solid #00b4db;
+        border: 3px solid #0d47a1;
+        box-shadow: 0 10px 20px rgba(13, 71, 161, 0.2);
     }
-
-    .home-header::before {
+    .beranda-bg::before {
         content: "";
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://i.imgur.com/Jf5D3hQ.png') center/contain no-repeat;
+        opacity: 0.15;
+        pointer-events: none;
+    }
+    
+    /* Background Interaktif Kalkulator */
+    .kalkulator-bg {
+        position: relative;
+        background: linear-gradient(to right, #f5f5f5 0%, #e0e0e0 100%);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 3px solid #2196F3;
+        box-shadow: 0 10px 20px rgba(33, 150, 243, 0.2);
+    }
+    .kalkulator-bg::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
         background: 
-            radial-gradient(circle, rgba(0, 180, 219, 0.05) 0%, transparent 70%),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><circle cx="25" cy="25" r="3" fill="%2300b4db"/><circle cx="75" cy="50" r="2" fill="%2300b4db"/><circle cx="20" cy="80" r="4" fill="%2300b4db"/></svg>');
-        animation: rotateBackground 60s linear infinite;
-        z-index: -1;
+            url('https://i.imgur.com/8nKfW3a.png') left top no-repeat,
+            url('https://i.imgur.com/4Q6Zz9L.png') right bottom no-repeat;
+        opacity: 0.1;
+        pointer-events: none;
     }
-
-    @keyframes rotateBackground {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    /* ======================== */
-    /* KALKULATOR: SIMULASI TEKANAN GAS */
-    /* ======================== */
-    .calculator-bg {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 15px;
-        box-shadow: 
-            0 4px 20px rgba(0, 0, 0, 0.1),
-            inset 0 0 10px rgba(0, 180, 219, 0.2);
+    
+    /* Background 3D Ensiklopedia */
+    .ensiklopedi-bg {
         position: relative;
+        background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
         overflow: hidden;
-        border: 1px solid rgba(0, 180, 219, 0.3);
+        border: 3px solid #ff9800;
+        box-shadow: 0 10px 20px rgba(255, 152, 0, 0.2);
+        transform-style: preserve-3d;
+        perspective: 1000px;
     }
-
-    .calculator-bg::after {
+    .ensiklopedi-bg::before {
         content: "";
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        background: linear-gradient(90deg, #00b4db, #0083b0);
-        animation: pressureGauge 3s infinite alternate;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://i.imgur.com/LXzS4qk.png') center/cover no-repeat;
+        opacity: 0.08;
+        transform: translateZ(-50px);
     }
-
-    @keyframes pressureGauge {
-        0% { width: 30%; opacity: 0.7; }
-        100% { width: 100%; opacity: 1; }
-    }
-
-    /* ======================== */
-    /* ENSIKLOPEDIA: MUSEUM GAS ELEGAN */
-    /* ======================== */
-    .encyclopedia-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    
+    /* Background Neon Keselamatan */
+    .safety-bg {
         position: relative;
+        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
         overflow: hidden;
+        border: 3px solid #f44336;
+        box-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
     }
-
-    .encyclopedia-card::before {
+    .safety-bg::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        background: linear-gradient(90deg, #6a11cb, #2575fc);
-    }
-
-    .molecule-icon {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        font-size: 2rem;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://i.imgur.com/VvJ7Q9E.png') center/contain no-repeat;
         opacity: 0.1;
+        animation: pulse 2s infinite alternate;
     }
-
-    /* ======================== */
-    /* PANDUAN KESELAMATAN: ALERT SYSTEM */
-    /* ======================== */
-    .safety-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        position: relative;
+    @keyframes pulse {
+        0% { opacity: 0.1; }
+        100% { opacity: 0.15; }
+    }
+    
+    /* Partikel Dinamis */
+    .particle-container {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
         overflow: hidden;
-        border-left: 5px solid #ff4757;
+        z-index: 0;
+        pointer-events: none;
     }
-
-    .safety-card::before {
-        content: "⚠️";
+    .particle {
         position: absolute;
-        right: 20px;
-        top: 20px;
-        font-size: 2rem;
-        opacity: 0.1;
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: float var(--duration) var(--delay) infinite linear;
+        --x-end: calc(var(--x) - 50%);
+        --y-end: calc(var(--y) - 50%);
     }
-
-    /* ======================== */
-    /* TEKS & KONTEN (PRIORITAS VISIBILITAS) */
-    /* ======================== */
-    .main-header {
-        color: #0d47a1 !important;
-        text-shadow: none !important;
+    
+    /* Memastikan konten tetap terbaca */
+    .content-wrapper {
         position: relative;
-        z-index: 2;
-    }
-
-    .content-box {
-        background: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        position: relative;
-        z-index: 2;
-        margin-bottom: 2rem;
-    }
-
-    /* Efek Hover untuk Card */
-    .card-hover-effect:hover {
-        transform: translateY(-5px);
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        z-index: 1;
     }
 </style>
 """, unsafe_allow_html=True)
+
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
