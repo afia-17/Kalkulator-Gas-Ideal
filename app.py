@@ -458,7 +458,6 @@ with st.sidebar:
 # ===========================================
 if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
-    st.markdown("<div class='beranda-bg'>", unsafe_allow_html=True)
     
     st.markdown("""
     <div class="card calc-card">
