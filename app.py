@@ -562,6 +562,7 @@ if menu == "🏠 Beranda":
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
+    st.markdown('<div class="main-container kalkulator-bg chemistry-pattern">', unsafe_allow_html=True)
     # Header dengan animasi partikel
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
@@ -1037,6 +1038,7 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
     """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
