@@ -1477,7 +1477,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                 st.markdown(f"""
                 <div class="safety-card" style="text-align: center; padding: 20px; margin: 10px 0;">
                     <div style="font-size: 3rem; margin-bottom: 10px;">{symbol_data['symbol']}</div>
-                    <h4 style="color: {symbol_data['color']; margin: 10px 0;">{symbol_data['name']}</h4>
+                    <h4 style="color: {symbol_data['color']}; margin: 10px 0;">{symbol_data['name']}</h4>
                     <p style="font-size: 14px; line-height: 1.4;">{symbol_data['description']}</p>
                 </div>
                 """, unsafe_allow_html=True)
