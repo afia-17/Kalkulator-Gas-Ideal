@@ -17,117 +17,11 @@ st.set_page_config(
 # ===========================================
 st.markdown("""
 <style>
-    /* Main Background Styles */
     .main-header {
         color: #0d47a1;
         border-bottom: 2px solid #0d47a1;
         padding-bottom: 10px;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
-    
-    /* Home Page Background */
-    .home-bg {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        position: relative;
-        overflow: hidden;
-    }
-    .home-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('https://i.imgur.com/J5OVFyB.png') center/cover no-repeat;
-        opacity: 0.1;
-        z-index: -1;
-    }
-    
-    /* Calculator Page Background */
-    .calc-bg {
-        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        position: relative;
-        overflow: hidden;
-    }
-    .calc-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('https://i.imgur.com/9QZQZQZ.png') center/cover no-repeat;
-        opacity: 0.08;
-        z-index: -1;
-    }
-    
-    /* Encyclopedia Page Background */
-    .encyclopedia-bg {
-        background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        position: relative;
-        overflow: hidden;
-    }
-    .encyclopedia-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('https://i.imgur.com/7QZQZQZ.png') center/cover no-repeat;
-        opacity: 0.1;
-        z-index: -1;
-    }
-    
-    /* Safety Page Background */
-    .safety-bg {
-        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        position: relative;
-        overflow: hidden;
-    }
-    .safety-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('https://i.imgur.com/8QZQZQZ.png') center/cover no-repeat;
-        opacity: 0.1;
-        z-index: -1;
-    }
-    
-    /* Particle Animation */
-    @keyframes float {
-        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
-    }
-    .particle {
-        position: absolute;
-        width: var(--size);
-        height: var(--size);
-        background: rgba(255,255,255,0.5);
-        border-radius: 50%;
-        animation: float var(--duration) var(--delay) infinite linear;
-        --x-end: calc(var(--x) - 50%);
-        --y-end: calc(var(--y) - 50%);
-    }
-    
-    /* Rest of your existing CSS... */
     .card {
         padding: 20px;
         border-radius: 15px;
@@ -187,6 +81,63 @@ st.markdown("""
     .gas-icon {
         font-size: 24px;
         margin-right: 10px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+    /* Background untuk Beranda */
+    .beranda-bg {
+        background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
+                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    /* Background untuk Kalkulator */
+    .kalkulator-bg {
+        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
+                    url('https://images.unsplash.com/photo-1605034313761-73ea4a0cfbf3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    /* Background untuk Ensiklopedia */
+    .ensiklopedi-bg {
+        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
+                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    /* Background untuk Keselamatan */
+    .safety-bg {
+        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
+                    url('https://images.unsplash.com/photo-1581093450021-4a7360e9a7d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    /* Memastikan teks tetap terbaca */
+    .beranda-bg h1, .beranda-bg h2, .beranda-bg h3, .beranda-bg p,
+    .kalkulator-bg h1, .kalkulator-bg h2, .kalkulator-bg h3, .kalkulator-bg p,
+    .ensiklopedi-bg h1, .ensiklopedi-bg h2, .ensiklopedi-bg h3, .ensiklopedi-bg p,
+    .safety-bg h1, .safety-bg h2, .safety-bg h3, .safety-bg p {
+        color: #333 !important;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -395,19 +346,12 @@ with st.sidebar:
 # ===========================================
 if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
+    st.markdown("<div class='beranda-bg'>", unsafe_allow_html=True)
     
     st.markdown("""
     <div class="card calc-card">
         <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
         <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="position: relative; height: 100px; margin-bottom: 20px;">
-        <div class="particle" style="--size: 5px; --duration: 20s; --delay: 0s; --x: 20%; --y: 30%"></div>
-        <div class="particle" style="--size: 8px; --duration: 25s; --delay: 5s; --x: 70%; --y: 10%"></div>
-        <div class="particle" style="--size: 6px; --duration: 22s; --delay: 3s; --x: 40%; --y: 60%"></div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -482,6 +426,7 @@ if menu == "🏠 Beranda":
         </ol>
     </div>
     """, unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
