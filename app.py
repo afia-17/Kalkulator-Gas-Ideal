@@ -288,93 +288,6 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-st.markdown("""
-<style>
-    /* BACKGROUND UTAMA */
-    [data-testid="stAppViewContainer"] {
-        background-color: #000000;
-        background-image: 
-            radial-gradient(at 20% 30%, hsla(200,90%,30%,0.3) 0px, transparent 50%),
-            radial-gradient(at 80% 80%, hsla(240,90%,30%,0.3) 0px, transparent 50%);
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* HOLOGRAM PROJECTION EFFECT */
-    .hologram-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            linear-gradient(90deg, 
-                rgba(0,200,255,0.05) 1px, transparent 1px),
-            linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px);
-        background-size: 20px 20px;
-        pointer-events: none;
-        animation: scanlines 4s linear infinite;
-    }
-
-    @keyframes scanlines {
-        0% { background-position: 0 0; }
-        100% { background-position: 20px 20px; }
-    }
-
-    /* GAS PARTICLE SIMULATION */
-    .gas-particle {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: rgba(0, 180, 255, 0.8);
-        border-radius: 50%;
-        filter: blur(1px);
-        animation: gasMove 10s infinite linear;
-    }
-
-    @keyframes gasMove {
-        0% { transform: translate(0, 0); }
-        25% { transform: translate(50px, 30px); }
-        50% { transform: translate(20px, 80px); }
-        75% { transform: translate(-30px, 40px); }
-        100% { transform: translate(0, 0); }
-    }
-
-    /* MAIN CONTENT GLASS PANEL */
-    .main-content {
-        background: rgba(10, 25, 50, 0.85) !important;
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        border: 1px solid rgba(0, 180, 255, 0.3);
-        box-shadow: 
-            0 0 15px rgba(0, 180, 255, 0.3),
-            inset 0 0 15px rgba(0, 180, 255, 0.2);
-    }
-
-    /* NEON HEADER */
-    .neon-header {
-        color: #ffffff;
-        text-shadow: 
-            0 0 5px #fff,
-            0 0 10px #00d2ff,
-            0 0 20px #008cff;
-        position: relative;
-        display: inline-block;
-    }
-
-    /* INTERACTIVE BUTTONS */
-    .stButton>button {
-        background: linear-gradient(90deg, #00d2ff, #3a47d5);
-        border: none;
-        box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-        transition: all 0.3s;
-    }
-    .stButton>button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
-    }
-</style>
-""", unsafe_allow_html=True)
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
@@ -455,6 +368,19 @@ st.markdown("""
         </ol>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='beranda-bg'>
+        <div class="particle-container">
+            <div class="particle" style="--size: 40px; --duration: 20s; --delay: 0s; --x: 20%; --y: 30%; 
+                background-image: url('https://i.imgur.com/Jf5D3hQ.png')"></div>
+            <div class="particle" style="--size: 30px; --duration: 25s; --delay: 5s; --x: 70%; --y: 10%;
+                background-image: url('https://i.imgur.com/8nKfW3a.png')"></div>
+        </div>
+        <div class="content-wrapper">
+    """, unsafe_allow_html=True)
+
+    st.markdown("</div></div>", unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
