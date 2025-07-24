@@ -85,290 +85,192 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Tambahkan CSS ini setelah st.set_page_config dan sebelum CSS CUSTOM yang sudah ada
+
 # ===========================================
-# CSS BACKGROUND UNTUK SETIAP MENU
+# BACKGROUND STYLING UNTUK SETIAP MENU
 # ===========================================
-st.markdown("""
-<style>
-    /* Background Animasi untuk Beranda */
-    .beranda-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.1;
+def set_background_style():
+    st.markdown("""
+    <style>
+    /* Background utama dengan animasi partikel kimia */
+    .stApp {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        position: relative;
     }
     
-    .beranda-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: 
-            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-        animation: float-molecules 20s ease-in-out infinite;
-    }
-    
-    @keyframes float-molecules {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-20px) rotate(120deg); }
-        66% { transform: translateY(10px) rotate(240deg); }
-    }
-
-    /* Background untuk Kalkulator Gas */
-    .kalkulator-bg {
-        background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.08;
-    }
-    
-    .kalkulator-bg::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: 
-            repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255,255,255,0.1) 50px, rgba(255,255,255,0.1) 100px),
-            repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(0,0,0,0.05) 50px, rgba(0,0,0,0.05) 100px);
-        animation: slide-pattern 30s linear infinite;
-    }
-    
-    @keyframes slide-pattern {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(100px); }
-    }
-
-    /* Background untuk Ensiklopedia */
-    .ensiklopedia-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.06;
-    }
-    
-    .ensiklopedia-bg::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 2px, transparent 2px),
-            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15) 1px, transparent 1px),
-            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 3px, transparent 3px);
-        background-size: 100px 100px, 150px 150px, 200px 200px;
-        animation: twinkle 15s ease-in-out infinite;
-    }
-    
-    @keyframes twinkle {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.8; }
-    }
-
-    /* Background untuk Panduan Keselamatan */
-    .keselamatan-bg {
-        background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.05;
-    }
-    
-    .keselamatan-bg::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: 
-            linear-gradient(45deg, rgba(255,0,0,0.1) 25%, transparent 25%),
-            linear-gradient(-45deg, rgba(255,0,0,0.1) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, rgba(255,255,0,0.1) 75%),
-            linear-gradient(-45deg, transparent 75%, rgba(255,255,0,0.1) 75%);
-        background-size: 60px 60px;
-        background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
-        animation: warning-pattern 8s linear infinite;
-    }
-    
-    @keyframes warning-pattern {
-        0% { background-position: 0 0, 0 30px, 30px -30px, -30px 0px; }
-        100% { background-position: 60px 60px, 60px 90px, 90px 30px, 30px 60px; }
-    }
-
-    /* Overlay untuk memastikan readability */
-    .content-overlay {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(1px);
-        border-radius: 15px;
-        padding: 20px;
-        margin: 10px 0;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    /* Partikel mengambang untuk efek visual */
-    .floating-particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-    
-    .particle-element {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.6);
-        border-radius: 50%;
-        animation: float-up 15s infinite linear;
-    }
-    
-    .particle-element:nth-child(1) {
-        left: 10%;
-        width: 4px;
-        height: 4px;
-        animation-delay: 0s;
-    }
-    
-    .particle-element:nth-child(2) {
-        left: 20%;
-        width: 6px;
-        height: 6px;
-        animation-delay: 2s;
-    }
-    
-    .particle-element:nth-child(3) {
-        left: 30%;
-        width: 3px;
-        height: 3px;
-        animation-delay: 4s;
-    }
-    
-    .particle-element:nth-child(4) {
-        left: 40%;
-        width: 5px;
-        height: 5px;
-        animation-delay: 6s;
-    }
-    
-    .particle-element:nth-child(5) {
-        left: 50%;
-        width: 4px;
-        height: 4px;
-        animation-delay: 8s;
-    }
-    
-    .particle-element:nth-child(6) {
-        left: 60%;
-        width: 6px;
-        height: 6px;
-        animation-delay: 10s;
-    }
-    
-    .particle-element:nth-child(7) {
-        left: 70%;
-        width: 3px;
-        height: 3px;
-        animation-delay: 12s;
-    }
-    
-    .particle-element:nth-child(8) {
-        left: 80%;
-        width: 5px;
-        height: 5px;
-        animation-delay: 14s;
-    }
-    
-    @keyframes float-up {
-        0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-        }
-    }
-
-    /* Efek hover untuk card */
-    .card:hover {
-        transform: translateY(-5px);
-        transition: all 0.3s ease;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-
-    /* Background khusus untuk sidebar */
-    .css-1d391kg {
-        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-
-    /* Animasi untuk judul utama */
-    .animated-title {
-        background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
-        background-size: 200% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradient-shift 3s ease infinite;
-    }
-    
-    @keyframes gradient-shift {
+    /* Animasi gradient background */
+    @keyframes gradientShift {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
-</style>
-""", unsafe_allow_html=True)
+    
+    /* Overlay pattern kimia */
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    /* Background khusus untuk Beranda */
+    .beranda-bg {
+        background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(33, 150, 243, 0.1));
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Background khusus untuk Kalkulator */
+    .kalkulator-bg {
+        background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1));
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Background khusus untuk Ensiklopedia */
+    .ensiklopedia-bg {
+        background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 193, 7, 0.1));
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Background khusus untuk Keselamatan */
+    .keselamatan-bg {
+        background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(233, 30, 99, 0.1));
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Efek molekul mengambang */
+    .floating-molecules::before {
+        content: '⚛️ 🧪 ⚗️ 🔬 💧 ⚡ 🌡️ 📡';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.1);
+        z-index: -1;
+        animation: floatMolecules 20s linear infinite;
+        white-space: pre;
+        line-height: 100px;
+        letter-spacing: 100px;
+    }
+    
+    @keyframes floatMolecules {
+        0% { transform: translateY(100vh) rotate(0deg); }
+        100% { transform: translateY(-100px) rotate(360deg); }
+    }
+    
+    /* Sidebar dengan glass effect */
+    .css-1d391kg {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+    }
+    
+    /* Tab styling dengan glass effect */
+    .stTabs [data-baseweb="tab-list"] {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Animasi untuk cards */
+    .animated-card {
+        animation: cardPulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes cardPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        50% { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    }
+    
+    /* Efek shimmer untuk text */
+    .shimmer-text {
+        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    @keyframes shimmer {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    /* Container utama dengan glass effect */
+    .main-container {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Efek hover untuk buttons */
+    .stButton > button {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #333;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    }
+    
+    /* Pattern kimia di background */
+    .chemistry-pattern {
+        background-image: 
+            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3Ccircle cx='10' cy='50' r='2'/%3E%3Ccircle cx='50' cy='10' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# Fungsi untuk menambahkan background sesuai menu
-def add_background(menu_type):
-    if menu_type == "beranda":
-        st.markdown('<div class="beranda-bg"></div>', unsafe_allow_html=True)
-        st.markdown('''
-        <div class="floating-particles">
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-            <div class="particle-element"></div>
-        </div>
-        ''', unsafe_allow_html=True)
-    elif menu_type == "kalkulator":
-        st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
-    elif menu_type == "ensiklopedia":
-        st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
-    elif menu_type == "keselamatan":
-        st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
+# Panggil fungsi background
+set_background_style()
+
+# Tambahkan class floating molecules ke body
+st.markdown('<div class="floating-molecules"></div>', unsafe_allow_html=True)
 
 # ===========================================
 # DATABASE GAS
@@ -573,9 +475,9 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    add_background("beranda")  # Tambahkan baris ini
-    st.markdown("<h1 class='main-header animated-title'>ChemGasMaster</h1>", unsafe_allow_html=True)
-    
+    st.markdown('<div class="main-container beranda-bg chemistry-pattern">', unsafe_allow_html=True)
+    st.markdown("<h1 class='main-header shimmer-text'>ChemGasMaster</h1>", unsafe_allow_html=True)
+
     st.markdown("""
     <div class="card calc-card">
         <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
@@ -654,12 +556,12 @@ if menu == "🏠 Beranda":
         </ol>
     </div>
     """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
-    add_background("kalkulator")
     # Header dengan animasi partikel
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
