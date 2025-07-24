@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # ===========================================
-# CSS CUSTOM
+# CSS CUSTOM + BACKGROUND UNTUK SETIAP MENU
 # ===========================================
 st.markdown("""
 <style>
@@ -81,6 +81,160 @@ st.markdown("""
     .gas-icon {
         font-size: 24px;
         margin-right: 10px;
+    }
+    
+    /* BACKGROUND UNTUK MENU BERANDA */
+    .beranda-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.1;
+    }
+    .beranda-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        animation: float 20s ease-in-out infinite;
+    }
+    
+    /* BACKGROUND UNTUK MENU KALKULATOR */
+    .kalkulator-bg {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.08;
+    }
+    .kalkulator-bg::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+            repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0,0,0,.05) 35px, rgba(0,0,0,.05) 70px);
+    }
+    
+    /* BACKGROUND UNTUK MENU ENSIKLOPEDIA */
+    .ensiklopedia-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.06;
+    }
+    .ensiklopedia-bg::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        background-size: 100px 100px;
+        animation: bookFloat 15s ease-in-out infinite;
+    }
+    
+    /* BACKGROUND UNTUK MENU KESELAMATAN */
+    .keselamatan-bg {
+        background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.05;
+    }
+    .keselamatan-bg::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255, 107, 107, 0.1) 45deg, transparent 90deg),
+            radial-gradient(circle at 30% 70%, rgba(254, 202, 87, 0.2) 0%, transparent 50%);
+        animation: warningPulse 8s ease-in-out infinite;
+    }
+    
+    /* ANIMASI */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-10px) rotate(1deg); }
+        66% { transform: translateY(5px) rotate(-1deg); }
+    }
+    
+    @keyframes bookFloat {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(10px); }
+    }
+    
+    @keyframes warningPulse {
+        0%, 100% { opacity: 0.05; }
+        50% { opacity: 0.1; }
+    }
+    
+    /* PARTIKEL MENGAMBANG */
+    .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: particleFloat 20s infinite linear;
+    }
+    
+    .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: 2s; }
+    .particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: 4s; }
+    .particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: 6s; }
+    .particle:nth-child(5) { width: 4px; height: 4px; left: 50%; animation-delay: 8s; }
+    .particle:nth-child(6) { width: 7px; height: 7px; left: 60%; animation-delay: 10s; }
+    .particle:nth-child(7) { width: 3px; height: 3px; left: 70%; animation-delay: 12s; }
+    .particle:nth-child(8) { width: 5px; height: 5px; left: 80%; animation-delay: 14s; }
+    .particle:nth-child(9) { width: 4px; height: 4px; left: 90%; animation-delay: 16s; }
+    
+    @keyframes particleFloat {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+    
+    /* OVERLAY UNTUK READABILITY */
+    .content-overlay {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -188,8 +342,8 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Minuman berkarbonasi, pemadam kebakaran"
-    },
-     "Neon (Ne)": {
+    }, 
+    "Neon (Ne)": {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
@@ -213,8 +367,8 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
-    },
-      "Helium (He)": {
+    },  
+    "Helium (He)": {
     "icon": "🎚️",
     "category": "Gas Monoatomik",
     "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
@@ -238,8 +392,8 @@ GAS_DATABASE = {
       }
     },
     "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
-    },
-     "Argon (Ar)": {
+    }, 
+    "Argon (Ar)": {
     "icon": "🔏",
     "category": "Gas Monoatomik",
     "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
@@ -285,15 +439,40 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ===========================================
+# BACKGROUND DINAMIS BERDASARKAN MENU
+# ===========================================
+if menu == "🏠 Beranda":
+    st.markdown("""
+    <div class="beranda-bg"></div>
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    """, unsafe_allow_html=True)
+elif menu == "🧮 Kalkulator Gas":
+    st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
+elif menu == "📚 Ensiklopedia Gas":
+    st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
+elif menu == "⚠️ Panduan Keselamatan":
+    st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
+
+# ===========================================
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="card calc-card">
-        <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
-        <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
+    <div class="card calc-card content-overlay">
+        <h3>🎉 Selamat Datang di Aplikasi ChemGasMaster!</h3>
+        <p>Platform lengkap untuk analisis gas ideal dan informasi kimia yang interaktif dan menyenangkan.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -303,8 +482,8 @@ if menu == "🏠 Beranda":
     cols = st.columns([3, 2])
     with cols[0]:
         st.markdown("""
-        <div style="margin-top:20px;">
-            <h4>Persamaan Gas Ideal:</h4>
+        <div class="content-overlay" style="margin-top:20px;">
+            <h4>🔬 Persamaan Gas Ideal:</h4>
             <p><b>P</b> = Tekanan (atm)</p>
             <p><b>V</b> = Volume (L)</p>
             <p><b>n</b> = Jumlah mol (mol)</p>
@@ -315,8 +494,8 @@ if menu == "🏠 Beranda":
     
     with cols[1]:
         st.markdown("""
-        <div style="margin-top:20px;">
-            <h4>Fakta Menarik:</h4>
+        <div class="content-overlay" style="margin-top:20px;">
+            <h4>✨ Fakta Menarik:</h4>
             <p>🎚️ <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
             <p>🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi</p>
             <p>🧪 <b>1 mol gas</b> = 6.022×10²³ molekul</p>
@@ -324,7 +503,7 @@ if menu == "🏠 Beranda":
         """, unsafe_allow_html=True)
     
     # Visualisasi variabel
-    st.markdown("<h4 style='margin-top:30px;'>Variabel Utama:</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='margin-top:30px;'>🎯 Variabel Utama:</h4>", unsafe_allow_html=True)
     var_cols = st.columns(4)
     variables = [
         ("P", "Tekanan", "Mengukur gaya gas<br>pada wadah", "#ffcdd2"),
@@ -336,7 +515,7 @@ if menu == "🏠 Beranda":
     for col, (var, name, desc, color) in zip(var_cols, variables):
         with col:
             st.markdown(f"""
-            <div style="background:{color};padding:15px;border-radius:10px;height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+            <div class="content-overlay" style="background:{color};padding:15px;border-radius:10px;height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
                 <h3 style="margin:5px 0;">{var}</h3>
                 <p style="margin:5px 0;font-weight:bold;">{name}</p>
                 <p style="margin:5px 0;font-size:0.8em;">{desc}</p>
@@ -345,39 +524,39 @@ if menu == "🏠 Beranda":
     
     # Contoh aplikasi
     st.markdown("""
-    <div class="card" style="margin-top:30px;">
+    <div class="card content-overlay" style="margin-top:30px;">
         <h4>💡 Contoh Aplikasi Persamaan Gas Ideal:</h4>
         <ul>
-            <li>Menghitung volume gas yang dihasilkan dalam reaksi kimia</li>
-            <li>Memahami perilaku gas dalam sistem tertutup</li>
-            <li>Memprediksi pengaruh perubahan suhu terhadap tekanan gas</li>
-            <li>Mendesain sistem pneumatik dan hidrolik</li>
+            <li>🧪 Menghitung volume gas yang dihasilkan dalam reaksi kimia</li>
+            <li>🔬 Memahami perilaku gas dalam sistem tertutup</li>
+            <li>🌡️ Memprediksi pengaruh perubahan suhu terhadap tekanan gas</li>
+            <li>⚙️ Mendesain sistem pneumatik dan hidrolik</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
     
     # Tips Penggunaan
     st.markdown("""
-    <div class="card gas-card" style="margin-top:20px;">
+    <div class="card gas-card content-overlay" style="margin-top:20px;">
         <h4>🔧 Tips Menggunakan Aplikasi:</h4>
         <ol>
-            <li>Pilih menu <b>Kalkulator Gas</b> untuk perhitungan</li>
-            <li>Gunakan <b>Ensiklopedia Gas</b> untuk informasi detail</li>
-            <li>Pelajari <b>Panduan Keselamatan</b> sebelum bekerja dengan gas</li>
-            <li>Pastikan satuan yang digunakan konsisten</li>
+            <li>🧮 Pilih menu <b>Kalkulator Gas</b> untuk perhitungan interaktif</li>
+            <li>📚 Gunakan <b>Ensiklopedia Gas</b> untuk informasi detail lengkap</li>
+            <li>⚠️ Pelajari <b>Panduan Keselamatan</b> sebelum bekerja dengan gas</li>
+            <li>📏 Pastikan satuan yang digunakan konsisten untuk hasil akurat</li>
         </ol>
     </div>
     """, unsafe_allow_html=True)
-    
+
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
     # Header dengan animasi partikel
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
-                padding: 25px; 
-                border-radius: 15px;
+    <div class="content-overlay" style="background: linear-gradient(135deg, #0d47a1, #2196F3);
+                 padding: 25px;
+                 border-radius: 15px;
                 margin-bottom: 30px;
                 position: relative;
                 overflow: hidden;">
@@ -473,7 +652,7 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Massa
         with st.container():
             st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #FF9800;">
+            <div class="tab-container content-overlay" style="border-left: 5px solid #FF9800;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🧪</div>
                     <div>
@@ -499,10 +678,10 @@ elif menu == "🧮 Kalkulator Gas":
             st.markdown("</div>", unsafe_allow_html=True)
 
             if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n * mr 
+                massa = n * mr
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+                <div class="content-overlay" style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
                             padding: 20px;
                             border-radius: 15px;
                             margin-top: 20px;
@@ -533,7 +712,7 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Tekanan
         with st.container():
             st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #F44336;">
+            <div class="tab-container content-overlay" style="border-left: 5px solid #F44336;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🎚️</div>
                     <div>
@@ -601,7 +780,7 @@ elif menu == "🧮 Kalkulator Gas":
                 P = (n * R * T) / V
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+                <div class="content-overlay" style="background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
                             padding: 20px;
                             border-radius: 15px;
                             margin-top: 20px;
@@ -624,7 +803,7 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Volume
         with st.container():
             st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #4CAF50;">
+            <div class="tab-container content-overlay" style="border-left: 5px solid #4CAF50;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🫙</div>
                     <div>
@@ -695,7 +874,7 @@ elif menu == "🧮 Kalkulator Gas":
                 V = (n * R * T) / P
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+                <div class="content-overlay" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
                             padding: 20px;
                             border-radius: 15px;
                             margin-top: 20px;
@@ -718,7 +897,7 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Mol
         with st.container():
             st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #9C27B0;">
+            <div class="tab-container content-overlay" style="border-left: 5px solid #9C27B0;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🧪 </div>
                     <div>
@@ -810,7 +989,7 @@ elif menu == "🧮 Kalkulator Gas":
                 n = (P * V) / (R * T)
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+                <div class="content-overlay" style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
                             padding: 20px;
                             border-radius: 15px;
                             margin-top: 20px;
@@ -831,7 +1010,7 @@ elif menu == "🧮 Kalkulator Gas":
 
     # Catatan edukasi di bagian bawah
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    <div class="content-overlay" style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
                 padding: 20px;
                 border-radius: 15px;
                 margin-top: 30px;
@@ -867,10 +1046,12 @@ elif menu == "📚 Ensiklopedia Gas":
     col1, col2 = st.columns([3,1])
     with col1:
         st.markdown(f"""
-        <h2>{gas['icon']} {selected_gas}</h2>
-        <p><i>{gas['description']}</i></p>
-        <p><b>Kategori:</b> {gas['category']}</p>
-        <p><b>Aplikasi:</b> {gas['aplikasi']}</p>
+        <div class="content-overlay">
+            <h2>{gas['icon']} {selected_gas}</h2>
+            <p><i>{gas['description']}</i></p>
+            <p><b>📂 Kategori:</b> {gas['category']}</p>
+            <p><b>🔬 Aplikasi:</b> {gas['aplikasi']}</p>
+        </div>
         """, unsafe_allow_html=True)
     with col2:
         st.image(gas["image"], width=200)
@@ -881,9 +1062,11 @@ elif menu == "📚 Ensiklopedia Gas":
     for tab, (category, props) in zip(tabs, gas["properties"].items()):
         with tab:
             st.markdown(f"""
-            <table class="property-table">
-                {"".join(f"<tr><td><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
-            </table>
+            <div class="content-overlay">
+                <table class="property-table">
+                    {"".join(f"<tr><td><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
+                </table>
+            </div>
             """, unsafe_allow_html=True)
 
 # ===========================================
@@ -893,7 +1076,7 @@ elif menu == "⚠️ Panduan Keselamatan":
     st.markdown("<h1 class='main-header'>⚠️ Panduan Keselamatan Gas</h1>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="card safety-card">
+    <div class="card safety-card content-overlay">
         <h3>🚧 Simbol Bahaya Umum</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
             <div style="flex:1;min-width:200px;background:#ffebee;padding:15px;border-radius:10px;">
@@ -919,7 +1102,7 @@ elif menu == "⚠️ Panduan Keselamatan":
     """, unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="card safety-card">
+    <div class="card safety-card content-overlay">
         <h3>🛡️ Alat Pelindung Diri (APD)</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
             <div style="flex:1;min-width:150px;text-align:center;">
@@ -941,16 +1124,52 @@ elif menu == "⚠️ Panduan Keselamatan":
         </div>
     </div>
     """, unsafe_allow_html=True)
+
     st.markdown("""
-    <div class="card safety-card">
+    <div class="card safety-card content-overlay">
         <h3>🚨 Prosedur Darurat</h3>
         <ol>
-            <li>Segera evakuasi area jika terjadi kebocoran gas</li>
-            <li>Gunakan APD yang sesuai sebelum menangani gas</li>
-            <li>Hindari sumber api atau percikan listrik</li>
-            <li>Ventilasi area dengan membuka jendela atau pintu</li>
-            <li>Hubungi petugas berwenang jika diperlukan</li>
+            <li>🚪 Segera evakuasi area jika terjadi kebocoran gas</li>
+            <li>🛡️ Gunakan APD yang sesuai sebelum menangani gas</li>
+            <li>🔥 Hindari sumber api atau percikan listrik</li>
+            <li>🌬️ Ventilasi area dengan membuka jendela atau pintu</li>
+            <li>📞 Hubungi petugas berwenang jika diperlukan</li>
         </ol>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="card content-overlay" style="background: linear-gradient(135deg, #E1F5FE, #B3E5FC); border-left: 5px solid #03A9F4;">
+        <h3>📋 Checklist Keselamatan Harian</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+            <div>
+                <h4>✅ Sebelum Bekerja:</h4>
+                <ul>
+                    <li>Periksa kondisi tabung gas</li>
+                    <li>Pastikan ventilasi berfungsi</li>
+                    <li>Siapkan APD lengkap</li>
+                    <li>Cek alat pemadam kebakaran</li>
+                </ul>
+            </div>
+            <div>
+                <h4>⚠️ Selama Bekerja:</h4>
+                <ul>
+                    <li>Monitor tekanan gas</li>
+                    <li>Hindari area terbatas</li>
+                    <li>Jangan merokok atau menyalakan api</li>
+                    <li>Laporkan anomali segera</li>
+                </ul>
+            </div>
+            <div>
+                <h4>🔒 Setelah Bekerja:</h4>
+                <ul>
+                    <li>Tutup semua katup gas</li>
+                    <li>Simpan tabung dengan aman</li>
+                    <li>Bersihkan area kerja</li>
+                    <li>Dokumentasi penggunaan</li>
+                </ul>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -959,7 +1178,11 @@ elif menu == "⚠️ Panduan Keselamatan":
 # ===========================================
 st.markdown("---")
 st.markdown("""
-<div style="text-align:center;color:#666;padding:20px;">
+<div class="content-overlay" style="text-align:center;color:#666;padding:20px;margin-top:30px;">
     <p>© 2025 ChemGasMaster | Kelompok 7 Kelas 1A</p>
+    <p style="font-size:0.9em;margin-top:10px;">
+        🧪 Dibuat dengan ❤️ untuk pembelajaran kimia yang lebih menyenangkan
+    </p>
 </div>
 """, unsafe_allow_html=True)
+
