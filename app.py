@@ -85,130 +85,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-    /* Animasi Partikel */
-    @keyframes float {
-        0% { transform: translate(0, 0); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translate(var(--x-end), var(--y-end)); opacity: 0; }
-    }
-    
-    /* Background Dinamis Beranda */
-    .beranda-bg {
-        position: relative;
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        border: 3px solid #0d47a1;
-        box-shadow: 0 10px 20px rgba(13, 71, 161, 0.2);
-    }
-    .beranda-bg::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: url('https://i.imgur.com/Jf5D3hQ.png') center/contain no-repeat;
-        opacity: 0.15;
-        pointer-events: none;
-    }
-    
-    /* Background Interaktif Kalkulator */
-    .kalkulator-bg {
-        position: relative;
-        background: linear-gradient(to right, #f5f5f5 0%, #e0e0e0 100%);
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        border: 3px solid #2196F3;
-        box-shadow: 0 10px 20px rgba(33, 150, 243, 0.2);
-    }
-    .kalkulator-bg::after {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: 
-            url('https://i.imgur.com/8nKfW3a.png') left top no-repeat,
-            url('https://i.imgur.com/4Q6Zz9L.png') right bottom no-repeat;
-        opacity: 0.1;
-        pointer-events: none;
-    }
-    
-    /* Background 3D Ensiklopedia */
-    .ensiklopedi-bg {
-        position: relative;
-        background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        border: 3px solid #ff9800;
-        box-shadow: 0 10px 20px rgba(255, 152, 0, 0.2);
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
-    .ensiklopedi-bg::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: url('https://i.imgur.com/LXzS4qk.png') center/cover no-repeat;
-        opacity: 0.08;
-        transform: translateZ(-50px);
-    }
-    
-    /* Background Neon Keselamatan */
-    .safety-bg {
-        position: relative;
-        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        border: 3px solid #f44336;
-        box-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
-    }
-    .safety-bg::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: url('https://i.imgur.com/VvJ7Q9E.png') center/contain no-repeat;
-        opacity: 0.1;
-        animation: pulse 2s infinite alternate;
-    }
-    @keyframes pulse {
-        0% { opacity: 0.1; }
-        100% { opacity: 0.15; }
-    }
-    
-    /* Partikel Dinamis */
-    .particle-container {
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        overflow: hidden;
-        z-index: 0;
-        pointer-events: none;
-    }
-    .particle {
-        position: absolute;
-        background-size: contain;
-        background-repeat: no-repeat;
-        animation: float var(--duration) var(--delay) infinite linear;
-        --x-end: calc(var(--x) - 50%);
-        --y-end: calc(var(--y) - 50%);
-    }
-    
-    /* Memastikan konten tetap terbaca */
-    .content-wrapper {
-        position: relative;
-        z-index: 1;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-
 # ===========================================
 # DATABASE GAS
 # ===========================================
@@ -412,17 +288,93 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown("""
-    <div class='beranda-bg'>
-        <div class="particle-container">
-            <div class="particle" style="--size: 40px; --duration: 20s; --delay: 0s; --x: 20%; --y: 30%; 
-                background-image: url('https://i.imgur.com/Jf5D3hQ.png')"></div>
-            <div class="particle" style="--size: 30px; --duration: 25s; --delay: 5s; --x: 70%; --y: 10%;
-                background-image: url('https://i.imgur.com/8nKfW3a.png')"></div>
-        </div>
-        <div class="content-wrapper">
-    """, unsafe_allow_html=True)
+st.markdown("""
+<style>
+    /* BACKGROUND UTAMA */
+    [data-testid="stAppViewContainer"] {
+        background-color: #000000;
+        background-image: 
+            radial-gradient(at 20% 30%, hsla(200,90%,30%,0.3) 0px, transparent 50%),
+            radial-gradient(at 80% 80%, hsla(240,90%,30%,0.3) 0px, transparent 50%);
+        position: relative;
+        overflow: hidden;
+    }
 
+    /* HOLOGRAM PROJECTION EFFECT */
+    .hologram-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            linear-gradient(90deg, 
+                rgba(0,200,255,0.05) 1px, transparent 1px),
+            linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+        animation: scanlines 4s linear infinite;
+    }
+
+    @keyframes scanlines {
+        0% { background-position: 0 0; }
+        100% { background-position: 20px 20px; }
+    }
+
+    /* GAS PARTICLE SIMULATION */
+    .gas-particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(0, 180, 255, 0.8);
+        border-radius: 50%;
+        filter: blur(1px);
+        animation: gasMove 10s infinite linear;
+    }
+
+    @keyframes gasMove {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(50px, 30px); }
+        50% { transform: translate(20px, 80px); }
+        75% { transform: translate(-30px, 40px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    /* MAIN CONTENT GLASS PANEL */
+    .main-content {
+        background: rgba(10, 25, 50, 0.85) !important;
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(0, 180, 255, 0.3);
+        box-shadow: 
+            0 0 15px rgba(0, 180, 255, 0.3),
+            inset 0 0 15px rgba(0, 180, 255, 0.2);
+    }
+
+    /* NEON HEADER */
+    .neon-header {
+        color: #ffffff;
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #00d2ff,
+            0 0 20px #008cff;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* INTERACTIVE BUTTONS */
+    .stButton>button {
+        background: linear-gradient(90deg, #00d2ff, #3a47d5);
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        transition: all 0.3s;
+    }
+    .stButton>button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+    }
+</style>
+""", unsafe_allow_html=True)
     st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
     
     st.markdown("""
@@ -503,8 +455,6 @@ if menu == "🏠 Beranda":
         </ol>
     </div>
     """, unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-    st.markdown("</div></div>", unsafe_allow_html=True)
     
 # ===========================================
 # HALAMAN KALKULATOR GAS 
