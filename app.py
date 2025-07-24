@@ -1,4 +1,3 @@
-```python
 # ===========================================
 # APLIKASI KALKULATOR GAS IDEAL + ENSIKLOPEDIA + PANDUAN KESELAMATAN
 # ===========================================
