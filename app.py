@@ -88,180 +88,168 @@ st.markdown("""
 st.markdown("""
 <style>
     /* ======================== */
-    /* BACKGROUND UMUM APLIKASI */
+    /* GLOBAL THEME: DYNAMIC GAS SIMULATION */
     /* ======================== */
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        background: #0f0c29;  /* Dark space-like */
+        background: radial-gradient(circle, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        position: relative;
+        overflow: hidden;
     }
-    
-    /* Efek partikel floating */
-    @keyframes float {
-        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
-    }
-    
-    .particle {
+
+    /* Partikel Gas Bergerak Acak */
+    .gas-particle {
         position: absolute;
-        width: var(--size);
-        height: var(--size);
         background: rgba(255, 255, 255, 0.7);
         border-radius: 50%;
-        animation: float var(--duration) var(--delay) infinite linear;
-        --x-end: calc(var(--x) - 50%);
-        --y-end: calc(var(--y) - 50%);
+        filter: blur(1px);
+        animation: gasMove linear infinite;
+        opacity: 0.6;
+    }
+
+    @keyframes gasMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(var(--x-end), var(--y-end)); }
     }
 
     /* ======================== */
-    /* BACKGROUND BERANDA */
+    /* BERANDA: REAKSI KIMIA INTERAKTIF */
     /* ======================== */
-    div[data-testid="stAppViewContainer"] > div:first-child {
-        background: linear-gradient(-45deg, #00b4db, #0083b0, #00b4db, #0083b0);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        position: relative;
-        overflow: hidden;
+    [data-testid="stHeader"] {
+        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%) !important;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
     }
-    
-    /* Animasi gelembung kimia */
-    .home-bubble {
+
+    .home-container::before {
+        content: "";
         position: absolute;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        filter: blur(5px);
-        animation: bubbleMove 8s infinite ease-in-out;
-    }
-    
-    @keyframes bubbleMove {
-        0% { transform: translateY(0) scale(1); opacity: 0.3; }
-        50% { transform: translateY(-50px) scale(1.2); opacity: 0.6; }
-        100% { transform: translateY(0) scale(1); opacity: 0.3; }
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        background: url('https://i.gifer.com/7VE.gif');
+        background-size: cover;
+        opacity: 0.15;
+        z-index: -1;
     }
 
-    /* ======================== */
-    /* BACKGROUND KALKULATOR GAS */
-    /* ======================== */
-    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), 
-                    url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-bottom: 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    /* Efek tabung reaksi glow */
-    .calc-glow {
+    /* Tabung Reaksi Floating */
+    .flask {
         position: absolute;
         width: 100px;
-        height: 200px;
-        background: rgba(0, 180, 219, 0.1);
-        border-radius: 50%;
-        filter: blur(30px);
-        animation: glowPulse 4s infinite alternate;
+        height: 150px;
+        background: url('https://clipart-library.com/images/8ixKbxj8T.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: floatFlask 15s ease-in-out infinite;
+        opacity: 0.8;
+        z-index: -1;
     }
-    
-    @keyframes glowPulse {
-        0% { opacity: 0.3; transform: scale(0.8); }
-        100% { opacity: 0.6; transform: scale(1.2); }
+
+    @keyframes floatFlask {
+        0%, 100% { transform: translate(10vw, 10vh) rotate(5deg); }
+        50% { transform: translate(80vw, 20vh) rotate(-5deg); }
     }
 
     /* ======================== */
-    /* BACKGROUND ENSIKLOPEDIA */
+    /* KALKULATOR: GAS PRESSURE SIMULATION */
     /* ======================== */
-    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: linear-gradient(rgba(0, 0, 0, 0.7), 
-                    url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-bottom: 2rem;
+    .calculator-bg {
         position: relative;
-        overflow: hidden;
-    }
-    
-    /* Efek molekul bergerak */
-    .molecule {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        animation: moleculeMove 10s infinite linear;
-    }
-    
-    @keyframes moleculeMove {
-        0% { transform: translate(0, 0); }
-        25% { transform: translate(50px, 30px); }
-        50% { transform: translate(20px, 60px); }
-        75% { transform: translate(-30px, 40px); }
-        100% { transform: translate(0, 0); }
+        background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 30px rgba(255, 100, 100, 0.3);
     }
 
-    /* ======================== */
-    /* BACKGROUND PANDUAN KESELAMATAN */
-    /* ======================== */
-    div[data-testid="stAppViewContainer"] div[data-testid="stSidebar"] + div > div > div > div > div:nth-child(1) > div:nth-child(1) {
-        background: linear-gradient(rgba(0, 0, 0, 0.7), 
-                    url('https://images.unsplash.com/photo-1581093196277-1c6ddbba5e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-bottom: 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    /* Efek peringatan berkedip */
-    .warning-pulse {
+    .pressure-animation {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(255, 59, 48, 0.1);
-        border-radius: 15px;
-        animation: warningPulse 2s infinite;
+        background: radial-gradient(circle, rgba(255,50,50,0.3) 0%, transparent 70%);
+        animation: pulsePressure 3s infinite alternate;
     }
-    
-    @keyframes warningPulse {
-        0% { opacity: 0; }
-        50% { opacity: 0.3; }
-        100% { opacity: 0; }
+
+    @keyframes pulsePressure {
+        0% { transform: scale(0.95); opacity: 0.3; }
+        100% { transform: scale(1.05); opacity: 0.7; }
     }
 
     /* ======================== */
-    /* KONTEN UTAMA (Glassmorphism) */
+    /* ENSIKLOPEDIA: 3D MOLECULE VIEWER */
     /* ======================== */
-    .main .block-container {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+    .encyclopedia-bg {
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364) !important;
+        box-shadow: inset 0 0 100px rgba(0, 255, 255, 0.1);
+        position: relative;
     }
-    
-    /* Judul dengan efek neon */
-    .main-header {
-        color: white;
-        text-shadow: 0 0 10px rgba(0, 180, 219, 0.7),
-                     0 0 20px rgba(0, 180, 219, 0.5),
-                     0 0 30px rgba(0, 180, 219, 0.3);
-        font-weight: bold;
+
+    .molecule-spin {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: url('https://i.gifer.com/embedded/download/7XaI.gif');
+        background-size: contain;
+        opacity: 0.2;
+        animation: spinMolecule 20s linear infinite;
+    }
+
+    @keyframes spinMolecule {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ======================== */
+    /* PANDUAN KESELAMATAN: WARNING EFFECT */
+    /* ======================== */
+    .safety-bg {
+        background: linear-gradient(135deg, #8E0E00 0%, #1F1C18 100%) !important;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .warning-stripes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            rgba(255, 0, 0, 0.1),
+            rgba(255, 0, 0, 0.1) 10px,
+            rgba(0, 0, 0, 0.1) 10px,
+            rgba(0, 0, 0, 0.1) 20px
+        );
+        animation: warningFlash 1s infinite alternate;
+    }
+
+    @keyframes warningFlash {
+        0% { opacity: 0.3; }
+        100% { opacity: 0.7; }
+    }
+
+    /* ======================== */
+    /* GLASSMORPHISM CONTENT */
+    /* ======================== */
+    .main-content {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* NEON TEXT */
+    .neon-text {
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 20px #00d2ff,
+                     0 0 30px #00d2ff;
+        animation: neonGlow 1.5s infinite alternate;
+    }
+
+    @keyframes neonGlow {
+        from { text-shadow: 0 0 5px #fff; }
+        to { text-shadow: 0 0 20px #00d2ff, 0 0 30px #008cff; }
     }
 </style>
 """, unsafe_allow_html=True)
