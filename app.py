@@ -1500,23 +1500,6 @@ elif menu == "📚 Ensiklopedia Gas":
         with tab:
             color = colors[i % len(colors)]
             
-            # Membuat tabel dengan cara yang aman
-            table_content = ""
-            for key, value in props.items():
-                table_content += f"""
-                <tr style="transition: all 0.3s ease;">
-                    <td style="padding: 15px; font-weight: bold; background: rgba(255,255,255,0.9); 
-                               width: 40%; border-bottom: 1px solid rgba(255,255,255,0.3);
-                               border-radius: 10px 0 0 10px; color: #333;">
-                        {key}
-                    </td>
-                    <td style="padding: 15px; background: rgba(255,255,255,0.7); 
-                               border-bottom: 1px solid rgba(255,255,255,0.3);
-                               border-radius: 0 10px 10px 0; color: #333;">
-                        {value}
-                    </td>
-                </tr>"""
-            
             st.markdown(wrap_content_with_overlay(f"""
             <div style="background: linear-gradient(135deg, {color}, {color}dd);
                         padding: 25px;
@@ -1535,9 +1518,22 @@ elif menu == "📚 Ensiklopedia Gas":
                             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
                             z-index: 2;
                             position: relative;">
-                    <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
-                        {table_content}
-                    </table>
+            """), unsafe_allow_html=True)
+            
+            # Membuat tabel dengan cara yang lebih sederhana
+            for key, value in props.items():
+                st.markdown(f"""
+                <div style="display: flex; margin-bottom: 2px; background: rgba(255,255,255,0.9); border-radius: 8px; overflow: hidden;">
+                    <div style="flex: 1; padding: 15px; font-weight: bold; background: rgba(255,255,255,0.95); color: #333; border-right: 2px solid rgba(255,255,255,0.5);">
+                        {key}
+                    </div>
+                    <div style="flex: 2; padding: 15px; background: rgba(255,255,255,0.8); color: #333;">
+                        {value}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            st.markdown(wrap_content_with_overlay("""
                 </div>
             </div>
             """), unsafe_allow_html=True)
