@@ -983,29 +983,32 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Massa
         with st.container():
             st.markdown(wrap_content_with_overlay("""
-            <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-                        padding: 25px;
-                        border-radius: 20px;
-                        color: white;
-                        margin-bottom: 25px;
-                        position: relative;
-                        overflow: hidden;">
-                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🧪</div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="font-size: 3em;">🧪</div>
-                    <div style="z-index: 2;">
-                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Massa Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25);
-                                     padding: 10px 15px;
-                                     border-radius: 15px;
-                                     display: inline-block;
-                                    margin-top: 10px;">
-                            <b>Rumus:</b> Massa = n (mol) × Mr (g/mol)
-                        </div>
-                    </div>
-                </div>
+<div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;">
+    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">🧪</div>
+    <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 2;">
+        <div style="font-size: 3em;">🧪</div>
+        <div>
+            <h2 style="margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                Kalkulator Massa Gas
+            </h2>
+            <div style="background: rgba(255,255,255,0.3);
+                         padding: 12px 18px;
+                         border-radius: 15px;
+                         display: inline-block;
+                        border: 2px solid rgba(255,255,255,0.4);">
+                <b style="font-size: 1.1em;">Rumus:</b> Massa = n (mol) × Mr (g/mol)
             </div>
-            """), unsafe_allow_html=True)
+        </div>
+    </div>
+</div>
+"""), unsafe_allow_html=True)
 
             cols = st.columns(3)
             with cols[0]:
@@ -1062,29 +1065,32 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Tekanan
         with st.container():
             st.markdown(wrap_content_with_overlay("""
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        padding: 25px;
-                        border-radius: 20px;
-                        color: white;
-                        margin-bottom: 25px;
-                        position: relative;
-                        overflow: hidden;">
-                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🎚️</div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="font-size: 3em;">🎚️</div>
-                    <div style="z-index: 2;">
-                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Tekanan Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25);
-                                     padding: 10px 15px;
-                                     border-radius: 15px;
-                                     display: inline-block;
-                                    margin-top: 10px;">
-                            <b>Rumus:</b> P = [n (mol) × R × T (K)] / V (L)
-                        </div>
-                    </div>
-                </div>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;">
+    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">🎚️</div>
+    <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 2;">
+        <div style="font-size: 3em;">🎚️</div>
+        <div>
+            <h2 style="margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                Kalkulator Tekanan Gas
+            </h2>
+            <div style="background: rgba(255,255,255,0.3);
+                         padding: 12px 18px;
+                         border-radius: 15px;
+                         display: inline-block;
+                        border: 2px solid rgba(255,255,255,0.4);">
+                <b style="font-size: 1.1em;">Rumus:</b> P = [n (mol) × R × T (K)] / V (L)
             </div>
-            """), unsafe_allow_html=True)
+        </div>
+    </div>
+</div>
+"""), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1173,29 +1179,32 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Volume
         with st.container():
             st.markdown(wrap_content_with_overlay("""
-            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-                        padding: 25px;
-                        border-radius: 20px;
-                        color: white;
-                        margin-bottom: 25px;
-                        position: relative;
-                        overflow: hidden;">
-                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🫙</div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="font-size: 3em;">🫙</div>
-                    <div style="z-index: 2;">
-                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Volume Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25);
-                                     padding: 10px 15px;
-                                     border-radius: 15px;
-                                     display: inline-block;
-                                    margin-top: 10px;">
-                            <b>Rumus:</b> V = [n (mol) × R × T (K)] / P (atm)
-                        </div>
-                    </div>
-                </div>
+<div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;">
+    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">🫙</div>
+    <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 2;">
+        <div style="font-size: 3em;">🫙</div>
+        <div>
+            <h2 style="margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                Kalkulator Volume Gas
+            </h2>
+            <div style="background: rgba(255,255,255,0.3);
+                         padding: 12px 18px;
+                         border-radius: 15px;
+                         display: inline-block;
+                        border: 2px solid rgba(255,255,255,0.4);">
+                <b style="font-size: 1.1em;">Rumus:</b> V = [n (mol) × R × T (K)] / P (atm)
             </div>
-            """), unsafe_allow_html=True)
+        </div>
+    </div>
+</div>
+"""), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1287,29 +1296,32 @@ elif menu == "🧮 Kalkulator Gas":
         # Kalkulator Mol
         with st.container():
             st.markdown(wrap_content_with_overlay("""
-            <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-                        padding: 25px;
-                        border-radius: 20px;
-                        color: #333;
-                        margin-bottom: 25px;
-                        position: relative;
-                        overflow: hidden;">
-                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🧪</div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="font-size: 3em;">🧪</div>
-                    <div style="z-index: 2;">
-                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Jumlah Mol</h2>
-                        <div style="background: rgba(255,255,255,0.4);
-                                     padding: 10px 15px;
-                                     border-radius: 15px;
-                                     display: inline-block;
-                                    margin-top: 10px;">
-                            <b>Rumus:</b> n = [P (atm) × V (L)] / [R × T (K)]
-                        </div>
-                    </div>
-                </div>
+<div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: #333;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;">
+    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">🧪</div>
+    <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 2;">
+        <div style="font-size: 3em;">🧪</div>
+        <div>
+            <h2 style="margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                Kalkulator Jumlah Mol
+            </h2>
+            <div style="background: rgba(255,255,255,0.5);
+                         padding: 12px 18px;
+                         border-radius: 15px;
+                         display: inline-block;
+                        border: 2px solid rgba(255,255,255,0.6);">
+                <b style="font-size: 1.1em;">Rumus:</b> n = [P (atm) × V (L)] / [R × T (K)]
             </div>
-            """), unsafe_allow_html=True)
+        </div>
+    </div>
+</div>
+"""), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1921,3 +1933,5 @@ with footer_col2:
             st.rerun()
     
     st.markdown("</div></div>", unsafe_allow_html=True)
+
+</merged_code>
