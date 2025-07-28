@@ -229,11 +229,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
-# BACKGROUND KREATIF DAN MENARIK
+# BACKGROUND 
 # ===========================================
 st.markdown("""
 <style>
-    /* Background Beranda - Animated Gradient dengan Geometric Shapes */
+    /* Background Beranda */
     .beranda-bg {
         background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
         background-size: 400% 400%;
@@ -273,7 +273,7 @@ st.markdown("""
         100% { transform: translateX(50px) translateY(50px); }
     }
 
-    /* Background Kalkulator - Animated Circuit Pattern */
+    /* Background Kalkulator */
     .kalkulator-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
         position: fixed;
@@ -306,7 +306,7 @@ st.markdown("""
         100% { transform: translateX(40px) translateY(40px); opacity: 0.5; }
     }
 
-    /* Background Ensiklopedia - Molecular Structure Pattern */
+    /* Background Ensiklopedia */
     .ensiklopedia-bg {
         background: linear-gradient(120deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
         position: fixed;
@@ -339,7 +339,7 @@ st.markdown("""
         66% { transform: translateX(-10px) translateY(10px) rotate(240deg); }
     }
 
-    /* Background Keselamatan - Warning Pattern */
+    /* Background Keselamatan */
     .keselamatan-bg {
         background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
         position: fixed;
@@ -652,7 +652,7 @@ GAS_DATABASE = {
 }
 
 # ===========================================
-# MENU SIDEBAR YANG LEBIH MENARIK
+# MENU SIDEBAR 
 # ===========================================
 with st.sidebar:
     st.markdown("""
@@ -677,7 +677,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Menu dengan styling yang lebih menarik
+    # Menu
     menu_options = ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
     menu = st.radio(
         "📋 MENU UTAMA",
@@ -687,7 +687,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Info box yang lebih menarik
+    # Info box 
     st.markdown("""
     <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
                 padding: 20px;
@@ -874,7 +874,7 @@ if menu == "🏠 Beranda":
 elif menu == "🧮 Kalkulator Gas":
     add_menu_background("kalkulator")
     
-    # Header dengan animasi yang lebih menarik
+    # Header 
     st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 padding: 35px;
