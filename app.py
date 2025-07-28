@@ -229,11 +229,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
-# BACKGROUND 
+# BACKGROUND KREATIF DAN MENARIK
 # ===========================================
 st.markdown("""
 <style>
-    /* Background Beranda */
+    /* Background Beranda - Animated Gradient dengan Geometric Shapes */
     .beranda-bg {
         background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
         background-size: 400% 400%;
@@ -273,7 +273,7 @@ st.markdown("""
         100% { transform: translateX(50px) translateY(50px); }
     }
 
-    /* Background Kalkulator */
+    /* Background Kalkulator - Animated Circuit Pattern */
     .kalkulator-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
         position: fixed;
@@ -306,7 +306,7 @@ st.markdown("""
         100% { transform: translateX(40px) translateY(40px); opacity: 0.5; }
     }
 
-    /* Background Ensiklopedia */
+    /* Background Ensiklopedia - Molecular Structure Pattern */
     .ensiklopedia-bg {
         background: linear-gradient(120deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
         position: fixed;
@@ -339,7 +339,7 @@ st.markdown("""
         66% { transform: translateX(-10px) translateY(10px) rotate(240deg); }
     }
 
-    /* Background Keselamatan */
+    /* Background Keselamatan - Warning Pattern */
     .keselamatan-bg {
         background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
         position: fixed;
@@ -652,12 +652,12 @@ GAS_DATABASE = {
 }
 
 # ===========================================
-# MENU SIDEBAR 
+# MENU SIDEBAR YANG LEBIH MENARIK
 # ===========================================
 with st.sidebar:
     st.markdown("""
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            padding: 25px; 
+            padding: 30px; 
             border-radius: 20px; 
             text-align: center; 
             margin-bottom: 25px;
@@ -670,14 +670,14 @@ with st.sidebar:
                 background-size: 60px 60px, 40px 40px, 80px 80px;
                 opacity: 0.3;">
     </div>
-    <h1 style="color: white; margin: 0; font-size: 2em; position: relative; z-index: 2;">⚗️ ChemGasMaster</h1>
-    <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; position: relative; z-index: 2; font-size: 1.1em;">Platform Kimia Interaktif</p>
+    <h1 style="color: white; margin: 0; font-size: 2.3em; position: relative; z-index: 2; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: bold;">⚗️ ChemGasMaster</h1>
+    <p style="color: rgba(255,255,255,0.95); margin: 10px 0 0 0; position: relative; z-index: 2; font-size: 1.3em; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); font-weight: 500;">Platform Kimia Interaktif</p>
 </div>
 """, unsafe_allow_html=True)
     
     st.markdown("---")
     
-    # Menu
+    # Menu dengan styling yang lebih menarik
     menu_options = ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
     menu = st.radio(
         "📋 MENU UTAMA",
@@ -687,37 +687,48 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Info box 
+    # Info box yang lebih menarik
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-                padding: 20px;
-                border-radius: 15px;
-                margin-bottom: 20px;
-                position: relative;
-                overflow: hidden;">
-        <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🧪</div>
-        <div style="font-size: 1.5em; margin-bottom: 10px;">💡</div>
-        <small style="color: #333;"><b>ℹ️ Info Penting</b><br>
-        Menggunakan persamaan gas ideal:<br>
-        <b style="color: #667eea;">PV = nRT</b><br>
-        (R = 0.0821 L·atm/mol·K)</small>
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.15;">🧪</div>
+    <div style="font-size: 1.8em; margin-bottom: 12px;">💡</div>
+    <div style="color: #333; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
+        <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 8px;">ℹ️ Info Penting</div>
+        <div style="font-size: 1.0em; line-height: 1.4;">
+            Menggunakan persamaan gas ideal:<br>
+            <span style="color: #667eea; font-weight: bold; font-size: 1.1em;">PV = nRT</span><br>
+            <span style="font-size: 0.95em;">(R = 0.0821 L·atm/mol·K)</span>
+        </div>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
     
     # Fun facts box
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-                padding: 20px;
-                border-radius: 15px;
-                position: relative;
-                overflow: hidden;">
-        <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🎯</div>
-        <div style="font-size: 1.5em; margin-bottom: 10px;">🚀</div>
-        <small style="color: #333;"><b>Fakta Menarik!</b><br>
-        1 mol gas = 6.022×10²³ molekul<br>
-        Gas ideal hanya ada dalam teori! 🤓<br>
+<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.15;">🎯</div>
+    <div style="font-size: 1.8em; margin-bottom: 12px;">🚀</div>
+    <div style="color: #333; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
+        <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 8px;">Fakta Menarik!</div>
+        <div style="font-size: 1.0em; line-height: 1.5;">
+            1 mol gas = 6.022×10²³ molekul<br>
+            Gas ideal hanya ada dalam teori! 🤓<br>
+            Suhu terendah: -273.15°C (0 K) ❄️
+        </div>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # Menambahkan partikel mengambang
 add_floating_particles()
@@ -874,7 +885,7 @@ if menu == "🏠 Beranda":
 elif menu == "🧮 Kalkulator Gas":
     add_menu_background("kalkulator")
     
-    # Header 
+    # Header dengan animasi yang lebih menarik
     st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 padding: 35px;
