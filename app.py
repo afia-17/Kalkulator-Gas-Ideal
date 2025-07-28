@@ -809,8 +809,8 @@ if menu == "🏠 Beranda":
     
     # Persamaan Gas Ideal
     st.markdown(wrap_content_with_overlay("""
-<div style="text-align: center; margin: 40px 0; padding: 30px; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+<div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            padding: 30px;
             border-radius: 25px;
             position: relative;
             overflow: hidden;">
@@ -825,22 +825,16 @@ if menu == "🏠 Beranda":
                 max-width: 600px;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.2);
                 position: relative;
-                z-index: 2;">
+                z-index: 2;
+                text-align: center;">
         <div style="font-size: 4em; 
                     font-weight: bold; 
-                    color: #667eea;
+                    color: #11998e;
                     font-family: 'Times New Roman', serif;
                     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
                     margin: 20px 0;
                     letter-spacing: 8px;">
             PV = nRT
-        </div>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-                     padding: 20px;
-                     border-radius: 15px;
-                     margin-top: 25px;">
-            <p style="color: #333; font-size: 1.2em; margin: 0; font-weight: 500;">
-            </p>
         </div>
     </div>
 </div>
