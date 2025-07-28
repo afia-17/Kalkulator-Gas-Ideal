@@ -1770,84 +1770,83 @@ elif menu == "⚠️ Panduan Keselamatan":
     </div>
     """), unsafe_allow_html=True)
     
-
-# Simbol Bahaya
+    # Simbol Bahaya
     st.markdown(wrap_content_with_overlay("""
-<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 30px;
-            border-radius: 25px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;">
-    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
-    <div style="text-align: center; margin-bottom: 25px;">
-        <div style="font-size: 3em; margin-bottom: 15px;">🚧</div>
-        <h2 style="margin: 0; color: #333; font-size: 2em;">Simbol Bahaya Umum</h2>
+    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                padding: 30px;
+                border-radius: 25px;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div style="font-size: 3em; margin-bottom: 15px;">🚧</div>
+            <h2 style="margin: 0; color: #333; font-size: 2em;">Simbol Bahaya Umum</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">🔥</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">🔥</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Mudah Terbakar</h3>
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Hidrogen, Metana</p>
+                    <p style="margin: 5px 0;">• Jauhkan dari sumber api</p>
+                    <p style="margin: 5px 0;">• Gunakan di area berventilasi</p>
+                    <p style="margin: 5px 0;">• Hindari percikan listrik</p>
+                </div>
+            </div>
+            <div style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">☠️</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">☠️</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Beracun</h3>
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Klorin, Amonia</p>
+                    <p style="margin: 5px 0;">• Gunakan alat pelindung diri</p>
+                    <p style="margin: 5px 0;">• Hindari inhalasi langsung</p>
+                    <p style="margin: 5px 0;">• Ventilasi yang baik</p>
+                </div>
+            </div>
+            <div style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">💨</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">💨</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Pengoksidasi</h3>
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Oksigen, Fluorin</p>
+                    <p style="margin: 5px 0;">• Hindari kontak dengan bahan organik</p>
+                    <p style="margin: 5px 0;">• Simpan terpisah dari reduktor</p>
+                    <p style="margin: 5px 0;">• Meningkatkan risiko kebakaran</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-        <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-                    padding: 25px;
-                    border-radius: 20px;
-                    text-align: center;
-                    color: white;
-                    position: relative;
-                    overflow: hidden;
-                    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);">
-            <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">🔥</div>
-            <div style="font-size: 3em; margin-bottom: 15px;">🔥</div>
-            <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Mudah Terbakar</h3>
-            <div style="background: rgba(255,255,255,0.25);
-                         padding: 15px;
-                         border-radius: 15px;">
-                <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Hidrogen, Metana</p>
-                <p style="margin: 5px 0;">• Jauhkan dari sumber api</p>
-                <p style="margin: 5px 0;">• Gunakan di area berventilasi</p>
-                <p style="margin: 5px 0;">• Hindari percikan listrik</p>
-            </div>
-        </div>
-        <div style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-                    padding: 25px;
-                    border-radius: 20px;
-                    text-align: center;
-                    color: white;
-                    position: relative;
-                    overflow: hidden;
-                    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);">
-            <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">☠️</div>
-            <div style="font-size: 3em; margin-bottom: 15px;">☠️</div>
-            <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Beracun</h3>
-            <div style="background: rgba(255,255,255,0.25);
-                         padding: 15px;
-                         border-radius: 15px;">
-                <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Klorin, Amonia</p>
-                <p style="margin: 5px 0;">• Gunakan alat pelindung diri</p>
-                <p style="margin: 5px 0;">• Hindari inhalasi langsung</p>
-                <p style="margin: 5px 0;">• Ventilasi yang baik</p>
-            </div>
-        </div>
-        <div style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-                    padding: 25px;
-                    border-radius: 20px;
-                    text-align: center;
-                    color: white;
-                    position: relative;
-                    overflow: hidden;
-                    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);">
-            <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">💨</div>
-            <div style="font-size: 3em; margin-bottom: 15px;">💨</div>
-            <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Pengoksidasi</h3>
-            <div style="background: rgba(255,255,255,0.25);
-                         padding: 15px;
-                         border-radius: 15px;">
-                <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Oksigen, Fluorin</p>
-                <p style="margin: 5px 0;">• Hindari kontak dengan bahan organik</p>
-                <p style="margin: 5px 0;">• Simpan terpisah dari reduktor</p>
-                <p style="margin: 5px 0;">• Meningkatkan risiko kebakaran</p>
-            </div>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
     # APD
     st.markdown(wrap_content_with_overlay("""
