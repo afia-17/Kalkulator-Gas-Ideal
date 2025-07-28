@@ -840,12 +840,6 @@ if menu == "🏠 Beranda":
                      border-radius: 15px;
                      margin-top: 25px;">
             <p style="color: #333; font-size: 1.2em; margin: 0; font-weight: 500;">
-                <strong>Dimana:</strong><br>
-                <span style="color: #667eea; font-weight: bold;">P</span> = Tekanan, 
-                <span style="color: #667eea; font-weight: bold;">V</span> = Volume, 
-                <span style="color: #667eea; font-weight: bold;">n</span> = Jumlah mol<br>
-                <span style="color: #667eea; font-weight: bold;">R</span> = Konstanta gas (0.0821 L·atm/mol·K), 
-                <span style="color: #667eea; font-weight: bold;">T</span> = Suhu (K)
             </p>
         </div>
     </div>
