@@ -225,6 +225,34 @@ st.markdown("""
         border-color: #764ba2;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
+
+    /* Footer navigation buttons */
+    .footer-nav-btn {
+        background: rgba(255,255,255,0.25);
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.3);
+        font-weight: 500;
+    }
+    
+    .footer-nav-btn:hover {
+        background: rgba(255,255,255,0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        border-color: rgba(255,255,255,0.6);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .footer-nav-btn:active {
+        transform: translateY(-1px);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -1217,8 +1245,6 @@ elif menu == "🧮 Kalkulator Gas":
                             <div style="background: rgba(255,255,255,0.25); 
                                         padding: 15px; 
                                         border-radius: 15px;">
-                                <p style="margin: 0; font-size: 1px; 
-                                        border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em;">
                                     Volume <b>{nama if nama else 'gas'}</b> = 
                                     <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
@@ -1814,41 +1840,67 @@ elif menu == "⚠️ Panduan Keselamatan":
     """), unsafe_allow_html=True)
 
 # ===========================================
-# FOOTER
+# FOOTER DENGAN NAVIGASI YANG BISA DIKLIK
 # ===========================================
 st.markdown("---")
+
+# JavaScript untuk navigasi
 st.markdown("""
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            border-radius: 25px;
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;">
-    <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚗️</div>
-    <div style="font-size: 3em; margin-bottom: 15px;">⚗️</div>
-    <h3 style="margin: 0 0 10px 0; font-size: 2em;">ChemGasMaster</h3>
-    <p style="margin: 0; opacity: 0.95; font-size: 1.1em;">© 2025 Kelompok 7 Kelas 1A | Platform Kimia Interaktif</p>
-    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            🧪 Kalkulator Gas
-        </span>
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            📚 Ensiklopedia
-        </span>
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            ⚠️ Keselamatan
-        </span>
-    </div>
-</div>
+<script>
+function navigateToMenu(menuIndex) {
+    // Trigger Streamlit rerun dengan parameter menu
+    window.parent.postMessage({
+        type: 'streamlit:setComponentValue',
+        value: menuIndex
+    }, '*');
+}
+</script>
 """, unsafe_allow_html=True)
+
+# Footer dengan tombol navigasi yang bisa diklik
+footer_col1, footer_col2, footer_col3 = st.columns([1, 2, 1])
+
+with footer_col2:
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 30px;
+                border-radius: 25px;
+                text-align: center;
+                color: white;
+                margin-top: 40px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚗️</div>
+        <div style="font-size: 3em; margin-bottom: 15px;">⚗️</div>
+        <h3 style="margin: 0 0 10px 0; font-size: 2em;">ChemGasMaster</h3>
+        <p style="margin: 0 0 25px 0; opacity: 0.95; font-size: 1.1em;">© 2025 Kelompok 7 Kelas 1A | Platform Kimia Interaktif</p>
+        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    """, unsafe_allow_html=True)
+    
+    # Tombol navigasi yang bisa diklik
+    nav_col1, nav_col2, nav_col3 = st.columns(3)
+    
+    with nav_col1:
+        if st.button("🧪 Kalkulator Gas", key="footer_calc", use_container_width=True):
+            st.session_state.menu_selection = "🧮 Kalkulator Gas"
+            st.rerun()
+    
+    with nav_col2:
+        if st.button("📚 Ensiklopedia", key="footer_ency", use_container_width=True):
+            st.session_state.menu_selection = "📚 Ensiklopedia Gas"
+            st.rerun()
+    
+    with nav_col3:
+        if st.button("⚠️ Keselamatan", key="footer_safety", use_container_width=True):
+            st.session_state.menu_selection = "⚠️ Panduan Keselamatan"
+            st.rerun()
+    
+    st.markdown("""
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Sinkronisasi menu selection dengan session state
+if 'menu_selection' in st.session_state:
+    if st.session_state.menu_selection != menu:
+        st.rerun()
