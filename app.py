@@ -1784,6 +1784,20 @@ elif menu == "📚 Ensiklopedia Gas":
         with tab:
             color = colors[i % len(colors)]
             
+            # Membuat tabel HTML dengan cara yang lebih aman
+            table_rows = ""
+            for key, value in props.items():
+                table_rows += f"""
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                    <td style="padding: 15px; font-weight: bold; background: rgba(255,255,255,0.1); width: 40%;">
+                        {key}
+                    </td>
+                    <td style="padding: 15px; background: rgba(255,255,255,0.05);">
+                        {value}
+                    </td>
+                </tr>
+                """
+            
             st.markdown(wrap_content_with_overlay(f"""
             <div style="background: {color};
                         padding: 25px;
@@ -1799,16 +1813,7 @@ elif menu == "📚 Ensiklopedia Gas":
                             overflow: hidden;
                             backdrop-filter: blur(10px);">
                     <table style="width: 100%; border-collapse: collapse;">
-                        {"".join(f'''
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                            <td style="padding: 15px; font-weight: bold; background: rgba(255,255,255,0.1); width: 40%;">
-                                {key}
-                            </td>
-                            <td style="padding: 15px; background: rgba(255,255,255,0.05);">
-                                {value}
-                            </td>
-                        </tr>
-                        ''' for key, value in props.items())}
+                        {table_rows}
                     </table>
                 </div>
             </div>
