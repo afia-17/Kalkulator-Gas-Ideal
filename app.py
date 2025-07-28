@@ -247,6 +247,129 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+
+    /* Tab styling untuk kalkulator */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background: rgba(255,255,255,0.1);
+        padding: 8px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        height: 60px;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        border-radius: 12px;
+        border: 2px solid rgba(255,255,255,0.3);
+        color: #333;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 100;
+    }
+
+    .stTabs [data-baseweb="tab"]:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
+        border-color: rgba(255,255,255,0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        color: white !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
+        border-color: rgba(255,255,255,0.4) !important;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    /* Tab content styling untuk ensiklopedia */
+    .stTabs [data-baseweb="tab-panel"] {
+        padding: 20px 0;
+        position: relative;
+        z-index: 50;
+    }
+
+    /* Ensiklopedia tab styling */
+    .encyclopedia-tabs [data-baseweb="tab-list"] {
+        gap: 12px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+        padding: 15px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .encyclopedia-tabs [data-baseweb="tab"] {
+        height: 65px;
+        padding: 15px 25px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border-radius: 15px;
+        border: 2px solid rgba(102, 126, 234, 0.2);
+        color: #333;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .encyclopedia-tabs [data-baseweb="tab"]:hover {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+        border-color: rgba(102, 126, 234, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    }
+
+    .encyclopedia-tabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        color: white !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        border-color: rgba(255,255,255,0.5) !important;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Ensure tab visibility */
+    .stTabs {
+        position: relative;
+        z-index: 100;
+    }
+
+    .stTabs > div {
+        position: relative;
+        z-index: 100;
+    }
+
+    /* Override any conflicting styles */
+    .stTabs [data-baseweb="tab-list"] button {
+        position: relative !important;
+        z-index: 150 !important;
+    }
+
+    /* Specific styling for calculator section */
+    .calculator-tabs-wrapper .stTabs [data-baseweb="tab"] {
+        min-height: 65px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)) !important;
+        border: 2px solid rgba(102, 126, 234, 0.3) !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+
+    .calculator-tabs-wrapper .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        color: white !important;
+        border-color: rgba(255,255,255,0.6) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -970,12 +1093,17 @@ elif menu == "🧮 Kalkulator Gas":
     </style>
     """), unsafe_allow_html=True)
 
+    # Tambahkan div wrapper dengan class khusus untuk styling tab
+    st.markdown('<div class="calculator-tabs-wrapper">', unsafe_allow_html=True)
+
     tab1, tab2, tab3, tab4 = st.tabs([
         "⚖️ Hitung Massa", 
         "🎚️ Hitung Tekanan",
         "🫙 Hitung Volume",
         "🧪 Hitung Mol"
     ])
+
+    st.markdown('</div>', unsafe_allow_html=True)
     
     R = 0.0821  # Konstanta gas ideal
 
@@ -1090,7 +1218,7 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
 </div>
-"""), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1204,7 +1332,7 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
 </div>
-"""), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1321,7 +1449,7 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
 </div>
-"""), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -1565,8 +1693,10 @@ elif menu == "📚 Ensiklopedia Gas":
         </div>
         """), unsafe_allow_html=True)
     
-    # Tab Informasi dengan tabel yang diperbaiki
+    # Tab Informasi dengan styling yang diperbaiki
+    st.markdown('<div class="encyclopedia-tabs">', unsafe_allow_html=True)
     tabs = st.tabs(list(gas["properties"].keys()))
+    st.markdown('</div>', unsafe_allow_html=True)
     
     colors = [
         "#667eea",
@@ -1648,7 +1778,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                 margin-bottom: 30px;
                 position: relative;
                 overflow: hidden;">
-        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
         <div style="text-align: center; margin-bottom: 25px;">
             <div style="font-size: 3em; margin-bottom: 15px;">🚧</div>
             <h2 style="margin: 0; color: #333; font-size: 2em;">Simbol Bahaya Umum</h2>
@@ -1717,7 +1847,7 @@ elif menu == "⚠️ Panduan Keselamatan":
         </div>
     </div>
     """), unsafe_allow_html=True)
-    
+
     # APD
     st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
@@ -1934,3 +2064,4 @@ with footer_col2:
     
     st.markdown("</div></div>", unsafe_allow_html=True)
 
+</merged_code>
