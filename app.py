@@ -86,6 +86,232 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
+# CSS BACKGROUND UNTUK SETIAP MENU
+# ===========================================
+st.markdown("""
+<style>
+    /* Background Animasi untuk Beranda */
+    .beranda-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.1;
+    }
+    
+    .beranda-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        animation: float-molecules 20s ease-in-out infinite;
+    }
+    
+    @keyframes float-molecules {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-20px) rotate(120deg); }
+        66% { transform: translateY(10px) rotate(240deg); }
+    }
+
+    /* Background untuk Kalkulator Gas */
+    .kalkulator-bg {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.08;
+    }
+    
+    .kalkulator-bg::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255,255,255,0.1) 50px, rgba(255,255,255,0.1) 100px),
+            repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(0,0,0,0.05) 50px, rgba(0,0,0,0.05) 100px);
+        animation: slide-pattern 30s linear infinite;
+    }
+    
+    @keyframes slide-pattern {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(100px); }
+    }
+
+    /* Background untuk Ensiklopedia */
+    .ensiklopedia-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.06;
+    }
+    
+    .ensiklopedia-bg::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15) 1px, transparent 1px),
+            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 3px, transparent 3px);
+        background-size: 100px 100px, 150px 150px, 200px 200px;
+        animation: twinkle 15s ease-in-out infinite;
+    }
+    
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+    }
+
+    /* Background untuk Panduan Keselamatan */
+    .keselamatan-bg {
+        background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.05;
+    }
+    
+    .keselamatan-bg::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            linear-gradient(45deg, rgba(255,0,0,0.1) 25%, transparent 25%),
+            linear-gradient(-45deg, rgba(255,165,0,0.1) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, rgba(255,0,0,0.1) 75%),
+            linear-gradient(-45deg, transparent 75%, rgba(255,165,0,0.1) 75%);
+        background-size: 60px 60px;
+        background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        animation: warning-pattern 8s linear infinite;
+    }
+    
+    @keyframes warning-pattern {
+        0% { background-position: 0 0, 0 30px, 30px -30px, -30px 0px; }
+        100% { background-position: 60px 60px, 60px 90px, 90px 30px, 30px 60px; }
+    }
+
+    /* Overlay untuk memastikan readability */
+    .content-overlay {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(1px);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Partikel mengambang untuk efek visual */
+    .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .particle-element {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: float-up 15s infinite linear;
+    }
+    
+    @keyframes float-up {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Responsif untuk mobile */
+    @media (max-width: 768px) {
+        .beranda-bg, .kalkulator-bg, .ensiklopedia-bg, .keselamatan-bg {
+            opacity: 0.03;
+        }
+        .content-overlay {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 5px 0;
+            padding: 15px;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Fungsi untuk menambahkan background sesuai menu
+def add_menu_background(menu_type):
+    if menu_type == "beranda":
+        st.markdown('<div class="beranda-bg"></div>', unsafe_allow_html=True)
+        # Tambahkan partikel mengambang
+        particles_html = """
+        <div class="floating-particles">
+            <div class="particle-element" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle-element" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="particle-element" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="particle-element" style="left: 40%; animation-delay: 6s;"></div>
+            <div class="particle-element" style="left: 50%; animation-delay: 8s;"></div>
+            <div class="particle-element" style="left: 60%; animation-delay: 10s;"></div>
+            <div class="particle-element" style="left: 70%; animation-delay: 12s;"></div>
+            <div class="particle-element" style="left: 80%; animation-delay: 14s;"></div>
+            <div class="particle-element" style="left: 90%; animation-delay: 16s;"></div>
+        </div>
+        """
+        st.markdown(particles_html, unsafe_allow_html=True)
+        
+    elif menu_type == "kalkulator":
+        st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
+        
+    elif menu_type == "ensiklopedia":
+        st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
+        
+    elif menu_type == "keselamatan":
+        st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
+
+# Fungsi untuk wrap konten dengan overlay
+def wrap_content_with_overlay(content_html):
+    return f'<div class="content-overlay">{content_html}</div>'
+
+# ===========================================
 # DATABASE GAS
 # ===========================================
 GAS_DATABASE = {
@@ -188,8 +414,8 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Minuman berkarbonasi, pemadam kebakaran"
-    },
-     "Neon (Ne)": {
+    }, 
+    "Neon (Ne)": {
         "icon": "💡",
         "category": "Gas Monoatomik",
         "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
@@ -213,57 +439,57 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
+    },  
+    "Helium (He)": {
+        "icon": "🎚️",
+        "category": "Gas Monoatomik",
+        "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
+        "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "He",
+                "Massa Molar": "4.00 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-272.2 °C (0.95 K)",
+                "Titik Didih": "-268.93 °C (4.22 K)",
+                "Densitas (STP)": "0.18 g/L",
+                "Kalor Jenis": "5.19 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Asfiksia jika menggantikan oksigen",
+                "Penanganan": "Gunakan dalam ruang berventilasi"
+            }
+        },
+        "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
+    }, 
+    "Argon (Ar)": {
+        "icon": "🔏",
+        "category": "Gas Monoatomik",
+        "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
+        "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "Ar",
+                "Massa Molar": "39.95 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-189.35 °C (83.8 K)",
+                "Titik Didih": "-185.85 °C (87.3 K)",
+                "Densitas (STP)": "1.78 g/L",
+                "Kalor Jenis": "0.52 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
+                "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
+            }
+        },
+        "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
     },
-      "Helium (He)": {
-    "icon": "🎚️",
-    "category": "Gas Monoatomik",
-    "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
-    "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "He",
-        "Massa Molar": "4.00 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-272.2 °C (0.95 K)",
-        "Titik Didih": "-268.93 °C (4.22 K)",
-        "Densitas (STP)": "0.18 g/L",
-        "Kalor Jenis": "5.19 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Asfiksia jika menggantikan oksigen",
-        "Penanganan": "Gunakan dalam ruang berventilasi"
-      }
-    },
-    "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
-    },
-     "Argon (Ar)": {
-    "icon": "🔏",
-    "category": "Gas Monoatomik",
-    "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
-    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "Ar",
-        "Massa Molar": "39.95 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-189.35 °C (83.8 K)",
-        "Titik Didih": "-185.85 °C (87.3 K)",
-        "Densitas (STP)": "1.78 g/L",
-        "Kalor Jenis": "0.52 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
-        "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
-      }
-    },
-    "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
-  },
 }
 
 # ===========================================
@@ -288,21 +514,23 @@ with st.sidebar:
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
+    add_menu_background("beranda")
     
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("<h1 class='main-header'>ChemGasMaster</h1>"), unsafe_allow_html=True)
+    
+    st.markdown(wrap_content_with_overlay("""
     <div class="card calc-card">
         <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
         <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
     # Persamaan Gas Ideal dengan penjelasan
     st.latex(r'''PV = nRT''')
     
     cols = st.columns([3, 2])
     with cols[0]:
-        st.markdown("""
+        st.markdown(wrap_content_with_overlay("""
         <div style="margin-top:20px;">
             <h4>Persamaan Gas Ideal:</h4>
             <p><b>P</b> = Tekanan (atm)</p>
@@ -311,20 +539,20 @@ if menu == "🏠 Beranda":
             <p><b>R</b> = Konstanta gas = 0.0821 L·atm/mol·K</p>
             <p><b>T</b> = Suhu (K)</p>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
     
     with cols[1]:
-        st.markdown("""
+        st.markdown(wrap_content_with_overlay("""
         <div style="margin-top:20px;">
             <h4>Fakta Menarik:</h4>
             <p>🎚️ <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
             <p>🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi</p>
             <p>🧪 <b>1 mol gas</b> = 6.022×10²³ molekul</p>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
     
     # Visualisasi variabel
-    st.markdown("<h4 style='margin-top:30px;'>Variabel Utama:</h4>", unsafe_allow_html=True)
+    st.markdown(wrap_content_with_overlay("<h4 style='margin-top:30px;'>Variabel Utama:</h4>"), unsafe_allow_html=True)
     var_cols = st.columns(4)
     variables = [
         ("P", "Tekanan", "Mengukur gaya gas<br>pada wadah", "#ffcdd2"),
@@ -344,7 +572,7 @@ if menu == "🏠 Beranda":
             """, unsafe_allow_html=True)
     
     # Contoh aplikasi
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("""
     <div class="card" style="margin-top:30px;">
         <h4>💡 Contoh Aplikasi Persamaan Gas Ideal:</h4>
         <ul>
@@ -354,10 +582,10 @@ if menu == "🏠 Beranda":
             <li>Mendesain sistem pneumatik dan hidrolik</li>
         </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
     # Tips Penggunaan
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("""
     <div class="card gas-card" style="margin-top:20px;">
         <h4>🔧 Tips Menggunakan Aplikasi:</h4>
         <ol>
@@ -367,17 +595,19 @@ if menu == "🏠 Beranda":
             <li>Pastikan satuan yang digunakan konsisten</li>
         </ol>
     </div>
-    """, unsafe_allow_html=True)
-    
+    """), unsafe_allow_html=True)
+
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
+    add_menu_background("kalkulator")
+    
     # Header dengan animasi partikel
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
-                padding: 25px; 
-                border-radius: 15px;
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3);
+                 padding: 25px;
+                 border-radius: 15px;
                 margin-bottom: 30px;
                 position: relative;
                 overflow: hidden;">
@@ -428,7 +658,7 @@ elif menu == "🧮 Kalkulator Gas":
             font-size: 0.9em;
         }
     </style>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
     # Style untuk tabs
     tab_style = """
@@ -472,7 +702,7 @@ elif menu == "🧮 Kalkulator Gas":
     with tab1:
         # Kalkulator Massa
         with st.container():
-            st.markdown("""
+            st.markdown(wrap_content_with_overlay("""
             <div class="tab-container" style="border-left: 5px solid #FF9800;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🧪</div>
@@ -483,7 +713,8 @@ elif menu == "🧮 Kalkulator Gas":
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             cols = st.columns(3)
             with cols[0]:
@@ -495,11 +726,9 @@ elif menu == "🧮 Kalkulator Gas":
             with cols[2]:
                 st.markdown('<div class="input-label">Massa Molar (Mr)</div>', unsafe_allow_html=True)
                 mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.2f", label_visibility="collapsed")
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+                
             if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n * mr 
+                massa = n * mr
                 
                 st.markdown(f"""
                 <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
@@ -532,7 +761,7 @@ elif menu == "🧮 Kalkulator Gas":
     with tab2:
         # Kalkulator Tekanan
         with st.container():
-            st.markdown("""
+            st.markdown(wrap_content_with_overlay("""
             <div class="tab-container" style="border-left: 5px solid #F44336;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🎚️</div>
@@ -543,7 +772,8 @@ elif menu == "🧮 Kalkulator Gas":
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -552,7 +782,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+        
             with col2:
                 st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -594,9 +824,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     V = V_input
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🎚️ Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
                 P = (n * R * T) / V
                 
@@ -623,7 +851,7 @@ elif menu == "🧮 Kalkulator Gas":
     with tab3:
         # Kalkulator Volume
         with st.container():
-            st.markdown("""
+            st.markdown(wrap_content_with_overlay("""
             <div class="tab-container" style="border-left: 5px solid #4CAF50;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🫙</div>
@@ -634,7 +862,8 @@ elif menu == "🧮 Kalkulator Gas":
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -643,7 +872,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+        
             with col2:
                 st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -688,9 +917,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🫙 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
                 V = (n * R * T) / P
                 
@@ -717,7 +944,7 @@ elif menu == "🧮 Kalkulator Gas":
     with tab4:
         # Kalkulator Mol
         with st.container():
-            st.markdown("""
+            st.markdown(wrap_content_with_overlay("""
             <div class="tab-container" style="border-left: 5px solid #9C27B0;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                     <div style="font-size: 40px;">🧪 </div>
@@ -728,7 +955,8 @@ elif menu == "🧮 Kalkulator Gas":
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
@@ -761,7 +989,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
+        
             with col2:
                 st.markdown('<div class="input-label">Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -803,9 +1031,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     T = T_input
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🧪 Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
                 n = (P * V) / (R * T)
                 
@@ -830,7 +1056,7 @@ elif menu == "🧮 Kalkulator Gas":
                 st.balloons()
 
     # Catatan edukasi di bagian bawah
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
                 padding: 20px;
                 border-radius: 15px;
@@ -847,13 +1073,15 @@ elif menu == "🧮 Kalkulator Gas":
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
 # ===========================================
 elif menu == "📚 Ensiklopedia Gas":
-    st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
+    add_menu_background("ensiklopedia")
+    
+    st.markdown(wrap_content_with_overlay("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>"), unsafe_allow_html=True)
     
     selected_gas = st.selectbox(
         "Pilih Gas", 
@@ -866,12 +1094,12 @@ elif menu == "📚 Ensiklopedia Gas":
     # Header Gas
     col1, col2 = st.columns([3,1])
     with col1:
-        st.markdown(f"""
+        st.markdown(wrap_content_with_overlay(f"""
         <h2>{gas['icon']} {selected_gas}</h2>
         <p><i>{gas['description']}</i></p>
         <p><b>Kategori:</b> {gas['category']}</p>
         <p><b>Aplikasi:</b> {gas['aplikasi']}</p>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
     with col2:
         st.image(gas["image"], width=200)
     
@@ -880,19 +1108,21 @@ elif menu == "📚 Ensiklopedia Gas":
     
     for tab, (category, props) in zip(tabs, gas["properties"].items()):
         with tab:
-            st.markdown(f"""
+            st.markdown(wrap_content_with_overlay(f"""
             <table class="property-table">
                 {"".join(f"<tr><td><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
             </table>
-            """, unsafe_allow_html=True)
+            """), unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN PANDUAN KESELAMATAN
 # ===========================================
 elif menu == "⚠️ Panduan Keselamatan":
-    st.markdown("<h1 class='main-header'>⚠️ Panduan Keselamatan Gas</h1>", unsafe_allow_html=True)
+    add_menu_background("keselamatan")
     
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("<h1 class='main-header'>⚠️ Panduan Keselamatan Gas</h1>"), unsafe_allow_html=True)
+    
+    st.markdown(wrap_content_with_overlay("""
     <div class="card safety-card">
         <h3>🚧 Simbol Bahaya Umum</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
@@ -916,9 +1146,9 @@ elif menu == "⚠️ Panduan Keselamatan":
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
-    st.markdown("""
+    st.markdown(wrap_content_with_overlay("""
     <div class="card safety-card">
         <h3>🛡️ Alat Pelindung Diri (APD)</h3>
         <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
@@ -940,8 +1170,9 @@ elif menu == "⚠️ Panduan Keselamatan":
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
-    st.markdown("""
+    """), unsafe_allow_html=True)
+
+    st.markdown(wrap_content_with_overlay("""
     <div class="card safety-card">
         <h3>🚨 Prosedur Darurat</h3>
         <ol>
@@ -952,7 +1183,7 @@ elif menu == "⚠️ Panduan Keselamatan":
             <li>Hubungi petugas berwenang jika diperlukan</li>
         </ol>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
 # ===========================================
 # FOOTER
