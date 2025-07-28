@@ -85,6 +85,94 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    /* Background animasi partikel */
+    .particle-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+    .particle {
+        position: absolute;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        animation: float 15s infinite linear;
+    }
+    @keyframes float {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+    
+    /* Gradient background untuk konten utama */
+    .main-content {
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.9) 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        backdrop-filter: blur(5px);
+        margin-bottom: 2rem;
+    }
+    
+    /* Efek kaca untuk sidebar */
+    [data-testid=stSidebar] {
+        background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,240,240,0.85) 100%) !important;
+        backdrop-filter: blur(5px) !important;
+        box-shadow: 2px 0 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Efek hover untuk menu sidebar */
+    [data-testid=stSidebarNav] div a {
+        transition: all 0.3s ease !important;
+        border-radius: 8px !important;
+    }
+    [data-testid=stSidebarNav] div a:hover {
+        background: linear-gradient(90deg, #0d47a1, #2196F3) !important;
+        color: white !important;
+        transform: translateX(5px) !important;
+    }
+</style>
+
+<!-- HTML untuk background animasi partikel -->
+<div class="particle-bg" id="particle-bg"></div>
+
+<script>
+// Script untuk membuat partikel animasi
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('particle-bg');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Ukuran acak antara 2px sampai 8px
+        const size = Math.random() * 6 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posisi awal acak
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.bottom = `-${size}px`;
+        
+        // Animasi dengan durasi dan delay acak
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        container.appendChild(particle);
+    }
+});
+</script>
+""", unsafe_allow_html=True)
+
 # ===========================================
 # DATABASE GAS
 # ===========================================
@@ -373,6 +461,10 @@ if menu == "🏠 Beranda":
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
+    st.markdown("""
+    <div class="main-content">
+        <!-- Konten yang sudah ada -->
+    """, unsafe_allow_html=True)
     # Header dengan animasi partikel
     st.markdown("""
     <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
@@ -848,6 +940,7 @@ elif menu == "🧮 Kalkulator Gas":
         </div>
     </div>
     """, unsafe_allow_html=True)
+   st.markdown("</div>", unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
