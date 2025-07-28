@@ -1934,4 +1934,3 @@ with footer_col2:
     
     st.markdown("</div></div>", unsafe_allow_html=True)
 
-</merged_code>
