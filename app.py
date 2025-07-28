@@ -656,21 +656,24 @@ GAS_DATABASE = {
 # ===========================================
 with st.sidebar:
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                padding: 25px; 
-                border-radius: 20px; 
-                text-align: center; 
-                margin-bottom: 25px;
-                position: relative;
-                overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-                    background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"20\" cy=\"20\" r=\"2\" fill=\"rgba(255,255,255,0.1)\"/><circle cx=\"80\" cy=\"80\" r=\"1\" fill=\"rgba(255,255,255,0.1)\"/><circle cx=\"40\" cy=\"60\" r=\"1.5\" fill=\"rgba(255,255,255,0.1)\"/></svg>'); 
-                    opacity: 0.3;">
-        </div>
-        <h1 style="color: white; margin: 0; font-size: 2em; position: relative; z-index: 2;">⚗️ ChemGasMaster</h1>
-        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; position: relative; z-index: 2; font-size: 1.1em;">Platform Kimia Interaktif</p>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            padding: 25px; 
+            border-radius: 20px; 
+            text-align: center; 
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+                background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                                  radial-gradient(circle at 40% 60%, rgba(255,255,255,0.1) 1.5px, transparent 1.5px);
+                background-size: 60px 60px, 40px 40px, 80px 80px;
+                opacity: 0.3;">
     </div>
-    """, unsafe_allow_html=True)
+    <h1 style="color: white; margin: 0; font-size: 2em; position: relative; z-index: 2;">⚗️ ChemGasMaster</h1>
+    <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; position: relative; z-index: 2; font-size: 1.1em;">Platform Kimia Interaktif</p>
+</div>
+""", unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -1203,6 +1206,8 @@ elif menu == "🧮 Kalkulator Gas":
                             <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
                             <div style="background: rgba(255,255,255,0.25); 
                                         padding: 15px; 
+                                        border-radius: 15px;">
+                                <p style="margin: 0; font-size: 1px; 
                                         border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em;">
                                     Volume <b>{nama if nama else 'gas'}</b> = 
