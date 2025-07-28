@@ -13,77 +13,462 @@ st.set_page_config(
 )
 
 # ===========================================
-# CSS CUSTOM
+# CSS CUSTOM DENGAN BACKGROUND KREATIF
 # ===========================================
 st.markdown("""
 <style>
     .main-header {
-        color: #0d47a1;
-        border-bottom: 2px solid #0d47a1;
-        padding-bottom: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .main-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+        animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
     .card {
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+        background: white;
+        border: 1px solid #e0e0e0;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
     .calc-card {
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-        border-left: 5px solid #2196f3;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
     }
+    
     .result-card {
-        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-        border-left: 5px solid #4caf50;
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        color: white;
+        border: none;
     }
+    
     .gas-card {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-        border-left: 5px solid #ff9800;
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        border: none;
     }
+    
     .safety-card {
-        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-        border-left: 5px solid #f44336;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        color: #333;
+        border: none;
     }
+    
+    .info-card {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        color: #333;
+        border: 1px solid #dee2e6;
+    }
+    
     .conversion-box {
-        background-color: #f5f5f5;
-        padding: 10px;
-        border-radius: 8px;
-        margin: 10px 0;
-        border: 1px dashed #9e9e9e;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 15px;
+        margin: 15px 0;
+        border: 1px solid rgba(255,255,255,0.3);
+        animation: pulse 2s infinite;
     }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+    }
+    
     .property-table {
         width: 100%;
         border-collapse: collapse;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
+    
     .property-table th {
-        background-color: #0d47a1;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        padding: 8px;
+        padding: 15px;
+        font-weight: bold;
+        text-align: left;
     }
+    
     .property-table td {
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
+        padding: 15px;
+        border-bottom: 1px solid #dee2e6;
+        background: white;
+        transition: background 0.3s ease;
     }
-    .input-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    
+    .property-table tr:hover td {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     }
+    
     .input-label {
-        min-width: 120px;
+        font-weight: bold;
+        color: #495057;
+        margin-bottom: 8px;
+        font-size: 16px;
     }
-    .input-field {
-        flex-grow: 1;
+    
+    /* Animated background particles */
+    .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
     }
-    .input-unit {
-        min-width: 100px;
+    
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        opacity: 0.6;
     }
-    .gas-icon {
-        font-size: 24px;
-        margin-right: 10px;
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+        50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+    
+    /* Button styling yang lebih menarik */
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 12px 25px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    /* Selectbox styling */
+    .stSelectbox > div > div {
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .stSelectbox > div > div:focus-within {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Number input styling */
+    .stNumberInput > div > div > input {
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 15px;
+        color: #333;
+        transition: all 0.3s ease;
+        padding: 10px 15px;
+    }
+    
+    .stNumberInput > div > div > input:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Text input styling */
+    .stTextInput > div > div > input {
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 15px;
+        color: #333;
+        transition: all 0.3s ease;
+        padding: 10px 15px;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
 </style>
 """, unsafe_allow_html=True)
+
+# ===========================================
+# BACKGROUND KREATIF DAN MENARIK
+# ===========================================
+st.markdown("""
+<style>
+    /* Background Beranda - Animated Gradient dengan Geometric Shapes */
+    .beranda-bg {
+        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        opacity: 0.1;
+    }
+    
+    .beranda-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.3) 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.2) 1px, transparent 1px),
+            linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+        background-size: 50px 50px, 30px 30px, 100px 100px;
+        animation: patternMove 15s linear infinite;
+    }
+    
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes patternMove {
+        0% { transform: translateX(0) translateY(0); }
+        100% { transform: translateX(50px) translateY(50px); }
+    }
+
+    /* Background Kalkulator - Animated Circuit Pattern */
+    .kalkulator-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        opacity: 0.08;
+    }
+    
+    .kalkulator-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            radial-gradient(circle at 30% 70%, rgba(255,255,255,0.2) 3px, transparent 3px);
+        background-size: 40px 40px, 40px 40px, 80px 80px;
+        animation: circuitFlow 20s linear infinite;
+    }
+    
+    @keyframes circuitFlow {
+        0% { transform: translateX(0) translateY(0); opacity: 0.5; }
+        50% { transform: translateX(20px) translateY(20px); opacity: 1; }
+        100% { transform: translateX(40px) translateY(40px); opacity: 0.5; }
+    }
+
+    /* Background Ensiklopedia - Molecular Structure Pattern */
+    .ensiklopedia-bg {
+        background: linear-gradient(120deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        opacity: 0.1;
+    }
+    
+    .ensiklopedia-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3) 4px, transparent 4px),
+            radial-gradient(circle at 60% 80%, rgba(255,255,255,0.2) 2px, transparent 2px),
+            radial-gradient(circle at 80% 40%, rgba(255,255,255,0.25) 3px, transparent 3px);
+        background-size: 60px 60px, 40px 40px, 80px 80px;
+        animation: molecularDance 12s ease-in-out infinite;
+    }
+    
+    @keyframes molecularDance {
+        0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+        33% { transform: translateX(10px) translateY(-10px) rotate(120deg); }
+        66% { transform: translateX(-10px) translateY(10px) rotate(240deg); }
+    }
+
+    /* Background Keselamatan - Warning Pattern */
+    .keselamatan-bg {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        opacity: 0.08;
+    }
+    
+    .keselamatan-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.1) 0px,
+                rgba(255,255,255,0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            ),
+            repeating-linear-gradient(
+                -45deg,
+                rgba(255,255,255,0.05) 0px,
+                rgba(255,255,255,0.05) 15px,
+                transparent 15px,
+                transparent 30px
+            );
+        animation: warningPulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes warningPulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+    }
+
+    /* Content overlay yang lebih modern */
+    .content-overlay {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .content-overlay:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    /* Floating particles animation */
+    .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        pointer-events: none;
+    }
+    
+    .particle-element {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(102, 126, 234, 0.3);
+        animation: floatUp 15s infinite linear;
+    }
+    
+    @keyframes floatUp {
+        0% {
+            transform: translateY(100vh) scale(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-10vh) scale(1);
+            opacity: 0;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Fungsi untuk menambahkan background sesuai menu
+def add_menu_background(menu_type):
+    if menu_type == "beranda":
+        st.markdown('<div class="beranda-bg"></div>', unsafe_allow_html=True)
+    elif menu_type == "kalkulator":
+        st.markdown('<div class="kalkulator-bg"></div>', unsafe_allow_html=True)
+    elif menu_type == "ensiklopedia":
+        st.markdown('<div class="ensiklopedia-bg"></div>', unsafe_allow_html=True)
+    elif menu_type == "keselamatan":
+        st.markdown('<div class="keselamatan-bg"></div>', unsafe_allow_html=True)
+
+# Fungsi untuk wrap konten dengan overlay
+def wrap_content_with_overlay(content_html):
+    return f'<div class="content-overlay">{content_html}</div>'
+
+# Fungsi untuk menambahkan partikel mengambang
+def add_floating_particles():
+    st.markdown("""
+    <div class="floating-particles">
+        <div class="particle-element" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+        <div class="particle-element" style="left: 20%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+        <div class="particle-element" style="left: 30%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+        <div class="particle-element" style="left: 40%; width: 5px; height: 5px; animation-delay: 6s;"></div>
+        <div class="particle-element" style="left: 50%; width: 4px; height: 4px; animation-delay: 8s;"></div>
+        <div class="particle-element" style="left: 60%; width: 7px; height: 7px; animation-delay: 10s;"></div>
+        <div class="particle-element" style="left: 70%; width: 3px; height: 3px; animation-delay: 12s;"></div>
+        <div class="particle-element" style="left: 80%; width: 5px; height: 5px; animation-delay: 14s;"></div>
+        <div class="particle-element" style="left: 90%; width: 4px; height: 4px; animation-delay: 16s;"></div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ===========================================
 # DATABASE GAS
@@ -188,11 +573,11 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Minuman berkarbonasi, pemadam kebakaran"
-    },
-     "Neon (Ne)": {
+    }, 
+    "Neon (Ne)": {
         "icon": "💡",
         "category": "Gas Monoatomik",
-        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi. Dapat digunakan sebagai pengisi lampu neon, penangkal petir, pengisi tabung televisi, dan dalam wujud cair neon dapat digunakan sebagai zat pendingir.",
+        "description": "Gas tidak berwarna, dapat memancarkan warna oranye kemerahan jika berada pada medan listrik bertegangan tinggi.",
         "image": "https://png.pngtree.com/thumb_back/fh260/background/20220426/pngtree-mendeleevs-periodic-table-luminescent-noble-gases-chemical-symbol-chemical-science-photo-image_30134580.jpg",
         "properties": {
             "🧪 Identitas Molekul": {
@@ -213,253 +598,312 @@ GAS_DATABASE = {
             }
         },
         "aplikasi": "Lampu neon, pendingin kriogenik, alat elektronik"
+    },  
+    "Helium (He)": {
+        "icon": "🎈",
+        "category": "Gas Monoatomik",
+        "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon.",
+        "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "He",
+                "Massa Molar": "4.00 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-272.2 °C (0.95 K)",
+                "Titik Didih": "-268.93 °C (4.22 K)",
+                "Densitas (STP)": "0.18 g/L",
+                "Kalor Jenis": "5.19 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Asfiksia jika menggantikan oksigen",
+                "Penanganan": "Gunakan dalam ruang berventilasi"
+            }
+        },
+        "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
+    }, 
+    "Argon (Ar)": {
+        "icon": "🔒",
+        "category": "Gas Monoatomik",
+        "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan dan sebagai atmosfer pelindung.",
+        "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
+        "properties": {
+            "🧪 Identitas Molekul": {
+                "Rumus": "Ar",
+                "Massa Molar": "39.95 g/mol",
+                "Penampilan": "Gas tak berwarna",
+                "Struktur": "Monoatomik"
+            },
+            "⚛️ Sifat Fisika": {
+                "Titik Leleh": "-189.35 °C (83.8 K)",
+                "Titik Didih": "-185.85 °C (87.3 K)",
+                "Densitas (STP)": "1.78 g/L",
+                "Kalor Jenis": "0.52 J/(g·K)"
+            },
+            "⚠️ Keselamatan": {
+                "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
+                "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
+            }
+        },
+        "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
     },
-      "Helium (He)": {
-    "icon": "🎚️",
-    "category": "Gas Monoatomik",
-    "description": "Gas tidak berwarna dan tidak berbau, sangat ringan. Tidak mudah terbakar dan digunakan secara luas dalam balon, pendinginan MRI, serta sebagai atmosfer inert untuk pengelasan.",
-    "image": "https://www.thoughtco.com/thmb/WjJCGpnJuSx3xprsfEgIdwBdoGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/186450350-56a132cb5f9b58b7d0bcf751.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "He",
-        "Massa Molar": "4.00 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-272.2 °C (0.95 K)",
-        "Titik Didih": "-268.93 °C (4.22 K)",
-        "Densitas (STP)": "0.18 g/L",
-        "Kalor Jenis": "5.19 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Asfiksia jika menggantikan oksigen",
-        "Penanganan": "Gunakan dalam ruang berventilasi"
-      }
-    },
-    "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
-    },
-     "Argon (Ar)": {
-    "icon": "🔏",
-    "category": "Gas Monoatomik",
-    "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan, bola lampu pijar, dan sebagai atmosfer pelindung dalam pembuatan semikonduktor.",
-    "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
-    "properties": {
-      "🧪 Identitas Molekul": {
-        "Rumus": "Ar",
-        "Massa Molar": "39.95 g/mol",
-        "Penampilan": "Gas tak berwarna",
-        "Struktur": "Monoatomik"
-      },
-      "⚛️ Sifat Fisika": {
-        "Titik Leleh": "-189.35 °C (83.8 K)",
-        "Titik Didih": "-185.85 °C (87.3 K)",
-        "Densitas (STP)": "1.78 g/L",
-        "Kalor Jenis": "0.52 J/(g·K)"
-      },
-      "⚠️ Keselamatan": {
-        "Bahaya": "Tidak beracun namun dapat menyebabkan asfiksia",
-        "Penanganan": "Ventilasi baik saat digunakan dalam ruang tertutup"
-      }
-    },
-    "aplikasi": "Pengelasan, bola lampu, atmosfer inert industri"
-  },
 }
 
 # ===========================================
-# MENU SIDEBAR
+# MENU SIDEBAR YANG LEBIH MENARIK
 # ===========================================
 with st.sidebar:
-    st.title("ChemGasMaster")
-    st.markdown("---")
-    menu = st.radio(
-        "MENU UTAMA",
-        ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"],
-        index=0
-    )
-    st.markdown("---")
     st.markdown("""
-    <div class="card gas-card">
-        <small>ℹ️ Menggunakan persamaan gas ideal: PV=nRT (R=0.0821 L·atm/mol·K)</small>
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                padding: 25px; 
+                border-radius: 20px; 
+                text-align: center; 
+                margin-bottom: 25px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+                    background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"20\" cy=\"20\" r=\"2\" fill=\"rgba(255,255,255,0.1)\"/><circle cx=\"80\" cy=\"80\" r=\"1\" fill=\"rgba(255,255,255,0.1)\"/><circle cx=\"40\" cy=\"60\" r=\"1.5\" fill=\"rgba(255,255,255,0.1)\"/></svg>'); 
+                    opacity: 0.3;">
+        </div>
+        <h1 style="color: white; margin: 0; font-size: 2em; position: relative; z-index: 2;">⚗️ ChemGasMaster</h1>
+        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; position: relative; z-index: 2; font-size: 1.1em;">Platform Kimia Interaktif</p>
     </div>
     """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Menu dengan styling yang lebih menarik
+    menu_options = ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
+    menu = st.radio(
+        "📋 MENU UTAMA",
+        menu_options,
+        index=0
+    )
+    
+    st.markdown("---")
+    
+    # Info box yang lebih menarik
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                padding: 20px;
+                border-radius: 15px;
+                margin-bottom: 20px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🧪</div>
+        <div style="font-size: 1.5em; margin-bottom: 10px;">💡</div>
+        <small style="color: #333;"><b>ℹ️ Info Penting</b><br>
+        Menggunakan persamaan gas ideal:<br>
+        <b style="color: #667eea;">PV = nRT</b><br>
+        (R = 0.0821 L·atm/mol·K)</small>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Fun facts box
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                padding: 20px;
+                border-radius: 15px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🎯</div>
+        <div style="font-size: 1.5em; margin-bottom: 10px;">🚀</div>
+        <small style="color: #333;"><b>Fakta Menarik!</b><br>
+        1 mol gas = 6.022×10²³ molekul<br>
+        Gas ideal hanya ada dalam teori! 🤓<br>
+        Suhu terendah: -273.15°C (0 K) ❄️</small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Menambahkan partikel mengambang
+add_floating_particles()
 
 # ===========================================
 # HALAMAN UTAMA (BERANDA)
 # ===========================================
 if menu == "🏠 Beranda":
-    st.markdown("<h1 class='main-header'>ChemGasMaster</h1>", unsafe_allow_html=True)
+    add_menu_background("beranda")
     
-    st.markdown("""
-    <div class="card calc-card">
-        <h3>Selamat Datang di Aplikasi ChemGasMaster!</h3>
-        <p>Platform lengkap untuk analisis gas ideal dan informasi kimia.</p>
+    st.markdown(wrap_content_with_overlay("""
+    <div style="text-align: center; padding: 40px; position: relative;">
+        <div style="font-size: 4em; margin-bottom: 20px; animation: bounce 2s infinite;">⚗️</div>
+        <h1 style="color: #667eea; font-size: 3em; margin-bottom: 20px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            ChemGasMaster
+        </h1>
+        <p style="font-size: 1.3em; color: #666; margin-bottom: 30px;">
+            Platform Interaktif untuk Eksplorasi Dunia Gas Ideal ✨
+        </p>
     </div>
-    """, unsafe_allow_html=True)
+    <style>
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+    """), unsafe_allow_html=True)
     
-    # Persamaan Gas Ideal dengan penjelasan
+    # Welcome card
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 30px;
+                border-radius: 20px;
+                color: white;
+                text-align: center;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: -50px; right: -50px; font-size: 10em; opacity: 0.1;">🎉</div>
+        <div style="font-size: 3em; margin-bottom: 15px;">🌟</div>
+        <h2 style="margin: 0 0 15px 0; font-size: 2em;">Selamat Datang di ChemGasMaster!</h2>
+        <p style="font-size: 1.2em; margin: 0; opacity: 0.95; line-height: 1.6;">
+            Jelajahi dunia gas ideal dengan kalkulator canggih, ensiklopedia lengkap, 
+            dan panduan keselamatan yang komprehensif! 🚀✨
+        </p>
+    </div>
+    """), unsafe_allow_html=True)
+    
+    # Persamaan Gas Ideal
+    st.markdown(wrap_content_with_overlay("""
+    <div style="text-align: center; margin: 40px 0;">
+        <h3 style="color: #667eea; margin-bottom: 25px; font-size: 2em;">🔬 Persamaan Gas Ideal</h3>
+    </div>
+    """), unsafe_allow_html=True)
+    
     st.latex(r'''PV = nRT''')
     
     cols = st.columns([3, 2])
     with cols[0]:
-        st.markdown("""
-        <div style="margin-top:20px;">
-            <h4>Persamaan Gas Ideal:</h4>
-            <p><b>P</b> = Tekanan (atm)</p>
-            <p><b>V</b> = Volume (L)</p>
-            <p><b>n</b> = Jumlah mol (mol)</p>
-            <p><b>R</b> = Konstanta gas = 0.0821 L·atm/mol·K</p>
-            <p><b>T</b> = Suhu (K)</p>
+        st.markdown(wrap_content_with_overlay("""
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); 
+                    padding: 25px; 
+                    border-radius: 20px; 
+                    position: relative;
+                    overflow: hidden;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">📊</div>
+            <h4 style="color: #333; margin-bottom: 20px; font-size: 1.5em;">📊 Variabel Persamaan:</h4>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px; border-left: 4px solid #ff6b6b;">
+                    <b style="color: #ff6b6b; font-size: 1.2em;">P</b> = Tekanan (atm)
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px; border-left: 4px solid #4ecdc4;">
+                    <b style="color: #4ecdc4; font-size: 1.2em;">V</b> = Volume (L)
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px; border-left: 4px solid #45b7d1;">
+                    <b style="color: #45b7d1; font-size: 1.2em;">n</b> = Jumlah mol (mol)
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px; border-left: 4px solid #9b59b6;">
+                    <b style="color: #9b59b6; font-size: 1.2em;">R</b> = Konstanta gas = 0.0821 L·atm/mol·K
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px; border-left: 4px solid #f39c12;">
+                    <b style="color: #f39c12; font-size: 1.2em;">T</b> = Suhu (K)
+                </div>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
     
     with cols[1]:
-        st.markdown("""
-        <div style="margin-top:20px;">
-            <h4>Fakta Menarik:</h4>
-            <p>🎚️ <b>Gas Ideal Tidak Nyata</b> - Hanya model matematis yang sempurna</p>
-            <p>🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi</p>
-            <p>🧪 <b>1 mol gas</b> = 6.022×10²³ molekul</p>
+        st.markdown(wrap_content_with_overlay("""
+        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); 
+                    padding: 25px; 
+                    border-radius: 20px;
+                    position: relative;
+                    overflow: hidden;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">🎯</div>
+            <h4 style="color: #333; margin-bottom: 20px; font-size: 1.5em;">🎯 Fakta Menarik:</h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px;">
+                    🎈 <b>Gas Ideal</b> - Hanya model matematis sempurna!
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px;">
+                    🌡️ <b>Kondisi Ideal</b> - Tekanan rendah & suhu tinggi
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px;">
+                    🧪 <b>1 mol gas</b> = 6.022×10²³ molekul
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 15px;">
+                    🚀 <b>STP</b> - 0°C, 1 atm, 22.4 L/mol
+                </div>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
     
     # Visualisasi variabel
-    st.markdown("<h4 style='margin-top:30px;'>Variabel Utama:</h4>", unsafe_allow_html=True)
-    var_cols = st.columns(4)
+    st.markdown(wrap_content_with_overlay("<h4 style='text-align: center; color: #667eea; margin: 40px 0 25px 0; font-size: 2em;'>📊 Visualisasi Variabel Gas Ideal</h4>"), unsafe_allow_html=True)
+    
+    var_cols = st.columns(5)
     variables = [
-        ("P", "Tekanan", "Mengukur gaya gas<br>pada wadah", "#ffcdd2"),
-        ("V", "Volume", "Ruang yang<br>ditempati gas", "#c8e6c9"),
-        ("n", "Jumlah Mol", "Banyaknya<br>partikel gas", "#bbdefb"),
-        ("T", "Suhu", "Ukuran energi<br>kinetik partikel", "#fff9c4")
+        ("P", "Tekanan", "Gaya gas pada dinding wadah", "#ff6b6b"),
+        ("V", "Volume", "Ruang yang ditempati gas", "#4ecdc4"),
+        ("n", "Jumlah Mol", "Banyaknya partikel gas", "#45b7d1"),
+        ("R", "Konstanta", "Tetapan gas universal", "#9b59b6"),
+        ("T", "Suhu", "Energi kinetik rata-rata", "#f39c12")
     ]
     
     for col, (var, name, desc, color) in zip(var_cols, variables):
         with col:
             st.markdown(f"""
-            <div style="background:{color};padding:15px;border-radius:10px;height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-                <h3 style="margin:5px 0;">{var}</h3>
-                <p style="margin:5px 0;font-weight:bold;">{name}</p>
-                <p style="margin:5px 0;font-size:0.8em;">{desc}</p>
+            <div style="background: linear-gradient(135deg, {color}, {color}dd);
+                        padding: 25px;
+                        border-radius: 20px;
+                        height: 180px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+                        transition: transform 0.3s ease;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">{var}</div>
+                <h2 style="margin: 5px 0; font-size: 2.5em; z-index: 2;">{var}</h2>
+                <p style="margin: 5px 0; font-weight: bold; z-index: 2; font-size: 1.1em;">{name}</p>
+                <p style="margin: 5px 0; font-size: 0.85em; opacity: 0.9; z-index: 2; line-height: 1.3;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
-    
-    # Contoh aplikasi
-    st.markdown("""
-    <div class="card" style="margin-top:30px;">
-        <h4>💡 Contoh Aplikasi Persamaan Gas Ideal:</h4>
-        <ul>
-            <li>Menghitung volume gas yang dihasilkan dalam reaksi kimia</li>
-            <li>Memahami perilaku gas dalam sistem tertutup</li>
-            <li>Memprediksi pengaruh perubahan suhu terhadap tekanan gas</li>
-            <li>Mendesain sistem pneumatik dan hidrolik</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Tips Penggunaan
-    st.markdown("""
-    <div class="card gas-card" style="margin-top:20px;">
-        <h4>🔧 Tips Menggunakan Aplikasi:</h4>
-        <ol>
-            <li>Pilih menu <b>Kalkulator Gas</b> untuk perhitungan</li>
-            <li>Gunakan <b>Ensiklopedia Gas</b> untuk informasi detail</li>
-            <li>Pelajari <b>Panduan Keselamatan</b> sebelum bekerja dengan gas</li>
-            <li>Pastikan satuan yang digunakan konsisten</li>
-        </ol>
-    </div>
-    """, unsafe_allow_html=True)
-    
+
 # ===========================================
 # HALAMAN KALKULATOR GAS 
 # ===========================================
 elif menu == "🧮 Kalkulator Gas":
-    # Header dengan animasi partikel
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #0d47a1, #2196F3); 
-                padding: 25px; 
-                border-radius: 15px;
-                margin-bottom: 30px;
+    add_menu_background("kalkulator")
+    
+    # Header dengan animasi yang lebih menarik
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 35px;
+                border-radius: 25px;
+                margin-bottom: 35px;
+                text-align: center;
                 position: relative;
                 overflow: hidden;">
-        <h1 style="color: white; text-align: center; margin: 0; z-index: 2; position: relative;">
-              🧪✨ Kalkulator Gas Ideal ✨⚗️
+        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; 
+                    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                    border-radius: 50%;
+                    animation: float 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: -30px; right: -30px; width: 150px; height: 150px; 
+                    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+                    border-radius: 50%;
+                    animation: float 8s ease-in-out infinite reverse;"></div>
+        <h1 style="color: white; margin: 0; font-size: 2.5em; position: relative; z-index: 2;">
+            🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;">
-            <div class="particle" style="--size: 3px; --duration: 15s; --delay: 0s; --x: 20%; --y: 30%"></div>
-            <div class="particle" style="--size: 5px; --duration: 20s; --delay: 2s; --x: 70%; --y: 10%"></div>
-            <div class="particle" style="--size: 4px; --duration: 18s; --delay: 4s; --x: 40%; --y: 60%"></div>
-        </div>
+        <p style="color: rgba(255,255,255,0.95); margin: 15px 0 0 0; font-size: 1.2em; position: relative; z-index: 2;">
+            Hitung dengan Presisi Tinggi menggunakan Persamaan PV = nRT
+        </p>
     </div>
     <style>
         @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); opacity: 0; }
-        }
-        .particle {
-            position: absolute;
-            width: var(--size);
-            height: var(--size);
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            animation: float var(--duration) var(--delay) infinite linear;
-            --x-end: calc(var(--x) - 50%);
-            --y-end: calc(var(--y) - 50%);
-        }
-        .tab-container {
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-top: 15px;
-        }
-        .input-label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .conversion-box {
-            background-color: #f5f5f5;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border: 1px dashed #9e9e9e;
-            font-size: 0.9em;
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
     </style>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
-    # Style untuk tabs
-    tab_style = """
-    <style>
-        .stTabs [data-baseweb="tab-list"] {
-            gap: 10px;
-        }
-        .stTabs [data-baseweb="tab"] {
-            height: 50px;
-            padding: 0 20px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            background: #f0f2f6 !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .stTabs [data-baseweb="tab"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .stTabs [aria-selected="true"] {
-            background: linear-gradient(135deg, #2196F3, #0d47a1) !important;
-            color: white !important;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
-        }
-    </style>
-    """
-    st.markdown(tab_style, unsafe_allow_html=True)
-    
     tab1, tab2, tab3, tab4 = st.tabs([
         "⚖️ Hitung Massa", 
         "🎚️ Hitung Tekanan",
@@ -472,56 +916,75 @@ elif menu == "🧮 Kalkulator Gas":
     with tab1:
         # Kalkulator Massa
         with st.container():
-            st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #FF9800;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🧪</div>
-                    <div>
-                        <h2 style="margin: 0; color: #FF9800;">Kalkulator Massa Gas</h2>
-                        <div style="background: #FFF3E0; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+            st.markdown(wrap_content_with_overlay("""
+            <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        color: white;
+                        margin-bottom: 25px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🧪</div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 3em;">🧪</div>
+                    <div style="z-index: 2;">
+                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Massa Gas</h2>
+                        <div style="background: rgba(255,255,255,0.25); 
+                                    padding: 10px 15px; 
+                                    border-radius: 15px; 
+                                    display: inline-block;
+                                    margin-top: 10px;">
                             <b>Rumus:</b> Massa = n (mol) × Mr (g/mol)
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             cols = st.columns(3)
             with cols[0]:
-                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🏷️ Nama Gas</div>', unsafe_allow_html=True)
                 nama = st.text_input("Nama Gas", key="nama_massa", placeholder="Contoh: Oksigen", label_visibility="collapsed")
             with cols[1]:
-                st.markdown('<div class="input-label">Jumlah Mol (n)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🧪 Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_massa", step=0.1, format="%.2f", label_visibility="collapsed")
             with cols[2]:
-                st.markdown('<div class="input-label">Massa Molar (Mr)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">⚖️ Massa Molar (Mr)</div>', unsafe_allow_html=True)
                 mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.2f", label_visibility="collapsed")
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+                
             if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
-                massa = n * mr 
+                massa = n * mr
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-                            padding: 20px;
-                            border-radius: 15px;
-                            margin-top: 20px;
-                            border-left: 5px solid #FF9800;
-                            animation: fadeIn 0.5s ease-in-out;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">⚖️</div>
-                        <div>
-                            <h3 style="margin: 0 0 10px 0; color: #E65100;">Hasil Perhitungan</h3>
-                            <div style="display: flex; align-items: baseline; gap: 10px;">
-                                <p style="margin: 0; font-size: 1.2em;">Massa <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #E65100; font-weight: bold; font-size: 1.5em; margin: 0;">{massa:.4f} gram</p>
+                <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                            padding: 25px;
+                            border-radius: 20px;
+                            margin-top: 25px;
+                            color: white;
+                            position: relative;
+                            overflow: hidden;
+                            animation: slideIn 0.5s ease-out;">
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">⚖️</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 3em;">🎉</div>
+                        <div style="z-index: 2;">
+                            <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
+                            <div style="background: rgba(255,255,255,0.25); 
+                                        padding: 15px; 
+                                        border-radius: 15px;">
+                                <p style="margin: 0; font-size: 1.3em;">
+                                    Massa <b>{nama if nama else 'gas'}</b> = 
+                                    <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
+                                        {massa:.4f} gram
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <style>
-                    @keyframes fadeIn {{
-                        from {{ opacity: 0; transform: translateY(10px); }}
+                    @keyframes slideIn {{
+                        from {{ opacity: 0; transform: translateY(20px); }}
                         to {{ opacity: 1; transform: translateY(0); }}
                     }}
                 </style>
@@ -532,29 +995,41 @@ elif menu == "🧮 Kalkulator Gas":
     with tab2:
         # Kalkulator Tekanan
         with st.container():
-            st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #F44336;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🎚️</div>
-                    <div>
-                        <h2 style="margin: 0; color: #F44336;">Kalkulator Tekanan Gas</h2>
-                        <div style="background: #FFEBEE; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+            st.markdown(wrap_content_with_overlay("""
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        color: white;
+                        margin-bottom: 25px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🎚️</div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 3em;">🎚️</div>
+                    <div style="z-index: 2;">
+                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Tekanan Gas</h2>
+                        <div style="background: rgba(255,255,255,0.25); 
+                                    padding: 10px 15px; 
+                                    border-radius: 15px; 
+                                    display: inline-block;
+                                    margin-top: 10px;">
                             <b>Rumus:</b> P = [n (mol) × R × T (K)] / V (L)
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
-                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🏷️ Nama Gas</div>', unsafe_allow_html=True)
                 nama = st.text_input("Nama Gas", key="nama_tekanan", placeholder="Contoh: Nitrogen", label_visibility="collapsed")
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🧪 Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+        
             with col2:
-                st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🌡️ Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
                 with col2a:
                     T_input = st.number_input("Suhu", min_value=-273.0, key="tekanan_suhu_input", label_visibility="collapsed")
@@ -571,7 +1046,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     T = T_input
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Volume</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">📦 Volume</div>', unsafe_allow_html=True)
                 col2c, col2d = st.columns([3,1])
                 with col2c:
                     V_input = st.number_input("Volume", min_value=0.0, key="tekanan_vol_input", label_visibility="collapsed")
@@ -594,25 +1069,33 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     V = V_input
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🎚️ Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
                 P = (n * R * T) / V
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
-                            padding: 20px;
-                            border-radius: 15px;
-                            margin-top: 20px;
-                            border-left: 5px solid #F44336;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">🎚️</div>
-                        <div>
-                            <h3 style="margin: 0 0 10px 0; color: #C62828;">Hasil Perhitungan</h3>
-                            <div style="display: flex; align-items: baseline; gap: 10px;">
-                                <p style="margin: 0; font-size: 1.2em;">Tekanan <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #C62828; font-weight: bold; font-size: 1.5em; margin: 0;">{P:.2f} atm</p>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            padding: 25px;
+                            border-radius: 20px;
+                            margin-top: 25px;
+                            color: white;
+                            position: relative;
+                            overflow: hidden;
+                            animation: slideIn 0.5s ease-out;">
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">🎚️</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 3em;">🎉</div>
+                        <div style="z-index: 2;">
+                            <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
+                            <div style="background: rgba(255,255,255,0.25); 
+                                        padding: 15px; 
+                                        border-radius: 15px;">
+                                <p style="margin: 0; font-size: 1.3em;">
+                                    Tekanan <b>{nama if nama else 'gas'}</b> = 
+                                    <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
+                                        {P:.2f} atm
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -623,29 +1106,41 @@ elif menu == "🧮 Kalkulator Gas":
     with tab3:
         # Kalkulator Volume
         with st.container():
-            st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #4CAF50;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🫙</div>
-                    <div>
-                        <h2 style="margin: 0; color: #4CAF50;">Kalkulator Volume Gas</h2>
-                        <div style="background: #E8F5E9; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+            st.markdown(wrap_content_with_overlay("""
+            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        color: white;
+                        margin-bottom: 25px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🫙</div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 3em;">🫙</div>
+                    <div style="z-index: 2;">
+                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Volume Gas</h2>
+                        <div style="background: rgba(255,255,255,0.25); 
+                                    padding: 10px 15px; 
+                                    border-radius: 15px; 
+                                    display: inline-block;
+                                    margin-top: 10px;">
                             <b>Rumus:</b> V = [n (mol) × R × T (K)] / P (atm)
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
-                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🏷️ Nama Gas</div>', unsafe_allow_html=True)
                 nama = st.text_input("Nama Gas", key="nama_volume", placeholder="Contoh: Hidrogen", label_visibility="collapsed")
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Jumlah Mol (n)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🧪 Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
-            
+        
             with col2:
-                st.markdown('<div class="input-label">Suhu</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🌡️ Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
                 with col2a:
                     T_input = st.number_input("Suhu", min_value=-273.0, key="volume_suhu_input", label_visibility="collapsed")
@@ -662,7 +1157,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     T = T_input
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Tekanan</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🎚️ Tekanan</div>', unsafe_allow_html=True)
                 col2c, col2d = st.columns([3,1])
                 with col2c:
                     P_input = st.number_input("Tekanan", min_value=0.0, key="volume_tekanan_input", label_visibility="collapsed")
@@ -688,25 +1183,33 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🫙 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
                 V = (n * R * T) / P
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-                            padding: 20px;
-                            border-radius: 15px;
-                            margin-top: 20px;
-                            border-left: 5px solid #4CAF50;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">📦</div>
-                        <div>
-                            <h3 style="margin: 0 0 10px 0; color: #2E7D32;">Hasil Perhitungan</h3>
-                            <div style="display: flex; align-items: baseline; gap: 10px;">
-                                <p style="margin: 0; font-size: 1.2em;">Volume <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #2E7D32; font-weight: bold; font-size: 1.5em; margin: 0;">{V:.2f} L</p>
+                <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+                            padding: 25px;
+                            border-radius: 20px;
+                            margin-top: 25px;
+                            color: white;
+                            position: relative;
+                            overflow: hidden;
+                            animation: slideIn 0.5s ease-out;">
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">📦</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 3em;">🎉</div>
+                        <div style="z-index: 2;">
+                            <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
+                            <div style="background: rgba(255,255,255,0.25); 
+                                        padding: 15px; 
+                                        border-radius: 15px;">
+                                <p style="margin: 0; font-size: 1.3em;">
+                                    Volume <b>{nama if nama else 'gas'}</b> = 
+                                    <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
+                                        {V:.2f} L
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -717,25 +1220,37 @@ elif menu == "🧮 Kalkulator Gas":
     with tab4:
         # Kalkulator Mol
         with st.container():
-            st.markdown("""
-            <div class="tab-container" style="border-left: 5px solid #9C27B0;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <div style="font-size: 40px;">🧪 </div>
-                    <div>
-                        <h2 style="margin: 0; color: #9C27B0;">Kalkulator Jumlah Mol</h2>
-                        <div style="background: #F3E5F5; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-                            <b>Rumus:</b> n = [P (atm) × V (L) / (R × T (K)]
+            st.markdown(wrap_content_with_overlay("""
+            <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        color: #333;
+                        margin-bottom: 25px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🧪</div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 3em;">🧪</div>
+                    <div style="z-index: 2;">
+                        <h2 style="margin: 0; font-size: 2em;">Kalkulator Jumlah Mol</h2>
+                        <div style="background: rgba(255,255,255,0.4); 
+                                    padding: 10px 15px; 
+                                    border-radius: 15px; 
+                                    display: inline-block;
+                                    margin-top: 10px;">
+                            <b>Rumus:</b> n = [P (atm) × V (L)] / [R × T (K)]
                         </div>
                     </div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+            """), unsafe_allow_html=True)
 
             col1, col2 = st.columns(2)
             with col1:
-                st.markdown('<div class="input-label">Nama Gas</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🏷️ Nama Gas</div>', unsafe_allow_html=True)
                 nama = st.text_input("Nama Gas", key="nama_mol", placeholder="Contoh: Karbon Dioksida", label_visibility="collapsed")
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Tekanan</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🎚️ Tekanan</div>', unsafe_allow_html=True)
                 col1a, col1b = st.columns([3,1])
                 with col1a:
                     P_input = st.number_input("Tekanan", min_value=0.0, key="mol_tekanan_input", label_visibility="collapsed")
@@ -761,9 +1276,9 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-            
+        
             with col2:
-                st.markdown('<div class="input-label">Volume</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">📦 Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
                 with col2a:
                     V_input = st.number_input("Volume", min_value=0.0, key="mol_vol_input", label_visibility="collapsed")
@@ -787,7 +1302,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     V = V_input
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">Suhu</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🌡️ Suhu</div>', unsafe_allow_html=True)
                 col2c, col2d = st.columns([3,1])
                 with col2c:
                     T_input = st.number_input("Suhu", min_value=-273.0, key="mol_suhu_input", label_visibility="collapsed")
@@ -803,25 +1318,33 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     T = T_input
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
+        
             if st.button("🧪 Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
                 n = (P * V) / (R * T)
                 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
-                            padding: 20px;
-                            border-radius: 15px;
-                            margin-top: 20px;
-                            border-left: 5px solid #9C27B0;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 30px;">🔬</div>
-                        <div>
-                            <h3 style="margin: 0 0 10px 0; color: #7B1FA2;">Hasil Perhitungan</h3>
-                            <div style="display: flex; align-items: baseline; gap: 10px;">
-                                <p style="margin: 0; font-size: 1.2em;">Jumlah mol <b>{nama if nama else 'gas'}</b> =</p>
-                                <p style="color: #7B1FA2; font-weight: bold; font-size: 1.5em; margin: 0;">{n:.2f} mol</p>
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+                            padding: 25px;
+                            border-radius: 20px;
+                            margin-top: 25px;
+                            color: #333;
+                            position: relative;
+                            overflow: hidden;
+                            animation: slideIn 0.5s ease-out;">
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">🔬</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 3em;">🎉</div>
+                        <div style="z-index: 2;">
+                            <h3 style="margin: 0 0 10px 0; font-size: 1.8em; color: #333;">Hasil Perhitungan</h3>
+                            <div style="background: rgba(255,255,255,0.4); 
+                                        padding: 15px; 
+                                        border-radius: 15px;">
+                                <p style="margin: 0; font-size: 1.3em; color: #333;">
+                                    Jumlah mol <b>{nama if nama else 'gas'}</b> = 
+                                    <span style="font-size: 1.5em; font-weight: bold; color: #d63384;">
+                                        {n:.2f} mol
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -830,35 +1353,76 @@ elif menu == "🧮 Kalkulator Gas":
                 st.balloons()
 
     # Catatan edukasi di bagian bawah
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
-                padding: 20px;
-                border-radius: 15px;
-                margin-top: 30px;
-                border-left: 5px solid #2196F3;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div style="font-size: 30px;">💡</div>
-            <div>
-                <h3 style="margin: 0 0 10px 0; color: #0D47A1;">Tips Ahli Kimia</h3>
-                <p style="margin: 0;">
-                    Untuk hasil terbaik, pastikan semua satuan konsisten dengan konstanta gas R 
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                padding: 25px;
+                border-radius: 20px;
+                margin-top: 35px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">💡</div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="font-size: 3em;">💡</div>
+            <div style="z-index: 2;">
+                <h3 style="margin: 0 0 15px 0; color: #333; font-size: 1.8em;">🎓 Tips Perhitungan</h3>
+                <p style="margin: 0; color: #555; line-height: 1.8; font-size: 1.1em;">
+                    ✨ Untuk hasil terbaik, pastikan semua satuan konsisten dengan konstanta gas R 
                     (0.0821 L·atm/mol·K). Gunakan suhu dalam Kelvin dan tekanan dalam atm.
+                    <br><br>
+                    🌡️ <b>Konversi Suhu:</b> K = °C + 273.15
+                    <br>
+                    🎚️ <b>Konversi Tekanan:</b> 1 atm = 101.325 kPa = 760 mmHg
+                    <br>
+                    📦 <b>Konversi Volume:</b> 1 m³ = 1000 L = 1,000,000 mL
                 </p>
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN ENSIKLOPEDIA GAS
 # ===========================================
 elif menu == "📚 Ensiklopedia Gas":
-    st.markdown("<h1 class='main-header'>📚 Ensiklopedia Gas</h1>", unsafe_allow_html=True)
+    add_menu_background("ensiklopedia")
+    
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                padding: 30px;
+                border-radius: 25px;
+                color: #333;
+                text-align: center;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">📚</div>
+        <div style="font-size: 3em; margin-bottom: 15px;">📚</div>
+        <h1 style="margin: 0; font-size: 2.5em; color: #333;">Ensiklopedia Gas</h1>
+        <p style="margin: 15px 0 0 0; opacity: 0.8; font-size: 1.2em;">
+            🔬 Jelajahi Dunia Gas dengan Informasi Lengkap & Akurat
+        </p>
+    </div>
+    """), unsafe_allow_html=True)
+    
+    # Selectbox
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                padding: 20px;
+                border-radius: 20px;
+                margin-bottom: 25px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">🔍</div>
+        <h3 style="margin: 0; color: #333; font-size: 1.5em;">🔍 Pilih Gas untuk Dipelajari</h3>
+    </div>
+    """), unsafe_allow_html=True)
     
     selected_gas = st.selectbox(
         "Pilih Gas", 
         list(GAS_DATABASE.keys()),
-        format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}"
+        format_func=lambda x: f"{GAS_DATABASE[x]['icon']} {x}",
+        label_visibility="collapsed"
     )
     
     gas = GAS_DATABASE[selected_gas]
@@ -866,100 +1430,414 @@ elif menu == "📚 Ensiklopedia Gas":
     # Header Gas
     col1, col2 = st.columns([3,1])
     with col1:
-        st.markdown(f"""
-        <h2>{gas['icon']} {selected_gas}</h2>
-        <p><i>{gas['description']}</i></p>
-        <p><b>Kategori:</b> {gas['category']}</p>
-        <p><b>Aplikasi:</b> {gas['aplikasi']}</p>
-        """, unsafe_allow_html=True)
-    with col2:
-        st.image(gas["image"], width=200)
+        st.markdown(wrap_content_with_overlay(f"""
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 25px;
+                    border-radius: 20px;
+                    color: white;
+                    position: relative;
+                    overflow: hidden;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">{gas['icon']}</div>
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                <div style="font-size: 3em;">{gas['icon']}</div>
+                <h2 style="margin: 0; font-size: 2.2em; z-index: 2;">{selected_gas}</h2>
+            </div>
+            <div style="background: rgba(255,255,255,0.25); 
+                        padding: 15px; 
+                        border-radius: 15px;
+                        margin-bottom: 20px;
+                        z-index: 2;
+                        position: relative;">
+                <p style="margin: 0; font-style: italic; font-size: 1.1em; line-height: 1.6;">
+                    {gas['description']}
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; z-index: 2; position: relative;">
+                <div style="background: rgba(255,255,255,0.2); 
+                            padding: 15px; 
+                            border-radius: 15px;">
+                    <p style="margin: 0; font-size: 1.1em;"><b>📂 Kategori:</b> {gas['category']}</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.2); 
+                            padding: 15px; 
+                            border-radius: 15px;">
+                    <p style="margin: 0; font-size: 1.1em;"><b>🔧 Aplikasi:</b> {gas['aplikasi']}</p>
+                </div>
+            </div>
+        </div>
+        """), unsafe_allow_html=True)
     
-    # Tab Informasi
+    with col2:
+        st.markdown(wrap_content_with_overlay(f"""
+        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                    padding: 20px;
+                    border-radius: 20px;
+                    text-align: center;
+                    position: relative;
+                    overflow: hidden;">
+            <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🖼️</div>
+            <img src="{gas['image']}" 
+                 style="width: 100%; 
+                        max-width: 250px; 
+                        border-radius: 15px;
+                        box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
+            <p style="color: #333; margin: 15px 0 0 0; font-weight: bold; font-size: 1.1em;">
+                🖼️ Struktur Molekul
+            </p>
+        </div>
+        """), unsafe_allow_html=True)
+    
+    # Tab Informasi dengan tabel yang diperbaiki
     tabs = st.tabs(list(gas["properties"].keys()))
     
-    for tab, (category, props) in zip(tabs, gas["properties"].items()):
+    colors = [
+        "#667eea",
+        "#11998e", 
+        "#ff9a9e"
+    ]
+    
+    for i, (tab, (category, props)) in enumerate(zip(tabs, gas["properties"].items())):
         with tab:
-            st.markdown(f"""
-            <table class="property-table">
-                {"".join(f"<tr><td><b>{key}</b></td><td>{value}</td></tr>" for key, value in props.items())}
-            </table>
-            """, unsafe_allow_html=True)
+            color = colors[i % len(colors)]
+            
+            # Membuat tabel dengan cara yang aman
+            table_content = ""
+            for key, value in props.items():
+                table_content += f"""
+                <tr style="transition: all 0.3s ease;">
+                    <td style="padding: 15px; font-weight: bold; background: rgba(255,255,255,0.9); 
+                               width: 40%; border-bottom: 1px solid rgba(255,255,255,0.3);
+                               border-radius: 10px 0 0 10px; color: #333;">
+                        {key}
+                    </td>
+                    <td style="padding: 15px; background: rgba(255,255,255,0.7); 
+                               border-bottom: 1px solid rgba(255,255,255,0.3);
+                               border-radius: 0 10px 10px 0; color: #333;">
+                        {value}
+                    </td>
+                </tr>"""
+            
+            st.markdown(wrap_content_with_overlay(f"""
+            <div style="background: linear-gradient(135deg, {color}, {color}dd);
+                        padding: 25px;
+                        border-radius: 20px;
+                        color: white;
+                        margin: 20px 0;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">📊</div>
+                <h3 style="margin: 0 0 20px 0; text-align: center; font-size: 1.8em; z-index: 2; position: relative;">
+                    {category}
+                </h3>
+                <div style="background: rgba(255,255,255,0.1); 
+                            border-radius: 15px;
+                            overflow: hidden;
+                            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+                            z-index: 2;
+                            position: relative;">
+                    <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+                        {table_content}
+                    </table>
+                </div>
+            </div>
+            """), unsafe_allow_html=True)
 
 # ===========================================
 # HALAMAN PANDUAN KESELAMATAN
 # ===========================================
 elif menu == "⚠️ Panduan Keselamatan":
-    st.markdown("<h1 class='main-header'>⚠️ Panduan Keselamatan Gas</h1>", unsafe_allow_html=True)
+    add_menu_background("keselamatan")
     
-    st.markdown("""
-    <div class="card safety-card">
-        <h3>🚧 Simbol Bahaya Umum</h3>
-        <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
-            <div style="flex:1;min-width:200px;background:#ffebee;padding:15px;border-radius:10px;">
-                <h4>🔥 Mudah Terbakar</h4>
-                <p>Contoh: Hidrogen, Metana</p>
-                <p>• Jauhkan dari sumber api</p>
-                <p>• Gunakan di area berventilasi</p>
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+                padding: 30px;
+                border-radius: 25px;
+                color: #333;
+                text-align: center;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚠️</div>
+        <div style="font-size: 3em; margin-bottom: 15px;">⚠️</div>
+        <h1 style="margin: 0; font-size: 2.5em; color: #333;">Panduan Keselamatan Gas</h1>
+        <p style="margin: 15px 0 0 0; opacity: 0.8; font-size: 1.2em;">
+            🛡️ Keselamatan Adalah Prioritas Utama dalam Bekerja dengan Gas
+        </p>
+    </div>
+    """), unsafe_allow_html=True)
+    
+    # Simbol Bahaya
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                padding: 30px;
+                border-radius: 25px;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div style="font-size: 3em; margin-bottom: 15px;">🚧</div>
+            <h2 style="margin: 0; color: #333; font-size: 2em;">Simbol Bahaya Umum</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">🔥</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">🔥</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Mudah Terbakar</h3>
+                <div style="background: rgba(255,255,255,0.25); 
+                            padding: 15px; 
+                            border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Hidrogen, Metana</p>
+                    <p style="margin: 5px 0;">• Jauhkan dari sumber api</p>
+                    <p style="margin: 5px 0;">• Gunakan di area berventilasi</p>
+                    <p style="margin: 5px 0;">• Hindari percikan listrik</p>
+                </div>
             </div>
-            <div style="flex:1;min-width:200px;background:#fff8e1;padding:15px;border-radius:10px;">
-                <h4>☠️ Beracun</h4>
-                <p>Contoh: Klorin, Amonia</p>
-                <p>• Gunakan alat pelindung diri</p>
-                <p>• Hindari inhalasi langsung</p>
+            <div style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">☠️</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">☠️</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Beracun</h3>
+                <div style="background: rgba(255,255,255,0.25); 
+                            padding: 15px; 
+                            border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Klorin, Amonia</p>
+                    <p style="margin: 5px 0;">• Gunakan alat pelindung diri</p>
+                    <p style="margin: 5px 0;">• Hindari inhalasi langsung</p>
+                    <p style="margin: 5px 0;">• Ventilasi yang baik</p>
+                </div>
             </div>
-            <div style="flex:1;min-width:200px;background:#e8f5e9;padding:15px;border-radius:10px;">
-                <h4>💨 Pengoksidasi</h4>
-                <p>Contoh: Oksigen, Fluorin</p>
-                <p>• Hindari kontak dengan bahan organik</p>
-                <p>• Simpan terpisah dari bahan reduktor</p>
+            <div style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">💨</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">💨</div>
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Pengoksidasi</h3>
+                <div style="background: rgba(255,255,255,0.25); 
+                            padding: 15px; 
+                            border-radius: 15px;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Oksigen, Fluorin</p>
+                    <p style="margin: 5px 0;">• Hindari kontak dengan bahan organik</p>
+                    <p style="margin: 5px 0;">• Simpan terpisah dari reduktor</p>
+                    <p style="margin: 5px 0;">• Meningkatkan risiko kebakaran</p>
+                </div>
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
-    st.markdown("""
-    <div class="card safety-card">
-        <h3>🛡️ Alat Pelindung Diri (APD)</h3>
-        <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:15px;">
-            <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/2090/2090004.png" width="80">
-                <p><b>Masker Gas</b></p>
+    # APD
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                padding: 30px;
+                border-radius: 25px;
+                color: white;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🛡️</div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div style="font-size: 3em; margin-bottom: 15px;">🛡️</div>
+            <h2 style="margin: 0; font-size: 2em;">Alat Pelindung Diri (APD)</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div style="background: rgba(255,255,255,0.25);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">😷</div>
+                <div style="font-size: 4em; margin-bottom: 15px;">😷</div>
+                <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Masker Gas</h4>
+                <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi dari inhalasi gas berbahaya</p>
             </div>
-            <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/2797/2797688.png" width="80">
-                <p><b>Sarung Tangan</b></p>
+            <div style="background: rgba(255,255,255,0.25);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🧤</div>
+                <div style="font-size: 4em; margin-bottom: 15px;">🧤</div>
+                <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Sarung Tangan</h4>
+                <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tangan dari kontak langsung</p>
             </div>
-            <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80">
-                <p><b>Kaca Mata Keselamatan</b></p>
+            <div style="background: rgba(255,255,255,0.25);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🥽</div>
+                <div style="font-size: 4em; margin-bottom: 15px;">🥽</div>
+                <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Kacamata Keselamatan</h4>
+                <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi mata dari percikan</p>
             </div>
-            <div style="flex:1;min-width:150px;text-align:center;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
-                <p><b>Jas Laboratorium</b></p>
+            <div style="background: rgba(255,255,255,0.25);
+                        padding: 25px;
+                        border-radius: 20px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🥼</div>
+                <div style="font-size: 4em; margin-bottom: 15px;">🥼</div>
+                <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Jas Laboratorium</h4>
+                <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tubuh dari kontaminasi</p>
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    <div class="card safety-card">
-        <h3>🚨 Prosedur Darurat</h3>
-        <ol>
-            <li>Segera evakuasi area jika terjadi kebocoran gas</li>
-            <li>Gunakan APD yang sesuai sebelum menangani gas</li>
-            <li>Hindari sumber api atau percikan listrik</li>
-            <li>Ventilasi area dengan membuka jendela atau pintu</li>
-            <li>Hubungi petugas berwenang jika diperlukan</li>
-        </ol>
+    """), unsafe_allow_html=True)
+
+    # Prosedur Darurat
+    st.markdown(wrap_content_with_overlay("""
+    <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+                padding: 30px;
+                border-radius: 25px;
+                margin-bottom: 30px;
+                color: white;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚨</div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div style="font-size: 3em; margin-bottom: 15px;">🚨</div>
+            <h2 style="margin: 0; font-size: 2em;">Prosedur Darurat</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">1️⃣</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">1️⃣</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Evakuasi Segera</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;">Segera tinggalkan area jika terjadi kebocoran gas berbahaya</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">2️⃣</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">2️⃣</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Gunakan APD</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;">Selalu gunakan alat pelindung diri yang sesuai sebelum menangani gas</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">3️⃣</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">3️⃣</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Hindari Api</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;">Jauhkan dari sumber api, percikan listrik, dan benda panas</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">4️⃣</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">4️⃣</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Ventilasi Area</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;">Buka jendela dan pintu untuk sirkulasi udara yang baik</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">5️⃣</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">5️⃣</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Hubungi Petugas</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;">Segera hubungi petugas berwenang atau layanan darurat jika diperlukan</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.2); 
+                        padding: 20px; 
+                        border-radius: 20px;
+                        position: relative;
+                        overflow: hidden;">
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">📞</div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 2em;">📞</div>
+                    <h4 style="margin: 0; font-size: 1.3em;">Nomor Darurat</h4>
+                </div>
+                <p style="margin: 0; font-size: 1.1em;"><b>Pemadam Kebakaran:</b> 113<br><b>Ambulans:</b> 118<br><b>Polisi:</b> 110</p>
+            </div>
+        </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
 # ===========================================
 # FOOTER
 # ===========================================
 st.markdown("---")
 st.markdown("""
-<div style="text-align:center;color:#666;padding:20px;">
-    <p>© 2025 ChemGasMaster | Kelompok 7 Kelas 1A</p>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;">
+    <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚗️</div>
+    <div style="font-size: 3em; margin-bottom: 15px;">⚗️</div>
+    <h3 style="margin: 0 0 10px 0; font-size: 2em;">ChemGasMaster</h3>
+    <p style="margin: 0; opacity: 0.95; font-size: 1.1em;">© 2025 Kelompok 7 Kelas 1A | Platform Kimia Interaktif</p>
+    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <span style="background: rgba(255,255,255,0.25); 
+                     padding: 8px 16px; 
+                     border-radius: 25px;
+                     font-size: 1.1em;">
+            🧪 Kalkulator Gas
+        </span>
+        <span style="background: rgba(255,255,255,0.25); 
+                     padding: 8px 16px; 
+                     border-radius: 25px;
+                     font-size: 1.1em;">
+            📚 Ensiklopedia
+        </span>
+        <span style="background: rgba(255,255,255,0.25); 
+                     padding: 8px 16px; 
+                     border-radius: 25px;
+                     font-size: 1.1em;">
+            ⚠️ Keselamatan
+        </span>
+    </div>
 </div>
 """, unsafe_allow_html=True)
