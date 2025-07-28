@@ -149,11 +149,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
-# CSS BACKGROUND YANG LEBIH MENARIK
+# CSS BACKGROUND YANG PROPORSIONAL
 # ===========================================
 st.markdown("""
 <style>
-    /* Background untuk Beranda - Geometric Pattern */
+    /* Background untuk Beranda - Subtle Geometric */
     .beranda-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         position: fixed;
@@ -162,7 +162,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.1;
+        opacity: 0.05;
     }
     
     .beranda-bg::before {
@@ -173,13 +173,13 @@ st.markdown("""
         width: 100%;
         height: 100%;
         background-image: 
-            radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
-            radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
-        background-size: 50px 50px;
+            radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
+            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 60px 60px, 40px 40px;
         opacity: 0.3;
     }
 
-    /* Background untuk Kalkulator - Circuit Pattern */
+    /* Background untuk Kalkulator - Minimal Grid */
     .kalkulator-bg {
         background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
         position: fixed;
@@ -188,7 +188,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.1;
+        opacity: 0.03;
     }
     
     .kalkulator-bg::before {
@@ -199,12 +199,12 @@ st.markdown("""
         width: 100%;
         height: 100%;
         background-image: 
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 20px 20px;
+            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+        background-size: 30px 30px;
     }
 
-    /* Background untuk Ensiklopedia - Hexagon Pattern */
+    /* Background untuk Ensiklopedia - Organic Dots */
     .ensiklopedia-bg {
         background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
         position: fixed;
@@ -213,7 +213,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.1;
+        opacity: 0.04;
     }
     
     .ensiklopedia-bg::before {
@@ -224,11 +224,12 @@ st.markdown("""
         width: 100%;
         height: 100%;
         background-image: 
-            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
-        background-size: 30px 30px;
+            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.08) 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 50px 50px, 25px 25px;
     }
 
-    /* Background untuk Keselamatan - Warning Pattern */
+    /* Background untuk Keselamatan - Subtle Warning */
     .keselamatan-bg {
         background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
         position: fixed;
@@ -237,7 +238,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.1;
+        opacity: 0.04;
     }
     
     .keselamatan-bg::before {
@@ -250,22 +251,22 @@ st.markdown("""
         background-image: 
             repeating-linear-gradient(
                 45deg,
-                rgba(255,255,255,0.05) 0px,
-                rgba(255,255,255,0.05) 2px,
+                rgba(255,255,255,0.02) 0px,
+                rgba(255,255,255,0.02) 2px,
                 transparent 2px,
-                transparent 10px
+                transparent 20px
             );
     }
 
-    /* Overlay dengan efek glass morphism */
+    /* Overlay yang lebih ringan */
     .content-overlay {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 25px;
-        margin: 20px 0;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.3);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1197,7 +1198,7 @@ elif menu == "📚 Ensiklopedia Gas":
         </div>
         """), unsafe_allow_html=True)
     
-    # Tab Informasi
+    # Tab Informasi dengan tabel yang diperbaiki
     tabs = st.tabs(list(gas["properties"].keys()))
     
     colors = [
@@ -1210,10 +1211,10 @@ elif menu == "📚 Ensiklopedia Gas":
         with tab:
             color = colors[i % len(colors)]
             
-            # Membuat tabel dengan cara yang aman - menggunakan list comprehension
-            table_rows = []
+            # Membuat tabel dengan cara yang aman
+            table_content = ""
             for key, value in props.items():
-                table_rows.append(f"""
+                table_content += f"""
                 <tr>
                     <td style="padding: 12px; font-weight: bold; background: #f8f9fa; width: 40%; border-bottom: 1px solid #dee2e6;">
                         {key}
@@ -1221,11 +1222,7 @@ elif menu == "📚 Ensiklopedia Gas":
                     <td style="padding: 12px; background: white; border-bottom: 1px solid #dee2e6;">
                         {value}
                     </td>
-                </tr>
-                """)
-            
-            # Gabungkan semua rows
-            all_rows = "".join(table_rows)
+                </tr>"""
             
             st.markdown(wrap_content_with_overlay(f"""
             <div style="background: {color};
@@ -1240,7 +1237,7 @@ elif menu == "📚 Ensiklopedia Gas":
                             border-radius: 8px;
                             overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
-                        {all_rows}
+                        {table_content}
                     </table>
                 </div>
             </div>
