@@ -1,6 +1,6 @@
-# ===========================================
+# ====================================================================
 # APLIKASI KALKULATOR GAS IDEAL + ENSIKLOPEDIA + PANDUAN KESELAMATAN
-# ===========================================
+# ====================================================================
 import streamlit as st
 import base64
 
@@ -12,9 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ===========================================
-# CSS CUSTOM DENGAN BACKGROUND KREATIF
-# ===========================================
+# ===============
+# CSS CUSTOM 
+# ===============
 st.markdown("""
 <style>
     .main-header {
@@ -250,12 +250,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ===========================================
-# BACKGROUND KREATIF DAN MENARIK
-# ===========================================
+# ===========
+# BACKGROUND 
+# ===========
 st.markdown("""
 <style>
-    /* Background Beranda - Animated Gradient dengan Geometric Shapes */
+    /* Background Beranda */
     .beranda-bg {
         background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
         background-size: 400% 400%;
@@ -295,7 +295,7 @@ st.markdown("""
         100% { transform: translateX(50px) translateY(50px); }
     }
 
-    /* Background Kalkulator - Animated Circuit Pattern */
+    /* Background Kalkulator */
     .kalkulator-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
         position: fixed;
@@ -328,7 +328,7 @@ st.markdown("""
         100% { transform: translateX(40px) translateY(40px); opacity: 0.5; }
     }
 
-    /* Background Ensiklopedia - Molecular Structure Pattern */
+    /* Background Ensiklopedia */
     .ensiklopedia-bg {
         background: linear-gradient(120deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
         position: fixed;
@@ -361,7 +361,7 @@ st.markdown("""
         66% { transform: translateX(-10px) translateY(10px) rotate(240deg); }
     }
 
-    /* Background Keselamatan - Warning Pattern */
+    /* Background Keselamatan */
     .keselamatan-bg {
         background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
         position: fixed;
@@ -403,7 +403,7 @@ st.markdown("""
         50% { opacity: 1; }
     }
 
-    /* Content overlay yang lebih modern */
+    /* Content overlay */
     .content-overlay {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
@@ -492,9 +492,9 @@ def add_floating_particles():
     </div>
     """, unsafe_allow_html=True)
 
-# ===========================================
+# ===================
 # DATABASE GAS
-# ===========================================
+# ===================
 GAS_DATABASE = {
     "Hidrogen (H₂)": {
         "icon": "🚀",
@@ -677,9 +677,9 @@ GAS_DATABASE = {
 if 'current_menu' not in st.session_state:
     st.session_state.current_menu = "🏠 Beranda"
 
-# ===========================================
-# MENU SIDEBAR YANG LEBIH MENARIK
-# ===========================================
+# ===============
+# MENU SIDEBAR 
+# ===============
 with st.sidebar:
     st.markdown("""
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -703,7 +703,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Menu dengan styling yang lebih menarik
+    # Menu 
     menu_options = ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
     menu = st.radio(
         "📋 MENU UTAMA",
@@ -716,7 +716,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Info box yang lebih menarik
+    # Info box 
     st.markdown("""
 <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 25px;
@@ -753,7 +753,6 @@ with st.sidebar:
         <div style="font-size: 1.0em; line-height: 1.5;">
             1 mol gas = 6.022×10²³ molekul<br>
             Gas ideal hanya ada dalam teori! 🤓<br>
-            Suhu terendah: -273.15°C (0 K) ❄️
         </div>
     </div>
 </div>
@@ -762,9 +761,9 @@ with st.sidebar:
 # Menambahkan partikel mengambang
 add_floating_particles()
 
-# ===========================================
+# ============================
 # HALAMAN UTAMA (BERANDA)
-# ===========================================
+# ============================
 if menu == "🏠 Beranda":
     add_menu_background("beranda")
     
@@ -968,7 +967,7 @@ elif menu == "🧮 Kalkulator Gas":
                         overflow: hidden;">
                 <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🧪</div>
                 <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="font-size: 3em;">🧪</div>
+                    <div style="font-size: 3em;">⚖️</div>
                     <div style="z-index: 2;">
                         <h2 style="margin: 0; font-size: 2em;">Kalkulator Massa Gas</h2>
                         <div style="background: rgba(255,255,255,0.25);
@@ -1417,9 +1416,9 @@ elif menu == "🧮 Kalkulator Gas":
     </div>
     """), unsafe_allow_html=True)
 
-# ===========================================
+# ==============================
 # HALAMAN ENSIKLOPEDIA GAS
-# ===========================================
+# ==============================
 elif menu == "📚 Ensiklopedia Gas":
     add_menu_background("ensiklopedia")
     
@@ -1436,7 +1435,7 @@ elif menu == "📚 Ensiklopedia Gas":
         <div style="font-size: 3em; margin-bottom: 15px;">📚</div>
         <h1 style="margin: 0; font-size: 2.5em; color: #333;">Ensiklopedia Gas</h1>
         <p style="margin: 15px 0 0 0; opacity: 0.8; font-size: 1.2em;">
-            🔬 Jelajahi Dunia Gas dengan Informasi Lengkap & Akurat
+            🔬 Jelajahi Dunia Gas dengan Informasi Lengkap dan Akurat
         </p>
     </div>
     """), unsafe_allow_html=True)
@@ -1557,7 +1556,7 @@ elif menu == "📚 Ensiklopedia Gas":
                             position: relative;">
             """), unsafe_allow_html=True)
             
-            # Membuat tabel dengan cara yang lebih sederhana
+            # Membuat tabel 
             for key, value in props.items():
                 st.markdown(f"""
                 <div style="display: flex; margin-bottom: 2px; background: rgba(255,255,255,0.9); border-radius: 8px; overflow: hidden;">
@@ -1877,7 +1876,7 @@ with footer_col2:
     nav_col1, nav_col2, nav_col3 = st.columns(3)
     
     with nav_col1:
-        if st.button("🧪 Kalkulator Gas", key="footer_calc", use_container_width=True):
+        if st.button("🧮 Kalkulator Gas", key="footer_calc", use_container_width=True):
             st.session_state.current_menu = "🧮 Kalkulator Gas"
             st.rerun()
     
