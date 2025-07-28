@@ -716,7 +716,6 @@ with st.sidebar:
         <small style="color: #333;"><b>Fakta Menarik!</b><br>
         1 mol gas = 6.022×10²³ molekul<br>
         Gas ideal hanya ada dalam teori! 🤓<br>
-        Suhu terendah: -273.15°C (0 K) ❄️</small>
     </div>
     """, unsafe_allow_html=True)
 
