@@ -149,66 +149,123 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===========================================
-# CSS BACKGROUND YANG LEBIH SEDERHANA
+# CSS BACKGROUND YANG LEBIH MENARIK
 # ===========================================
 st.markdown("""
 <style>
-    /* Background sederhana untuk Beranda */
+    /* Background untuk Beranda - Geometric Pattern */
     .beranda-bg {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.5;
+        opacity: 0.1;
+    }
+    
+    .beranda-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.3;
     }
 
-    /* Background untuk Kalkulator Gas */
+    /* Background untuk Kalkulator - Circuit Pattern */
     .kalkulator-bg {
-        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.3;
+        opacity: 0.1;
+    }
+    
+    .kalkulator-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
     }
 
-    /* Background untuk Ensiklopedia */
+    /* Background untuk Ensiklopedia - Hexagon Pattern */
     .ensiklopedia-bg {
-        background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%);
+        background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.3;
+        opacity: 0.1;
+    }
+    
+    .ensiklopedia-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
+        background-size: 30px 30px;
     }
 
-    /* Background untuk Panduan Keselamatan */
+    /* Background untuk Keselamatan - Warning Pattern */
     .keselamatan-bg {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%);
+        background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -2;
-        opacity: 0.3;
+        opacity: 0.1;
+    }
+    
+    .keselamatan-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.05) 0px,
+                rgba(255,255,255,0.05) 2px,
+                transparent 2px,
+                transparent 10px
+            );
     }
 
-    /* Overlay dengan efek yang lebih sederhana */
+    /* Overlay dengan efek glass morphism */
     .content-overlay {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 15px 0;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1153,10 +1210,10 @@ elif menu == "📚 Ensiklopedia Gas":
         with tab:
             color = colors[i % len(colors)]
             
-            # Membuat tabel HTML dengan cara yang aman
-            table_rows = ""
+            # Membuat tabel dengan cara yang aman - menggunakan list comprehension
+            table_rows = []
             for key, value in props.items():
-                table_rows += f"""
+                table_rows.append(f"""
                 <tr>
                     <td style="padding: 12px; font-weight: bold; background: #f8f9fa; width: 40%; border-bottom: 1px solid #dee2e6;">
                         {key}
@@ -1165,7 +1222,10 @@ elif menu == "📚 Ensiklopedia Gas":
                         {value}
                     </td>
                 </tr>
-                """
+                """)
+            
+            # Gabungkan semua rows
+            all_rows = "".join(table_rows)
             
             st.markdown(wrap_content_with_overlay(f"""
             <div style="background: {color};
@@ -1180,7 +1240,7 @@ elif menu == "📚 Ensiklopedia Gas":
                             border-radius: 8px;
                             overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
-                        {table_rows}
+                        {all_rows}
                     </table>
                 </div>
             </div>
