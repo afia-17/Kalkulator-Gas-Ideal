@@ -1411,11 +1411,6 @@ elif menu == "🧮 Kalkulator Gas":
                     ✨ Untuk hasil terbaik, pastikan semua satuan konsisten dengan konstanta gas R 
                     (0.0821 L·atm/mol·K). Gunakan suhu dalam Kelvin dan tekanan dalam atm.
                     <br><br>
-                    🌡️ <b>Konversi Suhu:</b> K = °C + 273.15
-                    <br>
-                    🎚️ <b>Konversi Tekanan:</b> 1 atm = 101.325 kPa = 760 mmHg
-                    <br>
-                    📦 <b>Konversi Volume:</b> 1 m³ = 1000 L = 1,000,000 mL
                 </p>
             </div>
         </div>
