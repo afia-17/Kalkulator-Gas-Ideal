@@ -225,6 +225,28 @@ st.markdown("""
         border-color: #764ba2;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
+
+    /* Footer Navigation Buttons */
+    .footer-nav-btn {
+        background: rgba(255,255,255,0.25);
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        margin: 5px;
+    }
+    
+    .footer-nav-btn:hover {
+        background: rgba(255,255,255,0.4);
+        border-color: rgba(255,255,255,0.6);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -651,20 +673,24 @@ GAS_DATABASE = {
     },
 }
 
+# Inisialisasi session state untuk navigasi
+if 'current_menu' not in st.session_state:
+    st.session_state.current_menu = "🏠 Beranda"
+
 # ===========================================
 # MENU SIDEBAR YANG LEBIH MENARIK
 # ===========================================
 with st.sidebar:
     st.markdown("""
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            padding: 30px; 
-            border-radius: 20px; 
-            text-align: center; 
-            margin-bottom: 25px;
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+             padding: 30px;
+             border-radius: 20px;
+             text-align: center;
+             margin-bottom: 25px;
             position: relative;
             overflow: hidden;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-                background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                 background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
                                   radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
                                   radial-gradient(circle at 40% 60%, rgba(255,255,255,0.1) 1.5px, transparent 1.5px);
                 background-size: 60px 60px, 40px 40px, 80px 80px;
@@ -682,8 +708,11 @@ with st.sidebar:
     menu = st.radio(
         "📋 MENU UTAMA",
         menu_options,
-        index=0
+        index=menu_options.index(st.session_state.current_menu) if st.session_state.current_menu in menu_options else 0
     )
+    
+    # Update session state ketika menu berubah
+    st.session_state.current_menu = menu
     
     st.markdown("---")
     
@@ -790,10 +819,10 @@ if menu == "🏠 Beranda":
     cols = st.columns([3, 2])
     with cols[0]:
         st.markdown(wrap_content_with_overlay("""
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); 
-                    padding: 25px; 
-                    border-radius: 20px; 
-                    position: relative;
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                     padding: 25px;
+                     border-radius: 20px;
+                     position: relative;
                     overflow: hidden;">
             <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">📊</div>
             <h4 style="color: #333; margin-bottom: 20px; font-size: 1.5em;">📊 Variabel Persamaan:</h4>
@@ -819,9 +848,9 @@ if menu == "🏠 Beranda":
     
     with cols[1]:
         st.markdown(wrap_content_with_overlay("""
-        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); 
-                    padding: 25px; 
-                    border-radius: 20px;
+        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                     padding: 25px;
+                     border-radius: 20px;
                     position: relative;
                     overflow: hidden;">
             <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">🎯</div>
@@ -894,12 +923,12 @@ elif menu == "🧮 Kalkulator Gas":
                 text-align: center;
                 position: relative;
                 overflow: hidden;">
-        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; 
-                    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px;
+                     background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
                     border-radius: 50%;
                     animation: float 6s ease-in-out infinite;"></div>
-        <div style="position: absolute; bottom: -30px; right: -30px; width: 150px; height: 150px; 
-                    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        <div style="position: absolute; bottom: -30px; right: -30px; width: 150px; height: 150px;
+                     background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
                     border-radius: 50%;
                     animation: float 8s ease-in-out infinite reverse;"></div>
         <h1 style="color: white; margin: 0; font-size: 2.5em; position: relative; z-index: 2;">
@@ -942,10 +971,10 @@ elif menu == "🧮 Kalkulator Gas":
                     <div style="font-size: 3em;">🧪</div>
                     <div style="z-index: 2;">
                         <h2 style="margin: 0; font-size: 2em;">Kalkulator Massa Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25); 
-                                    padding: 10px 15px; 
-                                    border-radius: 15px; 
-                                    display: inline-block;
+                        <div style="background: rgba(255,255,255,0.25);
+                                     padding: 10px 15px;
+                                     border-radius: 15px;
+                                     display: inline-block;
                                     margin-top: 10px;">
                             <b>Rumus:</b> Massa = n (mol) × Mr (g/mol)
                         </div>
@@ -964,7 +993,7 @@ elif menu == "🧮 Kalkulator Gas":
             with cols[2]:
                 st.markdown('<div class="input-label">⚖️ Massa Molar (Mr)</div>', unsafe_allow_html=True)
                 mr = st.number_input("Massa Molar (Mr)", min_value=0.0, key="mr_massa", step=0.01, format="%.2f", label_visibility="collapsed")
-                
+            
             if st.button("⚖️ Hitung Massa", key="btn_massa", use_container_width=True, type="primary"):
                 massa = n * mr
                 
@@ -982,9 +1011,9 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 3em;">🎉</div>
                         <div style="z-index: 2;">
                             <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
-                            <div style="background: rgba(255,255,255,0.25); 
-                                        padding: 15px; 
-                                        border-radius: 15px;">
+                            <div style="background: rgba(255,255,255,0.25);
+                                         padding: 15px;
+                                         border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em;">
                                     Massa <b>{nama if nama else 'gas'}</b> = 
                                     <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
@@ -1021,10 +1050,10 @@ elif menu == "🧮 Kalkulator Gas":
                     <div style="font-size: 3em;">🎚️</div>
                     <div style="z-index: 2;">
                         <h2 style="margin: 0; font-size: 2em;">Kalkulator Tekanan Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25); 
-                                    padding: 10px 15px; 
-                                    border-radius: 15px; 
-                                    display: inline-block;
+                        <div style="background: rgba(255,255,255,0.25);
+                                     padding: 10px 15px;
+                                     border-radius: 15px;
+                                     display: inline-block;
                                     margin-top: 10px;">
                             <b>Rumus:</b> P = [n (mol) × R × T (K)] / V (L)
                         </div>
@@ -1040,7 +1069,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">🧪 Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_tekanan", step=0.1, format="%.2f", label_visibility="collapsed")
-        
+            
             with col2:
                 st.markdown('<div class="input-label">🌡️ Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -1082,7 +1111,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     V = V_input
-        
+            
             if st.button("🎚️ Hitung Tekanan", key="btn_tekanan", use_container_width=True, type="primary"):
                 P = (n * R * T) / V
                 
@@ -1100,9 +1129,9 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 3em;">🎉</div>
                         <div style="z-index: 2;">
                             <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
-                            <div style="background: rgba(255,255,255,0.25); 
-                                        padding: 15px; 
-                                        border-radius: 15px;">
+                            <div style="background: rgba(255,255,255,0.25);
+                                         padding: 15px;
+                                         border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em;">
                                     Tekanan <b>{nama if nama else 'gas'}</b> = 
                                     <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
@@ -1132,10 +1161,10 @@ elif menu == "🧮 Kalkulator Gas":
                     <div style="font-size: 3em;">🫙</div>
                     <div style="z-index: 2;">
                         <h2 style="margin: 0; font-size: 2em;">Kalkulator Volume Gas</h2>
-                        <div style="background: rgba(255,255,255,0.25); 
-                                    padding: 10px 15px; 
-                                    border-radius: 15px; 
-                                    display: inline-block;
+                        <div style="background: rgba(255,255,255,0.25);
+                                     padding: 10px 15px;
+                                     border-radius: 15px;
+                                     display: inline-block;
                                     margin-top: 10px;">
                             <b>Rumus:</b> V = [n (mol) × R × T (K)] / P (atm)
                         </div>
@@ -1151,7 +1180,7 @@ elif menu == "🧮 Kalkulator Gas":
                 
                 st.markdown('<div class="input-label" style="margin-top: 15px;">🧪 Jumlah Mol (n)</div>', unsafe_allow_html=True)
                 n = st.number_input("Jumlah Mol (n)", min_value=0.0, key="n_volume", step=0.1, format="%.2f", label_visibility="collapsed")
-        
+            
             with col2:
                 st.markdown('<div class="input-label">🌡️ Suhu</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -1196,7 +1225,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-        
+            
             if st.button("🫙 Hitung Volume", key="btn_volume", use_container_width=True, type="primary"):
                 V = (n * R * T) / P
                 
@@ -1214,11 +1243,9 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 3em;">🎉</div>
                         <div style="z-index: 2;">
                             <h3 style="margin: 0 0 10px 0; font-size: 1.8em;">Hasil Perhitungan</h3>
-                            <div style="background: rgba(255,255,255,0.25); 
-                                        padding: 15px; 
-                                        border-radius: 15px;">
-                                <p style="margin: 0; font-size: 1px; 
-                                        border-radius: 15px;">
+                            <div style="background: rgba(255,255,255,0.25);
+                                         padding: 15px;
+                                         border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em;">
                                     Volume <b>{nama if nama else 'gas'}</b> = 
                                     <span style="font-size: 1.5em; font-weight: bold; color: #fff3cd;">
@@ -1248,10 +1275,10 @@ elif menu == "🧮 Kalkulator Gas":
                     <div style="font-size: 3em;">🧪</div>
                     <div style="z-index: 2;">
                         <h2 style="margin: 0; font-size: 2em;">Kalkulator Jumlah Mol</h2>
-                        <div style="background: rgba(255,255,255,0.4); 
-                                    padding: 10px 15px; 
-                                    border-radius: 15px; 
-                                    display: inline-block;
+                        <div style="background: rgba(255,255,255,0.4);
+                                     padding: 10px 15px;
+                                     border-radius: 15px;
+                                     display: inline-block;
                                     margin-top: 10px;">
                             <b>Rumus:</b> n = [P (atm) × V (L)] / [R × T (K)]
                         </div>
@@ -1291,7 +1318,7 @@ elif menu == "🧮 Kalkulator Gas":
                         🔄 Konversi: {P_input} {satuan_tekanan} = {P:.2f} atm
                     </div>
                     """, unsafe_allow_html=True)
-        
+            
             with col2:
                 st.markdown('<div class="input-label">📦 Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
@@ -1333,7 +1360,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
                 else:
                     T = T_input
-        
+            
             if st.button("🧪 Hitung Mol", key="btn_mol", use_container_width=True, type="primary"):
                 n = (P * V) / (R * T)
                 
@@ -1351,9 +1378,9 @@ elif menu == "🧮 Kalkulator Gas":
                         <div style="font-size: 3em;">🎉</div>
                         <div style="z-index: 2;">
                             <h3 style="margin: 0 0 10px 0; font-size: 1.8em; color: #333;">Hasil Perhitungan</h3>
-                            <div style="background: rgba(255,255,255,0.4); 
-                                        padding: 15px; 
-                                        border-radius: 15px;">
+                            <div style="background: rgba(255,255,255,0.4);
+                                         padding: 15px;
+                                         border-radius: 15px;">
                                 <p style="margin: 0; font-size: 1.3em; color: #333;">
                                     Jumlah mol <b>{nama if nama else 'gas'}</b> = 
                                     <span style="font-size: 1.5em; font-weight: bold; color: #d63384;">
@@ -1457,9 +1484,9 @@ elif menu == "📚 Ensiklopedia Gas":
                 <div style="font-size: 3em;">{gas['icon']}</div>
                 <h2 style="margin: 0; font-size: 2.2em; z-index: 2;">{selected_gas}</h2>
             </div>
-            <div style="background: rgba(255,255,255,0.25); 
-                        padding: 15px; 
-                        border-radius: 15px;
+            <div style="background: rgba(255,255,255,0.25);
+                         padding: 15px;
+                         border-radius: 15px;
                         margin-bottom: 20px;
                         z-index: 2;
                         position: relative;">
@@ -1468,14 +1495,14 @@ elif menu == "📚 Ensiklopedia Gas":
                 </p>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; z-index: 2; position: relative;">
-                <div style="background: rgba(255,255,255,0.2); 
-                            padding: 15px; 
-                            border-radius: 15px;">
+                <div style="background: rgba(255,255,255,0.2);
+                             padding: 15px;
+                             border-radius: 15px;">
                     <p style="margin: 0; font-size: 1.1em;"><b>📂 Kategori:</b> {gas['category']}</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.2); 
-                            padding: 15px; 
-                            border-radius: 15px;">
+                <div style="background: rgba(255,255,255,0.2);
+                             padding: 15px;
+                             border-radius: 15px;">
                     <p style="margin: 0; font-size: 1.1em;"><b>🔧 Aplikasi:</b> {gas['aplikasi']}</p>
                 </div>
             </div>
@@ -1491,10 +1518,10 @@ elif menu == "📚 Ensiklopedia Gas":
                     position: relative;
                     overflow: hidden;">
             <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🖼️</div>
-            <img src="{gas['image']}" 
-                 style="width: 100%; 
-                        max-width: 250px; 
-                        border-radius: 15px;
+            <img src="{gas['image']}"
+                 style="width: 100%;
+                         max-width: 250px;
+                         border-radius: 15px;
                         box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
             <p style="color: #333; margin: 15px 0 0 0; font-weight: bold; font-size: 1.1em;">
                 🖼️ Struktur Molekul
@@ -1527,8 +1554,8 @@ elif menu == "📚 Ensiklopedia Gas":
                 <h3 style="margin: 0 0 20px 0; text-align: center; font-size: 1.8em; z-index: 2; position: relative;">
                     {category}
                 </h3>
-                <div style="background: rgba(255,255,255,0.1); 
-                            border-radius: 15px;
+                <div style="background: rgba(255,255,255,0.1);
+                             border-radius: 15px;
                             overflow: hidden;
                             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
                             z-index: 2;
@@ -1602,9 +1629,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">🔥</div>
                 <div style="font-size: 3em; margin-bottom: 15px;">🔥</div>
                 <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Mudah Terbakar</h3>
-                <div style="background: rgba(255,255,255,0.25); 
-                            padding: 15px; 
-                            border-radius: 15px;">
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
                     <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Hidrogen, Metana</p>
                     <p style="margin: 5px 0;">• Jauhkan dari sumber api</p>
                     <p style="margin: 5px 0;">• Gunakan di area berventilasi</p>
@@ -1622,9 +1649,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">☠️</div>
                 <div style="font-size: 3em; margin-bottom: 15px;">☠️</div>
                 <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Beracun</h3>
-                <div style="background: rgba(255,255,255,0.25); 
-                            padding: 15px; 
-                            border-radius: 15px;">
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
                     <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Klorin, Amonia</p>
                     <p style="margin: 5px 0;">• Gunakan alat pelindung diri</p>
                     <p style="margin: 5px 0;">• Hindari inhalasi langsung</p>
@@ -1642,9 +1669,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 3em; opacity: 0.2;">💨</div>
                 <div style="font-size: 3em; margin-bottom: 15px;">💨</div>
                 <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Pengoksidasi</h3>
-                <div style="background: rgba(255,255,255,0.25); 
-                            padding: 15px; 
-                            border-radius: 15px;">
+                <div style="background: rgba(255,255,255,0.25);
+                             padding: 15px;
+                             border-radius: 15px;">
                     <p style="margin: 0 0 10px 0; font-weight: bold;"><b>Contoh:</b> Oksigen, Fluorin</p>
                     <p style="margin: 5px 0;">• Hindari kontak dengan bahan organik</p>
                     <p style="margin: 5px 0;">• Simpan terpisah dari reduktor</p>
@@ -1737,9 +1764,9 @@ elif menu == "⚠️ Panduan Keselamatan":
             <h2 style="margin: 0; font-size: 2em;">Prosedur Darurat</h2>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">1️⃣</div>
@@ -1749,9 +1776,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 </div>
                 <p style="margin: 0; font-size: 1.1em;">Segera tinggalkan area jika terjadi kebocoran gas berbahaya</p>
             </div>
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">2️⃣</div>
@@ -1761,9 +1788,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 </div>
                 <p style="margin: 0; font-size: 1.1em;">Selalu gunakan alat pelindung diri yang sesuai sebelum menangani gas</p>
             </div>
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">3️⃣</div>
@@ -1773,9 +1800,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 </div>
                 <p style="margin: 0; font-size: 1.1em;">Jauhkan dari sumber api, percikan listrik, dan benda panas</p>
             </div>
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">4️⃣</div>
@@ -1785,9 +1812,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 </div>
                 <p style="margin: 0; font-size: 1.1em;">Buka jendela dan pintu untuk sirkulasi udara yang baik</p>
             </div>
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">5️⃣</div>
@@ -1797,9 +1824,9 @@ elif menu == "⚠️ Panduan Keselamatan":
                 </div>
                 <p style="margin: 0; font-size: 1.1em;">Segera hubungi petugas berwenang atau layanan darurat jika diperlukan</p>
             </div>
-            <div style="background: rgba(255,255,255,0.2); 
-                        padding: 20px; 
-                        border-radius: 20px;
+            <div style="background: rgba(255,255,255,0.2);
+                         padding: 20px;
+                         border-radius: 20px;
                         position: relative;
                         overflow: hidden;">
                 <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">📞</div>
@@ -1814,41 +1841,59 @@ elif menu == "⚠️ Panduan Keselamatan":
     """), unsafe_allow_html=True)
 
 # ===========================================
-# FOOTER
+# FOOTER DENGAN NAVIGASI INTERAKTIF
 # ===========================================
 st.markdown("---")
+
+# JavaScript untuk navigasi footer
 st.markdown("""
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            border-radius: 25px;
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;">
-    <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚗️</div>
-    <div style="font-size: 3em; margin-bottom: 15px;">⚗️</div>
-    <h3 style="margin: 0 0 10px 0; font-size: 2em;">ChemGasMaster</h3>
-    <p style="margin: 0; opacity: 0.95; font-size: 1.1em;">© 2025 Kelompok 7 Kelas 1A | Platform Kimia Interaktif</p>
-    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            🧪 Kalkulator Gas
-        </span>
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            📚 Ensiklopedia
-        </span>
-        <span style="background: rgba(255,255,255,0.25); 
-                     padding: 8px 16px; 
-                     border-radius: 25px;
-                     font-size: 1.1em;">
-            ⚠️ Keselamatan
-        </span>
-    </div>
-</div>
+<script>
+function navigateToMenu(menuName) {
+    // Trigger rerun dengan parameter menu
+    window.parent.postMessage({
+        type: 'streamlit:setComponentValue',
+        value: menuName
+    }, '*');
+}
+</script>
 """, unsafe_allow_html=True)
+
+# Footer dengan tombol navigasi yang dapat diklik
+footer_col1, footer_col2, footer_col3 = st.columns([1, 2, 1])
+
+with footer_col2:
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 30px;
+                border-radius: 25px;
+                text-align: center;
+                color: white;
+                margin-top: 40px;
+                position: relative;
+                overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8em; opacity: 0.1;">⚗️</div>
+        <div style="font-size: 3em; margin-bottom: 15px;">⚗️</div>
+        <h3 style="margin: 0 0 10px 0; font-size: 2em;">ChemGasMaster</h3>
+        <p style="margin: 0; opacity: 0.95; font-size: 1.1em;">© 2025 Kelompok 7 Kelas 1A | Platform Kimia Interaktif</p>
+        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+    """, unsafe_allow_html=True)
+    
+    # Tombol navigasi footer yang interaktif
+    nav_col1, nav_col2, nav_col3 = st.columns(3)
+    
+    with nav_col1:
+        if st.button("🧪 Kalkulator Gas", key="footer_calc", use_container_width=True):
+            st.session_state.current_menu = "🧮 Kalkulator Gas"
+            st.rerun()
+    
+    with nav_col2:
+        if st.button("📚 Ensiklopedia", key="footer_ency", use_container_width=True):
+            st.session_state.current_menu = "📚 Ensiklopedia Gas"
+            st.rerun()
+    
+    with nav_col3:
+        if st.button("⚠️ Keselamatan", key="footer_safety", use_container_width=True):
+            st.session_state.current_menu = "⚠️ Panduan Keselamatan"
+            st.rerun()
+    
+    st.markdown("</div></div>", unsafe_allow_html=True)
