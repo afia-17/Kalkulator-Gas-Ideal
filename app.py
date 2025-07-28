@@ -17,74 +17,205 @@ st.set_page_config(
 # ===========================================
 st.markdown("""
 <style>
-    .main-header {
+    /* Latar belakang utama dengan partikel animasi */
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        background-attachment: fixed;
+        position: relative;
+        overflow-x: hidden;
+    }
+    
+    /* Latar belakang partikel animasi */
+    .stApp::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(187, 222, 251, 0.3) 0%, transparent 20%),
+            radial-gradient(circle at 80% 70%, rgba(200, 230, 201, 0.3) 0%, transparent 20%),
+            radial-gradient(circle at 40% 80%, rgba(255, 224, 178, 0.3) 0%, transparent 20%);
+        animation: mengambang 15s infinite ease-in-out;
+    }
+    
+    @keyframes mengambang {
+        0%, 100% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(-5px, -5px);
+        }
+        50% {
+            transform: translate(5px, 5px);
+        }
+        75% {
+            transform: translate(5px, -5px);
+        }
+    }
+    
+    /* Animasi gelembung mengambang */
+    .gelembung {
+        position: fixed;
+        border-radius: 50%;
+        background: rgba(33, 150, 243, 0.1);
+        animation: gelembungMengambang 15s infinite linear;
+        z-index: -1;
+    }
+    
+    @keyframes gelembungMengambang {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.3;
+        }
+        90% {
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    /* Styling konten utama */
+    .utama {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Header dengan gradient */
+    .header-utama {
         color: #0d47a1;
         border-bottom: 2px solid #0d47a1;
         padding-bottom: 10px;
+        background: linear-gradient(90deg, rgba(13,71,161,0.1) 0%, rgba(255,255,255,0) 100%);
+        padding-left: 15px;
+        border-radius: 5px;
     }
-    .card {
+    
+    /* Penyempurnaan kartu */
+    .kartu {
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .calc-card {
+    
+    .kartu:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* CSS yang sudah ada tetap dipertahankan */
+    .kartu-kalkulator {
         background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
         border-left: 5px solid #2196f3;
     }
-    .result-card {
+    .kartu-hasil {
         background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
         border-left: 5px solid #4caf50;
     }
-    .gas-card {
+    .kartu-gas {
         background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
         border-left: 5px solid #ff9800;
     }
-    .safety-card {
+    .kartu-keselamatan {
         background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
         border-left: 5px solid #f44336;
     }
-    .conversion-box {
+    .kotak-konversi {
         background-color: #f5f5f5;
         padding: 10px;
         border-radius: 8px;
         margin: 10px 0;
         border: 1px dashed #9e9e9e;
     }
-    .property-table {
+    .tabel-properti {
         width: 100%;
         border-collapse: collapse;
     }
-    .property-table th {
+    .tabel-properti th {
         background-color: #0d47a1;
         color: white;
         padding: 8px;
     }
-    .property-table td {
+    .tabel-properti td {
         padding: 8px;
         border-bottom: 1px solid #ddd;
     }
-    .input-row {
+    .baris-input {
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    .input-label {
+    .label-input {
         min-width: 120px;
     }
-    .input-field {
+    .field-input {
         flex-grow: 1;
     }
-    .input-unit {
+    .unit-input {
         min-width: 100px;
     }
-    .gas-icon {
+    .ikon-gas {
         font-size: 24px;
         margin-right: 10px;
     }
 </style>
 """, unsafe_allow_html=True)
 
+# ===========================================
+# ELEMEN GELEMBUNG MENGAMBANG
+# ===========================================
+st.markdown("""
+<script>
+// Membuat gelembung mengambang
+function buatGelembung() {
+    const container = document.querySelector('.stApp');
+    const jumlahGelembung = 15;
+    
+    for (let i = 0; i < jumlahGelembung; i++) {
+        const gelembung = document.createElement('div');
+        gelembung.classList.add('gelembung');
+        
+        // Ukuran acak antara 50px dan 150px
+        const ukuran = Math.random() * 100 + 50;
+        gelembung.style.width = `${ukuran}px`;
+        gelembung.style.height = `${ukuran}px`;
+        
+        // Posisi acak
+        gelembung.style.left = `${Math.random() * 100}%`;
+        gelembung.style.top = `${Math.random() * 100 + 100}%`;
+        
+        // Durasi animasi acak
+        const durasi = Math.random() * 20 + 10;
+        gelembung.style.animationDuration = `${durasi}s`;
+        
+        // Delay acak
+        gelembung.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(gelembung);
+    }
+}
+
+// Jalankan setelah halaman dimuat
+window.addEventListener('load', buatGelembung);
+</script>
+""", unsafe_allow_html=True)
 # ===========================================
 # DATABASE GAS
 # ===========================================
