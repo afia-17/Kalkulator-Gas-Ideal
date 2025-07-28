@@ -1778,7 +1778,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                 margin-bottom: 30px;
                 position: relative;
                 overflow: hidden;">
-        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.2;">🚧</div>
         <div style="text-align: center; margin-bottom: 25px;">
             <div style="font-size: 3em; margin-bottom: 15px;">🚧</div>
             <h2 style="margin: 0; color: #333; font-size: 2em;">Simbol Bahaya Umum</h2>
@@ -2063,5 +2063,3 @@ with footer_col2:
             st.rerun()
     
     st.markdown("</div></div>", unsafe_allow_html=True)
-
-</merged_code>
