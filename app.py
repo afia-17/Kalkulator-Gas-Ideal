@@ -1881,8 +1881,8 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🧤</div>
-                <div style="font-size: 4em; margin-bottom: 15px;">🧤</div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/2797/2797688.png" width="80"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2797/2797688.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Sarung Tangan</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tangan dari kontak langsung</p>
             </div>
@@ -1893,8 +1893,8 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🥽</div>
-                <div style="font-size: 4em; margin-bottom: 15px;">🥽</div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Kacamata Keselamatan</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi mata dari percikan</p>
             </div>
@@ -1905,8 +1905,8 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">🥼</div>
-                <div style="font-size: 4em; margin-bottom: 15px;">🥼</div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Jas Laboratorium</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tubuh dari kontaminasi</p>
             </div>
