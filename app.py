@@ -165,7 +165,7 @@ st.markdown("""
         50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
     }
     
-    /* Button styling yang lebih menarik */
+    /* Button styling */
     .stButton > button {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -373,9 +373,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# =============
+# ================
 # BACKGROUND 
-# =============
+# ================
 st.markdown("""
 <style>
     /* Background Beranda */
@@ -418,7 +418,7 @@ st.markdown("""
         100% { transform: translateX(50px) translateY(50px); }
     }
 
-    /* Background Kalkulator - Animated Circuit Pattern */
+    /* Background Kalkulator */
     .kalkulator-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
         position: fixed;
@@ -1060,7 +1060,7 @@ if menu == "🏠 Beranda":
 elif menu == "🧮 Kalkulator Gas":
     add_menu_background("kalkulator")
     
-    # Header dengan animasi yang lebih menarik
+    # Header 
     st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 padding: 35px;
@@ -1081,7 +1081,7 @@ elif menu == "🧮 Kalkulator Gas":
             🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
         <p style="color: rgba(255,255,255,0.95); margin: 15px 0 0 0; font-size: 1.2em; position: relative; z-index: 2;">
-            Hitung dengan menggunakan Persamaan PV = nRT
+            Hitung dengan menggunakan Persamaan PV = nRT!
         </p>
     </div>
     <style>
@@ -1091,8 +1091,7 @@ elif menu == "🧮 Kalkulator Gas":
         }
     </style>
     """), unsafe_allow_html=True)
-
-    # Tambahkan div wrapper dengan class khusus untuk styling tab
+    
     st.markdown('<div class="calculator-tabs-wrapper">', unsafe_allow_html=True)
 
     tab1, tab2, tab3, tab4 = st.tabs([
@@ -1118,9 +1117,9 @@ elif menu == "🧮 Kalkulator Gas":
             position: relative;
             overflow: hidden;
             z-index: 10;">
-    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">🧪</div>
+    <div style="position: absolute; top: 10px; right: 10px; font-size: 4em; opacity: 0.15;">⚖️</div>
     <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 2;">
-        <div style="font-size: 3em;">🧪</div>
+        <div style="font-size: 3em;">⚖️</div>
         <div>
             <h2 style="margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
                 Kalkulator Massa Gas
@@ -1398,7 +1397,7 @@ elif menu == "🧮 Kalkulator Gas":
                             position: relative;
                             overflow: hidden;
                             animation: slideIn 0.5s ease-out;">
-                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">📦</div>
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3em; opacity: 0.2;">🫙</div>
                     <div style="display: flex; align-items: center; gap: 20px;">
                         <div style="font-size: 3em;">🎉</div>
                         <div style="z-index: 2;">
@@ -1557,7 +1556,7 @@ elif menu == "🧮 Kalkulator Gas":
                 """, unsafe_allow_html=True)
                 st.balloons()
 
-    # Catatan edukasi di bagian bawah
+    # Catatan di bagian bawah
     st.markdown(wrap_content_with_overlay("""
     <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
                 padding: 25px;
@@ -1574,11 +1573,6 @@ elif menu == "🧮 Kalkulator Gas":
                     ✨ Untuk hasil terbaik, pastikan semua satuan konsisten dengan konstanta gas R 
                     (0.0821 L·atm/mol·K). Gunakan suhu dalam Kelvin dan tekanan dalam atm.
                     <br><br>
-                    🌡️ <b>Konversi Suhu:</b> K = °C + 273.15
-                    <br>
-                    🎚️ <b>Konversi Tekanan:</b> 1 atm = 101.325 kPa = 760 mmHg
-                    <br>
-                    🫙 <b>Konversi Volume:</b> 1 m³ = 1000 L = 1,000,000 mL
                 </p>
             </div>
         </div>
@@ -1869,7 +1863,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/3740/3740342.png" width="80"></div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/3740/3740342.png" width="70"></div>
                 <img src="https://cdn-icons-png.flaticon.com/512/3740/3740342.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Masker Gas</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi dari inhalasi gas berbahaya</p>
@@ -1881,7 +1875,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/128/2333/2333924.png" width="80"></div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/128/2333/2333924.png" width="70"></div>
                 <img src="https://cdn-icons-png.flaticon.com/128/2333/2333924.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Sarung Tangan</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tangan dari kontak langsung</p>
@@ -1893,7 +1887,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80"></div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="70"></div>
                 <img src="https://cdn-icons-png.flaticon.com/512/10984/10984307.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Kacamata Keselamatan</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi mata dari percikan</p>
@@ -1905,7 +1899,7 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80"></div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="70"></div>
                 <img src="https://cdn-icons-png.flaticon.com/512/3000/3000504.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Jas Laboratorium</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi tubuh dari kontaminasi</p>
@@ -2010,7 +2004,6 @@ elif menu == "⚠️ Panduan Keselamatan":
 # ===========================================
 st.markdown("---")
 
-# JavaScript untuk navigasi footer
 st.markdown("""
 <script>
 function navigateToMenu(menuName) {
@@ -2043,7 +2036,7 @@ with footer_col2:
         <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
     """, unsafe_allow_html=True)
     
-    # Tombol navigasi footer yang interaktif
+    # Tombol navigasi footer 
     nav_col1, nav_col2, nav_col3 = st.columns(3)
     
     with nav_col1:
