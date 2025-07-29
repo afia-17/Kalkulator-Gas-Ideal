@@ -876,7 +876,6 @@ with st.sidebar:
         <div style="font-size: 1.0em; line-height: 1.5;">
             1 mol gas = 6.022×10²³ molekul<br>
             Gas ideal hanya ada dalam teori! 🤓<br>
-            Suhu terendah: -273.15°C (0 K) ❄️
         </div>
     </div>
 </div>
@@ -1693,7 +1692,7 @@ elif menu == "📚 Ensiklopedia Gas":
         </div>
         """), unsafe_allow_html=True)
     
-    # Tab Informasi dengan styling yang diperbaiki
+    # Tab Informasi 
     st.markdown('<div class="encyclopedia-tabs">', unsafe_allow_html=True)
     tabs = st.tabs(list(gas["properties"].keys()))
     st.markdown('</div>', unsafe_allow_html=True)
@@ -1870,8 +1869,8 @@ elif menu == "⚠️ Panduan Keselamatan":
                         transition: transform 0.3s ease;
                         position: relative;
                         overflow: hidden;">
-                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;">😷</div>
-                <div style="font-size: 4em; margin-bottom: 15px;">😷</div>
+                <div style="position: absolute; top: 5px; right: 5px; font-size: 2em; opacity: 0.2;"><img src="https://cdn-icons-png.flaticon.com/512/2090/2090004.png" width="80"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2090/2090004.png" width="80">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.3em;">Masker Gas</h4>
                 <p style="margin: 0; opacity: 0.9; font-size: 1em;">Melindungi dari inhalasi gas berbahaya</p>
             </div>
