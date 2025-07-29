@@ -1,6 +1,6 @@
-# ===========================================
+# ===================================================================
 # APLIKASI KALKULATOR GAS IDEAL + ENSIKLOPEDIA + PANDUAN KESELAMATAN
-# ===========================================
+# ===================================================================
 import streamlit as st
 import base64
 
@@ -12,9 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ===========================================
-# CSS CUSTOM DENGAN BACKGROUND KREATIF
-# ===========================================
+# ============
+# CSS CUSTOM 
+# ============
 st.markdown("""
 <style>
     .main-header {
@@ -373,12 +373,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ===========================================
-# BACKGROUND KREATIF DAN MENARIK
-# ===========================================
+# =============
+# BACKGROUND 
+# =============
 st.markdown("""
 <style>
-    /* Background Beranda - Animated Gradient dengan Geometric Shapes */
+    /* Background Beranda */
     .beranda-bg {
         background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
         background-size: 400% 400%;
@@ -451,7 +451,7 @@ st.markdown("""
         100% { transform: translateX(40px) translateY(40px); opacity: 0.5; }
     }
 
-    /* Background Ensiklopedia - Molecular Structure Pattern */
+    /* Background Ensiklopedia */
     .ensiklopedia-bg {
         background: linear-gradient(120deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
         position: fixed;
@@ -484,7 +484,7 @@ st.markdown("""
         66% { transform: translateX(-10px) translateY(10px) rotate(240deg); }
     }
 
-    /* Background Keselamatan - Warning Pattern */
+    /* Background Keselamatan */
     .keselamatan-bg {
         background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
         position: fixed;
@@ -526,7 +526,7 @@ st.markdown("""
         50% { opacity: 1; }
     }
 
-    /* Content overlay yang lebih modern */
+    /* Content overlay */
     .content-overlay {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
@@ -770,7 +770,7 @@ GAS_DATABASE = {
         "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
     }, 
     "Argon (Ar)": {
-        "icon": "🔒",
+        "icon": " 🔒",
         "category": "Gas Monoatomik",
         "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan dan sebagai atmosfer pelindung.",
         "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
@@ -800,9 +800,9 @@ GAS_DATABASE = {
 if 'current_menu' not in st.session_state:
     st.session_state.current_menu = "🏠 Beranda"
 
-# ===========================================
-# MENU SIDEBAR YANG LEBIH MENARIK
-# ===========================================
+# ===========================
+# MENU SIDEBAR 
+# ===========================
 with st.sidebar:
     st.markdown("""
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -826,7 +826,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Menu dengan styling yang lebih menarik
+    # Menu 
     menu_options = ["🏠 Beranda", "🧮 Kalkulator Gas", "📚 Ensiklopedia Gas", "⚠️ Panduan Keselamatan"]
     menu = st.radio(
         "📋 MENU UTAMA",
@@ -839,7 +839,7 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Info box yang lebih menarik
+    # Info box 
     st.markdown("""
 <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 25px;
@@ -1082,7 +1082,7 @@ elif menu == "🧮 Kalkulator Gas":
             🧪✨ Kalkulator Gas Ideal ✨⚗️
         </h1>
         <p style="color: rgba(255,255,255,0.95); margin: 15px 0 0 0; font-size: 1.2em; position: relative; z-index: 2;">
-            Hitung dengan Presisi Tinggi menggunakan Persamaan PV = nRT
+            Hitung dengan menggunakan Persamaan PV = nRT
         </p>
     </div>
     <style>
@@ -1246,7 +1246,7 @@ elif menu == "🧮 Kalkulator Gas":
                 else:
                     T = T_input
                 
-                st.markdown('<div class="input-label" style="margin-top: 15px;">📦 Volume</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label" style="margin-top: 15px;">🫙 Volume</div>', unsafe_allow_html=True)
                 col2c, col2d = st.columns([3,1])
                 with col2c:
                     V_input = st.number_input("Volume", min_value=0.0, key="tekanan_vol_input", label_visibility="collapsed")
@@ -1484,7 +1484,7 @@ elif menu == "🧮 Kalkulator Gas":
                     """, unsafe_allow_html=True)
             
             with col2:
-                st.markdown('<div class="input-label">📦 Volume</div>', unsafe_allow_html=True)
+                st.markdown('<div class="input-label">🫙 Volume</div>', unsafe_allow_html=True)
                 col2a, col2b = st.columns([3,1])
                 with col2a:
                     V_input = st.number_input("Volume", min_value=0.0, key="mol_vol_input", label_visibility="collapsed")
@@ -1579,7 +1579,7 @@ elif menu == "🧮 Kalkulator Gas":
                     <br>
                     🎚️ <b>Konversi Tekanan:</b> 1 atm = 101.325 kPa = 760 mmHg
                     <br>
-                    📦 <b>Konversi Volume:</b> 1 m³ = 1000 L = 1,000,000 mL
+                    🫙 <b>Konversi Volume:</b> 1 m³ = 1000 L = 1,000,000 mL
                 </p>
             </div>
         </div>
@@ -1728,7 +1728,7 @@ elif menu == "📚 Ensiklopedia Gas":
                             position: relative;">
             """), unsafe_allow_html=True)
             
-            # Membuat tabel dengan cara yang lebih sederhana
+            # Membuat tabel 
             for key, value in props.items():
                 st.markdown(f"""
                 <div style="display: flex; margin-bottom: 2px; background: rgba(255,255,255,0.9); border-radius: 8px; overflow: hidden;">
@@ -2048,7 +2048,7 @@ with footer_col2:
     nav_col1, nav_col2, nav_col3 = st.columns(3)
     
     with nav_col1:
-        if st.button("🧪 Kalkulator Gas", key="footer_calc", use_container_width=True):
+        if st.button("🧮 Kalkulator Gas", key="footer_calc", use_container_width=True):
             st.session_state.current_menu = "🧮 Kalkulator Gas"
             st.rerun()
     
