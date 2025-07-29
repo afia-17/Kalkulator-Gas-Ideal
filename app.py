@@ -769,8 +769,8 @@ GAS_DATABASE = {
         },
         "aplikasi": "Balon, pendingin MRI, pengelasan, pengujian kebocoran"
     }, 
-    " Argon (Ar)": {
-        "icon": " 🔒",
+    "Argon (Ar)": {
+        "icon": "🔒",
         "category": "Gas Monoatomik",
         "description": "Gas inert, tidak reaktif secara kimia. Digunakan dalam pengelasan dan sebagai atmosfer pelindung.",
         "image": "https://www.vallalandco.com/Air-Products-Theni/1723628095.jpg",
