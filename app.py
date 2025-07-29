@@ -1555,7 +1555,7 @@ elif menu == "📚 Ensiklopedia Gas":
         <div style="font-size: 3em; margin-bottom: 15px;">📚</div>
         <h1 style="margin: 0; font-size: 2.5em; color: #333;">Ensiklopedia Gas</h1>
         <p style="margin: 15px 0 0 0; opacity: 0.8; font-size: 1.2em;">
-            🔬 Jelajahi Dunia Gas dengan Informasi Lengkap & Akurat
+            🔬 Jelajahi Dunia Gas dengan Informasi Lengkap dan Akurat
         </p>
     </div>
     """), unsafe_allow_html=True)
