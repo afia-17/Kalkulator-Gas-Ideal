@@ -28,7 +28,6 @@ st.markdown("""
         position: relative;
         overflow: hidden;
     }
-    
     .main-header::before {
         content: '';
         position: absolute;
@@ -39,12 +38,10 @@ st.markdown("""
         background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
         animation: shine 3s infinite;
     }
-    
     @keyframes shine {
         0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
         100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
-    
     .card {
         padding: 25px;
         border-radius: 20px;
@@ -56,42 +53,35 @@ st.markdown("""
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
     .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     }
-    
     .calc-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
     }
-    
     .result-card {
         background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
         color: white;
         border: none;
     }
-    
     .gas-card {
         background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         color: white;
         border: none;
     }
-    
     .safety-card {
         background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
         color: #333;
         border: none;
     }
-    
     .info-card {
         background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         color: #333;
         border: 1px solid #dee2e6;
     }
-    
     .conversion-box {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -101,13 +91,11 @@ st.markdown("""
         border: 1px solid rgba(255,255,255,0.3);
         animation: pulse 2s infinite;
     }
-    
     @keyframes pulse {
         0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
         70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
         100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
     }
-    
     .property-table {
         width: 100%;
         border-collapse: collapse;
@@ -115,7 +103,6 @@ st.markdown("""
         overflow: hidden;
         box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
-    
     .property-table th {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -123,18 +110,15 @@ st.markdown("""
         font-weight: bold;
         text-align: left;
     }
-    
     .property-table td {
         padding: 15px;
         border-bottom: 1px solid #dee2e6;
         background: white;
         transition: background 0.3s ease;
     }
-    
     .property-table tr:hover td {
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     }
-    
     .input-label {
         font-weight: bold;
         color: #495057;
@@ -152,19 +136,17 @@ st.markdown("""
         z-index: -1;
         overflow: hidden;
     }
-    
     .particle {
         position: absolute;
         border-radius: 50%;
         animation: float 6s ease-in-out infinite;
         opacity: 0.6;
     }
-    
     @keyframes float {
         0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
         50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
     }
-    
+
     /* Button styling */
     .stButton > button {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -175,8 +157,7 @@ st.markdown("""
         font-weight: bold;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    }
-    
+    }    
     .stButton > button:hover {
         background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         transform: translateY(-2px);
@@ -190,7 +171,6 @@ st.markdown("""
         border-radius: 15px;
         transition: all 0.3s ease;
     }
-    
     .stSelectbox > div > div:focus-within {
         border-color: #764ba2;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -205,7 +185,6 @@ st.markdown("""
         transition: all 0.3s ease;
         padding: 10px 15px;
     }
-    
     .stNumberInput > div > div > input:focus {
         border-color: #764ba2;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -220,7 +199,6 @@ st.markdown("""
         transition: all 0.3s ease;
         padding: 10px 15px;
     }
-    
     .stTextInput > div > div > input:focus {
         border-color: #764ba2;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -240,7 +218,6 @@ st.markdown("""
         color: white;
         margin: 5px;
     }
-    
     .footer-nav-btn:hover {
         background: rgba(255,255,255,0.4);
         border-color: rgba(255,255,255,0.6);
@@ -256,7 +233,6 @@ st.markdown("""
         border-radius: 15px;
         backdrop-filter: blur(10px);
     }
-
     .stTabs [data-baseweb="tab"] {
         height: 60px;
         padding: 12px 20px;
@@ -271,14 +247,12 @@ st.markdown("""
         position: relative;
         z-index: 100;
     }
-
     .stTabs [data-baseweb="tab"]:hover {
         background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
         border-color: rgba(255,255,255,0.5);
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
     .stTabs [aria-selected="true"] {
         background: linear-gradient(135deg, #667eea, #764ba2) !important;
         color: white !important;
@@ -304,7 +278,6 @@ st.markdown("""
         backdrop-filter: blur(15px);
         border: 1px solid rgba(255,255,255,0.3);
     }
-
     .encyclopedia-tabs [data-baseweb="tab"] {
         height: 65px;
         padding: 15px 25px;
@@ -322,14 +295,12 @@ st.markdown("""
         align-items: center;
         justify-content: center;
     }
-
     .encyclopedia-tabs [data-baseweb="tab"]:hover {
         background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
         border-color: rgba(102, 126, 234, 0.4);
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
     }
-
     .encyclopedia-tabs [aria-selected="true"] {
         background: linear-gradient(135deg, #667eea, #764ba2) !important;
         color: white !important;
@@ -344,18 +315,17 @@ st.markdown("""
         position: relative;
         z-index: 100;
     }
-
     .stTabs > div {
         position: relative;
         z-index: 100;
     }
-
+    
     /* Override any conflicting styles */
     .stTabs [data-baseweb="tab-list"] button {
         position: relative !important;
         z-index: 150 !important;
     }
-
+    
     /* Specific styling for calculator section */
     .calculator-tabs-wrapper .stTabs [data-baseweb="tab"] {
         min-height: 65px;
@@ -363,7 +333,6 @@ st.markdown("""
         border: 2px solid rgba(102, 126, 234, 0.3) !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     }
-
     .calculator-tabs-wrapper .stTabs [aria-selected="true"] {
         background: linear-gradient(135deg, #667eea, #764ba2) !important;
         color: white !important;
@@ -391,7 +360,6 @@ st.markdown("""
         z-index: -3;
         opacity: 0.1;
     }
-    
     .beranda-bg::before {
         content: '';
         position: absolute;
@@ -406,13 +374,11 @@ st.markdown("""
         background-size: 50px 50px, 30px 30px, 100px 100px;
         animation: patternMove 15s linear infinite;
     }
-    
     @keyframes gradientShift {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
-    
     @keyframes patternMove {
         0% { transform: translateX(0) translateY(0); }
         100% { transform: translateX(50px) translateY(50px); }
@@ -429,7 +395,6 @@ st.markdown("""
         z-index: -3;
         opacity: 0.08;
     }
-    
     .kalkulator-bg::before {
         content: '';
         position: absolute;
@@ -444,7 +409,6 @@ st.markdown("""
         background-size: 40px 40px, 40px 40px, 80px 80px;
         animation: circuitFlow 20s linear infinite;
     }
-    
     @keyframes circuitFlow {
         0% { transform: translateX(0) translateY(0); opacity: 0.5; }
         50% { transform: translateX(20px) translateY(20px); opacity: 1; }
@@ -462,7 +426,6 @@ st.markdown("""
         z-index: -3;
         opacity: 0.1;
     }
-    
     .ensiklopedia-bg::before {
         content: '';
         position: absolute;
@@ -477,7 +440,6 @@ st.markdown("""
         background-size: 60px 60px, 40px 40px, 80px 80px;
         animation: molecularDance 12s ease-in-out infinite;
     }
-    
     @keyframes molecularDance {
         0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
         33% { transform: translateX(10px) translateY(-10px) rotate(120deg); }
@@ -495,7 +457,6 @@ st.markdown("""
         z-index: -3;
         opacity: 0.08;
     }
-    
     .keselamatan-bg::before {
         content: '';
         position: absolute;
@@ -520,7 +481,6 @@ st.markdown("""
             );
         animation: warningPulse 3s ease-in-out infinite;
     }
-    
     @keyframes warningPulse {
         0%, 100% { opacity: 0.8; }
         50% { opacity: 1; }
@@ -539,7 +499,6 @@ st.markdown("""
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
     }
-    
     .content-overlay:hover {
         transform: translateY(-2px);
         box-shadow: 
@@ -557,14 +516,12 @@ st.markdown("""
         z-index: -2;
         pointer-events: none;
     }
-    
     .particle-element {
         position: absolute;
         border-radius: 50%;
         background: rgba(102, 126, 234, 0.3);
         animation: floatUp 15s infinite linear;
     }
-    
     @keyframes floatUp {
         0% {
             transform: translateY(100vh) scale(0);
